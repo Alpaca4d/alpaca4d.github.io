@@ -26,7 +26,8 @@ function init() {
 
   // create camera (default field of view is 60)
   camera = new THREE.PerspectiveCamera( 60, container.clientWidth / container.clientHeight, 0.1, 10000 );
-  camera.position.set( 40, 40, 40 ); // starting position of the camera
+  camera.position.set( 0, 0, 40 ); // starting position of the camera
+
 
   // camera controls to allow for orbiting
   controls = new THREE.OrbitControls( camera, renderer.domElement );
@@ -43,7 +44,9 @@ function init() {
 
   loader.load(
   	// resource URL
-  	"./assets/example_scene.json",
+  	//"./assets/example_scene.json",
+    //"./assets/chair.json",
+    "./assets/house.json",
 
   	// onLoad callback
   	function ( obj ) {
