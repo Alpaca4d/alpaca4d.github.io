@@ -1,0 +1,77 @@
+body {
+	margin: 0;
+	background-color: rgb(238, 238, 238);
+	color: rgb(255, 17, 17);
+	font-family: Monospace;
+	font-size: 50px;
+	line-height: 30px;
+	overscroll-behavior: none;
+}
+
+a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+
+nav {
+	color: rgb(255,0,0);
+	text-decoration: none;
+    font-size: 5px;
+    font-weight: bold;
+}
+
+
+
+p {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+    font-size: 50px;
+}
+
+
+
+#info {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+	text-align: center;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	z-index: 1; /* TODO Solve this in HTML */
+}
+
+
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(238, 238, 238);
+	font-size: 50px;
+}
+  
+li {
+	float: left;
+	font-size: 0px;
+}
+  
+li a {
+	color: rgb(0, 0, 0);
+	text-align: center;
+	padding: 18px;
+	text-decoration: none;
+	font-size: 17px;
+}
+  
+li a:hover {
+	background-color: rgb(46, 29, 201);
+}
