@@ -1,37 +1,42 @@
 body {
 	margin: 0;
 	background-color: rgb(238, 238, 238);
-	color: rgb(255, 17, 17);
+	color: rgb(0, 0, 0);
 	font-family: Monospace;
-	font-size: 50px;
+	font-size: 17px;
 	line-height: 30px;
 	overscroll-behavior: none;
 }
 
 a {
 	color: rgb(0, 0, 0);
-	text-decoration: none;
-    font-size: 50px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 
 nav {
 	color: rgb(255,0,0);
-	text-decoration: none;
-    font-size: 5px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 
-
 p {
 	color: rgb(0, 0, 0);
-	text-decoration: none;
-    font-size: 50px;
+    font-size: 17px;
+	padding: 18px;
+	margin: 0px;
 }
 
+h1, h2, h3, h4 {
+	padding: 18px;
+	margin: 0px;
+}
 
+h2.page-section{
+	text-align: center;
+}
 
 #info {
 	position: absolute;
@@ -72,6 +77,20 @@ li a {
 	font-size: 17px;
 }
   
-li a:hover {
-	background-color: rgb(46, 29, 201);
+
+
+#index :hover{
+	background-color: rgb(237, 11, 43);
+}
+
+#examples :hover{
+	background-color: rgb(48, 159, 255);
+}
+
+#download :hover{
+	background-color: rgb(179, 66, 143);
+}
+
+#about :hover{
+	background-color: rgb(195, 195, 13);
 }

@@ -13,9 +13,11 @@
 	<body>
 		
 		<ul>
-			<li><a href="#">Alpaca4d</a></li>
-			<li style="float:right"><a href="about.html">About</a></li>
-			<li style="float:right"><a href='https://www.food4rhino.com/en/app/alpaca4d'>Download</a></li>
+			<li id="index" style="float:left"><a href="index.html">Alpaca4d</a></li>
+
+			<li id="examples" style="float:right"><a href="examples.html">Examples</a></li>
+			<li id="download" style="float:right"><a href='download.html'>Download</a></li>
+			<li id="about" style="float:right"><a href="about.html">About</a></li>
 		</ul>
 
 		<script type="module">
@@ -108,12 +110,12 @@
 
 			function render() {
 
-				// const timer = Date.now() * 0.0005;
+				const timer = Date.now() * 0.0005;
 
-				// camera.position.x = Math.cos( timer ) * 50;
-				// camera.position.y = Math.sin( timer ) * 75;
+				camera.position.x = Math.cos( timer ) * 50;
+				camera.position.y = Math.sin( timer ) * 75;
 
-				// camera.lookAt( scene.position );
+				camera.lookAt( scene.position );
 				renderer.render( scene, camera );
 
 			}
