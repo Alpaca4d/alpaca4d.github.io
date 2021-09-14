@@ -161,8 +161,8 @@ background-color: #04AA6D;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	position: fixed;
-	top: 50%;
+	position: absolute;
+	top: 40%;
 	left: 50%;
 	/* bring your own prefixes */
 	transform: translate(-50%, -50%);
@@ -196,15 +196,35 @@ background-color: #04AA6D;
     }
 
 
+/* 
+#grid {
+	display: grid;
+	grid-auto-rows: auto;
+	width: 100%;
+	padding: 18px;
+	grid-template-columns: repeat(3,1fr);
+	} */
+	
 
-	#grid {
-		display: grid;
-		width: 100%;
-		padding: 18px;
-		grid-template-columns: repeat(3,1fr);
-		
+	/* Create three equal columns that floats next to each other */
+.column {
+	float: left;
+	width: 33.33%;
+	padding: 10px;
+  }
+  
 
-	  }
-	  
+  /* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
 
-	  
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 900px) {
+	.column {
+	  width: 100%;
+	}
+}
