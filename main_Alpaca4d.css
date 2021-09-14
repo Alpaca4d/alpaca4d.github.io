@@ -5,7 +5,7 @@ body {
 	margin: 0;
 	background-color: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
-	font-family: Arial, Helvetica, sans-serif;;
+	font-family: Arial;
 	font-size: 17px;
 	line-height: 30px;
 	overscroll-behavior: none;
@@ -33,7 +33,7 @@ a.Download_link{
 
 
 nav {
-	color: rgb(255,0,0);
+	color: rgb(237, 11, 43);
     font-size: 17px;
     font-weight: bold;
 }
@@ -42,7 +42,7 @@ nav {
 p {
 	color: rgb(0, 0, 0);
     font-size: 17px;
-	padding: 18px;
+	padding: 28px;
 	margin: 0px;
 }
 
@@ -74,8 +74,8 @@ h2.page-section{
 
 ul {
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 10px;
 	overflow: hidden;
 	background-color: rgb(255, 255, 255);
 	font-size: 50px;
@@ -91,7 +91,7 @@ li a {
 	text-align: center;
 	padding: 18px;
 	text-decoration: none;
-	font-size: 17px;
+	font-size: 19px;
 }
   
 
@@ -150,34 +150,71 @@ li a {
     font-size: 64px
     }
 
-.button {
+/* .button {
 border: none;
 color: white;
 padding: 14px 28px;
 font-size: 16px;
 cursor: pointer;
 background-color: #04AA6D;
-}
+} */
 
 
 .button_download {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	position: absolute;
-	top: 40%;
-	left: 50%;
+
 	/* bring your own prefixes */
-	transform: translate(-50%, -50%);
 
 	border: none;
-	color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
 	padding: 14px 28px;
+	margin:20px;
 	font-size: 50px;
 	cursor: pointer;
-	background-color: rgb(179, 66, 143);
+	background-color: rgb(195, 195, 13);
 	text-align: center;
+	border-radius: 12px;
+}
+
+.button_download:hover {
+	background-color: rgb(48, 159, 255);
+	color: white;
 	}
+
+
+
+.button_donate {
+
+	/* bring your own prefixes */
+
+	border: none;
+	color: rgb(255, 255, 255);
+	padding: 14px 28px;
+	margin:20px;
+	font-size: 50px;
+	cursor: pointer;
+	background-color: rgb(237, 11, 43);
+	text-align: center;
+	border-radius: 12px;
+}
+
+.button_donate:hover {
+	background-color: rgb(0, 41, 177);
+	color: white;
+	}
+
+
+
+.centering {
+	text-align: center;
+}
+
+
+.outerContainer { 
+	position: relative;
+  }
+
+
+
 
 
     img {
@@ -197,7 +234,6 @@ background-color: #04AA6D;
         margin: auto;
     }
     }
-
 
 
 	
@@ -225,142 +261,3 @@ background-color: #04AA6D;
 	}
 }
 
-
-
-.contact-section{
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  .contact-info{
-	color: #fff;
-	max-width: 500px;
-	line-height: 65px;
-	padding-left: 50px;
-	font-size: 18px;
-  }
-  
-  .contact-info i{
-	margin-right: 20px;
-	font-size: 25px;
-  }
-  
-  .contact-form{
-	max-width: 700px;
-	margin-right: 50px;
-  }
-  
-  .contact-info, .contact-form{
-	flex: 1;
-  }
-  
-  .contact-form h2{
-	color: #fff;
-	text-align: center;
-	font-size: 35px;
-	text-transform: uppercase;
-	margin-bottom: 30px;
-  }
-  
-  .contact-form .text-box{
-	background: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
-	border: 1px solid #f00;
-	width: calc(50% - 10px);
-	height: 50px;
-	padding: 12px;
-	font-size: 15px;
-	border-radius: 5px;
-	/* box-shadow: 0 1px 1px rgba(0, 0, 0); */
-	margin-bottom: 20px;
-	opacity: 0.9;
-  }
-  
-  .contact-form .text-box:first-child{
-	margin-right: 15px;
-  }
-  
-  .contact-form textarea{
-	background: rgb(255, 255, 255);
-	color: #fff;
-	border: none;
-	width: 100%;
-	padding: 12px;
-	font-size: 15px;
-	min-height: 200px;
-	max-height: 400px;
-	resize: vertical;
-	border-radius: 5px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-	margin-bottom: 20px;
-	opacity: 0.9;
-  }
-  
-  .contact-form .send-btn{
-	float: right;
-	background: #2f00ff;
-	color: #fff;
-	border: none;
-	width: 120px;
-	height: 40px;
-	font-size: 15px;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.3s;
-	transition-property: background;
-  }
-  
-  .contact-form .send-btn:hover{
-	background: #c70000;
-  }
-  
-  @media screen and (max-width: 950px){
-	.contact-section{
-	  flex-direction: column;
-	}
-  
-	.contact-info, .contact-form{
-	  margin: 30px 50px;
-	}
-  
-	.contact-form h2{
-	  font-size: 30px;
-	}
-  
-	.contact-form .text-box{
-	  width: 100%;
-	}
-  }
-  
-  /*css for alert messages*/
-  
-  .alert-success{
-	z-index: 1;
-	background: #D4EDDA;
-	font-size: 18px;
-	padding: 20px 40px;
-	min-width: 420px;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-left: 8px solid #3AD66E;
-	border-radius: 4px;
-  }
-  
-  .alert-error{
-	z-index: 1;
-	background: #FFF3CD;
-	font-size: 18px;
-	padding: 20px 40px;
-	min-width: 420px;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-left: 8px solid #FFA502;
-	border-radius: 4px;
-  }
