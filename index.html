@@ -19,6 +19,7 @@
 			<!-- <li id="about" style="float:right"><a href="about.html">About</a></li> -->
 		</ul>
 
+		
 		<script type="module">
 
 			import * as THREE from './build/three.module.js';
@@ -100,11 +101,11 @@
 
 
 			function animate() {
-
+				
+				render();
 				requestAnimationFrame( animate );
 
-				render();
-
+			
 			}
 
 			function render() {
