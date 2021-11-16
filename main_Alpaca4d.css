@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 
-body {
+body.index {
 	margin: 0;
 	display: 100vh;
 	background-color: rgb(255, 255, 255);
@@ -12,6 +12,20 @@ body {
 	overflow-y: hidden;
 	overflow-x: hidden;
 }
+
+
+body.example {
+	margin: 0;
+	display: 100vh;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	font-family: Arial;
+	font-size: 17px;
+	line-height: 30px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
 
 
 footer {
@@ -140,42 +154,6 @@ li a {
     padding: 64px;
     }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both
-    }
-
-.column-66 {
-    float: left;
-    width: 66.66666%;
-    padding: 20px;
-    }
-
-.column-33 {
-    float: left;
-    width: 33.33333%;
-    padding: 20px;
-    }
-
-    .large-font {
-    font-size: 48px;
-    }
-
-    .xlarge-font {
-    font-size: 64px
-    }
-
-
-
-/* .button {
-border: none;
-color: white;
-padding: 14px 28px;
-font-size: 16px;
-cursor: pointer;
-background-color: #04AA6D;
-} */
 
 
 .button_download {
