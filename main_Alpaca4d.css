@@ -3,17 +3,20 @@
 
 body {
 	margin: 0;
+	display: 100vh;
 	background-color: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
 	font-family: Arial;
 	font-size: 17px;
 	line-height: 30px;
-	overscroll-behavior: none;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 
 
 footer {
-	display: block;}
+	display: block;
+}
 
 
 
@@ -71,11 +74,14 @@ h2.page-section{
 }
 
 
+canvas{
+	display: block;
+}
 
 ul {
 	list-style-type: none;
-	margin: 0px;
-	padding: 10px;
+	margin: 10px;
+	
 	overflow: hidden;
 	background-color: rgb(255, 255, 255);
 	font-size: 50px;
@@ -85,13 +91,23 @@ li {
 	float: left;
 	font-size: 0px;
 }
-  
+
+
+
+
 li a {
 	color: rgb(0, 0, 0);
 	text-align: center;
-	padding: 18px;
 	text-decoration: none;
-	font-size: 19px;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	padding-inline: 10px;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+
 }
   
 
@@ -117,7 +133,7 @@ li a {
 
 * {
     box-sizing:border-box;
-    }
+}
 
 
 .container {
