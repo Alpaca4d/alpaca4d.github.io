@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 
 body.index {
 	margin: 0;
 	display: 100vh;
 	background-color: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
-	font-family: Arial;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 17px;
 	line-height: 30px;
 	overflow-y: hidden;
@@ -19,7 +17,7 @@ body.example {
 	display: 100vh;
 	background-color: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
-	font-family: Arial;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 17px;
 	line-height: 30px;
 	overflow-y: hidden;
@@ -232,7 +230,6 @@ li a {
     }
 
 
-	
 
 	/* Create three equal columns that floats next to each other */
 .column {
@@ -257,3 +254,13 @@ li a {
 	}
 }
 
+
+
+.download_link{
+	color: brown;
+	text-decoration: none;
+	font-size: 50px;
+	border: 2px solid brown;
+	border-radius: 12px;
+	padding: 2px;
+}
