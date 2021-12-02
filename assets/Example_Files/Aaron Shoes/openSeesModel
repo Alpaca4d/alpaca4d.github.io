@@ -792,13 +792,13 @@ fix 455 1 1 1 1 1 1
 fix 404 1 1 1 1 1 1
 fix 650 1 1 1 1 1 1
 fix 595 1 1 1 1 1 1
-uniaxialMaterial Elastic 1 80.0 0.0 80.0
+nDMaterial ElasticIsotropic 1 80.0 0.3 1e-09
 
-nDMaterial ElasticIsotropic 2 80.0 0.3 1e-09
+uniaxialMaterial Elastic 2 80.0 0.0 80.0
 
 section Elastic 1 80.0 1.76714586764 0.248504887637 0.248504887637 30.7692307692 0.497009775275 0.9 0.9
 
-section PlateFiber 2 2 2.0
+section PlateFiber 2 1 2.0
 
 geomTransf Linear 1 -0.641849164584 -0.137339437903 -0.75443192451
 element forceBeamColumn 1 1 2 1 NewtonCotes 1 5 -mass 1.76714586764e-09
