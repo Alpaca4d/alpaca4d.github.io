@@ -2,7 +2,7 @@ document.getElementById("navbar").innerHTML =
 `
 <div class="navbar-fixed">
     
-    <nav class="red lighten-1">
+    <nav class="red darken-3">
       <div class="container">
       <div class="nav-wrapper white">
         <!-- <div class="container "> -->
