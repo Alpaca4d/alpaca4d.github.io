@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Alpaca4d</title>
-		<meta charset="utf-8">
-		<meta name="author" content="Marco Pellegrino">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main_Alpaca4d.css">
-		<link rel="icon" href= "images/logo_200_200.png">
+<head>
+    <title>Marco Pellegrino</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Marco Pellegrino">
 
-	</head>
-
-	<body>
-		
-		<ul>
-			<li id="index" style="float:left"><a href="index.html">Alpaca4d</a></li>
-
-            <li id="examples" style="float:right"><a href="examples.html">Examples</a></li>
-			<li id="download" style="float:right"><a href='download.html'>Download</a></li>
-			<!-- <li id="about" style="float:right"><a href="about.html">About</a></li> -->
-		</ul>
-
-        <p>
-			Alpaca4d is a Grasshopper plugin which has been developed on top of OpenSees. The library is mostly used by researchers and academia because of the not userfriendly interface even if the math behind the library is highly sophisticated. The main idea of Alpaca4d is to provide an efficient and easy way to use OpenSees without writing any line of code. The belief is to bring more users to perform structural analyses with Opensees in a parametric environment such as Grasshopper. Our main fields of interests are structural analysis, optimization, machine learning, geometry manipulation.
-		</p>
-
-		<div class= "outerContainer">
-			<div class = "centering">
-				<a href= "https://www.food4rhino.com/en/app/alpaca4d?lang=en"><button  class = "download_link" >Download Alpaca4d</button></a>
-			</div>
-		</div>
-
-        <p>
-			Alpaca4d is free and always will be. Feel free to offer us a coffee with a small donation.
-		</p>
-
-		<div class= "outerContainer">
-			<div class = "centering">
-				<a href="https://www.patreon.com/bePatron?u=36766522" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
-			</div>
-		</div>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href= "./assets/images/">
+
+</head>
+
+<body>
+
+
+  <!-- nav bar -->
+  <div id="navbar"></div>
+  <script src="../assets/js/navbar_alpaca4d.js"></script>
+
+
+  <div class="container">
+    <h4>Download</h4>
+    <p>
+      The installation file includes the Full version of Alpaca4d. Make sure you have Rhino3D installed.
+    </p>
+    <p>
+      <a class="waves-effect waves-light btn white-text deep-purple darken-4" href="../assets/documents/MarcoPellegrino_CV.pdf" target="_blank"> <i class="material-icons right">download</i>Alpaca4d</a>
+    </p>
+
+    <h4>Setting Up</h4>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima consequatur et labore, quam harum incidunt aperiam voluptatibus totam porro vitae obcaecati saepe voluptates dolores accusantium! Harum mollitia eum omnis numquam?
+    </p>
+  </div>
+
+
+
+  <!-- footer -->
+  <div id="footer"></div>
+  <script src="/assets/js/footer_alpaca4d.js"></script>
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="assets/js/pdf.js"></script>
+  <script src="assets/js/pdf_2.js"></script>
+  <!-- <script src="assets/js/multipage.js"></script> -->
 
 
 
 
-    </body>
+    <script>
+      var dropdowns = document.querySelectorAll('.dropdown-trigger')
+      for (var i = 0; i < dropdowns.length; i++){
+          M.Dropdown.init(dropdowns[i], {coverTrigger: false, constrainWidth: false, hover:true});
+      }
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+    });
+    </script>
+
+</body>
+
+
 </html>
