@@ -1,11 +1,12 @@
 document.getElementById("footer").innerHTML =
+
 `
 <footer class="page-footer green lighten-2">
 <div class="container">
   <div class="row">
     <div class="col s8">
-      <h5 class="white-text">Footer Content</h5>
-      <p  class="white-text">You can use rows and columns here to organize your footer content.</p>
+      <h5 class="white-text">Open Source Project</h5>
+      <p  class="white-text">Building the tool for a better and comprehensive design</p>
     </div>
     <div class="col s4">
       <h5 class="white-text">Connect</h5>
