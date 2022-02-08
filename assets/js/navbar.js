@@ -12,6 +12,7 @@ document.getElementById("navbar").innerHTML =
             <li><a class="black-text" href="about.html">About</a></li>
             <li><a class="black-text" href="download.html">Download</a></li>
             <li><a class="black-text" href="examples.html">Examples</a></li>
+            <li><a class="red-text text-darken-2" style="font-weight:600" href="become_a_sponsor.html">Sponsors</a></li>
           </ul>
       </div>
       </div>
