@@ -38,18 +38,17 @@
 
 
   <div class="container">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nisi at eaque! Nobis excepturi dignissimos rerum, sit, hic veniam qui error vel dolorum vitae laudantium sint, provident quia quaerat similique.
-    </p>
 
 
-    <model-viewer style="width: 100%; height: 500px; top: 0px;" bounds="tight" src="./model_viewer/DamagedHelmet.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls environment-image="neutral" poster="poster.png" shadow-intensity="1">
-      <button class="Hotspot" slot="hotspot-4" data-position="0.48904407534501626m 0.1999780518273599m 0.3106052450469302m" data-normal="0.8496831096728227m 0.10041772669648956m 0.5176435967940022m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">test</div>
-      </button>
-    </model-viewer>  
+    <model-viewer style="width: 100%; height: 500px; top: 0px;" bounds="tight" src="./alpaca4d_modelViewer/Alpaca4dModel.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="./alpaca4d_modelViewer/poster.png" shadow-intensity="0.4" exposure="1.56" shadow-softness="0.56" environment-image="neutral" camera-orbit="37.67deg 77.72deg auto" auto-rotate auto-rotate-delay="1" rotation-per-second="200%"></model-viewer>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
 
-    <script src="./model_viewer/script.js"></script>
+
+    </model-viewer>
+
+    <script src="./alpaca4d_modelViewer/script.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
