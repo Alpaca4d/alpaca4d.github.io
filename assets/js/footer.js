@@ -11,7 +11,7 @@ document.getElementById("footer").innerHTML =
     </div>
     <div class="col s4">
       <h5 class="black-text">Connect</h5>
-      <i> <a  class="material-icons black-text" href="mailto:pellegrino.marco@icloud.com">mail</a> </i>
+      <i> <a  class="material-icons black-text" href="mailto:alpaca4d@gmail.com">mail</a> </i>
       <i> <a  class="material-icons black-text" href="https://wa.me/393291536801">phone</a> </i>
       <i> <a  class="material-icons black-text" href="https://www.linkedin.com/in/mp0110/">work</a> </i>
     </div>
