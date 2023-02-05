@@ -20,7 +20,7 @@ document.getElementById("footer").innerHTML =
 
 <div class="footer-copyright">
   <div class="container black-text">
-    Made with <a class= "orange-text" href="https://en.wikipedia.org/wiki/Love" target="_blank"> Love</a>
+    Made with<a class= "orange-text" href="https://en.wikipedia.org/wiki/Love" target="_blank"> ❤️</a>
   </div>
 </div>
 </footer>
