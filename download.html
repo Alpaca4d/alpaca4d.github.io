@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Alpaca4d</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Marco Pellegrino">
+  <title>Alpaca4d</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Marco Pellegrino">
 
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="./assets/css/prism.css">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href= "./assets/images/icons/logo_200_200.png">
+
+  <link rel="stylesheet" href="./assets/css/prism.css">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./assets/images/icons/logo_200_200.png">
 
 </head>
 
@@ -31,38 +32,32 @@
 
 
   <div class="container">
-    <h4>Download</h4>
     <p>
-      The installation file includes the Full version of Alpaca4d. Make sure you have Rhino3D installed.
-    </p>
-    <p>
-      <a class="waves-effect btn white-text indigo darken-2 hoverable" style="font-weight:600; border-radius:10px;" href="./assets/release/alpaca4d_2.0.5.zip" target="_blank"> <i class="material-icons right">download</i>Alpaca4d</a>
+      Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling software. You can install
+      <b>Alpaca4d</b>, also known as add-ons, using the <b>Package Manager</b>.
     </p>
 
-    <h4>Setting Up</h4>
+    <h4>Package Manager</h4>
 
-      <ol style="list-style-type:disc; line-height:150%">
-        <li> <b>Unblock</b> the .zip file</li>
-        <li>Open Rhino and Grasshopper</li>
-        <li>
-          Open the <b>Library Folder</b>
-          <ol style="list-style-type:none;">
-            <li style="font-size: small;">(Grasshopper -> File -> SpecialFolder -> Component Folder)</li>
-          </ol>
-        </li>
-        <li>Copy the folder <b>"Alpaca4d"</b> in the Grasshopper <b>Libraries folder</b></li>
-        <li>
-          Open the <b>User Object Folder</b>
-          <ol style="list-style-type:none;">
-            <li style="font-size: small;">(Grasshopper -> File -> Special Folder -> User Object Folder)</li>
-          </ol>
-        </li>
-        
-        <li>Copy the <b>CONTENT</b> of the UserObjects folder into Grasshopper User Object Folder</li>
-        <li>Restart Rhino and Grasshopper.</li>
-      </ol>
-      
+    <ol style="list-style-type:disc; line-height:150%">
+      <li>Open Rhino3D and launch the Package Manager from the Tools menu.</li>
+      <li>In the Package Manager, select the "Grasshopper" category from the drop-down menu.</li>
+      <li>Search for <b>Alpaca4d</b> and click the "Install" button. The Package Manager will download and install the
+        plugin.</li>
+      <li>Restart Rhino3D to activate the plugin. You should now be able to use the plugin in Grasshopper.</li>
+    </ol>
 
+
+    <div style="display:table-cell; vertical-align:middle; text-align:center">
+      <img style='width: 50%; object-fit: contain; position: relative;'
+        src="/assets/images/installation/package_manager.png">
+    </div>
+
+    <p>👏 Congratulations! If you have correctly follow the step above, you will find the Alpaca4d toolbar on
+      Grasshopper.</p>
+
+    <p></p>
+    <img style='height: 100%; width: 100%; object-fit: contain' src="/assets/images/installation/alpacatoolbar.png">
   </div>
 
 
@@ -78,12 +73,12 @@
 
 
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
     });
-    </script>
+  </script>
 
 </body>
 
