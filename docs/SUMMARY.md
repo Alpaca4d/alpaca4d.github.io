@@ -17,7 +17,7 @@
   * [Shell](basics/elements/shell.md)
   * [Brick](basics/elements/brick.md)
 * [🔗 Constraints](basics/constraints/README.md)
-  * [Diaphgram](basics/constraints/diaphgram.md)
+  * [Diaphragm](basics/constraints/diaphragm.md)
   * [Equal DOF](basics/constraints/equal-dof.md)
 * [⌛ Time History](basics/time-history/README.md)
   * [Constant](basics/time-history/constant.md)
