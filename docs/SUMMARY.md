@@ -10,7 +10,9 @@
   * [Uniaxial](basics/materials/page-1.md)
   * [ND](basics/materials/page-2.md)
 * [🎛 Sections](basics/sections/README.md)
-  * [Library](basics/sections/library.md)
+  * [Rectangular](basics/sections/rectangular.md)
+  * [Circular](basics/sections/library.md)
+  * [H section](basics/sections/h-section.md)
   * [Parametric Cross Section](basics/sections/parametric-cross-section.md)
 * [🎢 Elements](basics/elements/README.md)
   * [Force Beam Column](basics/elements/force-beam-column.md)
@@ -43,9 +45,10 @@
 * [🏢 Multi Storey Building](examples/multi-storey-building.md)
 * [🎶 Natural Vibration](examples/natural-vibration.md)
 * [🕙 Earthquake](examples/earthquake.md)
-* [🖨️ 3d Printed Structure](examples/3d-printed-structure.md)
+* [🖨 3d Printed Structure](examples/3d-printed-structure.md)
 * [🔒 Connection Design](examples/connection-design.md)
-* [🪫 High Tension Tower](examples/high-tension-tower.md)
+* [📈 Moment Curvature](examples/moment-curvature.md)
+* [🔋 High Tension Tower](examples/high-tension-tower.md)
 
 ## REFERENCES
 

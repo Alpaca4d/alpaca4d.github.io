@@ -1,4 +1,4 @@
-# 🪫 High Tension Tower
+# 🔋 High Tension Tower
 
 <figure><img src="../.gitbook/assets/EXAMPLES/HighTensionTower/images/persp Front.png" alt=""><figcaption></figcaption></figure>
 
