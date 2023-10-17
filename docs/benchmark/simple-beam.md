@@ -43,11 +43,11 @@ $$
 
 #### 1.4 Benchmark
 
-|                | SBE | Alpaca4d | Difference |
-| -------------- | --- | -------- | ---------- |
-| Bending moment |     |          | 0%         |
-| Shear force    |     |          | 0%         |
-| Displacement   |     |          | 0%         |
+| simply supported | SBE | Alpaca4d | Difference |
+| ---------------- | --- | -------- | ---------- |
+| Bending moment   |     |          | 0%         |
+| Shear force      |     |          | 0%         |
+| Displacement     |     |          | 0%         |
 
 ## 2. Cantilever beam
 
