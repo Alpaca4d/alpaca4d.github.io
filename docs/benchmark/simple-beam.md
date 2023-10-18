@@ -1,7 +1,5 @@
 # 🍏 Simple Beams
 
-{% file src="../.gitbook/assets/beam.gh" %}
-
 ## 1. Simply supported beam
 
 <figure><img src="../.gitbook/assets/benchmark_simply_supported_beam (1).PNG" alt="" width="375"><figcaption></figcaption></figure>
@@ -54,7 +52,19 @@ $$
 
 ## 2. Cantilever beam
 
+#### 2.1 Bending moment
 
+#### 2.2 Shear force
+
+#### 2.3 Displacement
+
+#### 2.4 Benchmark
+
+<table><thead><tr><th>simply supported</th><th width="227">Standard Beam Equation</th><th width="129">Alpaca4d</th><th>Difference</th></tr></thead><tbody><tr><td>Shear force</td><td>- kN</td><td>- kN</td><td>-%</td></tr><tr><td>Bending moment</td><td>- kNm</td><td>- kNm</td><td>-%</td></tr><tr><td>Displacement</td><td>- mm</td><td>- mm</td><td>-%</td></tr></tbody></table>
+
+#### 2.5 Download Grasshopper benchmark file
 
 {% file src="../.gitbook/assets/Alpaca4d_cantilever_example.gh" %}
+
+{% file src="../.gitbook/assets/beam.gh" %}
 
