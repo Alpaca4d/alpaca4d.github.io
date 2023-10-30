@@ -49,6 +49,7 @@
 * [🔒 Connection Design](examples/connection-design.md)
 * [📈 Moment Curvature](examples/moment-curvature.md)
 * [🔋 High Tension Tower](examples/high-tension-tower.md)
+* [💐 Custom Script](examples/custom-script.md)
 
 ## REFERENCES
 
