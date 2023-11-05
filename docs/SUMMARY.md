@@ -2,7 +2,9 @@
 
 * [👋 Welcome](README.md)
 * [🧠 Installation](installation.md)
-* [🚦 Get Started](get-started.md)
+* [🚦 Get Started](get-started/README.md)
+  * [Page](get-started/page.md)
+* [🦸 Sponsors](sponsors.md)
 
 ## Basics
 
@@ -59,7 +61,6 @@
 
 ## Benchmark
 
-* [Sections](benchmark/sections.md)
 * [🧑🌾 Introduction](benchmark/intro.md)
 * [🍏 Simple Beams](benchmark/simple-beam.md)
 * [🍐 Simple Shell](benchmark/simple-shell.md)
