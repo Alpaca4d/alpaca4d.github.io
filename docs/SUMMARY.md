@@ -2,8 +2,6 @@
 
 * [👋 Welcome](README.md)
 * [🧠 Installation](installation.md)
-* [🚦 Get Started](get-started/README.md)
-  * [Page](get-started/page.md)
 * [🦸 Sponsors](sponsors.md)
 
 ## Basics
