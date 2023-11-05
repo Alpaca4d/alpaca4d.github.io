@@ -62,4 +62,4 @@
 * [🧑🌾 Introduction](benchmark/intro.md)
 * [🍏 Simple Beams](benchmark/simple-beam.md)
 * [🍐 Simple Shell](benchmark/simple-shell.md)
-* [🍌 Brick Element](benchmark/brick-element.md)
+* [🍌 Brick Element](benchmark/simple-brick.md)
