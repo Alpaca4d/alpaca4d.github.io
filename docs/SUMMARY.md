@@ -9,7 +9,7 @@
 * [💐 Materials](basics/materials/README.md)
   * [Uniaxial](basics/materials/page-1.md)
   * [ND](basics/materials/page-2.md)
-* [🎛 Sections](basics/sections/README.md)
+* [🎛️ Sections](basics/sections/README.md)
   * [Rectangular](basics/sections/rectangular.md)
   * [Circular](basics/sections/library.md)
   * [H section](basics/sections/h-section.md)
@@ -37,7 +37,7 @@
 * [💾 Assemble](basics/assemble.md)
 * [📉 Analysis](basics/analysis.md)
 * [🎲 Results](basics/results.md)
-* [🕶 Visualisation](basics/visualisation.md)
+* [🕶️ Visualisation](basics/visualisation.md)
 * [🧰 Utility](basics/utility.md)
 
 ## EXAMPLES
@@ -45,12 +45,12 @@
 * [🏢 Multi Storey Building](examples/multi-storey-building.md)
 * [🎶 Natural Vibration](examples/natural-vibration.md)
 * [🕙 Earthquake](examples/earthquake.md)
-* [🖨 3d Printed Structure](examples/3d-printed-structure.md)
+* [🖨️ 3d Printed Structure](examples/3d-printed-structure.md)
 * [🔒 Connection Design](examples/connection-design.md)
 * [📈 Moment Curvature](examples/moment-curvature.md)
 * [🔋 High Tension Tower](examples/high-tension-tower.md)
 * [💐 Custom Script](examples/custom-script.md)
-* [🏗 Deconstruct Anything](examples/deconstruct-anything.md)
+* [🏗️ Deconstruct Anything](examples/deconstruct-anything.md)
 
 ## REFERENCES
 
@@ -59,7 +59,4 @@
 
 ## Benchmark
 
-* [🧑🌾 Introduction](benchmark/intro.md)
-* [🍏 Simple Beams](benchmark/simple-beam.md)
-* [🍐 Simple Shell](benchmark/simple-shell.md)
-* [🍌 Brick Element](benchmark/simple-brick.md)
+* [🧑‍🌾 Introduction](benchmark/intro.md)
