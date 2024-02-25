@@ -1,2 +1,0 @@
-# Parametric Cross Section
-

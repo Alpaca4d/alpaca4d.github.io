@@ -1,6 +1,0 @@
----
-description: WIP
----
-
-# 📈 Moment Curvature
-
