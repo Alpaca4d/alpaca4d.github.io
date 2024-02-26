@@ -59,4 +59,7 @@
 
 ## Benchmark
 
-* [🧑‍🌾 Introduction](benchmark/intro.md)
+* [🧑‍🌾 Intro](benchmark/intro.md)
+* [🍏 Simple Beam](benchmark/simple-beam.md)
+* [🍐 Simple Shell](benchmark/simple-shell.md)
+* [🍌 Simple Brick](benchmark/simple-brick.md)

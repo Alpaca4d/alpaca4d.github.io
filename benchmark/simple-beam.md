@@ -1,8 +1,6 @@
-# 🍏 Simple Beams
+# 🍏 Simple Beam
 
 ## 1. Simply supported beam
-
-<figure><img src="../.gitbook/assets/benchmark_simply_supported_beam (1).PNG" alt="" width="375"><figcaption></figcaption></figure>
 
 _Example properties:_
 
@@ -18,7 +16,7 @@ M_{max} = \frac{1}{8}ql^2
 $$
 
 $$
-M_{max} = \frac{1}{8}\cdot 6 \cdot  5^2 = \mathbf{22,5}\;  kNm
+M_{max} = \frac{1}{8}\cdot 6 \cdot 5^2 = \mathbf{22,5}\; kNm
 $$
 
 #### 1.2 Shear force
@@ -38,8 +36,7 @@ $$
 $$
 
 $$
-\delta _{max}=\frac{5\cdot 5\cdot 6^4}{384 \cdot 2.07e+11
- \cdot 6,75e-4} = 0.349\; mm
+\delta _{max}=\frac{5\cdot 5\cdot 6^4}{384 \cdot 2.07e+11 \cdot 6,75e-4} = 0.349\; mm
 $$
 
 #### 1.4 Benchmark
@@ -47,8 +44,6 @@ $$
 <table><thead><tr><th>simply supported</th><th width="227">Standard Beam Equation</th><th width="129">Alpaca4d</th><th>Difference</th></tr></thead><tbody><tr><td>Shear force</td><td>15,0 kN</td><td>14,7 kN</td><td>2.04%</td></tr><tr><td>Bending moment</td><td>18,75 kNm</td><td>18,74 kNm</td><td>0.05%</td></tr><tr><td>Displacement</td><td>0.349 mm</td><td>0.353 mm</td><td>1.13%</td></tr></tbody></table>
 
 #### 1.5 Download Grasshopper benchmark file
-
-{% file src="../.gitbook/assets/Alpaca4d_simply_supported_beam_example.gh" %}
 
 ## 2. Cantilever beam
 
@@ -63,8 +58,3 @@ $$
 <table><thead><tr><th>simply supported</th><th width="227">Standard Beam Equation</th><th width="129">Alpaca4d</th><th>Difference</th></tr></thead><tbody><tr><td>Shear force</td><td>- kN</td><td>- kN</td><td>-%</td></tr><tr><td>Bending moment</td><td>- kNm</td><td>- kNm</td><td>-%</td></tr><tr><td>Displacement</td><td>- mm</td><td>- mm</td><td>-%</td></tr></tbody></table>
 
 #### 2.5 Download Grasshopper benchmark file
-
-{% file src="../.gitbook/assets/Alpaca4d_cantilever_example.gh" %}
-
-{% file src="../.gitbook/assets/beam.gh" %}
-

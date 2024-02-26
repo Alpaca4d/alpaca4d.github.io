@@ -1,3 +1,5 @@
 # 🍐 Simple Shell
 
-{% file src="../.gitbook/assets/BENCHMARKS/shell.gh" %}
+
+
+{% file src="../.gitbook/assets/shell.gh" %}
