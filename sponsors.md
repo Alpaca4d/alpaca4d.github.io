@@ -10,6 +10,7 @@ _We're immensely grateful to the amazing people who support us. Your kindness an
 * Alex Coppola
 * Peter Bauer
 * Rameshwar Prasad
+* Sara Andreussi
 
 ### <mark style="color:red;">Become a Patreon</mark>
 
