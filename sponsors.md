@@ -11,6 +11,7 @@ _We're immensely grateful to the amazing people who support us. Your kindness an
 * Peter Bauer
 * Rameshwar Prasad
 * Sara Andreussi
+* Rudolf Neumerkel
 
 ### <mark style="color:red;">Become a Patreon</mark>
 
