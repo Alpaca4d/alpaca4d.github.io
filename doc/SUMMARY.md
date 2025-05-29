@@ -1,8 +1,8 @@
 # Table of contents
 
 * [👋 Welcome](README.md)
-* [🧠 Installation](../installation.md)
-* [🚦 Get Started](get-started.md)
+* [🧠 Installation](installation.md)
+* [🦸 Sponsors](sponsors.md)
 
 ## Basics
 
@@ -10,14 +10,16 @@
   * [Uniaxial](basics/materials/page-1.md)
   * [ND](basics/materials/page-2.md)
 * [🎛️ Sections](basics/sections/README.md)
-  * [Library](basics/sections/library.md)
+  * [Rectangular](basics/sections/rectangular.md)
+  * [Circular](basics/sections/library.md)
+  * [H section](basics/sections/h-section.md)
   * [Parametric Cross Section](basics/sections/parametric-cross-section.md)
 * [🎢 Elements](basics/elements/README.md)
   * [Force Beam Column](basics/elements/force-beam-column.md)
   * [Shell](basics/elements/shell.md)
   * [Brick](basics/elements/brick.md)
 * [🔗 Constraints](basics/constraints/README.md)
-  * [Diaphgram](basics/constraints/diaphgram.md)
+  * [Diaphragm](basics/constraints/diaphragm.md)
   * [Equal DOF](basics/constraints/equal-dof.md)
 * [⌛ Time History](basics/time-history/README.md)
   * [Constant](basics/time-history/constant.md)
@@ -43,14 +45,21 @@
 * [🏢 Multi Storey Building](examples/multi-storey-building.md)
 * [🎶 Natural Vibration](examples/natural-vibration.md)
 * [🕙 Earthquake](examples/earthquake.md)
+* [🖨️ 3d Printed Structure](examples/3d-printed-structure.md)
+* [🔒 Connection Design](examples/connection-design.md)
+* [📈 Moment Curvature](examples/moment-curvature.md)
+* [🔋 High Tension Tower](examples/high-tension-tower.md)
+* [💐 Custom Script](examples/custom-script.md)
+* [🏗️ Deconstruct Anything](examples/deconstruct-anything.md)
 
 ## REFERENCES
 
 * [🌊 OpenSees](references/opensees.md)
+* [📕 License](references/license.md)
 
 ## Benchmark
 
 * [🧑‍🌾 Intro](benchmark/intro.md)
 * [🍏 Simple Beam](benchmark/simple-beam.md)
 * [🍐 Simple Shell](benchmark/simple-shell.md)
-* [🍌 Brick Element](benchmark/brick-element.md)
+* [🍌 Simple Brick](benchmark/simple-brick.md)

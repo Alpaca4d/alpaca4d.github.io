@@ -1,0 +1,165 @@
+model BasicBuilder -ndm 3 -ndf 6
+
+node 1 0 0 0 -mass 0 0 0 0 0 0
+
+node 2 0.6000000000000001 0 0 -mass 0 0 0 0 0 0
+
+node 3 1.2000000000000002 0 0 -mass 0 0 0 0 0 0
+
+node 4 1.8000000000000003 0 0 -mass 0 0 0 0 0 0
+
+node 5 2.4000000000000004 0 0 -mass 0 0 0 0 0 0
+
+node 6 3 0 0 -mass 0 0 0 0 0 0
+
+node 7 3.5999999999999996 0 0 -mass 0 0 0 0 0 0
+
+node 8 4.199999999999999 0 0 -mass 0 0 0 0 0 0
+
+node 9 4.8 0 0 -mass 0 0 0 0 0 0
+
+node 10 5.3999999999999995 0 0 -mass 0 0 0 0 0 0
+
+node 11 5.999999999999999 0 0 -mass 0 0 0 0 0 0
+
+node 12 6.6 0 0 -mass 0 0 0 0 0 0
+
+node 13 7.199999999999999 0 0 -mass 0 0 0 0 0 0
+
+node 14 7.800000000000001 0 0 -mass 0 0 0 0 0 0
+
+node 15 8.4 0 0 -mass 0 0 0 0 0 0
+
+node 16 9.000000000000002 0 0 -mass 0 0 0 0 0 0
+
+node 17 9.600000000000001 0 0 -mass 0 0 0 0 0 0
+
+node 18 10.200000000000003 0 0 -mass 0 0 0 0 0 0
+
+node 19 10.800000000000002 0 0 -mass 0 0 0 0 0 0
+
+node 20 11.400000000000004 0 0 -mass 0 0 0 0 0 0
+
+node 21 12 0 0 -mass 0 0 0 0 0 0
+
+fix 1 1 1 1 1 1 1
+
+uniaxialMaterial Elastic 1 210000000 0 210000000
+
+section Elastic 3 210000000 0.004398229715025708 1.0830640673250808E-05 1.0830640673250808E-05 80760000 2.1661281346501616E-05 0.9 0.9
+
+geomTransf Linear 1 0 1 0
+element forceBeamColumn 1 1 2 1 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 2 0 1 0
+element forceBeamColumn 2 2 3 2 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 3 0 1 0
+element forceBeamColumn 3 3 4 3 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 4 0 1 0
+element forceBeamColumn 4 4 5 4 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 5 0 1 0
+element forceBeamColumn 5 5 6 5 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 6 0 1 0
+element forceBeamColumn 6 6 7 6 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 7 0 1 0
+element forceBeamColumn 7 7 8 7 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 8 0 1 0
+element forceBeamColumn 8 8 9 8 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 9 0 1 0
+element forceBeamColumn 9 9 10 9 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 10 0 1 0
+element forceBeamColumn 10 10 11 10 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 11 0 1 0
+element forceBeamColumn 11 11 12 11 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 12 0 1 0
+element forceBeamColumn 12 12 13 12 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 13 0 1 0
+element forceBeamColumn 13 13 14 13 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 14 0 1 0
+element forceBeamColumn 14 14 15 14 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 15 0 1 0
+element forceBeamColumn 15 15 16 15 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 16 0 1 0
+element forceBeamColumn 16 16 17 16 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 17 0 1 0
+element forceBeamColumn 17 17 18 17 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 18 0 1 0
+element forceBeamColumn 18 18 19 18 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 19 0 1 0
+element forceBeamColumn 19 19 20 19 NewtonCotes 3 5 -mass 0.3387010730095572
+
+geomTransf Linear 20 0 1 0
+element forceBeamColumn 20 20 21 20 NewtonCotes 3 5 -mass 0.3387010730095572
+
+timeSeries Constant 4 -factor 1
+pattern Plain 6 4 {
+	load 1 0 0 -0.996797257867127 0 0 0
+	load 2 0 0 -0.996797257867127 0 0 0
+	load 2 0 0 -0.996797257867127 0 0 0
+	load 3 0 0 -0.996797257867127 0 0 0
+	load 3 0 0 -0.996797257867127 0 0 0
+	load 4 0 0 -0.996797257867127 0 0 0
+	load 4 0 0 -0.996797257867127 0 0 0
+	load 5 0 0 -0.996797257867127 0 0 0
+	load 5 0 0 -0.9967972578671264 0 0 0
+	load 6 0 0 -0.9967972578671264 0 0 0
+	load 6 0 0 -0.9967972578671264 0 0 0
+	load 7 0 0 -0.9967972578671264 0 0 0
+	load 7 0 0 -0.9967972578671264 0 0 0
+	load 8 0 0 -0.9967972578671264 0 0 0
+	load 8 0 0 -0.9967972578671278 0 0 0
+	load 9 0 0 -0.9967972578671278 0 0 0
+	load 9 0 0 -0.9967972578671264 0 0 0
+	load 10 0 0 -0.9967972578671264 0 0 0
+	load 10 0 0 -0.9967972578671264 0 0 0
+	load 11 0 0 -0.9967972578671264 0 0 0
+	load 11 0 0 -0.9967972578671278 0 0 0
+	load 12 0 0 -0.9967972578671278 0 0 0
+	load 12 0 0 -0.9967972578671264 0 0 0
+	load 13 0 0 -0.9967972578671264 0 0 0
+	load 13 0 0 -0.9967972578671294 0 0 0
+	load 14 0 0 -0.9967972578671294 0 0 0
+	load 14 0 0 -0.9967972578671264 0 0 0
+	load 15 0 0 -0.9967972578671264 0 0 0
+	load 15 0 0 -0.9967972578671294 0 0 0
+	load 16 0 0 -0.9967972578671294 0 0 0
+	load 16 0 0 -0.9967972578671264 0 0 0
+	load 17 0 0 -0.9967972578671264 0 0 0
+	load 17 0 0 -0.9967972578671294 0 0 0
+	load 18 0 0 -0.9967972578671294 0 0 0
+	load 18 0 0 -0.9967972578671264 0 0 0
+	load 19 0 0 -0.9967972578671264 0 0 0
+	load 19 0 0 -0.9967972578671294 0 0 0
+	load 20 0 0 -0.9967972578671294 0 0 0
+	load 20 0 0 -0.9967972578671205 0 0 0
+	load 21 0 0 -0.9967972578671205 0 0 0
+}
+
+recorder mpco recorder.mpco -N  displacement rotation reactionForce reactionMoment -E  force stresses section.force
+
+constraints Transformation
+numberer RCM
+system BandGen
+test EnergyIncr 1E-08 10 0 2 
+algorithm ModifiedNewton
+integrator LoadControl 1   
+analysis Static
+analyze 1    
+wipe

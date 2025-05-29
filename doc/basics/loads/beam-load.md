@@ -1,2 +1,2 @@
-# Beam Load
+# Beam
 
