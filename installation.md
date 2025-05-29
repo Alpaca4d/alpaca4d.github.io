@@ -1,6 +1,6 @@
 # 🧠 Installation
 
-Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling software. You can install **Alpaca4d**, also known as add-ons, using the `Package Manager` or `Food4Rhino`.
+Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling software. You can install **Alpaca4d**, also known as add-ons, using the `Package Manager` .
 
 **Package Manager**
 
@@ -11,4 +11,4 @@ Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling 
 
 👏 Congratulations! If you have correctly follow the step above, you will find the Alpaca4d toolbar on Grasshopper.
 
-<figure><img src=".gitbook/assets/alpacatoolbar.png" alt=""><figcaption><p>alpaca4d toolbar</p></figcaption></figure>
+<figure><img src="doc/.gitbook/assets/alpacatoolbar.png" alt=""><figcaption><p>alpaca4d toolbar</p></figcaption></figure>

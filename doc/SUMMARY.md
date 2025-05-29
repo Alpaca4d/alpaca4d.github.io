@@ -1,7 +1,7 @@
 # Table of contents
 
 * [👋 Welcome](README.md)
-* [🧠 Installation](installation.md)
+* [🧠 Installation](../installation.md)
 * [🚦 Get Started](get-started.md)
 
 ## Basics
@@ -9,7 +9,7 @@
 * [💐 Materials](basics/materials/README.md)
   * [Uniaxial](basics/materials/page-1.md)
   * [ND](basics/materials/page-2.md)
-* [🎛 Sections](basics/sections/README.md)
+* [🎛️ Sections](basics/sections/README.md)
   * [Library](basics/sections/library.md)
   * [Parametric Cross Section](basics/sections/parametric-cross-section.md)
 * [🎢 Elements](basics/elements/README.md)
@@ -35,7 +35,7 @@
 * [💾 Assemble](basics/assemble.md)
 * [📉 Analysis](basics/analysis.md)
 * [🎲 Results](basics/results.md)
-* [🕶 Visualisation](basics/visualisation.md)
+* [🕶️ Visualisation](basics/visualisation.md)
 * [🧰 Utility](basics/utility.md)
 
 ## EXAMPLES
@@ -50,7 +50,7 @@
 
 ## Benchmark
 
-* [🧑🌾 Intro](benchmark/intro.md)
+* [🧑‍🌾 Intro](benchmark/intro.md)
 * [🍏 Simple Beam](benchmark/simple-beam.md)
 * [🍐 Simple Shell](benchmark/simple-shell.md)
 * [🍌 Brick Element](benchmark/brick-element.md)
