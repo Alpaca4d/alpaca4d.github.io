@@ -42,8 +42,8 @@
 
 ## EXAMPLES
 
-* [🏢 Multi Storey Building](examples/multi-storey-building.md)
-* [🎶 Natural Vibration](examples/natural-vibration.md)
+* [🏢 Multi Storey Building](examples/multi-storey-building/multi-storey-building.md)
+* [🎶 Natural Vibration](examples/natural-vibration/natural-vibration.md)
 * [🕙 Earthquake](examples/earthquake.md)
 * [🖨️ 3d Printed Structure](examples/3d-printed-structure.md)
 * [🔒 Connection Design](examples/connection-design.md)
