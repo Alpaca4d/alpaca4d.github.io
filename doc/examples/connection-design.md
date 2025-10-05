@@ -1,5 +1,5 @@
 # 🔒 Connection Design
 
-<figure><img src="../.gitbook/assets/connection design.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../assets/connection design.jpg" alt=""><figcaption></figcaption></figure>
 
-{% file src="../.gitbook/assets/connection-design.gh" %}
+{% file src="../assets/connection-design.gh" %}

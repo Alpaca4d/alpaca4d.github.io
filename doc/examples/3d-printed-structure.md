@@ -1,5 +1,5 @@
 # 🖨️ 3d Printed Structure
 
-<figure><img src="../.gitbook/assets/image_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../assets/image_1.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../.gitbook/assets/3dPrintedStructure.gh" %}
+{% file src="../assets/3dPrintedStructure.gh" %}

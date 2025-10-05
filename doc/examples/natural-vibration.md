@@ -1,5 +1,5 @@
 # 🎶 Natural Vibration
 
-<figure><img src="../.gitbook/assets/image_2.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../assets/image_2.jpg" alt=""><figcaption></figcaption></figure>
 
-{% file src="NaturalVibration_Example.gh" %}
+{% file src="../.gitbook/assets/NaturalVibration.gh" %}
