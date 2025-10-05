@@ -1,5 +1,3 @@
 # 🕙 Earthquake
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
-{% file src="broken-reference" %}
+<figure><img src="./earth-quake.png" alt=""><figcaption></figcaption></figure>

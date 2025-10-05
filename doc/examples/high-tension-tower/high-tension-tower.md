@@ -1,5 +1,3 @@
 # 🔋 High Tension Tower
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
-{% file src="broken-reference" %}
+<figure><img src="./high-tension-tower.png" alt=""><figcaption></figcaption></figure>

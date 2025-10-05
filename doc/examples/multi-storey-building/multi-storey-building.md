@@ -1,5 +1,4 @@
 # 🏢 Multi Storey Building
 
-<figure><img src="./image_3.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="./multi-storey-building.jpg" alt=""><figcaption></figcaption></figure>
 
-{% file src="Multi_Storey_Building" %}

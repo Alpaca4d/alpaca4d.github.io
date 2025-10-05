@@ -1,5 +1,3 @@
 # 🎶 Natural Vibration
 
-<figure><img src="./image_2.jpg" alt=""><figcaption></figcaption></figure>
-
-{% file src="./NaturalVibration" %}
+<figure><img src="./natural-vibration.jpg" alt=""><figcaption></figcaption></figure>
