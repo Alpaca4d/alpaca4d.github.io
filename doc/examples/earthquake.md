@@ -1,5 +1,5 @@
 # 🕙 Earthquake
 
-<figure><img src="../assets/EarthQuake_White.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
-{% file src="../assets/EarthQuake_city.gh" %}
+{% file src="broken-reference" %}

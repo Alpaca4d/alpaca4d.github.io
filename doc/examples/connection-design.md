@@ -1,5 +1,5 @@
 # 🔒 Connection Design
 
-<figure><img src="../assets/connection design.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
-{% file src="../assets/connection-design.gh" %}
+{% file src="broken-reference" %}

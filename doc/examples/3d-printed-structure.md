@@ -1,5 +1,5 @@
 # 🖨️ 3d Printed Structure
 
-<figure><img src="../assets/image_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
-{% file src="../assets/3dPrintedStructure.gh" %}
+{% file src="broken-reference" %}

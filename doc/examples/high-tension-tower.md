@@ -1,5 +1,5 @@
 # 🔋 High Tension Tower
 
-<figure><img src="../assets/persp Front.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
-{% file src="../assets/HighTensionTower.gh" %}
+{% file src="broken-reference" %}
