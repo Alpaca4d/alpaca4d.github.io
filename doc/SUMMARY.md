@@ -44,13 +44,14 @@
 
 * [🏢 Multi Storey Building](examples/multi-storey-building/multi-storey-building.md)
 * [🎶 Natural Vibration](examples/natural-vibration/natural-vibration.md)
-* [🕙 Earthquake](examples/earthquake.md)
-* [🖨️ 3d Printed Structure](examples/3d-printed-structure.md)
-* [🔒 Connection Design](examples/connection-design.md)
-* [📈 Moment Curvature](examples/moment-curvature.md)
-* [🔋 High Tension Tower](examples/high-tension-tower.md)
+* [🕙 Earthquake](examples/earthquake/earthquake.md)
+* [🖨️ 3d Printed Structure](examples/3d-printed-structure/3d-printed-structure.md)
+* [🔒 Connection Design](examples/connection-design/connection-design.md)
+* [📈 Moment Curvature](examples/moment-curvature/moment-curvature.md)
+* [🔋 High Tension Tower](examples/high-tension-tower/high-tension-tower.md)
+* [✍️ Free Form Roof](examples/free-form-roof/free-form-roof.md)
 * [💐 Custom Script](examples/custom-script/custom-script.md)
-* [🏗️ Deconstruct Anything](examples/deconstruct-anything.md)
+* [🏗️ Deconstruct Anything](examples/deconstruct-anything/deconstruct-anything.md)
 
 ## REFERENCES
 
