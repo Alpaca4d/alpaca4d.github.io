@@ -1,5 +1,7 @@
 # 💐 Custom Script
 
-<figure><img src="../../assets/custom_code.png" alt=""><figcaption></figcaption></figure>
+The following workflow allows to run any OpenSees tcl script within Grasshopper.
 
-{% file src="../../assets/CustomCode.gh" %}
+<figure><img src="./custom_code.png" alt=""><figcaption></figcaption></figure>
+
+{% file src="./CustomCode.gh" %}
