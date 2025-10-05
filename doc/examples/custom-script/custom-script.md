@@ -2,6 +2,4 @@
 
 The following workflow allows to run any OpenSees tcl script within Grasshopper.
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
-
-{% file src="broken-reference" %}
+<figure><img src="./custom_code.png" alt=""><figcaption></figcaption></figure>
