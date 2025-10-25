@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alpaca4d - Buy</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Marco Pellegrino">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="./assets/css/prism.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="./assets/images/icons/logo_200_200.png">
+
+
+</head>
+
+<body>
+
+  <!-- nav bar -->
+  <div id="navbar"></div>
+  <script src="./assets/js/navbar.js"></script>
+
+  <div class="container">
+
+    <!-- Maintenance Terms Section -->
+    <div class="row" id="maintenance">
+      <div class="col s12">
+        <h4>1 Year Maintenance</h4>
+        <h6>Terms and Conditions</h6>
+        <ul class="browser-default" style="line-height: 180%;">
+          <li>Extends an existing license to allow indefinite use of all versions of Alpaca4d released within the maintenance period.</li>
+          <li>Support by email to <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> within the maintenance period. We promise a maximum 48&nbsp;hour response time unless prevented by deliverability problems. Notify us if you use a different email address from the one your product key is sent to.</li>
+          <li>The maintenance period is 1&nbsp;year from either date of supply or the end of the previous maintenance period, whichever is later.</li>
+          <li>You may need to provide your existing product key for identification.</li>
+          <li>We will email you a new product key within 48&nbsp;hours of receipt of payment and identification of your existing license.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="center-align" style="margin: 20px 0;">
+       <h5 class="blue-text"><strong>30 € + VAT</strong></h5>
+    </div>
+
+     <div class="row">
+         <div class="col s12 m6 center-align">
+           <a href="https://www.paypal.com/paypalme/marpelle/20EUR" target="_blank" class="btn green" style="border-radius: 10px;">Pay with PayPal</a>
+         </div>
+         <div class="col s12 m6 center-align">
+           <a href="#bank" class="btn blue" style="border-radius: 10px;">Bank Transfer Details</a>
+         </div>
+     </div>
+
+    <!-- Invoices Section -->
+    <div class="row" id="invoices">
+      <div class="col s12">
+        <h4>Invoices</h4>
+        <p>If you require a quotation, proforma invoice, or your company's details on your invoice, email <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> before paying. Otherwise you will receive an invoice showing your name and email address.</p>
+      </div>
+    </div>
+
+    <!-- Bank Transfer Section -->
+    <div class="row" id="bank">
+      <div class="col s12">
+        <h4>Payment by Bank Transfer</h4>
+        <p>An alternative to credit card payment is international wire transfer or local bank transfer.</p>
+        <strong>Pay to:</strong>
+        <ul class="browser-default" style="line-height: 180%;">
+          <li>Account name: <strong>Marco Pellegrino</strong></li>
+          <li>Account number: <strong>IT65 A036 4601 6005 2623 7791 804</strong></li>
+          <li>Receiving Bank: <strong>N26 Bank</strong></li>
+          <li>SWIFT code: <strong>NTSBITM1XXX</strong></li>
+          <li>Include your name or company name with the transfer</li>
+          <li>Notify <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> after making the payment</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- footer -->
+  <div id="footer"></div>
+  <script src="./assets/js/footer.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+      
+      var collapsibles = document.querySelectorAll('.collapsible');
+      var collapsibleInstances = M.Collapsible.init(collapsibles);
+    });
+  </script>
+
+</body>
+
+</html>
