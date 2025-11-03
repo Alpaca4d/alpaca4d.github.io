@@ -43,7 +43,7 @@
 ## EXAMPLES
 
 * [🏢 Multi Storey Building](examples/multi-storey-building/multi-storey-building.md)
-<!-- * [🐚 Compressed Shell](examples/compressed-shell/compressed-shell.md) -->
+* [🐚 Compressed Shell](examples/compressed-shell/compressed-shell.md)
 * [🎶 Natural Vibration](examples/natural-vibration/natural-vibration.md)
 * [🕙 Earthquake](examples/earthquake/earthquake.md)
 * [🖨️ 3d Printed Structure](examples/3d-printed-structure/3d-printed-structure.md)
