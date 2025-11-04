@@ -53,6 +53,7 @@
 * [✍️ Free Form Roof](examples/free-form-roof/free-form-roof.md)
 * [💐 Custom Script](examples/custom-script/custom-script.md)
 * [🏗️ Deconstruct Anything](examples/deconstruct-anything/deconstruct-anything.md)
+* [🕸️ Mesh Loft-Brick](examples/meshloft-meshbrick/meshloft-meshbrick.md)
 
 ## REFERENCES
 
