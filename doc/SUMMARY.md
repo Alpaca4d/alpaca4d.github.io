@@ -8,7 +8,8 @@
 
 * [💐 Materials](basics/materials/README.md)
   * [Uniaxial](basics/materials/page-1.md)
-  * [ND](basics/materials/page-2.md)
+  * [nD](basics/materials/page-2.md)
+  * [Material Database](basics/materials/page-3.md)
 * [🎛️ Sections](basics/sections/README.md)
   * [Rectangular](basics/sections/rectangular.md)
   * [Circular](basics/sections/library.md)
