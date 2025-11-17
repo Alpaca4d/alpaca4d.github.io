@@ -1,6 +1,6 @@
 # Linear
 
-A **Linear Time Series** defines a time–history where the load factor $\lambda$ varies **linearly with time**:
+A **Linear Time Series** defines a time–history where the load factor $$\lambda$$ varies **linearly with time**:
 
 $$
 \lambda(t) = c_\text{factor} \, t
@@ -13,7 +13,7 @@ where $c_\text{factor}$ is a constant slope. This is useful when you want loads 
 The `Linear Time Series (Alpaca4d)` component creates an Alpaca4d linear time series that can be connected to load pattern or excitation components.
 
 - **Input**
-  - **LinearFactor**: Linear scale factor $ c_\text{factor}$ that multiplies time $ t $.  
+  - **LinearFactor**: Linear scale factor $$c_\text{factor}$$ that multiplies time $$t$$.  
     - Type: Number  
     - Default: `1.0`  
     - Effect: The load factor increases (or decreases) proportionally to time: doubling the analysis time doubles the load factor.

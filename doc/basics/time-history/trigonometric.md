@@ -1,16 +1,16 @@
 # Trigonometric
 
-A **Trigonometric Time Series** defines a time–history where the load factor $ \lambda $ varies **sinusoidally** in time. In Alpaca4d (following OpenSees) it is typically defined as:
+A **Trigonometric Time Series** defines a time–history where the load factor $$ \lambda $$ varies **sinusoidally** in time. In Alpaca4d (following OpenSees) it is typically defined as:
 
 $$
 \lambda(t) = c_\text{factor} \, \sin\!\Big( \tfrac{2\pi}{T} (t - t_\text{shift}) \Big)
 $$
 
-over a specified active interval $ t_\text{start} \le t \le t_\text{end} $, where:
+over a specified active interval $$ t_\text{start} \le t \le t_\text{end} $$, where:
 
-- $ c_\text{factor} $ is the amplitude,
-- $ T $ is the period,
-- $ t_\text{shift} $ is a phase shift in time.
+- $$ c_\text{factor} $$ is the amplitude,
+- $$ T $$ is the period,
+- $$ t_\text{shift} $$ is a phase shift in time.
 
 This is useful for modelling **harmonic / cyclic loading** such as machine vibrations or idealised base excitations.
 
@@ -19,21 +19,21 @@ This is useful for modelling **harmonic / cyclic loading** such as machine vibra
 The `Trigonometric Time Series (Alpaca4d)` component constructs a periodic (sine) time series with user‑controlled time window, period and amplitude.
 
 - **Inputs**
-  - **TStart**: Start time $ t_\text{start} $ $[s]$.  
+  - **TStart**: Start time $$ t_\text{start} $$ $$[s]$$.  
     - Type: Number  
     - Default: `0.0`  
-    - Effect: For $ t < t_\text{start} $ the load factor is zero.
-  - **TEnd**: End time $ t_\text{end} $ $[s]$.  
+    - Effect: For $$ t < t_\text{start} $$ the load factor is zero.
+  - **TEnd**: End time $$ t_\text{end} $$ $$[s]$$.  
     - Type: Number  
-    - Requirement: $ t_\text{end} > t_\text{start} $. For $ t > t_\text{end} $ the load factor is usually zero.
+    - Requirement: $$ t_\text{end} > t_\text{start} $$. For $$$t > t_\text{end} $$ the load factor is usually zero.
   - **Period**: Period $ T $ of the sinusoidal function $[s]$.  
     - Type: Number  
     - Effect: Controls the **frequency** of oscillation.
-  - **Shift**: Time shift $ t_\text{shift} $ $[s]$.  
+  - **Shift**: Time shift $$ t_\text{shift} $$ $$[s]$$.  
     - Type: Number  
     - Default: `0.0`  
     - Effect: Moves the sine wave left/right in time (phase shift).
-  - **LoadFactor**: Amplitude $ c_\text{factor} $ of the sine wave.  
+  - **LoadFactor**: Amplitude $$ c_\text{factor} $$ of the sine wave.  
     - Type: Number  
     - Default: `1.0`.
 

@@ -1,6 +1,6 @@
 # Constant
 
-A **Constant Time Series** defines a time–history where the load factor $ \lambda $ is **independent of time**:
+A **Constant Time Series** defines a time–history where the load factor $$\lambda$$ is **independent of time**:
 
 $$
 \lambda(t) = c_\text{factor}

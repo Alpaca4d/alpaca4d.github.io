@@ -1,6 +1,6 @@
 # Path
 
-A **Path Time Series** defines the relationship between time $ t $ and load factor $ \lambda $ using **user‑specified discrete points**:
+A **Path Time Series** defines the relationship between time $$t$$ and load factor $$\lambda$$ using **user‑specified discrete points**:
 
 $$
 \lambda(t_i) = \lambda_i \quad \text{for} \quad i=1,\dots,n
@@ -13,16 +13,16 @@ Values between the specified times are typically obtained by **linear interpolat
 The `Path Time Series (Alpaca4d)` component creates an Alpaca4d path time series from lists of times and values.
 
 - **Inputs**
-  - **Times**: List of time values $ t_i $ $[s]$.  
+  - **Times**: List of time values $$ t_i $$ $$[s]$$.  
     - Type: List of numbers  
     - Requirement: Must be in ascending order and have the same length as **Values**.
-  - **Values**: List of corresponding load factors \( \lambda_i \).  
+  - **Values**: List of corresponding load factors $$ \lambda_i $$.  
     - Type: List of numbers  
     - Requirement: Same count as **Times**; defines the raw shape of the time series.
-  - **LoadFactor**: Global scale factor $ c_\text{factor} $ applied to all **Values**.  
+  - **LoadFactor**: Global scale factor $$ c_\text{factor} $$ applied to all **Values**.  
     - Type: Number  
     - Default: `1.0`  
-    - Effect: The effective load factor is $ \lambda(t) = c_\text{factor} \cdot \lambda_\text{path}(t) $.
+    - Effect: The effective load factor is $$ \lambda(t) = c_\text{factor} \cdot \lambda_\text{path}(t) $$.
 
 - **Outputs**
   - **TimeSeries**: Alpaca4d `PathTimeSeries` object, to be used wherever a time series is required.
