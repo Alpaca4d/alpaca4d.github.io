@@ -11,4 +11,4 @@ Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling 
 
 👏 Congratulations! If you have correctly follow the step above, you will find the Alpaca4d toolbar on Grasshopper.
 
-<figure><img src="broken-reference" alt=""><figcaption><p>alpaca4d toolbar</p></figcaption></figure>
+<figure><img src=".gitbook/assets/alpacatoolbar.png" alt=""><figcaption><p>alpaca4d toolbar</p></figcaption></figure>
