@@ -1,9 +1,41 @@
 # 🎢 Elements
 
-The finite elements implemented are Elastic Timoshenko Beam Column Element, ShellDKGT-ASDShellQ4, SSP Brick and FourNodeTetrahedron.
+Alpaca4d provides different finite element types to model 1D, 2D and 3D structural components.  
+The main Grasshopper components are **Line to Beam**, **Mesh to Shell** and **Brick Element**.
 
-**Line to Beam** component converts a line geometry to a Timoshenko Beam. Beam elements are used to model components in which one dimension (the length) is significantly greater than the other two dimensions and only the stress in the direction along the axis of the beam is significant. The cross section attached to it can be oriented using the orientSection input. beamType allows to release both ends in order to have an axial-only element (Truss).
+## Beam elements – Line to Beam
 
-**Mesh to Shell** component converts a mesh geometry to a Shell Element. Shell elements are used to model structures in which one dimension, the thickness, is significantly smaller than the other dimensions. Triangular faces will be converted to a ShellDKGT formulation and the Quad faces to a ShellMITC4 formulation.
+The **Line to Beam** component converts Rhino curves into **Timoshenko beam elements**.
 
-**Brick Element** component converts an hexahedral element into a bbarBrick. A hexahedron is any polyhedron with six faces. It is generally a difficult task to convert a generic solid into a set of hexahedron and MeshSeriesToBrick component might help to construct some simple polyhedron.
+- **Usage**
+  - Use beams when one dimension (length) is much larger than the cross‑section dimensions.
+  - Suitable for frames, trusses, columns, beams, braces and similar members.
+- **Behaviour**
+  - Timoshenko formulation → includes both bending and shear deformations.
+  - The cross‑section is defined separately and can be oriented using the `orientSection` input.
+  - The `beamType` option allows you to release end rotations and/or forces, e.g. to create axial‑only (truss) elements.
+
+## Shell elements – Mesh to Shell
+
+The **Mesh to Shell** component converts mesh faces into **shell elements**.
+
+- **Usage**
+  - Use shells when one dimension (thickness) is much smaller than the in‑plane dimensions.
+  - Typical applications: slabs, walls, plates, folded shells, roofs, tanks.
+- **Behaviour**
+  - Triangular faces are converted to **ASDShellT3** elements.
+  - Quadrilateral faces are converted to **ASDShellQ4** elements.
+  - The element thickness and material are defined through the assigned shell section.
+
+## Brick elements – Brick Element
+
+The **Brick Element** component converts hexahedral solids into **3D brick elements** (e.g. `SSPbrick` / `bbarBrick`).
+
+- **Usage**
+  - Use bricks for fully 3D stress states, such as foundations, solid walls, blocks, soil volumes, or regions with strong 3D effects.
+- **Behaviour**
+  - The input must be a hexahedral mesh (six‑faced solid with quadrilateral faces).
+  - Creating high‑quality hex meshes can be challenging; the **MeshSeriesToBrick** utility component can help generate simple brickable volumes from a series of meshes.
+
+In practice, you will usually **combine** these element types in the same model:  
+beams for the main frame, shells for slabs and walls, and bricks for local 3D regions where needed.

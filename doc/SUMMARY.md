@@ -7,9 +7,9 @@
 ## Basics
 
 * [💐 Materials](basics/materials/README.md)
-  * [Uniaxial](basics/materials/page-1.md)
-  * [nD](basics/materials/page-2.md)
-  * [Material Database](basics/materials/page-3.md)
+  * [Uniaxial](basics/materials/Uniaxial.md)
+  * [nD](basics/materials/ND.md)
+  * [Material Database](basics/materials/MaterialDatabase.md)
 * [🎛️ Sections](basics/sections/README.md)
   * [Rectangular](basics/sections/rectangular.md)
   * [Circular](basics/sections/library.md)
@@ -32,6 +32,7 @@
   * [Point](basics/loads/point-load.md)
   * [Beam](basics/loads/beam-load.md)
   * [Shell](basics/loads/shell-load.md)
+  * [LoadPattern](basics/loads/load-pattern.md)
 * [💾 Assemble](basics/assemble.md)
 * [📉 Analysis](basics/analysis.md)
 * [🎲 Results](basics/results.md)

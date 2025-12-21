@@ -20,7 +20,37 @@
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="./assets/images/icons/logo_200_200.png">
-
+  <style>
+    .gradient-download-btn {
+      background-image: linear-gradient(90deg,
+        #d32f2f,
+        #feca57,
+        #1dd1a1,
+        #48dbfb,
+        #5f27cd
+      );
+      border-radius: 25px;
+      font-size: 1.2rem;
+      width: 70%;
+      border: 2px solid #000000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      line-height: 1.2;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      color: #ffffff !important;
+      text-transform: none;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+    .gradient-download-btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 
 <body>
@@ -33,8 +63,7 @@
 
   <div class="container">
     <p>
-      Grasshopper is a visual programming language for Rhino3D, a popular 3D modeling software. You can install
-      <b>Alpaca4d</b>, also known as add-ons, using the <b>Package Manager</b>.
+      <b>Alpaca4D</b> is available for installation on both Rhino 7 and Rhino 8 (compatible with PC and Mac). You can install it directly via the Rhino Package Manager. Click the button below to open the Package Manager in Rhino. (this link opens in Rhino)
     </p>
 
     <h4>Package Manager</h4>
@@ -48,9 +77,18 @@
     </ol>
 
 
-    <div style="display:table-cell; vertical-align:middle; text-align:center">
-      <img style='width: 50%; object-fit: contain; position: relative;'
-        src="/assets/images/installation/package_manager.png">
+    <div style="margin-top: 16px; display: flex; justify-content: center;">
+      <div style="position: relative; width: 50%; display: flex; flex-direction: column; align-items: center;">
+        <img 
+          style="width: 100%; object-fit: contain; display: block; margin-bottom: 12px; margin-top: 0;" 
+          src="/assets/images/installation/package_manager.png" 
+          alt="Alpaca4d Package Manager Screenshot">
+        <a href="rhino://package/search?name=Alpaca4d"
+          class="btn waves-effect waves-light gradient-download-btn"
+          style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          Download using Package Manager in Rhino
+        </a>
+      </div>
     </div>
 
     <p>👏 Congratulations! If you have correctly follow the step above, you will find the Alpaca4d toolbar on
