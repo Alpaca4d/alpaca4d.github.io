@@ -38,8 +38,8 @@
       <div>
         <div>&nbsp;</div>
         <div><b>Tutor: Marco Pellegrino</b></div>
-        <div><b>Location: Florence (Italy)</b></div>
-        <div><b>Date: On request</b></div>
+        <div><b>Location: Online</b></div>
+        <div><b>Date: TBC</b></div>
       </div>
 
       <div>
@@ -48,10 +48,9 @@
           techniques of working with complex parametric structural models through scripting using Grasshopper.
         </p>
 
-        <p>Furthermore, the user will learn how to navigate the source code and implement new elements and grasshopper
-          components.
+        <p>
           <br>
-          <br><b>Note</b><br>
+          <b>Note</b>
           The workshop has been set up in order to self sponsor the development and it will allow to get resources
           needed
           to keep up to speed the implementations. 😊
@@ -74,9 +73,9 @@
         <div><b>Day 1 – Get Started with Alpaca4D</b></div>
         <div>
           <ul>
-            <li>Introduction</li>
-            <li>Definition of a structural model with shells and beams</li>
-            <li>Results retrieval and display for beams/shells</li>
+            <b><li>Introduction</li></b>
+            <li>Definition of a structural model with beams, shells, supports and loads.</li>
+            <li>Results retrieval and display for beams, shells and supports.</li>
           </ul>
           <!-- <p><b>Day 2 – Implementation</b></p>
           <ul>
@@ -88,15 +87,34 @@
             recommended but not mandatory. Rhino 7 licenses can be downloaded and use with 90 days trial version.</p>
           <p><b>Online course fees:&nbsp;</b>EUR 395,- (+VAT); full-time students get a 50% discount (proof of status
             required). Please note, your seat is confirmed only after payment has cleared.</p>
-          <p><b>Max. number of participants for each course:</b> 8. If there is no quorum, the course will be cancelled
+          <p><b>Min. number of participants for each course:</b> 4. If there is no quorum, the course will be cancelled
             15
             days before.</p>
           <p><b>Course language:</b> English</p>
         </div>
       </div>
 
-      <div>
-        Register sending the <a href="mailto:alpaca4d@gmail.com">mail</a>.
+
+      <div class="col s12">
+        <div>&nbsp;</div>
+        <a id="workshop-google-form-card"
+          class="card hoverable"
+          style="border-radius: 20px; display: block; text-decoration: none; color: inherit; cursor: pointer;"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Alpaca4d workshop interest form">
+          <div class="card-content center-align">
+            <span class="card-title center-align"><b>Workshop interest list</b></span>
+            <p class="grey-text" style="margin-top: 6px; margin-bottom: 14px;">
+              Help us decide if an online workshop makes sense. Takes ~30 seconds.
+            </p>
+            <span class="btn green darken-2"
+              style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600; border-radius: 10px;">
+              Open Google Form <i class="material-icons right">open_in_new</i>
+            </span>
+          </div>
+        </a>
       </div>
 
     </div>
@@ -120,6 +138,21 @@
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems);
     });
+  </script>
+
+  <script>
+    // TODO (site owner): replace with your real Google Form "Send" link, e.g. https://forms.gle/XXXXXXXXXXXX
+    const WORKSHOP_GOOGLE_FORM_URL = "https://forms.gle/biFXNtorZLFJXo2k8";
+
+    const formCard = document.getElementById("workshop-google-form-card");
+    if (formCard) {
+      if (WORKSHOP_GOOGLE_FORM_URL && WORKSHOP_GOOGLE_FORM_URL.trim().length > 0) {
+        formCard.href = WORKSHOP_GOOGLE_FORM_URL.trim();
+      } else {
+        // Fallback (so the button still works even if the form URL isn't configured yet)
+        formCard.href = "mailto:alpaca4d@gmail.com?subject=Alpaca4d%20Workshop%20Registration%20(Google%20Form%20link%20missing)&body=Hi%2C%0A%0AI%20clicked%20the%20Google%20Form%20button%20but%20the%20link%20is%20not%20configured%20on%20the%20website.%0A%0AThanks!";
+      }
+    }
   </script>
 
 </body>
