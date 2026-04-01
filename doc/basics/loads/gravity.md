@@ -20,3 +20,5 @@ The direction and value of gravity (e.g. acting in \(-Z\)) are defined in the gl
 
 - Gravity loads are usually included in a separate **permanent load pattern** (e.g. “G”) and combined with other patterns for design combinations.
 - For many models, self‑weight plus a few distributed shell or beam loads is enough to capture the full permanent loading.
+- In the current beam implementation, the gravity-load algorithm creates **equivalent concentrated nodal loads at the beam ends** (rather than a continuously distributed load along the element length).
+- To better represent the action of gravity on beams, it is recommended to **discretize beams into multiple elements** so the equivalent nodal loads are distributed over more points.
