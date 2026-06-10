@@ -15,6 +15,18 @@ The **Force Beam Column** component converts Rhino curves into **Timoshenko beam
   * The cross‑section is defined separately and can be oriented using the `orientSection` input.
   * The `beamType` option allows you to release end rotations and/or forces, e.g. to create axial‑only (truss) elements.
 
+## Beam elements – Beam With Hinges
+
+The **Beam With Hinges** component creates a force-based beam element with **concentrated plasticity** at the element ends using `HingeRadau` integration.
+
+* **Usage**
+  * Use when yielding is expected only at the ends of a member (e.g. in moment frames under seismic loading).
+  * Suitable for modelling pinned or moment-released connections by setting DOF releases at the I or J end.
+* **Behaviour**
+  * The interior of the element stays **linear elastic**; nonlinearity is confined to the hinge zones.
+  * The hinge zones are defined by a `Release` condition and a plastic hinge length \( l_p \).
+  * Uses `HingeRadau` integration, written as an inline `forceBeamColumn` command in OpenSees.
+
 ## Shell elements – ASDShell
 
 The **ASDShell** component converts mesh faces into **shell elements**.

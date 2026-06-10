@@ -2,6 +2,7 @@
 
 * [👋 Welcome](README.md)
 * [🧠 Installation](installation.md)
+* [⚙️ Setup](setup.md)
 * [🦸 Sponsors](sponsors.md)
 
 ## Basics
@@ -17,6 +18,7 @@
   * [Parametric Cross Section](basics/sections/parametric-cross-section.md)
 * [🎢 Elements](basics/elements/README.md)
   * [Force Beam Column](basics/elements/force-beam-column.md)
+  * [Beam With Hinges](basics/elements/beam-with-hinges.md)
   * [Shell](basics/elements/shell.md)
   * [Brick](basics/elements/brick.md)
 * [🔗 Constraints](basics/constraints/README.md)
