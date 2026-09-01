@@ -1,53 +1,37 @@
 # 🎢 Elements
 
-Alpaca4d provides different finite element types to model 1D, 2D and 3D structural components.\
-The main Grasshopper components are **Line to Beam**, **Mesh to Shell** and **Brick Element**.
+Elements are the pieces the model is actually made of. Alpaca4d turns Rhino geometry —
+curves, meshes — into OpenSees finite elements, and adds the boundary conditions that hold
+them up.
 
-## Beam elements – Force Beam Column
+## Components in this tab
 
-The **Force Beam Column** component converts Rhino curves into **Timoshenko beam elements**.
+| Component | Nickname | Builds |
+| --- | --- | --- |
+| [ForceBeamColumn](force-beam-column.md) | `ForceBeamColumn` | A force-based beam–column element from a curve. Switch the unit to [WithHinges](beam-with-hinges.md) for concentrated plasticity at the ends. |
+| [ASD Shell](shell.md) | `ASDQ4/ASDT3` | Shell elements from the faces of a mesh — `ASDShellQ4` for quads, `ASDShellT3` for triangles. |
+| [SSP Brick](brick.md) | `SSP Brick` | A stabilized single-point hexahedral solid from an 8-vertex mesh. |
+| [Four Node Tetrahedron](four-node-tetrahedron.md) | `Four Node Tetrahedron` | A linear tetrahedral solid from a 4-vertex mesh. |
+| [Support](support.md) | `Support` | A nodal restraint, from a point or from a plane for skewed supports. |
+| [Hinge Release](hinge-release.md) | `Hinge Release` | A release condition consumed by the `WithHinges` beam unit. |
 
-* **Usage**
-  * Use beams when one dimension (length) is much larger than the cross‑section dimensions.
-  * Suitable for frames, trusses, columns, beams, braces and similar members.
-* **Behaviour**
-  * Timoshenko formulation → includes both bending and shear deformations.
-  * The cross‑section is defined separately and can be oriented using the `orientSection` input.
-  * The `beamType` option allows you to release end rotations and/or forces, e.g. to create axial‑only (truss) elements.
+## Choosing an element
 
-## Beam elements – Beam With Hinges
+| Geometry | Use |
+| --- | --- |
+| One dimension much longer than the other two — frames, columns, braces, trusses | **ForceBeamColumn** |
+| Yielding expected only at member ends | **ForceBeamColumn**, unit `WithHinges` |
+| One dimension much smaller than the other two — slabs, walls, plates, roofs, tanks | **ASD Shell** |
+| Fully volumetric, and meshable as hexahedra | **SSP Brick** |
+| Fully volumetric, and only meshable as tetrahedra | **Four Node Tetrahedron** |
 
-The **Beam With Hinges** component creates a force-based beam element with **concentrated plasticity** at the element ends using `HingeRadau` integration.
+Most models combine several: beams for the frame, shells for slabs and walls, solids for the
+local 3D regions that need them.
 
-* **Usage**
-  * Use when yielding is expected only at the ends of a member (e.g. in moment frames under seismic loading).
-  * Suitable for modelling pinned or moment-released connections by setting DOF releases at the I or J end.
-* **Behaviour**
-  * The interior of the element stays **linear elastic**; nonlinearity is confined to the hinge zones.
-  * The hinge zones are defined by a `Release` condition and a plastic hinge length \( l_p \).
-  * Uses `HingeRadau` integration, written as an inline `forceBeamColumn` command in OpenSees.
+## Node matching
 
-## Shell elements – ASDShell
-
-The **ASDShell** component converts mesh faces into **shell elements**.
-
-* **Usage**
-  * Use shells when one dimension (thickness) is much smaller than the in‑plane dimensions.
-  * Typical applications: slabs, walls, plates, folded shells, roofs, tanks.
-* **Behaviour**
-  * Triangular faces are converted to **ASDShellT3** elements.
-  * Quadrilateral faces are converted to **ASDShellQ4** elements.
-  * The element thickness and material are defined through the assigned shell section.
-
-## Brick elements – SSPbrick
-
-The **SSPbrick** component converts hexahedral solids into **3D brick elements** (e.g. `SSPbrick` ).
-
-* **Usage**
-  * Use bricks for fully 3D stress states, such as foundations, solid walls, blocks, soil volumes, or regions with strong 3D effects.
-* **Behaviour**
-  * The input must be a hexahedral mesh (six‑faced solid with quadrilateral faces).
-  * Creating high‑quality hex meshes can be challenging; the **MeshSeriesToBrick** utility component can help generate simple brickable volumes from a series of meshes.
-
-In practice, you will usually **combine** these element types in the same model:\
-beams for the main frame, shells for slabs and walls, and bricks for local 3D regions where needed.
+Elements are not wired to each other explicitly. [Assemble](../assemble.md) collects every
+element endpoint, shell vertex and solid corner, and merges the ones that fall within its
+**Tolerance** into a single node. Two members share a node when their geometry meets within
+that distance — so if a connection does not transfer force, check the tolerance before
+anything else.

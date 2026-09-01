@@ -1,46 +1,66 @@
 # Brick
 
-The **Brick** element in Alpaca4d is a **3D solid (hexahedral) element** based on the OpenSees `SSPbrick` formulation  
-(*Stabilized Single-Point brick*). It is suitable for modelling **volumetric behaviour** such as foundations, cores,  
-massive walls or blocks where a full three‑dimensional stress state is important.
+The **brick** is a 3D solid hexahedral element based on the OpenSees `SSPbrick`
+formulation — *Stabilized Single Point*. One integration point plus a stabilization term,
+which keeps it free of the shear locking that a fully integrated 8-node brick suffers from
+in bending, and cheap with it.
+
+Use it for volumetric behaviour: foundations, cores, massive walls, blocks, soil volumes.
 
 ## 🔧 Grasshopper component
 
-The `SSP Brick (Alpaca4d)` component constructs a single brick element from a hexahedral mesh and a 3D material.
+`SSP Brick (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
-- **Inputs**
-  - **Mesh**: Hexahedral mesh representing the brick geometry.  
-    - Type: `Mesh` with exactly **8 vertices** (one per corner).  
-    - The component internally cleans/sanitises the mesh (`CleanHexahedron`), but it is still good practice to use well‑formed bricks.
-  - **Material**: 3D material assigned to the brick.  
-    - Type: Alpaca4d multi‑dimensional material (e.g. concrete, soil, etc.).  
-    - Controls the constitutive law in 3D (stress–strain behaviour).
-  - **Colour** (optional): Display colour of the brick in Grasshopper/Rhino.
+Constructs one brick element from one hexahedral mesh.
 
-- **Outputs**
-  - **Element**: Alpaca4d `SSPbrick` element that can be passed to the assemble/model component.
+### Inputs
 
-## 📈 When to use a brick element
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Mesh | `Mesh` | Mesh | — | Hexahedral mesh with **8 vertices**, in `m`. Passed through `CleanHexahedron` to put the corners in the order OpenSees expects. |
+| Material | `Material` | Material | — | An [nD material](../materials/ND.md). Uniaxial materials are not accepted. |
+| Colour | `Colour` | Colour | Alpaca4d brick colour | Display colour in the Rhino viewport. |
 
-- **Use it when**
-  - You need **full 3D stress state** (e.g. confinement, triaxial behaviour, contact with soil or massive concrete).
-  - The structure or sub‑structure cannot be represented accurately by beams or shells alone.
-  - You are performing **solid mechanics** studies (e.g. stress concentrations inside a block).
+### Outputs
 
-- **Do not use it when**
-  - The structure is **thin** compared to its in‑plane dimensions → use **Shell** elements instead.
-  - Member behaviour is **beam‑like** (bending dominated) → use **Force Beam Column** or other frame elements.
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Element | `Element` | Element | Brick element, to be connected to [Assemble](../assemble.md). |
+
+{% hint style="info" %}
+One component makes **one** element. To build a solid region, graft a list of hexahedral
+meshes into the component — [Mesh Series to Brick](../utility/mesh-series-to-brick.md) and
+[Mesh Loft](../utility/mesh-loft.md) exist to produce them.
+{% endhint %}
+
+## 📈 When to use it
+
+**Use it when**
+
+- You need a full 3D stress state — confinement, triaxial behaviour, contact with soil or
+  massive concrete.
+- The region cannot be represented accurately by beams or shells.
+- You are studying stress concentrations inside a body.
+
+**Do not use it when**
+
+- The body is thin compared to its in-plane dimensions → use [Shell](shell.md).
+- The behaviour is bending-dominated and member-like → use
+  [ForceBeamColumn](force-beam-column.md).
+- Your geometry only meshes into tetrahedra → use
+  [Four Node Tetrahedron](four-node-tetrahedron.md).
 
 ## 🔗 Relation to OpenSees
 
-Alpaca4d’s brick element writes the OpenSees `SSPbrick` command:
-
 ```tcl
-element SSPbrick $eleTag $node1 $node2 $node3 $node4 $node5 $node6 $node7 $node8 $matTag $bx $by $bz
+element SSPbrick $eleTag $n1 $n2 $n3 $n4 $n5 $n6 $n7 $n8 $matTag $bx $by $bz
 ```
 
-where:
+- The 8 mesh vertices map to `$n1 … $n8`.
+- `$matTag` is the **Material** input.
+- The body forces `$bx $by $bz` are not exposed by the component and are left at the
+  OpenSees default. Self-weight is applied instead as equivalent nodal loads by
+  [Gravity Load](../loads/gravity.md).
 
-- the 8 mesh vertices map to the node tags `$node1 ... $node8`,
-- the **Material** input provides `matTag`,
-- the optional body forces `$bx`, `$by`, `$bz` are set based on the **BodyForce** property inside Alpaca4d.
+Note that a brick node has **3 DOF**, not 6. A brick sharing a node with a beam or shell
+therefore transfers force but no moment.

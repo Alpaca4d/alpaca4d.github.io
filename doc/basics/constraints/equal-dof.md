@@ -1,34 +1,72 @@
-# Equal DOF
+# Rigid Link
 
-An **Equal DOF** constraint ties selected degrees of freedom of one node to another node so that they always share the same displacement and rotation values.  
-This is useful to model connections that behave as if they were rigid in one or more directions, without merging the nodes into a single point.
+A **rigid link** ties one node to another through an infinitely stiff connection. It is the
+way to join two nodes that are offset from each other — a beam framing into the face of a
+column, a member with an eccentric connection — without adding a real element.
 
-In Alpaca4d this behaviour is provided by the `EqualDOF` constraint class and its corresponding Grasshopper component, which creates an `Alpaca4d.Constraints.EqualDOF` object.
+{% hint style="warning" %}
+Earlier versions of this page described an **Equal DOF** component. There is no such
+component. `EqualDOF` exists inside Alpaca4d as a constraint class, used when
+[Deserialise](../utility/deserialise.md) reads an `equalDOF` command back from a `.tcl`
+file, but the only constraint you can build in Grasshopper node-to-node is the **Rigid
+Link** described here.
+{% endhint %}
 
-## Concept
+## 🔧 Grasshopper component
 
-Given a **master node** and a **slave node**, the Equal DOF constraint enforces:
+`Rigid Link (Alpaca4d)` — **Alpaca4d ▸ 03_Constraint**
 
-- \( u_\text{master} = u_\text{slave} \) for selected translational DOFs (X, Y, Z), and/or  
-- \( \theta_\text{master} = \theta_\text{slave} \) for selected rotational DOFs (XX, YY, ZZ).
+### Inputs
 
-This allows you to:
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| RetainedPoint | `RetainedPoint` | Point | — | The **retained** (master) node. Its motion drives the link. |
+| ConstrainedPoint | `ConstrainedPoint` | Point | — | The **constrained** (slave) node. Its motion follows. |
+| Type | `Type` | Text | `beam` | `bar` or `beam`. Attach a **Value List** to the input and Alpaca4d fills it with both options. |
 
-- Couple two nodes on different elements so they move together in one direction but remain independent in others.  
-- Represent rigid links, stiff connections or symmetry conditions with a light constraint instead of extra elements.
+### The two types
 
-## Typical inputs
+| Type | Constrains | Behaves like |
+| --- | --- | --- |
+| `bar` | The three translational DOFs only, in the direction of the link. | A pin-ended rigid bar. Transfers force, not moment. |
+| `beam` | All six DOFs. | A rigid offset. Transfers force and moment, and converts the retained node's rotation into translation at the constrained node. |
 
-Although the exact Grasshopper interface may vary, the Equal DOF constraint conceptually requires:
+### Outputs
 
-- **Master point**: Reference node that drives the motion.  
-- **Slave point**: Node that follows the master in the selected DOFs.  
-- **DOF flags**: Boolean options for each degree of freedom  
-  - `Dof_x`, `Dof_y`, `Dof_z`: translational DOFs.  
-  - `Dof_xx`, `Dof_yy`, `Dof_zz`: rotational DOFs.
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Constraint | `Constraint` | Constraint | Constraint object, to be connected to [Assemble](../assemble.md). |
 
-## Usage notes
+## 📈 When to use it
 
-- Use Equal DOF when you need **pairwise coupling** between nodes, e.g. to join beams with offsets or to enforce identical displacements at two locations.  
-- For floor‑type constraints involving many nodes, a **rigid diaphragm** is usually more convenient than many individual Equal DOF constraints.  
-- Be careful not to over‑constrain the system (e.g. closing rigid loops with conflicting constraints), which can lead to singular matrices.
+**Use it when**
+
+- Two nodes at different locations should move as one rigid body — a beam offset from a
+  column centreline, a rigid bracket, a stiff connection zone.
+- You want the coupling without meshing a stiff element, which would need a stiffness chosen
+  by hand and can wreck the conditioning of the system.
+
+**Do not use it when**
+
+- Many nodes on one floor need tying → a [Rigid Diaphragm](diaphragm.md) is one constraint
+  instead of dozens.
+- The connection has real flexibility — a rigid link has none.
+- The link would close a loop with another constraint. Over-constraining gives a singular
+  matrix, and the solver failure will not point back here.
+
+## 🔗 Relation to OpenSees
+
+```tcl
+rigidLink $type $retainedNodeTag $constrainedNodeTag
+```
+
+`$type` is `bar` or `beam`. Node tags are resolved from the point coordinates by the
+[Assemble](../assemble.md) tolerance.
+
+For completeness, the `EqualDOF` class writes:
+
+```tcl
+equalDOF $masterNodeTag $slaveNodeTag $dof1 $dof2 ...
+```
+
+but no Grasshopper component produces one.

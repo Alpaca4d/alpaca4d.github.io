@@ -1,13 +1,30 @@
 # 🔗 Constraints
 
-Constraints define how the motion of certain degrees of freedom (DOFs) at one node depends on the motion of DOFs at another node. In other words, constraints link nodes together so that their movements follow specified relationships.
+A **constraint** makes the motion of one node depend on the motion of another. Where a
+[Support](../elements/support.md) holds a node still, a constraint ties nodes to each other.
 
-They are often used to:
+Constraints remove independent degrees of freedom from the model, which is what makes them
+cheap — and what makes them easy to over-use. Two constraints that close a loop, or that
+both claim the same DOF, will make the system singular.
 
-Tie two nodes to move together (rigid links)
+## Components in this tab
 
-Enforce symmetry or anti-symmetry conditions
+| Component | Nickname | Ties |
+| --- | --- | --- |
+| [Rigid Diaphragm](diaphragm.md) | `Rigid Diaphragm` | A group of nodes into a plate that is rigid in its own plane. |
+| [Rigid Link](equal-dof.md) | `Rigid Link` | One node to another, as a rigid bar or a rigid beam. |
 
-Define proportional motion between nodes (e.g., gear or lever effects)
+## Choosing between them
 
-MPCs reduce the model’s independent DOFs and must be used carefully to avoid over-constraining the system.
+| You want | Use |
+| --- | --- |
+| A floor slab that is stiff in-plane | **Rigid Diaphragm**, one per storey |
+| Two coincident or offset nodes to move together | **Rigid Link** |
+| A node held still | a [Support](../elements/support.md) instead |
+
+{% hint style="info" %}
+Constraints are solved by the **Constraint handler** set on
+[Analysis Settings](../analysis/analysis-settings.md). The default, `Transformation`, handles
+rigid diaphragms and rigid links correctly; `Plain` does not and will quietly give the wrong
+answer. Only change it if you know why.
+{% endhint %}

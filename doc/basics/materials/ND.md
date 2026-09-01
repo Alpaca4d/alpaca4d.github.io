@@ -1,35 +1,77 @@
-# 🧊 ND materials (multi‑dimensional)
+# 🧊 nD
 
-An **NDMaterial** (n‑dimensional material) describes the full 2D/3D stress–strain relationship at the **Gauss point** of a continuum element.  
-In Alpaca4d this is used by shell, solid and plate elements to compute stresses and strains through the thickness and in all directions.
+An **nD material** (n-dimensional) describes the full 2D/3D stress–strain law at the Gauss
+point of a continuum element. Shells, bricks and tetrahedra all need one.
 
-The current ND implementations are **elastic**:
+## 🔧 Grasshopper component
 
-- **Elastic Isotropic**: same stiffness in all directions (e.g. standard steel or isotropic concrete).  
-- **Elastic Orthotropic**: different stiffness along principal directions (e.g. timber, composite panels, plates with different in‑plane and out‑of‑plane stiffness).
+`nD (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
-These models are provided via the `nD` material sub‑components in Grasshopper:
+A switcher component. Right-click it to pick the model:
 
-- `nDElasticIsotropic` → `Alpaca4d.Material.ElasticIsotropicMaterial`
-- `nDElasticOrthotropic` → `Alpaca4d.Material.ElasticOrthotropicMaterial`
+- **ElasticIsotropic** — the same stiffness in every direction.
+- **ElasticOrthotropic** — different stiffness along three orthogonal directions, for
+  timber, composite panels, or plates that behave differently in-plane and out-of-plane.
 
-## Typical inputs
+### Inputs — ElasticIsotropic
 
-For **Elastic Isotropic**:
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Material Name | `MatName` | Text | *(empty)* | Label for the material. Cosmetic. |
+| E | `E` | Number | `210000000` | Young's modulus, in `kN/m²`. |
+| G | `G` | Number | `80760000` | Shear modulus, in `kN/m²`. |
+| ν | `ν` | Number | `0.3` | Poisson's ratio. |
+| Rho | `Rho` | Number | `7850` | Density, in `kg/m³`. |
 
-- **E**: Young’s modulus \([Force/Length²]\).  
-- **ν**: Poisson’s ratio.  
-- **Rho**: Density \([Mass/Length³]\).
+### Inputs — ElasticOrthotropic
 
-For **Elastic Orthotropic** (conceptually):
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Material Name | `MatName` | Text | *(empty)* | Label for the material. Cosmetic. |
+| Ex | `Ex` | Number | `210000000` | Young's modulus along *x*, in `kN/m²`. |
+| Ey | `Ey` | Number | `210000000` | Young's modulus along *y*, in `kN/m²`. |
+| Ez | `Ez` | Number | `210000000` | Young's modulus along *z*, in `kN/m²`. |
+| Gxy | `Gxy` | Number | `80760000` | Shear modulus in the *xy* plane, in `kN/m²`. |
+| Gyz | `Gyz` | Number | `80760000` | Shear modulus in the *yz* plane, in `kN/m²`. |
+| Gzx | `Gzx` | Number | `80760000` | Shear modulus in the *zx* plane, in `kN/m²`. |
+| NuXy | `NuXy` | Number | `0.3` | Poisson's ratio *xy*. |
+| νYz | `νYz` | Number | `0.3` | Poisson's ratio *yz*. |
+| νZx | `νZx` | Number | `0.3` | Poisson's ratio *zx*. |
+| Rho | `Rho` | Number | `7850` | Density, in `kg/m³`. |
 
-- **E1, E2, E3**: Young’s moduli along three orthogonal directions.  
-- **ν12, ν23, ν31**: Poisson’s ratios.  
-- **G12, G23, G31**: Shear moduli.  
-- **Rho**: Density.
+### Outputs
 
-## Usage notes
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Material | `Material` | Material | nD material, for a [Plate Fiber Section](../sections/plate-fiber.md), an [SSP Brick](../elements/brick.md) or a [Tetrahedron](../elements/four-node-tetrahedron.md). |
 
-- ND materials are assigned to **shells, solids and plate elements**, not to 1D beams.  
-- For simple isotropic behavior, use the **Material Database** component to quickly obtain an elastic isotropic ND material from standard grades (steel, concrete, timber, plastic).  
-- For advanced orthotropic behavior (e.g. timber panels or composite laminates) use the orthotropic ND sub‑component and carefully define local axes and stiffness values.
+{% hint style="info" %}
+`G` on the isotropic unit is not written to OpenSees — `ElasticIsotropic` derives its shear
+modulus from `E` and `ν`. Alpaca4d keeps `G` on the material because the same material
+object may also be read for section properties.
+{% endhint %}
+
+## 📈 When to use it
+
+**Use it when**
+
+- The element is a shell, a brick or a tetrahedron.
+- You need direction-dependent stiffness — timber panels, laminates, ribbed slabs
+  smeared into an orthotropic plate → use **ElasticOrthotropic**.
+
+**Do not use it when**
+
+- The element is a beam → use a [Uniaxial](Uniaxial.md) material.
+- You want a standard isotropic grade → the [Material Database](MaterialDatabase.md) will
+  produce one directly.
+
+## 🔗 Relation to OpenSees
+
+```tcl
+nDMaterial ElasticIsotropic   $matTag $E $nu $rho
+nDMaterial ElasticOrthotropic $matTag $Ex $Ey $Ez $nuXy $nuYz $nuZx $Gxy $Gyz $Gzx $rho
+```
+
+For the orthotropic material, the local axes are those of the element. On shells, set
+**Local X Axis** on the [ASD Shell](../elements/shell.md) component so every face agrees on
+which direction `Ex` refers to.

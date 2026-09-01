@@ -1,9 +1,35 @@
 # 💣 Loads
 
-Alpaca4d supports the implementation of various types of loads that can be applied to the elements of the structure. The load elements available in Alpaca4d are gravity load, point load, beam load and shell Load.
+A **load** is an action on the structure. Loads are not applied directly: they are grouped
+into a [Load Pattern](load-pattern.md), which attaches a
+[time series](../time-history/README.md) saying how the group varies with time. The pattern
+is what goes into [Assemble](../assemble.md).
 
-Gravity load represents the weight of the structure and is applied as a uniform load on each element in the vertical direction. Point load is a concentrated load applied at a specific point on the structure. Beam load can be applied as a uniform, linear, or trapezoidal load along the length of a beam element. Shell load is a surface load applied to shell elements, such as roofs and walls, in the form of pressure, bending, or shear.
+```
+Load ──┐
+Load ──┼──► Load Pattern ──► Assemble ──► Run Analysis
+Load ──┘        ▲
+                └── Time Series
+```
 
-In Alpaca4d, the magnitude and direction of each load element can be specified, and the software will calculate the resulting deformations and internal forces in the structure. The loads can also be time-dependent, allowing for dynamic analysis of structures subject to earthquakes or wind.
+## Components in this tab
 
-In conclusion, Alpaca4d provides a comprehensive set of load elements that enable the simulation of a wide range of structural loading scenarios. The ease of implementation and versatility of these load elements make Alpaca4d a valuable tool for structural engineers and researchers.
+| Component | Nickname | Applies |
+| --- | --- | --- |
+| [Gravity](gravity.md) | `Gravity Load` | Self-weight of every element in the model. |
+| [Point](point-load.md) | `Point Load` | A concentrated force and moment at a point. |
+| [Beam](beam-load.md) | `LinearLoad` | A uniform line load along beam elements. |
+| [Shell](shell-load.md) | `MeshLoad` | A uniform surface pressure on shell elements. |
+| [Mass Point](mass-point.md) | `Mass Point` | Added nodal mass, for dynamic analysis. |
+| [Load Pattern](load-pattern.md) | `Load Pattern` | Groups loads and gives them a time series. |
+
+## Notes that apply to all of them
+
+- **Directions are global.** Force and moment vectors are in world coordinates, whatever the
+  member orientation.
+- **Loads find their target by position.** A point load is attached to the nearest node
+  within the [Assemble](../assemble.md) **Tolerance**. If a load appears to do nothing, check
+  that a node actually exists where you put it.
+- **[Mass Point](mass-point.md) is not really a load.** It contributes mass, not force, and
+  goes straight into Assemble's `LoadPatterns` input alongside the patterns — it does not
+  need one of its own.

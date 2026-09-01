@@ -1,24 +1,51 @@
-# 🎯 Point load
+# 🎯 Point
 
-A **point load** is a concentrated force (and optionally a moment) applied at a single point of the structure.  
-In Alpaca4d this is typically used to represent loads from columns, machines, connections, or other localized actions.
+A concentrated **force and moment** applied at a single point.
 
-The Grasshopper component is **`Point Load (Alpaca4d)`** and creates an `Alpaca4d.Loads.PointLoad` object.
+## 🔧 Grasshopper component
 
-## Inputs
+`Point Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
-- **Point**: Rhino `Point` where the load acts in space.  
-  This point will be associated with the nearest structural node during assembly.
-- **Force**: Rhino `Vector` with the load components \([Fx, Fy, Fz]\) in **global coordinates**, in units of \([Force]\).
-- **Moment** (optional): Rhino `Vector` with the moment components \([Mx, My, Mz]\) in **global coordinates**, in units of \([Force·Length]\).  
-  If omitted, only the force is applied.
+### Inputs
 
-## Output
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Point | `Point` | Point | — | Where the load acts. Matched to the nearest node within the [Assemble](../assemble.md) tolerance. |
+| Force | `Force` | Vector | — | Force components `Fx, Fy, Fz` in **global** axes, in `kN`. |
+| Moment | `Moment` | Vector | `0, 0, 0` | Moment components `Mx, My, Mz` in **global** axes, in `kN·m`. |
 
-- **Load**: A generic `Load` object that can be connected to a **load pattern** component and then to the **Assemble** component.
+### Outputs
 
-## Usage notes
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Load | `Load` | Load | Point load, for a [Load Pattern](load-pattern.md). |
 
-- Use point loads when the area of application is small compared to the structural dimensions (e.g. a column reaction on a beam).
-- The force and moment direction are always defined in the **global** axes, regardless of member orientation.
-- Multiple point loads can be combined in the same **load pattern** to form a load case.
+## 📈 When to use it
+
+**Use it when**
+
+- The area of application is small compared with the structure — a column reaction on a
+  transfer beam, a machine base, a cable anchorage.
+- You are applying a control force for a pushover.
+
+**Do not use it when**
+
+- The load is genuinely distributed → [Beam Load](beam-load.md) or
+  [Shell Load](shell-load.md).
+- There is no node at the point. A point load lands on the **nearest** node within tolerance;
+  if there is none within it, assembly fails with *"Point load at location … is not part of
+  the model!"* — raise the [Assemble](../assemble.md) tolerance or move the point.
+
+{% hint style="info" %}
+The moment components are dropped on a 3 DOF node — one belonging only to bricks or
+tetrahedra. Only nodes touched by a beam or a shell carry rotational DOFs.
+{% endhint %}
+
+## 🔗 Relation to OpenSees
+
+Inside the enclosing pattern:
+
+```tcl
+load $nodeTag $Fx $Fy $Fz $Mx $My $Mz   ;# 6 DOF node
+load $nodeTag $Fx $Fy $Fz               ;# 3 DOF node
+```

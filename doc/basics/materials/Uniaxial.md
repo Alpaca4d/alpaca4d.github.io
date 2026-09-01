@@ -1,33 +1,61 @@
-# 🔗 Uniaxial materials
+# 🔗 Uniaxial
 
-A **UniaxialMaterial** describes a 1D stress–strain relationship, typically used for fibers, hinges, or simplified member behavior where only one force component is relevant (axial, shear or bending).  
-In Alpaca4d the **`Uniaxial`** Grasshopper component is a switcher that exposes different uniaxial models (e.g. `UniaxialElastic`, `ElasticPerfectlyPlastic`).
+A **uniaxial material** describes a 1D stress–strain relationship. It is what a beam
+cross-section, a fibre or a hinge is made of — anywhere only one stress component matters.
 
-At the moment, the main implemented model is **`UniaxialElastic`**, which creates an `Alpaca4d.Material.UniaxialMaterialElastic` object.
+## 🔧 Grasshopper component
 
-## UniaxialElastic
+`Uniaxial (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
-The **UniaxialElastic** sub‑component defines a linear elastic uniaxial material:
+A switcher component. Right-click it to pick the model:
 
-- **Material Name** (optional): Custom name for the material (e.g. "Steel S235 – axial").  
-- **E**: Young’s modulus \([Force/Length²]\) in tension.
-- **Eneg**: Young’s modulus \([Force/Length²]\) in compression (can be equal to `E` or different if needed).
-- **Eta**: Viscous damping parameter (Rayleigh‑type), usually `0.0` for purely elastic behavior.
-- **G**: Shear modulus \([Force/Length²]\).
-- **ν**: Poisson’s ratio.
-- **Rho**: Density \([Mass/Length³]\).
+- **UniaxialElastic** — linear elastic, described below.
+- **ElasticPerfectlyPlastic** — *not yet implemented*; the unit exists but only issues a
+  warning.
 
-**Output**
+### Inputs — UniaxialElastic
 
-- **Material**: A uniaxial material that can be assigned to elements or sections that expect a `UniaxialMaterial`.
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Material Name | `MatName` | Text | *(empty)* | Label for the material, e.g. `S235 – axial`. Cosmetic. |
+| E | `E` | Number | `210000000` | Young's modulus in tension, in `kN/m²`. |
+| Eneg | `Eneg` | Number | `210000000` | Young's modulus in compression, in `kN/m²`. Equal to `E` unless you need a different one. |
+| Eta | `Eta` | Number | `0.0` | Viscous damping parameter. `0.0` for purely elastic behaviour. |
+| G | `G` | Number | `90760000` | Shear modulus, in `kN/m²`. |
+| ν | `ν` | Number | `0.3` | Poisson's ratio. |
+| Rho | `Rho` | Number | `7850` | Density, in `kg/m³`. |
 
-## ElasticPerfectlyPlastic (preview)
+### Outputs
 
-An **ElasticPerfectlyPlastic** uniaxial model is also available in the menu, but is currently marked as **“not yet implemented”** and only issues a warning.  
-For now, use **UniaxialElastic** (or database‑based materials) for production models.
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Material | `Material` | Material | Uniaxial material, for any [section](../sections/README.md) or fibre. |
 
-## Usage notes
+{% hint style="info" %}
+Only `E`, `Eta` and `Eneg` reach the OpenSees material. `G`, `ν` and `Rho` are used by
+Alpaca4d itself — `G` for the section's torsional and shear terms, `Rho` for the element
+mass density. That is why they live on the material rather than on the section.
+{% endhint %}
 
-- Uniaxial materials are most commonly used in **fiber sections** and non‑linear hinges.  
-- You can combine several uniaxial materials in a section to represent different materials (steel, concrete, reinforcement) in the same cross‑section.
-- For standard elastic behavior, you can also generate equivalent uniaxial materials directly from the **Material Database** (see below).
+## 📈 When to use it
+
+**Use it when**
+
+- You are defining a beam cross-section of any kind.
+- You need a fibre material for a [Fiber Section](../moment-curvature/fiber-section.md) and
+  elastic behaviour is enough.
+- You want a material that is not in the standard grades.
+
+**Do not use it when**
+
+- The element is a shell, brick or tetrahedron → use an [nD material](ND.md).
+- You want a standard grade → the [Material Database](MaterialDatabase.md) is faster and
+  keeps `E`, `G` and `ρ` consistent.
+- You need real non-linearity in a fibre section → use `Concrete01`, `Steel01` or
+  `ReinforcingSteel` from [Moment Curvature](../moment-curvature/README.md).
+
+## 🔗 Relation to OpenSees
+
+```tcl
+uniaxialMaterial Elastic $matTag $E $eta $Eneg
+```

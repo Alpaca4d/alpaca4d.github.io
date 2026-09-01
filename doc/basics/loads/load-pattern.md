@@ -1,40 +1,74 @@
-# 🧩 Load pattern
+# 🧩 Load Pattern
 
-A **load pattern** groups one or more loads and defines **how they vary in time** through a time series.  
-It is the object that Alpaca4d actually uses during analysis to apply loads to the structure.
+A **load pattern** groups loads and attaches a [time series](../time-history/README.md) that
+says how the group varies with time. It is the object the analysis actually applies — loose
+loads never reach [Assemble](../assemble.md) on their own.
 
-In Grasshopper, load patterns are created with the **Load Pattern** component, which exposes sub‑components such as **`PlainPattern`** and **`UniformExcitation`** and produces an `Alpaca4d.Loads.LoadPattern` object.
+## 🔧 Grasshopper component
 
-## Plain pattern
+`Load Pattern (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
-The **PlainPattern** sub‑component is used for static and quasi‑static load cases.
+A switcher component. Right-click it to pick the unit:
 
-- **Inputs**
-  - **TimeSeries**: A time series object (e.g. `Constant`, `Linear`) that controls how the pattern factor evolves over analysis time.
-  - **Loads**: List of load objects (point, beam/line, shell/mesh, gravity, etc.) to be included in this pattern.
-  - **Factor** (optional): Constant scalar applied to all loads in the pattern (default = `1.0`).
+- **PlainPattern** — static and quasi-static load cases.
+- **UniformExcitation** — base acceleration applied to every support.
 
-- **Behaviour**
-  - The pattern factor is obtained from the time series and multiplied by `Factor` and by each individual load magnitude.
-  - Used for typical load cases like **Dead**, **Live**, **Snow**, **Wind**, etc.
+### Inputs — PlainPattern
 
-## Uniform excitation pattern
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| TimeSeries | `TimeSeries` | TimeSeries | [Constant](../time-history/constant.md), factor 1 | How the pattern factor evolves with analysis time. |
+| Loads | `Loads` | Load (list) | — | The loads in this pattern: point, line, surface, gravity. |
+| Factor | `Factor` | Number | `1` | Constant scale applied to the whole pattern, on top of the time series. |
 
-The **UniformExcitation** sub‑component is used to apply base acceleration (e.g. earthquake ground motion) to the entire model.
+### Inputs — UniformExcitation
 
-- **Inputs**
-  - **Dof**: Degree of freedom where the ground motion acts (X, Y, Z, XX, YY, ZZ).
-  - **TimeSeries**: Time series describing the ground motion (usually acceleration vs. time).
-  - **Velocity** (optional): Initial velocity of the base, in \([Length/time]\).
-  - **Factor** (optional): Constant scale factor for the excitation.
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Dof | `Dof` | Text | `X` | Direction the ground motion acts in. Attach a **Value List** for the options: `x`, `y`, `z` (translation along the global axes), `xx`, `yy`, `zz` (rotation about them). |
+| TimeSeries | `TimeSeries` | TimeSeries | — | The ground motion, normally **acceleration** against time. |
+| Velocity | `Velocity` | Number | `0` | Initial ground velocity, in `m/s`. |
+| Factor | `Factor` | Number | `1` | Constant scale on the excitation — where a record in *g* gets its 9.81. |
 
-- **Behaviour**
-  - Internally creates a `LoadPattern` of type `UniformExcitation` that applies the same base motion to all support nodes in the selected direction.
+### Outputs
 
-## Workflow
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| LoadPattern | `LoadPattern` | LoadPattern | Pattern object, for the `LoadPatterns` input of [Assemble](../assemble.md). |
 
-1. Create individual **load objects** (point, beam/line, shell/mesh, gravity, etc.).  
-2. Group them in one or more **Load Pattern** components (Plain or UniformExcitation).  
-3. Connect the load patterns to the **Assemble** component together with the model and analysis settings.
+## 📈 When to use it
 
-This separation between **loads** and **load patterns** allows you to reuse the same loads in different patterns and to clearly organize load cases and dynamic excitations.
+**PlainPattern** for everything static: dead, live, snow, wind, imposed. One pattern per load
+case, so you can scale and combine them independently.
+
+**UniformExcitation** for a seismic time-history run. It shakes the whole base at once, in
+one direction, and needs a [Transient](../analysis/analysis-settings.md) analysis type with a
+suitable [Integrator](../analysis/integrator.md) — `Newmark` or `CentralDifference`.
+
+**Do not use UniformExcitation when** different supports see different motions — that needs
+multiple-support excitation, which Alpaca4d does not expose.
+
+## 💡 Workflow
+
+1. Build the individual **loads**.
+2. Group them into one or more **Load Pattern** components, each with its own time series.
+3. Connect the patterns to [Assemble](../assemble.md).
+
+Keeping loads and patterns separate is what lets the same physical load appear in several
+cases at different factors.
+
+## 🔗 Relation to OpenSees
+
+```tcl
+# PlainPattern
+timeSeries ...
+pattern Plain $tag $tsTag -fact $factor {
+    load    $nodeTag ...
+    eleLoad -ele $eleTag ...
+}
+
+# UniformExcitation
+pattern UniformExcitation $tag $dir -accel $tsTag -vel0 $velocity -fact $factor
+```
+
+`$dir` is the integer the **Dof** text maps to: `X`=1, `Y`=2, `Z`=3, `XX`=4, `YY`=5, `ZZ`=6.

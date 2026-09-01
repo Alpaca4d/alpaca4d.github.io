@@ -1,54 +1,66 @@
 # Shell
 
-**Shell elements** in Alpaca4d are used to model **thin and moderately thick surfaces** (plates, walls, slabs, shells)  
-that carry both **in‑plane (membrane)** and **out‑of‑plane (bending, shear)** actions.
+**Shell elements** carry both in-plane (membrane) and out-of-plane (bending, shear) actions,
+and are the right choice for anything thin relative to its other two dimensions — slabs,
+walls, plates, folded plates, roofs, tanks.
 
-In Alpaca4d these are implemented mainly via:
+Alpaca4d uses the ASDShell family from ASDEA:
 
-- `ASDShellQ4`: 4‑node quadrilateral shell element.
-- `ASDShellT3`: 3‑node triangular shell element in the core).
-
-Both are exposed through a single Grasshopper component and share the same section definition.
+- `ASDShellQ4` — 4-node quadrilateral.
+- `ASDShellT3` — 3-node triangle.
 
 ## 🔧 Grasshopper component
 
-The `ASD ShellQ4 (Alpaca4d)` component creates shell elements from a mesh and a shell section.
+`ASD Shell (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
-- **Inputs**
-  - **Mesh**: Surface mesh representing the shell geometry.  
-    - Type: `Mesh` (quads and/or triangles).  
-    - Internally, the component **explodes** the mesh into individual faces:
-      - **4 vertices** → `ASDShellQ4` (quadrilateral shell).
-      - **3 vertices** → `ASDShellT3` (triangular shell).
-  - **Section**: Shell/plate section assigned to the element(s).  
-    - Type: Alpaca4d multi‑dimensional section (thickness, material, reinforcement, etc.).
-  - **Colour** (optional): Display colour for the generated shell elements.
+One component covers both element types. The mesh is exploded into single faces, and each
+face becomes one element: 4 vertices → `ASDShellQ4`, 3 vertices → `ASDShellT3`.
 
-- **Outputs**
-  - **Element**: List of Alpaca4d shell elements (`ASDShellQ4` and/or `ASDShellT3`) ready to be connected to the assemble/model component.
+### Inputs
 
-## 📈 When to use shell elements
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Mesh | `Mesh` | Mesh | — | Surface mesh, in `m`. Quads and triangles may be mixed. |
+| Section | `Section` | Section | — | Shell section — a [Plate Fiber Section](../sections/plate-fiber.md), which carries the thickness and an [nD material](../materials/ND.md). |
+| Colour | `Colour` | Colour | Alpaca4d shell colour | Display colour in the Rhino viewport. |
+| Local X Axis | `LocalX` | Vector | element default | Direction the element's local *x* axis is aligned to. Sets the axes that [Shell Forces](../results/shell-forces.md) are reported in. Leave empty to let OpenSees pick per face. |
+| Is Corotational | `IsCorotational` | Boolean | `false` | Use the corotational formulation, for large displacements and rotations. |
 
-- **Use them when**
-  - You are modelling **slabs, walls, plates, shells**, or other thin 3D structures.
-  - Bending and membrane actions are both important (e.g. floor diaphragms, shear walls, tanks).
-  - A full 3D solid (brick) model would be unnecessarily heavy, but a beam model is too simple.
+{% hint style="info" %}
+Set **Local X Axis** on any model where you intend to read `pxx`, `myy` and the rest. Without
+it each face orients itself independently, and the per-face results are no longer comparable
+across the mesh.
+{% endhint %}
 
-- **Do not use them when**
-  - The body is **volumetric / massive** and requires full 3D stress state → use **Brick** elements.
-  - The behaviour is **1D member‑like** (beams, columns, braces) → use **Force Beam Column** or other frame elements.
+### Outputs
+
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Element | `Element` | Element | List of shell elements, one per mesh face, to be connected to [Assemble](../assemble.md). |
+
+## 📈 When to use it
+
+**Use it when**
+
+- You are modelling slabs, walls, plates, shells or other thin surfaces.
+- Membrane and bending actions both matter — floor diaphragms, shear walls, tanks.
+- A solid model would be unnecessarily heavy but a beam model is too coarse.
+
+**Do not use it when**
+
+- The body is genuinely volumetric → use [Brick](brick.md) or
+  [Four Node Tetrahedron](four-node-tetrahedron.md).
+- The behaviour is member-like → use [ForceBeamColumn](force-beam-column.md).
 
 ## 🔗 Relation to OpenSees
 
-Alpaca4d shells write OpenSees shell element commands, for example:
-
 ```tcl
-element ASDShellQ4  $eleTag $n1 $n2 $n3 $n4 $secTag
-element ASDShellT3   $eleTag $n1 $n2 $n3 $secTag
+element ASDShellQ4 $eleTag $n1 $n2 $n3 $n4 $secTag <-corotational> <-local $x $y $z>
+element ASDShellT3 $eleTag $n1 $n2 $n3      $secTag <-corotational> <-local $x $y $z>
 ```
 
-where:
-
-- the mesh face vertex ordering defines `$n1 ...`,
-- the **Section** input maps to `secTag`,
-- the specific element type (`ASDShellQ4` vs `ASDShellT3`) is chosen internally based on face type and nonlinearity settings in Alpaca4d.
+- Node tags come from the mesh face vertices, matched to model nodes by the
+  [Assemble](../assemble.md) tolerance.
+- `$secTag` is the **Section** input.
+- `-corotational` is emitted when **Is Corotational** is `true`.
+- `-local` is emitted only when **Local X Axis** is supplied.

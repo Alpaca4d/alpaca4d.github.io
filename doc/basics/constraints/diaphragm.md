@@ -1,25 +1,55 @@
-# 🧱 Diaphragm
+# 🧱 Rigid Diaphragm
 
-A **rigid diaphragm constraint** enforces that a group of nodes move together as if connected by an infinitely stiff in‑plane plate.  
-This is typically used to model floors or roof slabs that are much stiffer in‑plane than the vertical elements (e.g. reinforced concrete slabs, composite decks).
+A **rigid diaphragm** makes a group of nodes move as if connected by an infinitely stiff
+in-plane plate. It is how you model a floor or roof slab that is far stiffer in its own plane
+than the columns and walls around it.
 
-In Alpaca4d this behaviour is provided by the **`Rigid Diaphragm (Alpaca4d)`** component, which creates an `Alpaca4d.Constraints.RigidDiaphragm` object.
+## 🔧 Grasshopper component
 
-## Inputs
+`Rigid Diaphragm (Alpaca4d)` — **Alpaca4d ▸ 03_Constraint**
 
-- **SlavePoints**: List of points that will be tied to the diaphragm. Their in‑plane translations will be constrained to move together.  
-- **MasterPoint** (optional): Reference point that controls the rigid body motion of the diaphragm (often at the centre of mass or a convenient node).  
-- **Direction** (optional): Integer indicating the global axis **perpendicular** to the rigid plane:  
-  - `1` → diaphragm in the **yz** plane (normal in X),  
-  - `2` → diaphragm in the **xz** plane (normal in Y),  
-  - `3` → diaphragm in the **xy** plane (normal in Z, typical for floor slabs).
+### Inputs
 
-## Output
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| SlavePoints | `SlavePoints` | Point (list) | — | The nodes tied into the diaphragm. |
+| MasterPoint | `MasterPoint` | Point | centroid of the slave points | The node whose motion drives the rigid body. |
+| Direction | `Direction` | Integer | `3` | Global axis **perpendicular** to the rigid plane: `1` → *yz* plane, `2` → *xz* plane, `3` → *xy* plane. |
 
-- **Constraint**: A constraint object that can be connected to the **Assemble** component together with the rest of the model.
+### Outputs
 
-## Usage notes
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Constraint | `Constraint` | Constraint | Constraint object, to be connected to [Assemble](../assemble.md). |
 
-- Make sure all **SlavePoints** lie approximately in the same plane; otherwise the component will warn you that the points are not planar.  
-- In multi‑storey buildings, it is common to create one rigid diaphragm per floor to represent a stiff floor slab.  
-- Diaphragms strongly influence the global lateral behaviour; always check that the assigned direction matches your intended floor plane.
+## 📈 When to use it
+
+**Use it when**
+
+- You are modelling a reinforced-concrete slab or a composite deck as a stiff floor plate,
+  one diaphragm per storey.
+- You want the lateral response of a building governed by the vertical elements, without
+  meshing every floor as shells.
+
+**Do not use it when**
+
+- The floor is genuinely flexible in plane — a timber deck, a slab with a large opening.
+  Model it with [Shell](../elements/shell.md) elements instead.
+- You only need two nodes tied together → use [Rigid Link](equal-dof.md).
+
+## 💡 Notes
+
+- The slave points must be roughly coplanar. The component warns you if they are not.
+- The **Direction** must match the plane the points actually lie in — a floor slab in plan is
+  `3`.
+- Diaphragms dominate the global lateral behaviour. Check the direction before reading any
+  storey drift.
+
+## 🔗 Relation to OpenSees
+
+```tcl
+rigidDiaphragm $dir $masterNodeTag $slaveNodeTag1 $slaveNodeTag2 ...
+```
+
+Node tags are resolved from the point coordinates by the [Assemble](../assemble.md)
+tolerance.

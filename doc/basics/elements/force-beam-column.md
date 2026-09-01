@@ -1,46 +1,59 @@
 # Force Beam Column
 
-A **Force Beam Column** is a frame element that uses a **force‑based (distributed plasticity)** formulation.  
-Section response is integrated along the member length, which allows Alpaca4d to capture **spread of yielding** and nonlinear curvature distributions more accurately than simple hinge models.
+A **force beam column** is a frame element with a force-based (flexibility) formulation.
+The section response is integrated along the member, so the element captures the real
+distribution of curvature along the span rather than assuming a shape function for it.
 
 ## 🔧 Grasshopper component
 
-The `Force Beam Column (Alpaca4d)` component creates a force‑based beam–column element from a line, section and (optionally) a geometric transformation.
+`ForceBeamColumn (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
-- **Inputs**
-  - **Line**: Centreline of the element.  
-    - Type: `Curve`  
-    - Units: length  
-  - **Section**: Cross‑section assigned to the element.  
-    - Type: Alpaca4d uniaxial section (e.g. steel, concrete, timber section components)  
-    - Controls: stiffness, strength, mass density, etc.
-  - **GeometricTransformation** (`GeomTransf`, optional): Local axis definition and 2D/3D beam formulation.  
-    - If not provided, a **linear** transformation is automatically created from the line and a default local \( z \) axis.
-  - **ZAxis** (optional): Vector controlling the local \( z \) axis orientation of the element.  
-    - If omitted, Alpaca4d computes a perpendicular frame from the line.
-  - **Colour** (optional): Display colour of the element in Grasshopper/Rhino.
+A switcher component. The **Element Type** menu selects the unit:
 
-- **Outputs**
-  - **Element**: Alpaca4d `ForceBeamColumn` element ready to be connected to the assemble/model component.
+- **ForceBeamColumn** — a plain force-based beam, described here.
+- **WithHinges** — the same element with plastic hinge zones at the ends, described in
+  [Beam With Hinges](beam-with-hinges.md).
 
-## 📈 When to use a force‑based beam column
+### Inputs
 
-- **Use it when**
-  - You want to model **nonlinear behaviour along the length** of beams/columns (distributed plasticity).
-  - You need realistic curvature and rotation demands for **seismic** or **pushover** analysis.
-  - You are using **advanced sections** (e.g. fibre sections) where section response is integrated along the member.
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Line | `Line` | Curve | — | Centreline of the element, in `m`. |
+| Section | `Section` | Section | — | Cross-section, from any of the [Sections](../sections/README.md) components. Carries the material, and with it the mass density. |
+| GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
+| ZAxis | `ZAxis` | Vector | perpendicular frame | Local *z* axis of the element. If left empty Alpaca4d derives one from the line direction. |
+| Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
 
-- **Do not use it when**
-  - A simple **linear elastic** beam is sufficient → a simpler elastic element may be enough (depending on your Alpaca4d setup).
-  - You only need very coarse global stiffness representation and want to minimise computational cost.
+### Outputs
+
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Element | `Element` | Element | Beam element, to be connected to [Assemble](../assemble.md). |
+
+## 📈 When to use it
+
+**Use it when**
+
+- You are modelling any line-like member: beams, columns, braces, truss bars.
+- You want the spread of yielding along the member length to be captured.
+- You need realistic curvature and rotation demands for pushover or seismic work.
+
+**Do not use it when**
+
+- Inelasticity is confined to the member ends and you would rather control the hinge length
+  explicitly → switch the unit to **WithHinges**.
+- The member is really a surface or a solid → use [Shell](shell.md) or [Brick](brick.md).
 
 ## 🔗 Relation to OpenSees
 
-Alpaca4d’s `ForceBeamColumn` writes an OpenSees `forceBeamColumn` command.  
-In OpenSees Tcl this has the form:
+The component writes a `geomTransf` and a `forceBeamColumn`:
 
 ```tcl
-element forceBeamColumn $eleTag $iNode $jNode $transfTag $integrationTag -mass $massDens
+geomTransf Linear $transfTag $zx $zy $zz
+element forceBeamColumn $eleTag $iNode $jNode $transfTag NewtonCotes $secTag 5 -mass $massDens
 ```
 
-In Alpaca4d, the **GeomTransf** and **beam integration** objects (e.g. `NewtonContes`) are created and tagged automatically; the material and section data come from the **Section** input of the Grasshopper component.
+- The integration is **Newton–Cotes with 5 points**, created automatically.
+- `$secTag` comes from the **Section** input.
+- `$massDens` is mass per unit length, from the section area times the material density.
+- Transformation and integration tags are numbered automatically per element.

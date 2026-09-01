@@ -1,24 +1,62 @@
-# 🌍 Gravity load
+# 🌍 Gravity
 
-A **gravity load** represents the self‑weight of the structure due to gravity.  
-In Alpaca4d this is handled by the **`Gravity Load (Alpaca4d)`** component, which creates an `Alpaca4d.Loads.Gravity` object.
+Applies the **self-weight** of every element in the model, derived from the material density
+and the section or thickness.
 
-## Inputs
+## 🔧 Grasshopper component
 
-- **Factor** (optional): Dimensionless multiplier for the gravity acceleration, default = `1.0`.  
-  - `Factor = 1.0` → standard self‑weight.  
-  - `Factor = 0.0` → self‑weight disabled.  
-  - `Factor > 1.0` → amplified gravity (e.g. to include additional permanent loads not modelled explicitly).
+`Gravity Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
-The direction and value of gravity (e.g. acting in \(-Z\)) are defined in the global Alpaca4d settings / analysis model, not in this component.
+### Inputs
 
-## Output
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Factor | `Factor` | Number | `1.0` | Multiplier on gravity. `1.0` is plain self-weight; `0.0` disables it; `1.35` gives a factored permanent load; values above 1 are also a quick way to include finishes not modelled explicitly. |
 
-- **Load**: A gravity `Load` object that can be connected to a **load pattern** and then to the **Assemble** component.
+### Outputs
 
-## Usage notes
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Load | `Load` | Load | Gravity load, for a [Load Pattern](load-pattern.md). |
 
-- Gravity loads are usually included in a separate **permanent load pattern** (e.g. “G”) and combined with other patterns for design combinations.
-- For many models, self‑weight plus a few distributed shell or beam loads is enough to capture the full permanent loading.
-- In the current beam implementation, the gravity-load algorithm creates **equivalent concentrated nodal loads at the beam ends** (rather than a continuously distributed load along the element length).
-- To better represent the action of gravity on beams, it is recommended to **discretize beams into multiple elements** so the equivalent nodal loads are distributed over more points.
+There is no geometry input. Gravity applies to the whole model, and its direction is −Z.
+
+## 📈 When to use it
+
+**Use it when**
+
+- Any model where self-weight matters. Put it in its own permanent pattern (a "G" case) and
+  combine it with the others.
+
+**Do not use it when**
+
+- You are modelling weight that is *not* in the elements — plant, finishes, a stored
+  material → use [Point Load](point-load.md), [Beam Load](beam-load.md) or
+  [Shell Load](shell-load.md), and [Mass Point](mass-point.md) for the dynamic side.
+
+{% hint style="warning" %}
+**Discretise your beams.** For beam elements the algorithm generates equivalent
+**concentrated nodal loads at the element ends**, not a distributed load along the span. A
+single element spanning 6 m therefore puts half its weight at each end and produces no
+sagging moment from self-weight at all.
+
+Split beams into several elements — five or more per span — and the equivalent nodal loads
+land at enough points to approximate the real distribution. This also improves the
+[Beam Forces](../results/beam-forces.md) diagram resolution, which is sampled at the
+integration points of each element.
+{% endhint %}
+
+## 🔗 Relation to OpenSees
+
+Gravity is resolved by Alpaca4d during assembly rather than written as its own command. Each
+element's weight becomes `load` entries inside the enclosing pattern:
+
+```tcl
+pattern Plain $tag $tsTag -fact $factor {
+    load $nodeTag 0.0 0.0 -$w
+    ...
+}
+```
+
+The weight of a beam is `A × ρ × L`, of a shell `t × ρ × area`, split between the nodes of
+the element.

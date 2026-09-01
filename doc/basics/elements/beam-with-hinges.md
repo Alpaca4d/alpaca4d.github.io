@@ -1,64 +1,91 @@
 # Beam With Hinges
 
-A **Beam With Hinges** is a frame element that concentrates inelastic behaviour in **discrete plastic hinge zones** at the element ends.  
-The interior of the element remains **linear elastic**, while the I and J ends use a `HingeRadau` integration scheme to capture localised plasticity over a specified hinge length.
+A **beam with hinges** is a frame element whose inelastic behaviour is confined to two hinge
+zones at the ends. The interior stays linear elastic, and `HingeRadau` integration puts the
+end integration points inside the hinge lengths.
+
+Alpaca4d builds the hinge by taking the element's own section and scaling the stiffness of
+each **released** degree of freedom by 10⁻⁶ — so a release is a very soft hinge section, not
+a true free end.
 
 ## 🔧 Grasshopper component
 
-The `Beam With Hinges (Alpaca4d)` component is a switcher component. Switch to the **WithHinges** mode to construct a beam with plastic hinge zones.
+`ForceBeamColumn (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
-- **Inputs**
-  - **Line**: Centreline of the element.  
-    - Type: `Curve`  
-    - Units: length
-  - **Section**: Interior (elastic) cross-section assigned to the element.  
-    - Type: Alpaca4d uniaxial section (e.g. steel, concrete, timber section components)
-  - **GeometricTransformation** (`GeomTransf`, optional): Local axis definition and corotational/linear formulation.  
-    - If not provided, a **Linear** transformation is automatically created from the line and a default local \( z \) axis.
-  - **ZAxis** (optional): Vector controlling the local \( z \) axis orientation of the element.  
-    - If omitted, Alpaca4d computes a perpendicular frame from the line.
-  - **ReleaseI** (optional): Release condition at the **I end** of the element.  
-    - Type: Alpaca4d `Release` object (from the `Hinge Release (Alpaca4d)` component).  
-    - Set a DOF to `False` to release it — Tx, Ty, Tz, Rx, My, Mz.  
-    - If omitted, a **fully fixed** end condition is used.
-  - **LpI** (optional): Plastic hinge length at the **I end**.  
-    - Units: length  
-    - Default: `0.01`
-  - **ReleaseJ** (optional): Release condition at the **J end** of the element.  
-    - Type: Alpaca4d `Release` object.  
-    - If omitted, a **fully fixed** end condition is used.
-  - **LpJ** (optional): Plastic hinge length at the **J end**.  
-    - Units: length  
-    - Default: `0.01`
-  - **Colour** (optional): Display colour of the element in Grasshopper/Rhino.
+There is no separate component. Right-click the **ForceBeamColumn** component and set the
+**Element Type** menu to **WithHinges**.
 
-- **Outputs**
-  - **Element**: Alpaca4d `BeamWithHinges` element ready to be connected to the assemble/model component.
+### Inputs
 
-## 📈 When to use beam with hinges
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Line | `Line` | Curve | — | Centreline of the element, in `m`. |
+| Section | `Section` | Section | — | Interior cross-section. Also the section the hinges are derived from. |
+| GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
+| ReleaseI | `ReleaseI` | Release | fully fixed | Release condition at the **I** end, from [Hinge Release](hinge-release.md). |
+| LpI | `LpI` | Number | `0.05` | Hinge length at the **I** end, **as a fraction of the element length L**. |
+| ReleaseJ | `ReleaseJ` | Release | fully fixed | Release condition at the **J** end. |
+| LpJ | `LpJ` | Number | `0.05` | Hinge length at the **J** end, as a fraction of L. |
+| ZAxis | `ZAxis` | Vector | perpendicular frame | Local *z* axis of the element. |
+| Colour | `Colour` | Colour | Alpaca4d hinged-beam colour | Display colour in the Rhino viewport. |
 
-- **Use it when**
-  - You want to model **concentrated plasticity** at the ends of beams or columns (e.g. moment frames undergoing seismic or pushover loading).
-  - Your structural model assumes that inelastic deformation is confined to **known hinge locations**, with an elastic interior span.
-  - You need to **release specific DOFs** at element ends (e.g. pinned connections, moment releases) while keeping the rest of the member elastic.
-  - Computational cost is a concern — this approach is lighter than a fully distributed-plasticity fibre model along the whole member.
+{% hint style="warning" %}
+**LpI and LpJ are ratios, not lengths.** `0.05` means 5 % of the chord length L, whatever
+units the model is drawn in. Empty or non-positive values fall back to `0.05`; anything else
+is clamped to **\[0.02, 0.10]**.
 
-- **Do not use it when**
-  - Yielding may develop **anywhere along the member length** → use a `Force Beam Column` with a fibre section instead.
-  - You need to resolve moment or curvature distributions within the elastic interior span.
-  - The plastic hinge length \( l_p \) is uncertain or highly variable — results can be sensitive to this parameter.
+The clamp is not cosmetic. `HingeRadau` gives the two interior points a weight of
+`0.5 - 2(lpI + lpJ)/L`, so `lpI + lpJ` has to stay below `L/4`; capping each end at `0.10`
+keeps that weight at 0.30 or above. And below `0.02` the 10⁻⁶ softening no longer reads as a
+release, because the released flexibility scales with `lp/L`.
+{% endhint %}
+
+### Outputs
+
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Element | `Element` | Element | Beam element, to be connected to [Assemble](../assemble.md). |
+
+## 📈 When to use it
+
+**Use it when**
+
+- Inelastic deformation is expected at known locations — the ends of beams and columns in a
+  moment frame under seismic or pushover loading.
+- You need to release specific DOFs at a member end (a pinned connection, a moment release)
+  while keeping the rest of the member elastic.
+- You want something lighter than a fibre model along the whole member.
+
+**Do not use it when**
+
+- Yielding may develop anywhere along the span → use a plain
+  [ForceBeamColumn](force-beam-column.md).
+- You need moment or curvature resolved inside the elastic interior.
+- The plastic hinge length is uncertain — results are sensitive to it.
 
 ## 🔗 Relation to OpenSees
 
-Alpaca4d's `BeamWithHinges` writes an OpenSees `forceBeamColumn` command with an inline `HingeRadau` integration specification:
+A `forceBeamColumn` with an inline `HingeRadau` specification:
 
 ```tcl
-element forceBeamColumn $eleTag $iNode $jNode $transfTag {HingeRadau $secTagI $lpI $secTagJ $lpJ $secTagC} -mass $massDens
+element forceBeamColumn $eleTag $iNode $jNode $transfTag \
+        HingeRadau $secTagI $lpI $secTagJ $lpJ $secTagC -mass $massDens
 ```
 
-- `$secTagI` / `$secTagJ` — auto-generated elastic sections at the hinge zones. Released DOFs have their stiffness scaled by \( 10^{-6} \), effectively decoupling that force/moment component.
-- `$lpI` / `$lpJ` — plastic hinge lengths at the I and J ends.
-- `$secTagC` — interior elastic section (the **Section** input of the Grasshopper component).
-- `$massDens` — mass per unit length, derived from the section area and material density.
+- `$secTagI` / `$secTagJ` — auto-generated elastic sections for the hinge zones. Released
+  DOFs have their stiffness scaled by 10⁻⁶.
+- `$lpI` / `$lpJ` — the **absolute** hinge lengths, computed as `ratio × L` from the LpI/LpJ
+  inputs.
+- `$secTagC` — the interior elastic section, i.e. the **Section** input.
+- `$massDens` — mass per unit length, from the section area times the material density.
 
-In Alpaca4d, all section tags and the geometric transformation are created and numbered automatically.
+The mapping from the release booleans to the softened section property is:
+
+| Release input | Section property scaled |
+| --- | --- |
+| `Tx` | Area |
+| `Ty` | AlphaY |
+| `Tz` | AlphaZ |
+| `Rx` | J |
+| `My` | Iyy |
+| `Mz` | Izz |

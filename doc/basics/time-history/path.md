@@ -1,61 +1,50 @@
 # Path
 
-A **Path Time Series** defines the relationship between time $$t$$ and load factor $$\lambda$$ using **user‑specified discrete points**:
-
-$$
-\lambda(t_i) = \lambda_i \quad \text{for} \quad i=1,\dots,n
-$$
-
-Values between the specified times are typically obtained by **linear interpolation**. This allows you to reproduce **arbitrary time histories**, such as recorded ground motions or experimental signals.
+A **path time series** is defined by a list of times and a list of values, with linear
+interpolation between them. It reproduces arbitrary signals: recorded ground motions,
+measured forces, anything you can express as numbers.
 
 ## 🔧 Grasshopper component
 
-The `Path Time Series (Alpaca4d)` component creates an Alpaca4d path time series from lists of times and values.
+`Path Time Series (Alpaca4d)` — **Alpaca4d ▸ 04_Time Series**
 
-- **Inputs**
-  - **Times**: List of time values $$ t_i $$ $$[s]$$.  
-    - Type: List of numbers  
-    - Requirement: Must be in ascending order and have the same length as **Values**.
-  - **Values**: List of corresponding load factors $$ \lambda_i $$.  
-    - Type: List of numbers  
-    - Requirement: Same count as **Times**; defines the raw shape of the time series.
-  - **LoadFactor**: Global scale factor $$ c_\text{factor} $$ applied to all **Values**.  
-    - Type: Number  
-    - Default: `1.0`  
-    - Effect: The effective load factor is $$ \lambda(t) = c_\text{factor} \cdot \lambda_\text{path}(t) $$.
+### Inputs
 
-- **Outputs**
-  - **TimeSeries**: Alpaca4d `PathTimeSeries` object, to be used wherever a time series is required.
-  - **Graph**: A list of values describing the time–history, useful for plotting or checking the input signal in Grasshopper.
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Times | `Times` | Number (list) | — | Times $$t_i$$, in `s`. Ascending, and the same count as **Values**. |
+| Values | `Values` | Number (list) | — | Load factors $$\lambda_i$$ at those times. |
+| LoadFactor | `LoadFactor` | Number | `1.0` | Global scale $$c_\text{factor}$$ applied to all values. |
 
-## 📈 When to use a path time series
+### Outputs
 
-- **Use it when**
-  - You need to apply **recorded time histories** (e.g. earthquake acceleration, measured force or displacement).
-  - The load pattern is **non‑standard** and cannot be described by simple analytical functions.
-  - You want full control over the **shape of the excitation** in time.
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| TimeSeries | `TimeSeries` | TimeSeries | Path series, for a [Load Pattern](../loads/load-pattern.md). |
+| Graph | `Graph` | Number (list) | The values, for plotting. |
 
-- **Do not use it when**
-  - A **simple constant or linear ramp** is sufficient → use **Constant** or **Linear** time series.
-  - The loading is **purely harmonic or periodic** → use a **Trigonometric** time series.
+## 📈 When to use it
+
+**Use it when**
+
+- You need a recorded time history — earthquake acceleration, a measured force or
+  displacement.
+- The signal is generated in Grasshopper and is not analytic.
+- You want full control over the shape of the excitation.
+
+**Do not use it when**
+
+- The signal lives in a file → [Read Time Series](read-time-series.md) parses it for you.
+- A constant or a ramp will do → [Constant](constant.md) or [Linear](linear.md).
+- The loading is purely harmonic → [Trigonometric](trigonometric.md) is one number instead
+  of a list.
 
 ## 🔗 Relation to OpenSees
 
-Alpaca4d’s path time series corresponds to the OpenSees `Path` timeSeries:
-
 ```tcl
-timeSeries Path $tag -time {t1 t2 ... tn} -values {v1 v2 ... vn} -factor $cFactor
+timeSeries Path $tag -time {t1 t2 ... tn} -values {v1 v2 ... vn} -factor $cFactor -useLast
 ```
 
-```python
-timeSeries('Path', tag,
-           '-time',  [t1, t2, ..., tn],
-           '-values',[v1, v2, ..., vn],
-           '-factor', cFactor)
-```
-
-where:
-
-- the **Times** input maps to the `-time` list,
-- the **Values** input maps to the `-values` list,
-- the **LoadFactor** input corresponds to `cFactor`.
+`-useLast` is always written: past the last time in the list, the factor holds at the final
+value rather than dropping to zero. If you want the excitation to stop, end the list with a
+zero.

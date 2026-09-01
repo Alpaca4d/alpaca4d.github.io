@@ -1,43 +1,90 @@
-# 📚 Material database
+# 📚 Material Database
 
-The **Material Database** is provided by the Grasshopper component **`Material Library (Elastic)`**, implemented as `MaterialPresetElastic`.  
-It allows you to quickly select **standard grades** (steel, concrete, timber, plastic) and automatically generate consistent **elastic material properties** for Alpaca4d.
+The **material database** turns a standard grade name into a consistent elastic material,
+so you do not have to type *E*, *G*, *ν* and *ρ* by hand and get them to agree.
 
-## How it works
+## 🔧 Grasshopper component
 
-The component reads a set of JSON databases embedded in Alpaca4d:
+`Material Library Elastic (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
-- `steel_properties.json`
-- `concrete_properties.json`
-- `timber_properties.json`
-- `plastic_properties.json`
+### Options
 
-Each database contains typical values for:
+Three dropdowns live on the component body, under the **Library** menu:
 
-- **E**: Young’s modulus (stored in MPa, converted internally to \([kN/m²]\)).  
-- **G**: Shear modulus (if provided).  
-- **ρ**: Density \([kg/m³]\).  
-- Additional information specific to each material type (e.g. characteristic / mean values for concrete and timber).
+| Dropdown | Values | Default |
+| --- | --- | --- |
+| **Type** | Steel, Concrete, Timber, Plastic — plus any type found in a custom database | `Steel` |
+| **Grade** | the grades of the selected type | `S235` |
+| **Model** | `Uniaxial` or `nD` | `Uniaxial` |
 
-You select:
+Built-in grades:
 
-- **Model**: `Uniaxial` or `nD`.  
-- **Type**: material family (e.g. Steel, Concrete, Timber, Plastic).  
-- **Grade**: specific grade (e.g. `S235`, `C30/37`, etc.).
+| Type | Grades |
+| --- | --- |
+| Steel | S235, S275, S355, S450 |
+| Concrete | C25_30, C28_35, C30_37, C32_40, C35_45, C40_50 |
+| Timber | C14, C16, C18, C20, C22, C24, GOB_Green_Oak |
+| Plastic | PVC, HDPE, PE, PP, PS, PET, PC, PLA, PVA, PTFE, PEEK, PVDF |
 
-The component then creates:
+### Inputs
 
-- A **Uniaxial** elastic material (`UniaxialMaterialElastic`) when **Model = Uniaxial**.  
-- An **nD** elastic isotropic material (`ElasticIsotropicMaterial`) when **Model = nD**.
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Material Name | `Name` | Text | *(empty)* | Type a grade name directly, e.g. `S235`. **Overrides the dropdowns** and moves them to match. An unknown name is an error, not a fallback. |
+| DatabasePath | `DBPath` | Generic | *(empty)* | Path to a custom JSON database with the same schema as the built-in ones. Its type is merged into the **Type** dropdown, and takes priority over a built-in type of the same name. |
 
-## Inputs and outputs
+### Outputs
 
-- **DatabasePath** (optional): Path to a custom JSON material database with the same schema as the built‑in ones.  
-  If provided, this custom database is merged into the available types and grades.
-- **Material**: Resulting material object (Uniaxial or ND) ready to be connected to sections or elements.
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Material | `Material` | Material | A [Uniaxial](Uniaxial.md) material when **Model = Uniaxial**, an [nD](ND.md) `ElasticIsotropic` material when **Model = nD**. |
 
-## Usage notes
+## 💡 How the properties are derived
 
-- Use the Material Database whenever you need **standard** elastic materials without manually entering \(E\), \(G\), \(ν\), and \(ρ\).  
-- You can still override or create fully custom materials using the dedicated **Uniaxial** and **nD** material components.  
-- Custom JSON databases are useful for company‑specific libraries or national standards not included in the default set.
+Each database entry stores `E` and `G` in **MPa** and `rho` in **kg/m³**. The component:
+
+1. Converts `E` and `G` to `kN/m²` by ×1000.
+2. Derives Poisson's ratio from the pair, `ν = E/(2G) − 1`, clamped to `[0, 0.4999]`.
+3. Recomputes `G = E / (2(1+ν))` so the triple is internally consistent.
+4. Passes `rho` through unchanged.
+
+The grade name becomes the material name.
+
+## 💡 Custom databases
+
+A custom database is a JSON object keyed by grade name. The built-in steel file looks like
+this:
+
+```json
+{
+  "S235": {
+    "rho": 7850,
+    "E": 210000,
+    "G": 80769,
+    "fy": 235,
+    "fu": 360,
+    "epsilon_yield": 0.015,
+    "epsilon_max_Stress": 0.11,
+    "strainAtRupture": 0.17,
+    "material_type": "Steel"
+  }
+}
+```
+
+Only `E`, `G`, `rho` and `material_type` are read by this component. `material_type` is what
+the **Type** dropdown lists, so give every entry in one file the same value.
+
+## 📈 When to use it
+
+**Use it when**
+
+- You want a standard grade and want `E`, `G` and `ν` to agree with each other.
+- Your office has its own grades or a national standard not in the default set → point
+  **DatabasePath** at a JSON file.
+
+**Do not use it when**
+
+- The material is non-standard → use [Uniaxial](Uniaxial.md) or [nD](ND.md) directly.
+- You need non-linearity → the database is elastic only. See
+  [Moment Curvature](../moment-curvature/README.md) for `Concrete01`, `Steel01` and
+  `ReinforcingSteel`.
