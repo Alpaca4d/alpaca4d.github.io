@@ -51,6 +51,19 @@ modulus from `E` and `ν`. Alpaca4d keeps `G` on the material because the same m
 object may also be read for section properties.
 {% endhint %}
 
+{% hint style="info" %}
+**Rho is in kg/m³, and it is what gives shells and solids their mass.**
+[Shells](../elements/shell.md), [bricks](../elements/brick.md) and
+[tetrahedra](../elements/four-node-tetrahedron.md) take no mass input of their own — OpenSees
+reads the density straight off this material. Alpaca4d converts it to the solver's mass unit
+when the deck is written.
+
+Before 0.11 that conversion was missing, so every shell and solid was a thousand times too
+heavy and modal frequencies came out about 31.6 times too low. Static results were never
+affected — density only feeds the mass matrix, and self-weight is applied as explicit nodal
+loads by [Gravity Load](../loads/gravity.md).
+{% endhint %}
+
 ## 📈 When to use it
 
 **Use it when**

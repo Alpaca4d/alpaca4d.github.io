@@ -22,16 +22,15 @@ roof, a façade, the participating fraction of an imposed load.
 | --- | --- | --- | --- |
 | Load | `Load` | Load | Mass load. Connect it **directly** to Assemble's `LoadPatterns` input — it does not need a [Load Pattern](load-pattern.md). |
 
-{% hint style="danger" %}
-**Check your mass magnitudes against a modal run.** The input is labelled `[kg]`, but the
-component scales it by `9.81 / 1000` before writing the OpenSees `mass` command, whereas
-element self-mass is scaled by `1 / 1000`. The two are not on the same footing: added mass
-comes out a factor of 9.81 larger than element mass for the same physical quantity.
+{% hint style="info" %}
+The input is in **kg**, and is converted to the solver's mass unit when the deck is written —
+the same conversion an element's mass density goes through. Added mass and element self-mass
+are therefore on the same footing, and you can check that by reading
+**TotalMassOfStructure** from the [Modal Analysis Report](../results/modal-analysis-report.md).
 
-Until this is reconciled, verify any model that mixes added mass with element self-mass by
-reading **TotalMassOfStructure** from the
-[Modal Analysis Report](../results/modal-analysis-report.md) and comparing it against what
-you expect.
+Before 0.11 this input carried a stray factor of 9.81, which made every point mass 9.81 times
+too heavy and any model relying on it report periods about 3.1 times too long. If you have a
+model calibrated against that behaviour, its periods will now drop.
 {% endhint %}
 
 ## 📈 When to use it

@@ -29,7 +29,7 @@ resolved **geometrically**.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | The assembled model — feed it to [Model View](visualisation/model-view.md), [Run Analysis](analysis/run-analysis.md) or [Natural Vibration](analysis/natural-vibration.md). |
-| Mass | `Mass` | Number | Total mass of the structure, in `kg`. Element mass is `area × ρ × length` and so on; a [Mass Point](loads/mass-point.md) contributes only the **Z** component of its `TransMass`, and contributes it on a different scale — see the warning on that page. |
+| Mass | `Mass` | Number | Total mass of the structure, in `kg`. Element mass is `area × ρ × length` and so on; a [Mass Point](loads/mass-point.md) contributes only the **Z** component of its `TransMass`. |
 
 ## 📈 When to use it
 
