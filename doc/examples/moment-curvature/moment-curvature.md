@@ -35,4 +35,4 @@ Grasshopper file. They are analysis artefacts and can be deleted between runs.
 
 ## Download
 
-[moment-curvature](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/moment-curvature/moment_curvature.gh)
+[moment-curvature](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/moment-curvature/moment-curvature.gh)
