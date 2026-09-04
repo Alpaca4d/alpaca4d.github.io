@@ -14,22 +14,27 @@ Applies to [SSP Brick](../elements/brick.md) and
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
-| History | `History` | Boolean | `false` | Not implemented. |
+| History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per element. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
 
 ### Outputs
 
-One branch per element, values at the element's integration points.
+One value per element, in the element's local axes. Both element types have a single
+integration point, so there is nothing to sample along the element — the outputs are flat
+lists, ordered by element tag.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Sigma11 | `σ₁₁` | Number (tree) | Normal stress along axis 1, in `kN/m²`. |
-| Sigma22 | `σ₂₂` | Number (tree) | Normal stress along axis 2. |
-| Sigma33 | `σ₃₃` | Number (tree) | Normal stress along axis 3. |
-| Sigma12 | `σ₁₂` | Number (tree) | Shear stress in the 1–2 plane. |
-| Sigma23 | `σ₂₃` | Number (tree) | Shear stress in the 2–3 plane. |
-| Sigma13 | `σ₁₃` | Number (tree) | Shear stress in the 1–3 plane. |
+| Sigma11 | `σ₁₁` | Number (list) | Normal stress along axis 1, in `kN/m²`. |
+| Sigma22 | `σ₂₂` | Number (list) | Normal stress along axis 2. |
+| Sigma33 | `σ₃₃` | Number (list) | Normal stress along axis 3. |
+| Sigma12 | `σ₁₂` | Number (list) | Shear stress in the 1–2 plane. |
+| Sigma23 | `σ₂₃` | Number (list) | Shear stress in the 2–3 plane. |
+| Sigma13 | `σ₁₃` | Number (list) | Shear stress in the 1–3 plane. |
 | VonMises | `VonMises` | Number (list) | Von Mises equivalent stress, in `kN/m²`. |
+
+With **History** on, each of them becomes a tree with one branch per step, `{step}`, holding
+that step's value per element.
 
 ## 📈 When to use it
 

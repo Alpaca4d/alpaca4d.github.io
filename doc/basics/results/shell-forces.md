@@ -12,7 +12,7 @@ transverse shears, all per unit width.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
-| History | `History` | Boolean | `false` | Not implemented. |
+| History | `History` | Boolean | `false` | Read every recorded step instead of one. The outputs become trees `{step; element}`. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
 
 ### Outputs

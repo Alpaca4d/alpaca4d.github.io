@@ -27,6 +27,76 @@ because an eigenvalue problem has nothing to converge.
 | [Run Analysis](run-analysis.md) | `Run Analysis` | Runs it. |
 | [Natural Vibration](natural-vibration.md) | `Natural Vibration` | Modes, periods and frequencies. |
 
+### [Analysis Settings](analysis-settings.md)
+
+Collects everything OpenSees needs in order to solve — constraint handler, numberer, system of
+equations, convergence test, solution algorithm, integrator and stepping — into the one object
+[Run Analysis](run-analysis.md) takes.
+
+Every input has a default, so an unconnected component already describes a valid linear static
+analysis. For a dynamic one set **AnalysisType** to `Transient`, and give it a `Newmark` or
+`CentralDifference` [Integrator](integrator.md), an [Analysis Step](analysis-step.md) with
+**Dt**, and a [Damping](damping.md).
+
+### [Integrator](integrator.md)
+
+How the analysis advances from one step to the next.
+
+`LoadControl` scales the loads by a load factor and is the static integrator; `Newmark` and
+`CentralDifference` step forward in time and are the transient ones.
+
+### [Test](test.md)
+
+When an iteration inside a step has converged, and how many iterations to allow before the step
+is declared failed.
+
+`NormDispIncr` measures how much the model still moves, `NormUnbalance` how far it is from
+equilibrium, and `EnergyIncr` the product of the two. The `Relative` units compare against the
+first iteration instead of an absolute tolerance, and `FixedNumIter` simply iterates a set
+number of times.
+
+### [Analysis Step](analysis-step.md)
+
+How many increments the analysis solves, and how long each one lasts.
+
+**NumIncr** is also how many steps the recorder writes, so it sets how many steps the
+[Results](../results/README.md) components can read back. A transient analysis needs **Dt** as
+well; **DtMin**, **DtMax** and **Jd** let OpenSees shrink the step when a step will not
+converge.
+
+### [Damping](damping.md)
+
+Rayleigh damping for every element and node of the model, as a combination of the mass and
+stiffness matrices:
+
+```
+D = alphaM*M + betaKcurr*Kcurrent + betaKinit*Kinit + betaKcomm*KlastCommit
+```
+
+For a damping ratio at a known circular frequency `omega`, taken from a
+[Natural Vibration](natural-vibration.md) analysis, stiffness-proportional damping is
+`betaKcomm = 2*ratio/omega` — so 5% at `omega` gives `0.1/omega`. Only a transient analysis
+uses damping.
+
+### [Run Analysis](run-analysis.md)
+
+Writes the assembled model out as an OpenSees script, solves it, and returns the model with its
+results attached.
+
+Results are recorded to a `recorder.mpco` file beside the Grasshopper document and read back by
+the [Results](../results/README.md) components. When a run fails the **AlpacaModel** output
+comes out empty — read the **log** output to find out why.
+
+### [Natural Vibration](natural-vibration.md)
+
+Solves the eigenvalue problem of the model and returns its modes, eigenvalues, periods and
+frequencies.
+
+It needs no [Analysis Settings](analysis-settings.md) — an eigenvalue problem has nothing to
+converge. Connect the **assembled** model rather than an analysed one, then feed the solved
+model to [Nodal Displacements](../results/nodal-displacements.md) to read a mode shape, or to
+[Modal Analysis Report](../results/modal-analysis-report.md) for the participating masses.
+
 ## What Alpaca4d can analyse
 
 | Analysis | How to set it up |

@@ -11,7 +11,7 @@ Displacement, rotation, velocity and acceleration at every node of the model.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
-| History | `History` | Boolean | `false` | Not implemented. |
+| History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per node. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step, or mode number for a modal model. |
 
 ### Outputs
