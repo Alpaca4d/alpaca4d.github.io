@@ -63,8 +63,7 @@ Three menus live on the component body. Right-click to expand them.
 
 **Do not use it when**
 
-- You want to see results → [Deformed Model View](deformed-model-view.md) and the contour
-  components read an analysed model.
+- You want to see results → [View Results](view-results.md) reads an analysed model.
 
 ## 💡 What to check, and how
 

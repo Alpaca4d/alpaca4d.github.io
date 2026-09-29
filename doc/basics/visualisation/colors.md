@@ -33,9 +33,8 @@ Eighteen ready-made colour gradients, for the contour components.
 ## 📈 When to use it
 
 **Use it when** you are feeding a gradient to
-[Deformed Model View](deformed-model-view.md), [Shell Forces View](shell-forces-view.md),
-[Brick Stresses View](brick-stresses-view.md) or [Legend](legend.md), and the default *Turbo*
-is not the right map for the data.
+[View Results](view-results.md) or [Legend](legend.md), and the default *Turbo* is not the right map for the
+data.
 
 **Do not use it when** the default is fine — leave **Colors** empty on those components and
 they use *Turbo* on their own.

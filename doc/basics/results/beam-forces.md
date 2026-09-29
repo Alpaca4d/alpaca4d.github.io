@@ -39,8 +39,8 @@ the element's integration points, ordered from the I end to the J end.
 
 **Do not use it when**
 
-- You want to see the diagram → [Beam Forces View](../visualisation/beam-forces-view.md)
-  draws all six in the viewport.
+- You want to see the diagram → [View Results](../visualisation/view-results.md), with *Beam forces* picked as the result,
+  draws any of the six in the viewport.
 
 {% hint style="warning" %}
 **The resolution is the element discretisation.** Forces are sampled at the integration

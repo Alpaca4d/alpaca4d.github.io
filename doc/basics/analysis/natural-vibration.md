@@ -24,7 +24,7 @@ to converge.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | log | `log` | Text | The OpenSees console output. |
-| AlpacaModel | `AlpacaModel` | Model | The model with mode shapes attached. Feed it to [Deformed Model View](../visualisation/deformed-model-view.md) — the **Step** input then selects the mode — and to [Modal Analysis Report](../results/modal-analysis-report.md). |
+| AlpacaModel | `AlpacaModel` | Model | The model with mode shapes attached. Feed it to [View Results](../visualisation/view-results.md) — the **Step** input then selects the mode — and to [Modal Analysis Report](../results/modal-analysis-report.md). |
 | Eigenvalues | `Eigenvalues` | Number (list) | $$\lambda_n = \omega_n^2$$, one per mode. |
 | Period | `Period` | Number (list) | $$T_n$$, in `s`. |
 | Frequencies | `Frequencies` | Number (list) | $$f_n = \sqrt{\lambda_n}/2\pi$$, in `Hz`. |

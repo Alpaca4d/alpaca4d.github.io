@@ -39,7 +39,7 @@ nodes in — not the order you drew anything.
 **Do not use it when**
 
 - You only want to *look* at the deformed shape →
-  [Deformed Model View](../visualisation/deformed-model-view.md) draws it directly.
+  [View Results](../visualisation/view-results.md) draws it directly.
 
 {% hint style="info" %}
 On a model from [Natural Vibration](../analysis/natural-vibration.md), **Displacement** is

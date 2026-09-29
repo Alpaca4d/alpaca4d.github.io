@@ -24,9 +24,8 @@ None. The component draws straight to the viewport.
 
 **Use it when**
 
-- Any time you show a contour from [Deformed Model View](deformed-model-view.md),
-  [Shell Forces View](shell-forces-view.md) or
-  [Brick Stresses View](brick-stresses-view.md). A contour without a scale says nothing.
+- Any time you show a contour from [View Results](view-results.md). A contour without a scale says
+  nothing.
 - You are producing a figure for a report.
 
 ## 💡 Getting it to agree with the contour

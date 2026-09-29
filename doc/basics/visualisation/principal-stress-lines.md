@@ -40,7 +40,7 @@ contour shows how much, these show which way — the load paths through a plate.
 
 **Do not use it when**
 
-- You need a magnitude → [Shell Forces View](shell-forces-view.md) or
+- You need a magnitude → [View Results](view-results.md) or
   [Shell Forces](../results/shell-forces.md).
 - The model has no shells. The component reads shell results only.
 

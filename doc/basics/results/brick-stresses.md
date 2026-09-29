@@ -46,7 +46,7 @@ that step's value per element.
 
 **Do not use it when**
 
-- You want a contour → [Brick Stresses View](../visualisation/brick-stresses-view.md), which
+- You want a contour → [View Results](../visualisation/view-results.md), with *Brick stresses* picked as the result, which
   colours the mesh by any of the seven quantities.
 
 {% hint style="info" %}
