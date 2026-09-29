@@ -28,14 +28,15 @@ The deck and the results are written **next to the Grasshopper file**:
 | File | Contents |
 | --- | --- |
 | `AlpacaModel.tcl` | The input deck. |
-| `recorder.mpco` | The MPCO result database. |
+| `recorder.mpco` | The MPCO result database, or the **FileName** an [MPCO Recorder](../mpco-recorder.md) gives it. |
 
 If the Grasshopper document has never been saved, Run Analysis falls back to the current
 working directory. Save the file first — it makes the output findable, and it is required by
 [Natural Vibration](natural-vibration.md).
 
 The recorder that is attached depends on the analysis type: a static recorder for `Static`,
-a transient one for `Transient`.
+a transient one for `Transient`. An [MPCO Recorder](../mpco-recorder.md) on the
+**Recorders** input of [Assemble](../assemble.md) replaces it with the results you tick.
 
 ## 💡 Errors and how they surface
 

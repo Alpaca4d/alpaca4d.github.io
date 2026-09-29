@@ -47,6 +47,7 @@
   * [⚖️ Mass Point](basics/loads/mass-point.md)
   * [🧩 LoadPattern](basics/loads/load-pattern.md)
 * [💾 Assemble](basics/assemble.md)
+  * [MPCO Recorder](basics/mpco-recorder.md)
 * [📉 Analysis](basics/analysis/README.md)
   * [Analysis Settings](basics/analysis/analysis-settings.md)
   * [Integrator](basics/analysis/integrator.md)

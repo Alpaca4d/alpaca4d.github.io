@@ -21,7 +21,7 @@ resolved **geometrically**.
 | Supports | `Supports` | Support (list) | — | Every [Support](elements/support.md). |
 | LoadPatterns | `LoadPatterns` | LoadPattern / Load (list) | *(empty)* | [Load patterns](loads/load-pattern.md) **and** [mass points](loads/mass-point.md); the two may be mixed freely on this input. Anything else is an error. |
 | Constraints | `Constraints` | Constraint (list) | *(empty)* | [Rigid diaphragms](constraints/diaphragm.md), [rigid links](constraints/rigid-link.md) and [Equal DOFs](constraints/equal-dof.md). |
-| Recorders | `Recorders` | Recorder (list) | *(empty)* | Extra OpenSees recorders. No component currently produces one; the standard result recorders are added automatically by [Run Analysis](analysis/run-analysis.md). |
+| Recorders | `Recorders` | Recorder (list) | *(empty)* | From the [MPCO Recorder](mpco-recorder.md): which results [Run Analysis](analysis/run-analysis.md) writes. Left empty, Run Analysis picks a set to suit the analysis type. |
 | Tolerance | `Tolerance` | Number | `0.01` | Distance below which two positions are treated as **the same node**, in `m`. |
 
 ### Outputs

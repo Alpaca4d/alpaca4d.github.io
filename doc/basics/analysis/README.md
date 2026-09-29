@@ -84,7 +84,8 @@ Writes the assembled model out as an OpenSees script, solves it, and returns the
 results attached.
 
 Results are recorded to a `recorder.mpco` file beside the Grasshopper document and read back by
-the [Results](../results/README.md) components. When a run fails the **AlpacaModel** output
+the [Results](../results/README.md) components. An [MPCO Recorder](../mpco-recorder.md)
+chooses what the file holds. When a run fails the **AlpacaModel** output
 comes out empty — read the **log** output to find out why.
 
 ### [Natural Vibration](natural-vibration.md)

@@ -7,7 +7,8 @@ the analysis attaches its output to the `AlpacaModel` itself.
 
 Underneath, results are recorded by the **MPCO** recorder written by M. Petracca and
 G. Camata at [ASDEA Software Technology](https://asdeasoft.net/?product-stko), and read back
-from the `recorder.mpco` file that the analysis leaves beside the Grasshopper document.
+from the `recorder.mpco` file that the analysis leaves beside the Grasshopper document. An
+[MPCO Recorder](../mpco-recorder.md) chooses what goes into it.
 
 ## Components in this tab
 
