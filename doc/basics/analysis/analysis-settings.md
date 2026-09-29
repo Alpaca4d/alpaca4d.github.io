@@ -34,7 +34,7 @@ options.
 
 **Constraint handler.** Leave it at `Transformation`. `Plain` cannot handle
 [rigid diaphragms](../constraints/diaphragm.md) or
-[rigid links](../constraints/equal-dof.md), and gives a wrong answer rather than an error
+[rigid links](../constraints/rigid-link.md), and gives a wrong answer rather than an error
 when it meets one.
 
 **Algorithm.** `Linear` for a genuinely linear model — it does one iteration and stops.

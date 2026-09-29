@@ -35,7 +35,8 @@ than the columns and walls around it.
 
 - The floor is genuinely flexible in plane — a timber deck, a slab with a large opening.
   Model it with [Shell](../elements/shell.md) elements instead.
-- You only need two nodes tied together → use [Rigid Link](equal-dof.md).
+- You only need two nodes tied together → use [Rigid Link](rigid-link.md) or
+  [Equal DOF](equal-dof.md).
 
 ## 💡 Notes
 

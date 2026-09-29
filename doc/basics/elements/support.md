@@ -56,7 +56,7 @@ listing the restrained DOFs.
 **Do not use it when**
 
 - You want two nodes of the model to move together rather than to be held still → use
-  [Rigid Link](../constraints/equal-dof.md) or
+  [Rigid Link](../constraints/rigid-link.md), [Equal DOF](../constraints/equal-dof.md) or
   [Rigid Diaphragm](../constraints/diaphragm.md).
 
 ## 🔗 Relation to OpenSees

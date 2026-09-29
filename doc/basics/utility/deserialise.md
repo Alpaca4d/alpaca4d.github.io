@@ -53,7 +53,8 @@ model will come back missing those parts, quietly — check the result in
   everything the deck does not carry.
 
 {% hint style="info" %}
-`equalDOF` is one of the commands read back — which is the only way an `EqualDOF` constraint
-enters an Alpaca4d model, since no component produces one. See
-[Rigid Link](../constraints/equal-dof.md).
+`equalDOF` is read back as an [Equal DOF](../constraints/equal-dof.md). The ones Assemble
+writes on its own, where a solid meets a beam or a shell, are skipped, so the next assembly
+does not add them twice. `twoNodeLink` is not read back: a model with
+[Spring Links](../elements/spring-link.md) comes back without them, with a warning.
 {% endhint %}
