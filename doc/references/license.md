@@ -31,11 +31,23 @@ The `.tcl` file Alpaca4d writes is plain text in the public, documented OpenSees
 
 ## How the license works
 
-After payment you receive a product key by email, which activates Alpaca4d on the computer you install it on. Get in touch if you change machine.
+After payment you receive a product key by email, which activates Alpaca4d on the computer you install it on. To activate it, open **Alpaca4d ▸ License ▸ Activate License** in Grasshopper and add it there. Get in touch if you change machine.
 
 The purchase covers a **one-year maintenance period**: all versions of Alpaca4d released in that year are yours to use indefinitely, along with email support. Renewing extends the period so that newer releases are covered too.
 
 Current price and the full maintenance terms are on the [buy page](https://alpaca4d.github.io/buy.html); email [alpaca4d@gmail.com](mailto:alpaca4d@gmail.com) first if you need a quotation, a proforma invoice, or your company details on the invoice.
+
+## Without a license
+
+You can try Alpaca4d without a license, within two limits:
+
+|                                                                                                                                                               | Without a license          | With a license |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------- |
+| [Run Analysis](../basics/analysis/run-analysis.md) and [Natural Vibration](../basics/analysis/natural-vibration.md)                                           | Models of up to 50 elements | Any size       |
+| [View Results](../basics/visualisation/view-results.md), [Model View](../basics/visualisation/model-view.md) and [Moment Curvature](../basics/moment-curvature/moment-curvature.md) | Not available              | Available      |
+| Every other component                                                                                                                                         | Available                  | Available      |
+
+A model over the limit, or one of those three components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements, and read its results with the [Results](../basics/results/README.md) components.
 
 ## Independence and warranty
 
