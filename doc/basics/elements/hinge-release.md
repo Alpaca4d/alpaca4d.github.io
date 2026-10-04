@@ -15,8 +15,8 @@ unit of the [ForceBeamColumn](beam-with-hinges.md) component, and by nothing els
 | Ty | `Ty` | Boolean | `true` | Translation along *y*. `false` = released. |
 | Tz | `Tz` | Boolean | `true` | Translation along *z*. `false` = released. |
 | Rx | `Rx` | Boolean | `true` | Torsional rotation about *x*. `false` = released. |
-| My | `My` | Boolean | `true` | Bending about *y*. `false` = released. |
-| Mz | `Mz` | Boolean | `true` | Bending about *z*. `false` = released. |
+| Ry | `Ry` | Boolean | `true` | Rotation about *y* (bending). `false` = released. |
+| Rz | `Rz` | Boolean | `true` | Rotation about *z* (bending). `false` = released. |
 
 {% hint style="warning" %}
 The sense is inverted relative to what the word "release" suggests: `true` means **held**,
@@ -34,7 +34,7 @@ The sense is inverted relative to what the word "release" suggests: `true` means
 
 **Use it when**
 
-- You need a pinned beam end: set `My` and `Mz` to `false`.
+- You need a pinned beam end: set `Ry` and `Rz` to `false`.
 - You need a moment release about one axis only.
 - You are building a member that carries axial force only.
 

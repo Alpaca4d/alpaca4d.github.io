@@ -87,5 +87,5 @@ The mapping from the release booleans to the softened section property is:
 | `Ty` | AlphaY |
 | `Tz` | AlphaZ |
 | `Rx` | J |
-| `My` | Iyy |
-| `Mz` | Izz |
+| `Ry` | Iyy |
+| `Rz` | Izz |
