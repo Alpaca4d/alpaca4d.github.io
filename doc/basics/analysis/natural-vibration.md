@@ -17,7 +17,7 @@ to converge.
 | --- | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md). |
 | Vibration Modes | `Vibration Modes` | Integer | `1` | How many modes to extract. |
-| Solver | `Solver` | Text | `-genBandArpack` | Eigen solver: `-genBandArpack`, `-symmBandLapack`, `-fullGenLapack`. Attach a **Value List** for the options. |
+| Solver | `Solver` | Text | `-genBandArpack` | Eigen solver: `-genBandArpack` or `-fullGenLapack`. Attach a **Value List** for the options. |
 
 ### Outputs
 
@@ -34,8 +34,11 @@ to converge.
 | Solver | Use |
 | --- | --- |
 | `-genBandArpack` | The default. Iterative, and the right choice when you want a few modes out of a large model. |
-| `-symmBandLapack` | Direct, for a symmetric system. |
 | `-fullGenLapack` | Direct, forms the full matrices. Extracts **all** modes, but only viable on small models. |
+
+OpenSees's third, `-symmBandLapack`, solves only the standard eigenvalue problem — the stiffness
+without the mass — so it cannot give natural frequencies, and the component stops with an error if
+it is typed in.
 
 {% hint style="warning" %}
 **Save the Grasshopper file first.** This component writes `AlpacaModel.tcl`,
