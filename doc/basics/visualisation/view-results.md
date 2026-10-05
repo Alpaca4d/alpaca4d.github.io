@@ -1,7 +1,7 @@
 # View Results
 
 Draws any result of an analysed model in the viewport: displacements, beam force diagrams,
-shell forces, shell stresses, solid stresses and reactions. It shows one result at a time, on
+beam stresses, shell forces, shell stresses, solid stresses and reactions. It shows one result at a time, on
 the undeformed shape or the deformed one.
 
 {% hint style="info" %}
@@ -19,6 +19,11 @@ the mode.
 
 Feed its **Values** and **Colors** outputs to [Legend](legend.md), so the scale matches what is
 drawn.
+
+*Beam stresses* colours each beam along its length by any output of
+[Beam Stresses](../results/beam-stresses.md) — σN, σMy, σMz, σmax, σmin, τV, τT or Von Mises —
+in MPa, with each integration point's colour placed where the point sits on the beam. It is the last entry
+of the **Result** menu.
 
 ## 🔁 Instead of the old view components
 

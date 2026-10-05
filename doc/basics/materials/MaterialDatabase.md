@@ -50,6 +50,13 @@ Each database entry stores `E` and `G` in **MPa** and `rho` in **kg/m³**. The c
 
 The grade name becomes the material name.
 
+## 💡 Design grade
+
+For a steel grade the material also carries its **design grade** — fy and fu from EN 1993-1-1
+Table 3.1, including the lower values for plates thicker than 40 mm — which
+[Utilisation](../results/utilisation.md) checks the beam against. The solver never sees it. Only
+the **Uniaxial** model carries one, since that is what beams are made of.
+
 ## 💡 Custom databases
 
 A custom database is a JSON object keyed by grade name. The built-in steel file looks like
@@ -63,6 +70,8 @@ this:
     "G": 80769,
     "fy": 235,
     "fu": 360,
+    "fy_40_80": 215,
+    "fu_40_80": 360,
     "epsilon_yield": 0.015,
     "epsilon_max_Stress": 0.11,
     "strainAtRupture": 0.17,
@@ -71,8 +80,12 @@ this:
 }
 ```
 
-Only `E`, `G`, `rho` and `material_type` are read by this component. `material_type` is what
-the **Type** dropdown lists, so give every entry in one file the same value.
+`E`, `G`, `rho` and `material_type` make the elastic material. `material_type` is what the
+**Type** dropdown lists, so give every entry in one file the same value.
+
+An entry whose `material_type` is `Steel` and which gives `fy` is also a design grade, for
+[Utilisation](../results/utilisation.md): `fy` and `fu` in N/mm² for plates up to 40 mm thick, and
+`fy_40_80` and `fu_40_80`, if given, for 40 to 80 mm. Strain values are not read.
 
 ## 📈 When to use it
 

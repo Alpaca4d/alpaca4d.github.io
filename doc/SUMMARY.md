@@ -60,6 +60,8 @@
   * [Nodal Displacements](basics/results/nodal-displacements.md)
   * [Reaction Forces](basics/results/reaction-forces.md)
   * [Beam Forces](basics/results/beam-forces.md)
+  * [Beam Stresses](basics/results/beam-stresses.md)
+  * [Utilisation](basics/results/utilisation.md)
   * [Shell Forces](basics/results/shell-forces.md)
   * [Brick Stresses](basics/results/brick-stresses.md)
   * [Modal Analysis Report](basics/results/modal-analysis-report.md)

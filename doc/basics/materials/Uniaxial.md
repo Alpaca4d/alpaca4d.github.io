@@ -17,7 +17,7 @@ A switcher component. Right-click it to pick the model:
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| Material Name | `MatName` | Text | *(empty)* | Label for the material, e.g. `S235 – axial`. Cosmetic. |
+| Material Name | `MatName` | Text | *(empty)* | Label for the material. Name it after a steel grade — `S355`, `S355JR` — and [Utilisation](../results/utilisation.md) checks its beams as that grade; any other name is only a label. |
 | E | `E` | Number | `210000000` | Young's modulus in tension, in `kN/m²`. |
 | Eneg | `Eneg` | Number | `210000000` | Young's modulus in compression, in `kN/m²`. Equal to `E` unless you need a different one. |
 | Eta | `Eta` | Number | `0.0` | Viscous damping parameter. `0.0` for purely elastic behaviour. |
