@@ -26,7 +26,7 @@ roof, a façade, the participating fraction of an imposed load.
 The input is in **kg**, and is converted to the solver's mass unit when the deck is written —
 the same conversion an element's mass density goes through. Added mass and element self-mass
 are therefore on the same footing, and you can check that by reading
-**TotalMassOfStructure** from the [Modal Analysis Report](../results/modal-analysis-report.md).
+**TotalMassOfStructure** from the [Modal Report](../analysis/natural-vibration.md#modal-report) menu of Natural Vibration.
 
 Before 0.11 this input carried a stray factor of 9.81, which made every point mass 9.81 times
 too heavy and any model relying on it report periods about 3.1 times too long. If you have a

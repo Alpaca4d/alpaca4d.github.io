@@ -95,8 +95,8 @@ frequencies.
 
 It needs no [Analysis Settings](analysis-settings.md) — an eigenvalue problem has nothing to
 converge. Connect the **assembled** model rather than an analysed one, then feed the solved
-model to [Nodal Displacements](../results/nodal-displacements.md) to read a mode shape, or to
-[Modal Analysis Report](../results/modal-analysis-report.md) for the participating masses.
+model to [Nodal Displacements](../results/nodal-displacements.md) to read a mode shape. The
+participating masses are in its [Modal Report](natural-vibration.md#modal-report) menu.
 
 ## What Alpaca4d can analyse
 

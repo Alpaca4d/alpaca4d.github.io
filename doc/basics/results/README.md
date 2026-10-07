@@ -21,7 +21,6 @@ from the `recorder.mpco` file that the analysis leaves beside the Grasshopper do
 | [Utilisation](utilisation.md) | `Utilisation` | How much of its resistance every steel beam uses, to EN 1993-1-1. |
 | [Shell Forces](shell-forces.md) | `Shell Forces` | Membrane, bending and shear resultants on every shell. |
 | [Brick Stresses](brick-stresses.md) | `Brick Stresses` | The six stress components and Von Mises on every solid. |
-| [Modal Analysis Report](modal-analysis-report.md) | `Modal Analysis Report` | Masses, centre of mass, participation factors and ratios. |
 
 ### [Nodal Displacements](nodal-displacements.md)
 
