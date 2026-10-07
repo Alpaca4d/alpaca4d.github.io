@@ -26,7 +26,7 @@ There is no separate component. Right-click the **ForceBeamColumn** component an
 | LpI | `LpI` | Number | `0.05` | Hinge length at the **I** end, **as a fraction of the element length L**. |
 | ReleaseJ | `ReleaseJ` | Release | fully fixed | Release condition at the **J** end. |
 | LpJ | `LpJ` | Number | `0.05` | Hinge length at the **J** end, as a fraction of L. |
-| ZAxis | `ZAxis` | Vector | perpendicular frame | Local *z* axis of the element. |
+| ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d hinged-beam colour | Display colour in the Rhino viewport. |
 
 {% hint style="warning" %}

@@ -45,3 +45,8 @@ For a genuinely non-linear section, build a fibre section instead:
 `Izz` is bending about the local *z* axis; `Iyy` is bending about the local *y* axis. The
 orientation of those axes on a beam comes from the **ZAxis** input of the
 [ForceBeamColumn](../elements/force-beam-column.md) component, not from the section.
+
+A section's depth — the height of a rectangle, an I or a hollow section — is laid along local
+*y*, so `Izz` is the strong axis and gravity on a floor beam shows up as `Vy` and `Mz`. Left
+without a **ZAxis**, a beam gets local *y* pointing up, so its sections stand the right way up;
+a vertical member gets local *y* along global X.
