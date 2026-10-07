@@ -80,22 +80,17 @@ per element, holding the values at the element's integration points.
 Reads the stress state of every solid element of an analysed model — the six components of the
 stress tensor plus the Von Mises equivalent stress.
 
-One value per element, in the element's local axes — an [SSP Brick](../elements/brick.md) and a
+One value per element, in global axes or in the element's own — an [SSP Brick](../elements/brick.md) and a
 [Four Node Tetrahedron](../elements/four-node-tetrahedron.md) both have a single integration
 point, so there is nothing to sample along. These are the only two element types it reads.
 
-### [Modal Analysis Report](modal-analysis-report.md)
-
-Splits the report written by a [Natural Vibration](../analysis/natural-vibration.md) analysis
-into its sections: eigenvalues, total and free mass, centre of mass, modal participation
-factors, participating masses and their ratios.
-
-Every output is one section of the report as text, ready for a panel. The cumulative ratio is
-the one to check against a code threshold such as 90%.
+The modal report — masses, centre of mass, participation factors and ratios — is no longer a
+component of its own: it is in the [Modal Report](../analysis/natural-vibration.md#modal-report)
+menu of Natural Vibration.
 
 ## Common inputs
 
-Every component except the Modal Analysis Report and Utilisation shares the same three inputs
+Every component except Utilisation shares the same three inputs
 (Utilisation checks one **Step** at a time and has no **History**):
 
 | Name | Nick | Type | Default | Description |

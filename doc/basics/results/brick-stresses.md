@@ -19,9 +19,14 @@ Applies to [SSP Brick](../elements/brick.md) and
 
 ### Outputs
 
-One value per element, in the element's local axes. Both element types have a single
-integration point, so there is nothing to sample along the element — the outputs are flat
-lists, ordered by element tag.
+One value per element. Both element types have a single integration point, so there is
+nothing to sample along the element — the outputs are flat lists, tetrahedra first and then
+bricks, each in the order they were assembled; the **Element** output says which is which.
+
+The components are in **global** axes by default. Set **Axes** to local to read them in each
+element's own axes instead — axes 1, 2 and 3 of **Local Axes** in
+[Model View](../visualisation/model-view.md), worked out from the node order — and the
+**Plane** output gives that frame for every element. Von Mises is the same in either.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |

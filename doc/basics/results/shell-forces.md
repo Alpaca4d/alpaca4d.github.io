@@ -21,11 +21,11 @@ One branch per shell element, values at the element's integration points.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| pxx | `pxx` | Number (tree) | Membrane force along local *x*, in `kN/m`. |
-| pyy | `pyy` | Number (tree) | Membrane force along local *y*, in `kN/m`. |
+| pxx | `pxx` | Number (tree) | Membrane force along local *x* (axis 1), in `kN/m`. |
+| pyy | `pyy` | Number (tree) | Membrane force along local *y* (axis 2), in `kN/m`. |
 | pxy | `pxy` | Number (tree) | In-plane shear, in `kN/m`. |
-| mxx | `mxx` | Number (tree) | Bending moment about local *x*, in `kN·m/m`. |
-| myy | `myy` | Number (tree) | Bending moment about local *y*, in `kN·m/m`. |
+| mxx | `mxx` | Number (tree) | Bending moment whose stresses run along local *x* (axis 1) — it bends the shell about local *y* — in `kN·m/m`. |
+| myy | `myy` | Number (tree) | Bending moment whose stresses run along local *y* (axis 2) — it bends the shell about local *x* — in `kN·m/m`. |
 | mxy | `mxy` | Number (tree) | Twisting moment, in `kN·m/m`. |
 | vxz | `vxz` | Number (tree) | Transverse shear on the *x* face, in `kN/m`. |
 | vyz | `vyz` | Number (tree) | Transverse shear on the *y* face, in `kN/m`. |
@@ -55,5 +55,12 @@ shell results you intend to read.
 
 ## 💡 Sign convention
 
-All quantities are **per unit width**. Positive membrane force is tension. A positive `mxx`
-puts the bottom face — the face on the negative local *z* side — in tension.
+All quantities are **per unit width**. Local *x*, *y* and *z* are axes 1, 2 and 3 of
+**Local Axes** in [Model View](../visualisation/model-view.md) — red, green and blue. Positive
+membrane force is tension. A positive `mxx` or `myy` puts the face on the **positive** local *z*
+side — the side the blue arrow points to — in tension: the **Top** layer of
+Shell Stresses. On a cantilever slab whose mesh faces up, `mxx` is positive
+over the support.
+
+Which side is +*z* follows the order of the mesh's vertices, not the world: a mesh whose faces
+point down has its Top layer underneath.

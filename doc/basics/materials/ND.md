@@ -85,6 +85,7 @@ nDMaterial ElasticIsotropic   $matTag $E $nu $rho
 nDMaterial ElasticOrthotropic $matTag $Ex $Ey $Ez $nuXy $nuYz $nuZx $Gxy $Gyz $Gzx $rho
 ```
 
-For the orthotropic material, the local axes are those of the element. On shells, set
+For the orthotropic material on shells, the axes are those of the shell section — axes 1 and 2
+of **Local Axes** in Model View. On solids they are the **global** axes. On shells, set
 **Local X Axis** on the [ASD Shell](../elements/shell.md) component so every face agrees on
 which direction `Ex` refers to.
