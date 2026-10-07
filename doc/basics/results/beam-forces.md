@@ -23,11 +23,11 @@ the element's integration points, ordered from the I end to the J end.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | N | `N` | Number (tree) | Axial force, in `kN`. Positive is tension. |
-| Vy | `Vy` | Number (tree) | Shear along the local *y* axis, in `kN`. |
-| Vz | `Vz` | Number (tree) | Shear along the local *z* axis, in `kN`. |
-| Mx | `Mx` | Number (tree) | Torsion about the local *x* axis, in `kN·m`. |
-| My | `My` | Number (tree) | Bending about the local *y* axis, in `kN·m`. |
-| Mz | `Mz` | Number (tree) | Bending about the local *z* axis, in `kN·m`. |
+| Vy | `Vy` | Number (tree) | Shear along the local *y* axis, in `kN`. Vy = dMz/dx. |
+| Vz | `Vz` | Number (tree) | Shear along the local *z* axis, in `kN`. Vz = dMy/dx. |
+| Mx | `Mx` | Number (tree) | Torsion about the local *x* axis, in `kN·m`. Right-hand rule about *x*. |
+| My | `My` | Number (tree) | Bending about the local *y* axis, in `kN·m`. Positive puts the +*z* side in tension. |
+| Mz | `Mz` | Number (tree) | Bending about the local *z* axis, in `kN·m`. Positive puts the +*y* side in compression. |
 
 ## 📈 When to use it
 
@@ -59,3 +59,23 @@ more elements per span is a reasonable default.
 [Model View](../visualisation/model-view.md) if you are unsure which way round they are on a
 given member — it is the most common source of a moment that looks like it is about the
 wrong axis.
+
+## ➕ Signs
+
+The forces are signed as OpenSees reports them, in the element's local axes: *x* runs from the
+I end (the start of the line) to the J end, and *y* and *z* are the ones **Local Axes** draws in
+Model View. Left without a **ZAxis**, a beam has *y* pointing up and *z* horizontal.
+
+| Force | Positive when | Stress it causes |
+| --- | --- | --- |
+| N | the member is in tension | σ = N / A |
+| Mz | the +*y* side is in compression — sagging, on a beam with *y* up | σ = −Mz · y / Iz |
+| My | the +*z* side is in tension | σ = +My · z / Iy |
+| Vy | Vy = dMz/dx: a cantilever fixed at I and loaded at J towards −*y* | |
+| Vz | Vz = dMy/dx: a cantilever fixed at I and loaded at J towards +*z* | |
+| Mx | a torque about +*x* is applied at the J end (right-hand rule) | |
+
+The two shears do not follow the same rule. That is OpenSees's convention, not a slip: it
+defines each shear as the slope of the moment it goes with, and Mz and My take opposite signs
+for the same curvature. [Beam Stresses](beam-stresses.md) and [Utilisation](utilisation.md)
+use these signs as they are.
