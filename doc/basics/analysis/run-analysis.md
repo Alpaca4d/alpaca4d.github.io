@@ -18,8 +18,15 @@ model with the results attached.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| log | `log` | Text | Everything OpenSees printed — the console output and any error stream. **Read this first when something goes wrong.** |
 | AlpacaModel | `AlpacaModel` | Model | The same model, now carrying results. Feed it to the [Results](../results/README.md) and [Visualisation](../visualisation/README.md) components. `null` if the analysis failed. |
+| log | `log` | Text | Everything OpenSees printed — the console output and any error stream. **Read this first when something goes wrong.** |
+
+{% hint style="info" %}
+**The log used to be the first output.** Definitions made before the model was put first open
+with the previous Run Analysis component, which still works. Grasshopper's **Solution ▸ Upgrade
+Components** swaps it for the current one and keeps every wire — each output's wires follow it
+by name, and the **Do not use settings** choice is kept.
+{% endhint %}
 
 ## 💡 Where the files go
 
