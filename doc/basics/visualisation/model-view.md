@@ -23,11 +23,13 @@ Three menus live on the component body. Right-click to expand them.
 
 | Toggle | Shows |
 | --- | --- |
-| Extruded | Beams as extruded 3D solids of their real cross-section, instead of lines. |
+| Extruded | Beams as extruded 3D solids of their real cross-section, instead of lines. On by default; a beam whose section has no shape to draw stays a line. |
 | Node IDs | The tag of every node. |
 | Element IDs | The tag of every element. |
 | Section Names | The section name on each beam. |
-| Local Axes | The local *x*, *y*, *z* triad on each element. |
+| Local Axes | The local axes of each element as red, green and blue arrows: *x*, *y*, *z* on beams, 1, 2, 3 on shells and solids. These are the axes beam and shell forces and local solid stresses are reported in. |
+| Text size | Height of the ids and section names, in model units. Shown while any of them is on. |
+| Axes size | How big the local axes are drawn, as a multiple of each element's own size. Shown while Local Axes is on. |
 
 **Loads**
 
@@ -79,4 +81,11 @@ Three menus live on the component body. Right-click to expand them.
 On a large model, **Extruded** and **Node IDs** are both expensive to draw. Use
 **ElementIds** to narrow the view to the part you are inspecting, or turn the toggles off
 again once you have looked.
+{% endhint %}
+
+{% hint style="info" %}
+The colours of the ids, section names and loads are set once for every definition, in
+**Alpaca4d → Settings → Display...** in the Grasshopper menu bar. They apply as soon as they
+are picked, and are kept for the next session. The same window sets the colour of the values
+View Results writes.
 {% endhint %}

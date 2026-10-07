@@ -25,6 +25,18 @@ drawn.
 in MPa, with each integration point's colour placed where the point sits on the beam. It is the last entry
 of the **Result** menu.
 
+*Beam forces* draws each force as a diagram in the plane it acts in, in the beam's local axes
+(turn on **Local Axes** in [Model View](model-view.md) to see them): Vy and Mz across local *y*,
+Vz and My across local *z*, N and torsion across local *y*. **Moments are drawn on the tension
+side** — on a beam with local *y* up, sagging hangs below it; the other forces are drawn
+towards the positive axis. One scale serves the whole model, so the heights compare from one
+beam to the next; **Diagram and arrow scale** stretches it. With **Show values** on, each beam's
+largest value is written at the tip of its diagram. The signs of the numbers are those
+of [Beam Forces](../results/beam-forces.md).
+
+**Extruded beams** draws each beam as its cross-section, on the deformed shape too, coloured by
+whatever result is picked.
+
 ## 🔁 Instead of the old view components
 
 View Results replaces the separate view components. They are hidden from the ribbon, but

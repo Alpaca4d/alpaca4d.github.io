@@ -34,3 +34,5 @@ If the path is not configured, the component will show a red error:
 ## Resetting the Path
 
 To clear a previously saved path, go to **Alpaca4d → Settings → Clear OpenSees Path**. You can then set a new one with "Set OpenSees Executable...".
+
+**Alpaca4d → Settings → Display...** sets the colours [Model View](basics/visualisation/model-view.md) draws node ids, element ids, section names and loads in, and the colour of the values [View Results](basics/visualisation/view-results.md) writes. They are kept in the same settings file as the OpenSees path.
