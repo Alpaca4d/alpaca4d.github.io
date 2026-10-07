@@ -13,8 +13,14 @@ Two dropdowns live on the component body, under the **Library** menu:
 
 | Dropdown | Values | Default |
 | --- | --- | --- |
-| **Family** | `I`, `O`, `[]`, `2L` | `I` |
-| **Section** | the profiles of the selected family | first in the family |
+| **Family** | `I`, `O`, `[]`, `2L`, `All` | `I` |
+| **Section** | `All`, then the profiles of the selected family | first profile in the family |
+
+Set **Section** to `All` for every profile of the family as a list, and **Family** to `All` for
+all 628. Either list is ordered by cross-sectional area, smallest first — the lightest profile
+at index 0 and the heaviest last — so a **List Item** driven by a slider
+walks through them by weight. Connect a Panel to the output to read the list: each section shows
+as its name.
 
 | Family | Profiles | Builds a | Examples |
 | --- | --- | --- | --- |
@@ -29,13 +35,13 @@ Two dropdowns live on the component body, under the **Library** menu:
 | --- | --- | --- | --- | --- |
 | Section Name | `Name` | Text | *(empty)* | Type a profile name directly, e.g. `IPE200`. **Overrides the dropdowns** and moves them to match. |
 | Material | `Material` | Material | Elastic steel | A [Uniaxial](../materials/Uniaxial.md) material. Defaults to Alpaca4d's elastic steel, so the component works with nothing plugged in. |
-| Gap | `Gap` | Number | `0.01` | **Only present when the family is `2L`.** Clear distance between the two angles, in `m`. The input appears and disappears as you change the family. |
+| Gap | `Gap` | Number | `0.01` | **Only present when the family is `2L` or `All`.** Clear distance between the two angles, in `m`. The input appears and disappears as you change the family. |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Section | `Section` | Section | Beam section, for a [ForceBeamColumn](../elements/force-beam-column.md). |
+| Section | `Section` | Section | Beam section, for a [ForceBeamColumn](../elements/force-beam-column.md). With **Section** set to `All`, a list of them, smallest area first. |
 
 ## 📈 When to use it
 
@@ -43,8 +49,9 @@ Two dropdowns live on the component body, under the **Library** menu:
 
 - The member is a standard rolled profile. Typing `HEB300` is faster and less error-prone
   than entering six dimensions.
-- You are running an optimisation over a discrete set of profiles — feed a list of names into
-  **Section Name**.
+- You are running an optimisation over a discrete set of profiles — set **Section** (or
+  **Family**) to `All` and pick from the list with List Item and a slider, or feed your own
+  list of names into **Section Name**.
 
 **Do not use it when**
 

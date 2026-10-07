@@ -14,7 +14,12 @@ Three dropdowns live on the component body, under the **Library** menu:
 | Dropdown | Values | Default |
 | --- | --- | --- |
 | **Type** | Steel, Concrete, Timber, Plastic — plus any type found in a custom database | `Steel` |
-| **Grade** | the grades of the selected type | `S235` |
+| **Grade** | `All`, then the grades of the selected type | `S235` |
+
+Set **Grade** to `All` for every grade of the type as a list, in the order the database lists
+them — weakest first for steel, `S235` to `S450`. Pick from it with List Item and a slider to
+let an optimisation choose the grade. Connect a Panel to the output to read the list: each
+material shows as its name.
 | **Model** | `Uniaxial` or `nD` | `Uniaxial` |
 
 Built-in grades:
@@ -37,7 +42,7 @@ Built-in grades:
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Material | `Material` | Material | A [Uniaxial](Uniaxial.md) material when **Model = Uniaxial**, an [nD](ND.md) `ElasticIsotropic` material when **Model = nD**. |
+| Material | `Material` | Material | A [Uniaxial](Uniaxial.md) material when **Model = Uniaxial**, an [nD](ND.md) `ElasticIsotropic` material when **Model = nD**. With **Grade** set to `All`, a list of them, one per grade. |
 
 ## 💡 How the properties are derived
 
