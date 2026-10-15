@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpaca4d Explorer</title>
+  <meta name="description" content="Explore the designs of a parametric study made with Alpaca4d: filter on parallel axes, compare trade-offs, and look at every design in 2D and 3D.">
+  <meta name="author" content="Marco Pellegrino">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/images/icons/logo_200_200.png">
+  <link rel="stylesheet" href="css/explorer.css">
+  <script>
+    // Applies the remembered theme before the page paints, so it does not flash.
+    try {
+      const theme = localStorage.getItem('alpaca4d-explorer:theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch (e) { /* storage blocked: follow the system */ }
+  </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/build/three.module.min.js",
+        "three/addons/": "./vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+  <script src="vendor/d3/d3.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html" title="Alpaca4d home">
+      <img src="../assets/images/icons/logo_200_200.png" alt="" width="28" height="28">
+      <span class="brand-name">Alpaca4d <strong>Explorer</strong></span>
+    </a>
+    <nav class="top-actions" aria-label="Study">
+      <div class="menu-anchor">
+        <button class="btn" id="open-menu-button" aria-haspopup="menu" aria-expanded="false">
+          <span data-icon="folder"></span><span class="label">Open</span>
+        </button>
+        <div class="menu" id="open-menu" role="menu" hidden>
+          <button role="menuitem" data-action="open-folder"><span data-icon="folder"></span>Study folder…</button>
+          <button role="menuitem" data-action="open-csv"><span data-icon="file"></span>data.csv file…</button>
+          <button role="menuitem" data-action="open-url"><span data-icon="link"></span>From a web address…</button>
+          <hr>
+          <button role="menuitem" data-action="open-sample"><span data-icon="sparkle"></span>Sample study</button>
+        </div>
+      </div>
+      <button class="btn needs-study" id="export-button" title="Download the designs that pass the filters as CSV" disabled>
+        <span data-icon="download"></span><span class="label">Export</span>
+      </button>
+      <button class="btn icon-only" id="theme-button" title="Switch between light and dark" aria-label="Switch between light and dark">
+        <span data-icon="contrast"></span>
+      </button>
+    </nav>
+  </header>
+  <div class="brandbar" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- No study yet -->
+    <section class="welcome" id="welcome">
+      <div class="welcome-inner">
+        <h1>Find the design worth building.</h1>
+        <p class="lede">
+          Open a design study made with Alpaca4d to filter its designs on parallel axes,
+          read the trade-offs between results, and look at every design in 2D and 3D.
+        </p>
+
+        <div class="dropzone" id="dropzone" tabindex="0">
+          <span data-icon="upload" class="dropzone-icon"></span>
+          <p class="dropzone-title">Drop a study folder here</p>
+          <p class="dropzone-hint">The folder Explorer Record wrote: data.csv with its images and 3D models.</p>
+          <div class="dropzone-actions">
+            <button class="btn primary" data-action="open-folder"><span data-icon="folder"></span>Choose folder</button>
+            <button class="btn" data-action="open-csv"><span data-icon="file"></span>Open data.csv</button>
+          </div>
+        </div>
+
+        <div class="welcome-row">
+          <button class="sample-card" data-action="open-sample">
+            <img src="sample/footbridge/30_2.25_8_HEA200.svg" alt="" loading="lazy">
+            <span>
+              <strong>Try the sample study</strong>
+              <small>Steel footbridge truss · 108 designs · span, depth, panels and chord section against mass, deflection, utilisation and frequency</small>
+            </span>
+            <span data-icon="arrow-right"></span>
+          </button>
+          <form class="url-form" id="url-form">
+            <label for="url-input">Or open a study from the web</label>
+            <div class="url-row">
+              <input id="url-input" type="url" placeholder="https://… folder holding data.csv" autocomplete="off" required>
+              <button class="btn" type="submit">Open</button>
+            </div>
+          </form>
+        </div>
+
+        <ol class="steps">
+          <li><strong>Explorer Inputs</strong> steps through the sliders, value lists and panels of your definition.</li>
+          <li><strong>Explorer Outputs</strong> names the results that matter: mass, deflection, utilisation, period…</li>
+          <li><strong>Explorer Record</strong> saves each design. Press <em>Fly</em>, then open the folder here.</li>
+        </ol>
+        <p class="privacy"><span data-icon="lock"></span>A study opened from your computer is read by your browser and never uploaded.</p>
+      </div>
+    </section>
+
+    <!-- A study is open -->
+    <section class="workspace" id="workspace" hidden>
+      <section class="panel pc-panel" aria-label="Parallel coordinates">
+        <header class="panel-head">
+          <div class="panel-title">
+            <h2>Designs</h2>
+            <span class="pill" id="filter-count"></span>
+          </div>
+          <div class="panel-tools">
+            <div class="legend" id="legend"></div>
+            <button class="chip" id="pareto-chip" aria-pressed="false" title="Keep only designs no other design beats on every goal">
+              <span data-icon="target"></span>Pareto front
+            </button>
+            <div class="menu-anchor">
+              <button class="chip" id="axes-button" aria-haspopup="menu" aria-expanded="false" title="Show or hide axes">
+                <span data-icon="columns"></span>Axes
+              </button>
+              <div class="menu menu-right" id="axes-menu" role="menu" hidden></div>
+            </div>
+            <button class="chip" id="exclude-button" title="Set aside the designs that pass the filters" disabled>
+              <span data-icon="minus-circle"></span>Set aside
+            </button>
+            <button class="chip" id="keep-button" title="Keep only the designs that pass the filters, and fit the axes to them" disabled>
+              <span data-icon="zoom"></span>Keep only
+            </button>
+            <button class="chip" id="reset-button" title="Clear the filters and bring back what was set aside" disabled>
+              <span data-icon="reset"></span>Reset
+            </button>
+          </div>
+        </header>
+        <div class="pc" id="pc"></div>
+        <p class="pc-hint" id="pc-hint">Drag along an axis to filter · click an axis name for its options · drag the name to reorder</p>
+      </section>
+
+      <div class="splitter splitter-h" id="split-rows" role="separator" aria-orientation="horizontal" tabindex="0"
+           aria-label="Resize the axes and the designs below them" title="Drag to resize · double-click to reset"></div>
+      <div class="splitter splitter-v" id="split-columns" role="separator" aria-orientation="vertical" tabindex="0"
+           aria-label="Resize the design panel" title="Drag to resize · double-click to reset"></div>
+
+      <aside class="panel detail-panel" id="detail" aria-label="Selected design"></aside>
+
+      <section class="panel results-panel" aria-label="Designs">
+        <header class="panel-head">
+          <div class="tabs" role="tablist">
+            <button role="tab" class="tab" data-view="gallery" aria-selected="true"><span data-icon="grid"></span>Gallery</button>
+            <button role="tab" class="tab" data-view="table" aria-selected="false"><span data-icon="table"></span>Table</button>
+            <button role="tab" class="tab" data-view="scatter" aria-selected="false"><span data-icon="scatter"></span>Scatter</button>
+          </div>
+          <div class="panel-tools" id="results-tools"></div>
+        </header>
+        <div class="results" id="results"></div>
+      </section>
+    </section>
+  </main>
+
+  <div class="drop-overlay" id="drop-overlay" hidden>
+    <div><span data-icon="upload"></span><p>Drop to open the study</p></div>
+  </div>
+  <div class="toast-stack" id="toasts" aria-live="polite"></div>
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+  <dialog class="dialog small" id="url-dialog">
+    <form method="dialog" id="url-dialog-form">
+      <header>
+        <h2>Open a study from the web</h2>
+        <button class="btn icon-only" value="cancel" formnovalidate aria-label="Close"><span data-icon="close"></span></button>
+      </header>
+      <div class="dialog-body">
+        <label for="url-dialog-input">Address of the folder holding data.csv, or of data.csv itself</label>
+        <input id="url-dialog-input" type="url" placeholder="https://…" autocomplete="off" required>
+        <p class="muted">GitHub folder links work too. The server has to allow the page to read it.</p>
+      </div>
+      <footer>
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="open">Open</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <input type="file" id="folder-input" webkitdirectory directory multiple hidden>
+  <input type="file" id="csv-input" accept=".csv,text/csv" hidden>
+</body>
+</html>
