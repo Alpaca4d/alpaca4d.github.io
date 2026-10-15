@@ -8,6 +8,8 @@ than the columns and walls around it.
 
 `Rigid Diaphragm (Alpaca4d)` — **Alpaca4d ▸ 03_Constraint**
 
+<figure><img src="../../.gitbook/assets/components/rigid-diaphragm.png" alt="Rigid Diaphragm component" width="453"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

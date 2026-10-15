@@ -7,6 +7,8 @@ Alpaca4d does not expose as a component.
 
 `Custom code (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/custom-code.png" alt="Custom Code component" width="468"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

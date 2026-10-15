@@ -7,6 +7,8 @@ moment–curvature curve together with the stress–strain history of every fibr
 
 `MomentCurvature (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `MC`
 
+<figure><img src="../../.gitbook/assets/components/momentcurvature.png" alt="MC component" width="573"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

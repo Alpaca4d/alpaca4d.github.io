@@ -7,6 +7,8 @@ This is how the concrete part of a section is defined.
 
 `Patch (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
 
+<figure><img src="../../.gitbook/assets/components/patch.png" alt="Patch component" width="333"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

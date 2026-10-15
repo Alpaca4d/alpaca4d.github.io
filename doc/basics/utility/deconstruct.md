@@ -7,6 +7,8 @@ built from the object it is given, so the component changes shape as you plug th
 
 `Deconstruct (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/deconstruct.png" alt="Deconstruct component" width="205"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

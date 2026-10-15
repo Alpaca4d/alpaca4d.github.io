@@ -13,6 +13,8 @@ resolved **geometrically**.
 
 `AssembleModel (Alpaca4d)` — **Alpaca4d ▸ 06_Assemble**
 
+<figure><img src="../.gitbook/assets/components/assemblemodel.png" alt="Assemble Model component" width="483"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

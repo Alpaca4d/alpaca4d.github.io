@@ -7,6 +7,8 @@ unit of the [ForceBeamColumn](beam-with-hinges.md) component, and by nothing els
 
 `Hinge Release (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/hinge-release.png" alt="Hinge Release component" width="275"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

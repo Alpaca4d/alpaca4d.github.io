@@ -6,6 +6,8 @@ A row of equally spaced fibres along a curve — a layer of reinforcement.
 
 `Layer Fiber (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
 
+<figure><img src="../../.gitbook/assets/components/layer-fiber.png" alt="Layer Fiber component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

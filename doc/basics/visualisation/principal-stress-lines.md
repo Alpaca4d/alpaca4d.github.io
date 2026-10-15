@@ -7,6 +7,10 @@ contour shows how much, these show which way — the load paths through a plate.
 
 `Principal Stress Lines (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/principal-stress-lines.png" alt="Principal Stress Lines component" width="348"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/principal-stress-lines-open.png" alt="Principal Stress Lines component with every menu open" width="348"><figcaption><p>With every menu open</p></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

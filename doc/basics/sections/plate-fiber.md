@@ -7,6 +7,8 @@ The section a **shell** element uses: a thickness plus an
 
 `Plate Fiber Section (Alpaca4d)` — **Alpaca4d ▸ 01_Section**, nickname `PFS`
 
+<figure><img src="../../.gitbook/assets/components/plate-fiber-section.png" alt="PFS component" width="378"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

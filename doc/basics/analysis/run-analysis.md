@@ -7,6 +7,8 @@ model with the results attached.
 
 `Run Analysis (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/run-analysis.png" alt="Run Analysis component" width="468"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

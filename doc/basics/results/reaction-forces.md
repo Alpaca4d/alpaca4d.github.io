@@ -7,6 +7,8 @@ reported **in the support's own axes**.
 
 `Reaction Forces (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/reaction-forces.png" alt="Reaction Forces component" width="528"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

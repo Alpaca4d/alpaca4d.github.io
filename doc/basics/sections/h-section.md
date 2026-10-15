@@ -7,6 +7,8 @@ flanges have independent widths and thicknesses.
 
 `I Section (Alpaca4d)` — **Alpaca4d ▸ 01_Section**
 
+<figure><img src="../../.gitbook/assets/components/i-section.png" alt="I Section component" width="558"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

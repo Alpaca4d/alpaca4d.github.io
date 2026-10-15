@@ -7,6 +7,8 @@ transverse shears, all per unit width.
 
 `Shell Forces (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/shell-forces.png" alt="Shell Forces component" width="408"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

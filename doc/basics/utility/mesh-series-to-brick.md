@@ -10,6 +10,8 @@ way round it when the solid can be described as a series of layers.
 
 `MeshSeriesToBrick (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/meshseriestobrick.png" alt="Mesh Series to Brick component" width="288"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

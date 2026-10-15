@@ -10,6 +10,8 @@ $$
 
 `Linear Time Series (Alpaca4d)` — **Alpaca4d ▸ 04_Time Series**
 
+<figure><img src="../../.gitbook/assets/components/linear-time-series.png" alt="Linear Time Series component" width="468"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

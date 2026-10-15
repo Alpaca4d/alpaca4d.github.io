@@ -12,6 +12,8 @@ the solver to condition around.
 
 `Rigid Link (Alpaca4d)` — **Alpaca4d ▸ 03_Constraint**
 
+<figure><img src="../../.gitbook/assets/components/rigid-link.png" alt="Rigid Link component" width="528"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

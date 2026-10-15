@@ -7,6 +7,8 @@ truss chord or a bracing member bolted through a gusset plate.
 
 `2LAngleCS (Alpaca4d)` — **Alpaca4d ▸ 01_Section**, nickname `2L`
 
+<figure><img src="../../.gitbook/assets/components/2langlecs.png" alt="2L component" width="378"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

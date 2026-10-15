@@ -11,6 +11,8 @@ $$
 
 `Damping (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/damping.png" alt="Damping component" width="378"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

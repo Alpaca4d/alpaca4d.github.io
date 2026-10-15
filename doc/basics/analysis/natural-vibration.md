@@ -8,6 +8,10 @@ you immediately whether the stiffness and the mass are roughly right.
 
 `Natural Vibration Analysis (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/natural-vibration-analysis.png" alt="Natural Vibration component" width="528"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/natural-vibration-analysis-open.png" alt="Natural Vibration component with every menu open" width="528"><figcaption><p>With every menu open</p></figcaption></figure>
+
 No [Analysis Settings](analysis-settings.md) are needed — an eigenvalue problem has nothing
 to converge.
 

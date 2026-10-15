@@ -8,6 +8,10 @@ resistance it uses: **1 is exactly at the limit**. Steel is checked to **EN 1993
 
 `Utilisation (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/utilisation.png" alt="Utilisation component" width="438"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/utilisation-open.png" alt="Utilisation component with every menu open" width="438"><figcaption><p>With every menu open</p></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

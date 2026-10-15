@@ -7,6 +7,8 @@ Collects every object OpenSees needs to define an analysis into one bundle, whic
 
 `Analysis Settings (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/analysis-settings.png" alt="Analysis Settings component" width="453"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

@@ -12,6 +12,8 @@ of that shape carries under those forces. To check them against a strength, use
 
 `Beam Stresses (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/beam-stresses.png" alt="Beam Stresses component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

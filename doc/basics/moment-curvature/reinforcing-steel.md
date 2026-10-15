@@ -7,6 +7,8 @@ branch up to the ultimate strength.
 
 `ReinforcingSteel (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
 
+<figure><img src="../../.gitbook/assets/components/reinforcingsteel.png" alt="ReinforcingSteel component" width="363"><figcaption></figcaption></figure>
+
 This is the **default material** for [Fiber Point](fiber-point.md) and
 [Layer Fiber](layer.md) — leave their **Material** input empty and they use B450C.
 

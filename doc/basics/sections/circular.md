@@ -6,6 +6,8 @@ A circular cross-section, solid or hollow.
 
 `CircleCS (Alpaca4d)` — **Alpaca4d ▸ 01_Section**
 
+<figure><img src="../../.gitbook/assets/components/circlecs.png" alt="CircleCS component" width="378"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

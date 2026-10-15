@@ -7,6 +7,8 @@ load to add in a static analysis, or how to march through time in a transient on
 
 `Integrator (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/integrator.png" alt="Integrator component" width="423"><figcaption></figcaption></figure>
+
 A switcher component. Right-click it to pick the unit.
 
 ### Inputs — LoadControl

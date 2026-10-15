@@ -6,6 +6,8 @@ A concentrated **force and moment** applied at a single point.
 
 `Point Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
+<figure><img src="../../.gitbook/assets/components/point-load.png" alt="Point Load component" width="288"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

@@ -6,6 +6,8 @@ Draws a fixed on-screen colour scale — the key that makes a contour readable.
 
 `Legend (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/legend.png" alt="Legend component" width="205"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

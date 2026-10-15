@@ -7,6 +7,8 @@ thicknesses.
 
 `RectangleHollow (Alpaca4d)` — **Alpaca4d ▸ 01_Section**
 
+<figure><img src="../../.gitbook/assets/components/rectanglehollow.png" alt="RectangleHollowCS component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

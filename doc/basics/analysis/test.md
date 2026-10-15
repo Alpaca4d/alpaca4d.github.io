@@ -6,6 +6,8 @@ The **convergence test** decides when an iteration within a step is close enough
 
 `Test (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/test.png" alt="Test component" width="258"><figcaption></figcaption></figure>
+
 A switcher component with four units: `EnergyIncr`, `NormUnbalance`, `NormDispIncr` and
 `NormDispAndUnbalance`.
 

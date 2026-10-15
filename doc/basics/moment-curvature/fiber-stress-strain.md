@@ -7,6 +7,8 @@ strains — one branch per fibre.
 
 `Fiber Stress Strain (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `FBS`
 
+<figure><img src="../../.gitbook/assets/components/fiber-stress-strain.png" alt="FBS component" width="543"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

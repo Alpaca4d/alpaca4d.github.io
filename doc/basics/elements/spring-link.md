@@ -9,6 +9,8 @@ glass.
 
 `Spring Link (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/spring-link.png" alt="Spring Link component" width="378"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

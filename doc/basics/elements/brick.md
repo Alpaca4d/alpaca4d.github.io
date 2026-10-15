@@ -11,6 +11,8 @@ Use it for volumetric behaviour: foundations, cores, massive walls, blocks, soil
 
 `SSP Brick (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/ssp-brick.png" alt="SSP Brick component" width="378"><figcaption></figcaption></figure>
+
 Constructs one brick element from one hexahedral mesh.
 
 ### Inputs

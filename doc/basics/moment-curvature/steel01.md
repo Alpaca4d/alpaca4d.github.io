@@ -7,6 +7,8 @@ strain-hardening branch.
 
 `Steel01 (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
 
+<figure><img src="../../.gitbook/assets/components/steel01.png" alt="Steel01 component" width="363"><figcaption></figcaption></figure>
+
 ### Inputs
 
 Defaults are **S355**.

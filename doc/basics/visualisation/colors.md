@@ -6,6 +6,8 @@ Eighteen ready-made colour gradients, for the contour components.
 
 `Colors (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/colors.png" alt="Colors component" width="303"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

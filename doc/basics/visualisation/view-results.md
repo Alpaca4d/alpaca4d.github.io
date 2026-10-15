@@ -12,6 +12,10 @@ This page is a placeholder. A full reference for the inputs, menus and outputs w
 
 `View Results_WIP (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/view-results-wip.png" alt="View Results_WIP component" width="393"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/view-results-wip-open.png" alt="View Results_WIP component with every menu open" width="393"><figcaption><p>With every menu open</p></figcaption></figure>
+
 Connect the analysed model from [Run Analysis](../analysis/run-analysis.md) or
 [Natural Vibration](../analysis/natural-vibration.md), then pick what to draw from the
 **Result** menu on the component body. After a natural vibration analysis, **Step** selects

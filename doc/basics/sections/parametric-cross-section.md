@@ -8,6 +8,8 @@ in another tool, a value taken from a catalogue table.
 
 `Generic Section (Alpaca4d)` — **Alpaca4d ▸ 01_Section**
 
+<figure><img src="../../.gitbook/assets/components/generic-section.png" alt="Generic Section component" width="363"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

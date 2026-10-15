@@ -11,6 +11,8 @@ the first does not move the second. That is what sets it apart from a
 
 `Equal DOF (Alpaca4d)` — **Alpaca4d ▸ 03_Constraint**
 
+<figure><img src="../../.gitbook/assets/components/equal-dof.png" alt="Equal DOF component" width="528"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

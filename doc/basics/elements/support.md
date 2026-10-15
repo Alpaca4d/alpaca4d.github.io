@@ -8,6 +8,8 @@ for an inclined roller or a support on a sloping face.
 
 `Support (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/support.png" alt="Support component" width="363"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

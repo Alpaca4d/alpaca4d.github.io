@@ -7,6 +7,8 @@ the component builds the matching parametric section for you.
 
 `Steel Section Library (Alpaca4d)` — **Alpaca4d ▸ 01_Section**, nickname `Section Library`
 
+<figure><img src="../../.gitbook/assets/components/steel-section-library.png" alt="Section Library component" width="363"><figcaption></figcaption></figure>
+
 ### Options
 
 Two dropdowns live on the component body, under the **Library** menu:

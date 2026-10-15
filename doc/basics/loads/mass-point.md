@@ -8,6 +8,8 @@ roof, a façade, the participating fraction of an imposed load.
 
 `Mass Point (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
+<figure><img src="../../.gitbook/assets/components/mass-point.png" alt="Mass Point component" width="408"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

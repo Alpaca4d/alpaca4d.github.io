@@ -7,6 +7,8 @@ bending moments.
 
 `Beam Forces (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/beam-forces.png" alt="Beam Forces component" width="408"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

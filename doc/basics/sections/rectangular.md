@@ -6,6 +6,8 @@ A solid rectangular cross-section.
 
 `RectangleCS (Alpaca4d)` — **Alpaca4d ▸ 01_Section**
 
+<figure><img src="../../.gitbook/assets/components/rectanglecs.png" alt="RectangleCS component" width="363"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

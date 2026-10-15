@@ -7,6 +7,8 @@ section curves to geometry that can become elements.
 
 `MeshLoft (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/meshloft.png" alt="Mesh Loft component" width="333"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

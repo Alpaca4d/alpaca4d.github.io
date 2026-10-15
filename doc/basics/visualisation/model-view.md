@@ -7,6 +7,10 @@ Grasshopper objects into something you can actually check.
 
 `Model View (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/model-view.png" alt="ModelView component" width="468"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/model-view-open.png" alt="ModelView component with every menu open" width="468"><figcaption><p>With every menu open</p></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

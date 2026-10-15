@@ -8,6 +8,8 @@ signal.
 
 `Read Time Series (Alpaca4d)` — **Alpaca4d ▸ 04_Time Series**
 
+<figure><img src="../../.gitbook/assets/components/read-time-series.png" alt="Read Time Series component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

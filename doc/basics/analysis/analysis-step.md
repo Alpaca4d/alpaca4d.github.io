@@ -7,6 +7,8 @@ OpenSees `analyze` command.
 
 `Analysis Step (Alpaca4d)` — **Alpaca4d ▸ 07_Analysis**
 
+<figure><img src="../../.gitbook/assets/components/analysis-step.png" alt="Analysis Step component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

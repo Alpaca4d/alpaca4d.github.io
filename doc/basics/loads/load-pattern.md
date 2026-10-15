@@ -8,6 +8,8 @@ loads never reach [Assemble](../assemble.md) on their own.
 
 `Load Pattern (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
+<figure><img src="../../.gitbook/assets/components/load-pattern.png" alt="Load Pattern component" width="453"><figcaption></figcaption></figure>
+
 A switcher component. Right-click it to pick the unit:
 
 - **PlainPattern** — static and quasi-static load cases.

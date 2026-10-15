@@ -7,6 +7,8 @@ point of a continuum element. Shells, bricks and tetrahedra all need one.
 
 `nD (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
+<figure><img src="../../.gitbook/assets/components/nd.png" alt="nD component" width="363"><figcaption></figcaption></figure>
+
 A switcher component. Right-click it to pick the model:
 
 - **ElasticIsotropic** — the same stiffness in every direction.

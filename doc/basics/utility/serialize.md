@@ -6,6 +6,8 @@ Turns the assembled model into an OpenSees `.tcl` deck, and optionally writes it
 
 `Serialize (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/serialize.png" alt="Serialize component" width="348"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

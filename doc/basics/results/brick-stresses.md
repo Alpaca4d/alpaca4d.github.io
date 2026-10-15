@@ -6,6 +6,8 @@ The full stress tensor at every solid element, plus the Von Mises equivalent str
 
 `Brick Stresses (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
+<figure><img src="../../.gitbook/assets/components/brick-stresses.png" alt="Brick Stresses component" width="423"><figcaption></figcaption></figure>
+
 Applies to [SSP Brick](../elements/brick.md) and
 [Four Node Tetrahedron](../elements/four-node-tetrahedron.md) elements.
 

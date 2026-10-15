@@ -8,6 +8,8 @@ distribution of curvature along the span rather than assuming a shape function f
 
 `ForceBeamColumn (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/forcebeamcolumn.png" alt="ForceBeamColumn component" width="393"><figcaption></figcaption></figure>
+
 A switcher component. The **Element Type** menu selects the unit:
 
 - **ForceBeamColumn** — a plain force-based beam, described here.

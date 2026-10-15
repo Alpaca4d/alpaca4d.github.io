@@ -8,6 +8,8 @@ Reads an OpenSees `.tcl` deck back into an Alpaca4d model — the reverse of
 
 `Deserialise (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/deserialise.png" alt="Deserialize component" width="438"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

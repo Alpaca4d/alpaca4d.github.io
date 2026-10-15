@@ -7,6 +7,8 @@ and the section or thickness.
 
 `Gravity Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**
 
+<figure><img src="../../.gitbook/assets/components/gravity-load.png" alt="Gravity Load component" width="288"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

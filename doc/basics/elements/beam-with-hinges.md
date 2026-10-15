@@ -12,6 +12,8 @@ a true free end.
 
 `ForceBeamColumn (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/forcebeamcolumn.png" alt="ForceBeamColumn component" width="393"><figcaption></figcaption></figure>
+
 There is no separate component. Right-click the **ForceBeamColumn** component and set the
 **Element Type** menu to **WithHinges**.
 

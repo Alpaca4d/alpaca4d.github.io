@@ -7,6 +7,8 @@ reinforcing bar.
 
 `Fiber Point (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
 
+<figure><img src="../../.gitbook/assets/components/fiber-point.png" alt="Fiber Point component" width="423"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

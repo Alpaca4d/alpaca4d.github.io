@@ -11,6 +11,10 @@ The file is an MPCO (HDF5) file. The [Results](results/README.md) components and
 
 `MPCO Recorder (Alpaca4d)` — **Alpaca4d ▸ 06_Assemble**
 
+<figure><img src="../.gitbook/assets/components/mpco-recorder.png" alt="MPCO Recorder component" width="378"><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/components/mpco-recorder-open.png" alt="MPCO Recorder component with every menu open" width="378"><figcaption><p>With every menu open</p></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

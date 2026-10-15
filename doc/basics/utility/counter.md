@@ -8,6 +8,8 @@ tools.
 
 `Counter (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
+<figure><img src="../../.gitbook/assets/components/counter.png" alt="Counter component" width="363"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

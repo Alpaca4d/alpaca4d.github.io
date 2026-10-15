@@ -7,6 +7,8 @@ cross-section, a fibre or a hinge is made of — anywhere only one stress compon
 
 `Uniaxial (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
+<figure><img src="../../.gitbook/assets/components/uniaxial.png" alt="Uniaxial component" width="363"><figcaption></figcaption></figure>
+
 A switcher component. Right-click it to pick the model:
 
 - **UniaxialElastic** — linear elastic, described below.

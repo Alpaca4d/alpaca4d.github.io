@@ -6,6 +6,8 @@ Collects fibre points, layers and patches into one section.
 
 `Fiber Section (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `FiberSection`
 
+<figure><img src="../../.gitbook/assets/components/fiber-section.png" alt="FiberSection component" width="468"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |

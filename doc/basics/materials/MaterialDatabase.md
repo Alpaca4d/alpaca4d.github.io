@@ -7,6 +7,8 @@ so you do not have to type *E*, *G*, *ν* and *ρ* by hand and get them to agree
 
 `Material Library Elastic (Alpaca4d)` — **Alpaca4d ▸ 00_Material**
 
+<figure><img src="../../.gitbook/assets/components/material-library-elastic.png" alt="Material Library Elastic component" width="348"><figcaption></figcaption></figure>
+
 ### Options
 
 Three dropdowns live on the component body, under the **Library** menu:

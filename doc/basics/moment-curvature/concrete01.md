@@ -7,6 +7,8 @@ crushing plateau, and nothing at all in tension.
 
 `Concrete01 (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `Concrete`
 
+<figure><img src="../../.gitbook/assets/components/concrete01.png" alt="Concrete component" width="393"><figcaption></figcaption></figure>
+
 ### Inputs
 
 Defaults are **C25/30**.

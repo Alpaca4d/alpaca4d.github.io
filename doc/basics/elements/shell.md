@@ -13,6 +13,8 @@ Alpaca4d uses the ASDShell family from ASDEA:
 
 `ASD Shell (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/asd-shell.png" alt="ASDQ4/ASDT3 component" width="453"><figcaption></figcaption></figure>
+
 One component covers both element types. The mesh is exploded into single faces, and each
 face becomes one element: 4 vertices → `ASDShellQ4`, 3 vertices → `ASDShellT3`.
 

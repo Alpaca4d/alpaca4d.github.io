@@ -8,6 +8,8 @@ drawn with bricking in mind.
 
 `FourNodeTetrahedron (Alpaca4d)` — **Alpaca4d ▸ 02_Element**
 
+<figure><img src="../../.gitbook/assets/components/fournodetetrahedron.png" alt="Four Node Tetrahedron component" width="378"><figcaption></figcaption></figure>
+
 Constructs one tetrahedral element from one 4-vertex mesh.
 
 ### Inputs
