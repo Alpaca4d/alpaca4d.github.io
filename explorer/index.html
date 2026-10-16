@@ -57,10 +57,10 @@
   <div class="brandbar" aria-hidden="true"></div>
 
   <main id="app">
-    <!-- No study yet -->
-    <section class="welcome" id="welcome">
-      <div class="welcome-inner">
-        <h1>Find the design worth building.</h1>
+    <!-- The first thing shown: a card over the sample study, which waits behind it -->
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <div class="welcome-card">
+        <h1 id="welcome-title">Find the design worth building.</h1>
         <p class="lede">
           Open a design study made with Alpaca4d to filter its designs on parallel axes,
           read the trade-offs between results, and look at every design in 2D and 3D.
@@ -74,19 +74,8 @@
             <button class="btn primary" data-action="open-folder"><span data-icon="folder"></span>Choose folder</button>
             <button class="btn" data-action="open-csv"><span data-icon="file"></span>Open data.csv</button>
           </div>
-        </div>
-
-        <div class="welcome-row">
-          <button class="sample-card" data-action="open-sample">
-            <img src="sample/footbridge/30_2.25_8_HEA200.svg" alt="" loading="lazy">
-            <span>
-              <strong>Try the sample study</strong>
-              <small>Steel footbridge truss · 108 designs · span, depth, panels and chord section against mass, deflection, utilisation and frequency</small>
-            </span>
-            <span data-icon="arrow-right"></span>
-          </button>
           <form class="url-form" id="url-form">
-            <label for="url-input">Or open a study from the web</label>
+            <label for="url-input">or from the web</label>
             <div class="url-row">
               <input id="url-input" type="url" placeholder="https://… folder holding data.csv" autocomplete="off" required>
               <button class="btn" type="submit">Open</button>
@@ -94,12 +83,10 @@
           </form>
         </div>
 
-        <ol class="steps">
-          <li><strong>Explorer Inputs</strong> steps through the sliders, value lists and panels of your definition.</li>
-          <li><strong>Explorer Outputs</strong> names the results that matter: mass, deflection, utilisation, period…</li>
-          <li><strong>Explorer Record</strong> saves each design. Press <em>Fly</em>, then open the folder here.</li>
-        </ol>
-        <p class="privacy"><span data-icon="lock"></span>A study opened from your computer is read by your browser and never uploaded.</p>
+        <footer class="welcome-foot">
+          <p class="privacy"><span data-icon="lock"></span>A study from your computer is read by your browser, never uploaded.</p>
+          <button class="btn" id="welcome-close" hidden>Explore the sample<span data-icon="arrow-right"></span></button>
+        </footer>
       </div>
     </section>
 

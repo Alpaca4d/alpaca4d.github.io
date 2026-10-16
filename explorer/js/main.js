@@ -9,6 +9,8 @@ import { wireLayout } from './layout.js';
 import { hydrateIcons, toast, openMenu, closeMenus, download, el, icon, fmt } from './ui.js';
 
 const SAMPLE = 'sample/footbridge/';
+// A light design that passes, so the sample behind the welcome card shows a design panel.
+const SAMPLE_DESIGN = 25;
 const $ = (id) => document.getElementById(id);
 
 const explorer = new Explorer();
@@ -17,30 +19,35 @@ let layout = null;
 
 // ---------- opening a study ----------
 
-async function load(open, designNumber) {
+/**
+ * Opens a study; true when it opened. Behind the welcome card it opens quietly: what goes wrong
+ * there is for the console, not for someone who has not asked for anything yet.
+ */
+async function load(open, { design = 0, behindWelcome = false } = {}) {
   document.body.style.cursor = 'progress';
   try {
     const { text, source, onlyCsv } = await open();
     source.onlyCsv = !!onlyCsv;
     const study = parseStudy(text, source);
-    show(study);
+    show(study, behindWelcome);
+    if (design > 0 && design <= study.designs.length) explorer.select(design - 1);
+    if (behindWelcome) return true;
     for (const warning of study.warnings) toast(warning, 'info', 9000);
-    if (designNumber > 0 && designNumber <= study.designs.length) explorer.select(designNumber - 1);
     const wantsFiles = (study.images.length && !study.hasImages) || (study.header.some((h) => /^threed$/i.test(h.trim())) && !study.hasModel);
     if (onlyCsv && wantsFiles) toast('Only data.csv was opened, so its pictures and models cannot be found. Open the whole folder to see them.', 'info', 7000);
+    return true;
   } catch (error) {
     console.error(error);
-    toast(error.message || String(error), 'error', 8000);
+    if (!behindWelcome) toast(error.message || String(error), 'error', 8000);
+    return false;
   } finally {
     document.body.style.cursor = '';
   }
 }
 
-function show(study) {
-  $('welcome').hidden = true;
+function show(study, behindWelcome) {
   $('workspace').hidden = false;
   layout.apply();
-  document.title = `${study.name} · Alpaca4d Explorer`;
   for (const button of document.querySelectorAll('.needs-study')) button.disabled = false;
 
   if (!views) {
@@ -51,15 +58,33 @@ function show(study) {
     };
   }
   explorer.setStudy(study);
+  setWelcome(behindWelcome);
   updateAddress();
 }
 
-/** Keeps the address bar pointing at a study opened from the web, so it can be bookmarked. */
+/** The welcome card, over the study (if one opened) that waits behind it. */
+function setWelcome(open) {
+  $('welcome').hidden = !open;
+  $('workspace').inert = open;
+  document.body.classList.toggle('welcoming', open);
+  $('welcome-close').hidden = !explorer.study;
+  document.title = explorer.study && !open ? `${explorer.study.name} · Alpaca4d Explorer` : 'Alpaca4d Explorer';
+}
+
+function closeWelcome() {
+  setWelcome(false);
+  updateAddress();
+}
+
+/**
+ * Keeps the address bar pointing at a study opened from the web, so it can be bookmarked. Not the
+ * sample behind the welcome card: the plain address is the one that shows the card.
+ */
 function updateAddress() {
   const study = explorer.study;
   const url = new URL(location.href);
   url.search = '';
-  if (study?.source.kind === 'url') {
+  if (study?.source.kind === 'url' && $('welcome').hidden) {
     url.searchParams.set('study', study.source.url);
     if (explorer.selected != null) url.searchParams.set('design', String(explorer.selected + 1));
   }
@@ -226,6 +251,7 @@ function wire() {
     }
   });
 
+  $('welcome-close').addEventListener('click', closeWelcome);
   $('theme-button').addEventListener('click', toggleTheme);
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => explorer.study && explorer.changed('theme'));
   $('export-button').addEventListener('click', exportCsv);
@@ -280,6 +306,8 @@ function wireDrop() {
     load(() => openFiles(entries));
   });
   zone.addEventListener('keydown', (event) => {
+    // Only the zone itself: the address field inside it takes its own keys.
+    if (event.target !== zone) return;
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       $('folder-input').click();
@@ -291,6 +319,11 @@ function wireKeys() {
   document.addEventListener('keydown', (event) => {
     if (!explorer.study || event.metaKey || event.ctrlKey || event.altKey) return;
     if (event.target.closest('input, select, textarea, dialog[open]')) return;
+    // Over the sample, the keys are the card's: Esc puts it away, the rest wait for it to go.
+    if (!$('welcome').hidden) {
+      if (event.key === 'Escape') closeWelcome();
+      return;
+    }
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       explorer.step(1);
@@ -308,11 +341,15 @@ function wireKeys() {
   });
 }
 
-function start() {
+async function start() {
   wire();
   const params = new URLSearchParams(location.search);
   const address = params.get('study');
-  if (address) load(() => openUrl(address), Number(params.get('design')) || 0);
+  const opened = address && await load(() => openUrl(address), { design: Number(params.get('design')) || 0 });
+  // No study asked for, or it would not open: the welcome card, over the sample, with the
+  // address that failed in its field to put right.
+  if (address && !opened) $('url-input').value = address;
+  if (!opened) load(() => openUrl(SAMPLE), { design: SAMPLE_DESIGN, behindWelcome: true });
 }
 
 if (window.d3) start();

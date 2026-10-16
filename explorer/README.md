@@ -8,12 +8,17 @@ Live at <https://alpaca4d.github.io/explorer/>.
 
 ## Opening a study
 
-- **A folder on this computer**: drop it on the page, or *Open ▸ Study folder…*. The files are
-  read by the browser and never uploaded.
-- **A folder on the web**: *Open ▸ From a web address…*, or `?study=<address>` in the URL. The
-  server has to allow cross-origin reads; GitHub (`github.com/<user>/<repo>/tree/<branch>/<path>`)
-  does, and its folder links are turned into raw ones. `&design=12` opens a design.
-- **The sample**: `?study=sample/footbridge/`.
+The page opens on the sample study, under a card to drop a folder on or type an address in.
+*Explore the sample*, or *Esc*, puts the card away.
+
+- **A folder on this computer**: drop it on the page, or *Choose folder* on the card, or
+  *Open ▸ Study folder…*. The files are read by the browser and never uploaded.
+- **A folder on the web**: the address field on the card, *Open ▸ From a web address…*, or
+  `?study=<address>` in the URL. The server has to allow cross-origin reads; GitHub
+  (`github.com/<user>/<repo>/tree/<branch>/<path>`) does, and its folder links are turned into
+  raw ones. `&design=12` opens a design. An address that does not open leaves the card up, with
+  the address in its field.
+- **The sample**: behind the card, or `?study=sample/footbridge/`.
 
 ## The study folder
 

@@ -259,72 +259,60 @@ kbd {
 
 main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
+/* A card over the sample study, which shows through the scrim as a taste of what a study looks
+   like. Fixed, under the top bar, so Open and the theme stay in reach and the card stays in view
+   on a phone, where the workspace is taller than the screen. */
 .welcome {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  padding: 48px 20px 64px;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 82px 20px 24px;
+  overflow: auto;
   background:
-    radial-gradient(1000px 420px at 50% -120px, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
-    var(--bg);
+    radial-gradient(900px 420px at 50% 0, color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%),
+    color-mix(in srgb, var(--bg) 34%, transparent);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 }
-.welcome-inner { width: min(780px, 100%); }
-.welcome h1 { font-size: clamp(28px, 4.2vw, 42px); letter-spacing: -0.025em; font-weight: 700; }
-.lede { margin: 12px 0 28px; font-size: 16.5px; color: var(--text-2); max-width: 60ch; }
+body.welcoming { overflow: hidden; }
+
+.welcome-card {
+  width: min(600px, 100%);
+  padding: 30px 30px 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+}
+.welcome h1 { font-size: clamp(24px, 3.4vw, 32px); letter-spacing: -0.025em; font-weight: 700; }
+.lede { margin: 10px 0 22px; font-size: 15px; color: var(--text-2); }
 
 .dropzone {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 36px 20px 30px;
+  padding: 26px 20px 22px;
   border: 1.5px dashed var(--border-strong);
-  border-radius: 18px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  border-radius: 16px;
+  background: var(--surface-2);
   transition: border-color 0.15s, background 0.15s;
 }
 .dropzone.over { border-color: var(--accent); background: var(--accent-soft); }
 .dropzone-icon { color: var(--accent); }
-.dropzone-icon .icon { width: 34px; height: 34px; }
-.dropzone-title { margin: 12px 0 2px; font-size: 17px; font-weight: 600; }
-.dropzone-hint { margin: 0 0 18px; color: var(--text-3); }
+.dropzone-icon .icon { width: 30px; height: 30px; }
+.dropzone-title { margin: 10px 0 2px; font-size: 17px; font-weight: 600; }
+.dropzone-hint { margin: 0 0 16px; color: var(--text-3); }
 .dropzone-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 
-.welcome-row { display: grid; grid-template-columns: 1.25fr 1fr; gap: 14px; margin-top: 14px; }
-
-.sample-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px 10px 10px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  text-align: left;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: border-color 0.15s, transform 0.15s;
-}
-.sample-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-.sample-card img { width: 112px; height: 84px; object-fit: cover; border-radius: 9px; flex: none; }
-.sample-card span:nth-child(2) { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.sample-card small { color: var(--text-3); font-size: 12.5px; line-height: 1.35; }
-.sample-card > [data-icon] { margin-left: auto; color: var(--accent); }
-
-.url-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.url-form label { font-weight: 600; font-size: 13px; }
+/* A rule with the words in it, then the address. */
+.url-form { width: min(420px, 100%); margin-top: 20px; }
+.url-form label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; color: var(--text-3); font-size: 12.5px; }
+.url-form label::before, .url-form label::after { content: ""; flex: 1; border-top: 1px solid var(--border); }
 .url-row { display: flex; gap: 6px; }
+.url-row input[type="url"] { background: var(--surface); }
 
 input[type="url"], input[type="text"], select {
   height: 34px;
@@ -338,45 +326,10 @@ input[type="url"], input[type="text"] { flex: 1; width: 100%; }
 select { padding-right: 6px; cursor: pointer; }
 input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-.steps {
-  counter-reset: step;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 0;
-  margin: 30px 0 0;
-}
-.steps li {
-  counter-increment: step;
-  position: relative;
-  padding: 40px 14px 14px;
-  border-radius: var(--radius);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  font-size: 13.5px;
-}
-.steps li::before {
-  content: counter(step);
-  position: absolute;
-  top: 12px;
-  left: 14px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-}
-.steps li:nth-child(1)::before { background: var(--alpaca-red); }
-.steps li:nth-child(2)::before { background: var(--alpaca-purple); }
-.steps li:nth-child(3)::before { background: var(--alpaca-light-blue); }
-.steps strong { color: var(--text); }
-
-.privacy { display: flex; align-items: center; gap: 8px; margin: 22px 0 0; color: var(--text-3); font-size: 13px; }
+.welcome-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 16px; }
+.welcome-foot .btn { margin-left: auto; }
+.welcome-foot .btn [data-icon] { color: var(--accent); }
+.privacy { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--text-3); font-size: 12.5px; }
 .privacy .icon { width: 14px; height: 14px; }
 
 /* ---------- workspace ---------- */
@@ -798,8 +751,8 @@ table.designs .stars-mini { color: var(--alpaca-orange); letter-spacing: 1px; }
   .results-panel { height: 85vh; min-height: 420px; }
   .pc { flex: none; height: 280px; }
   .pc-hint { display: none; }
-  .welcome { padding: 28px 16px 40px; }
-  .welcome-row, .steps { grid-template-columns: 1fr; }
+  .welcome { padding: 70px 16px 16px; }
+  .welcome-card { padding: 22px 18px 16px; }
   :root { --thumb: 150px; }
   .legend-ramp { width: 70px; }
 }
