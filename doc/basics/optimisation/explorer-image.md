@@ -5,7 +5,7 @@ what size. Without it, Explorer Record takes the active viewport at 800 × 600.
 
 ## 🔧 Grasshopper component
 
-`Explorer Image (Alpaca4d)` — **Alpaca4d ▸ 12_Explorer**
+`Explorer Image (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
 <figure><img src="../../.gitbook/assets/components/explorer-image.png" alt="Explorer Image component" width="378"><figcaption></figcaption></figure>
 

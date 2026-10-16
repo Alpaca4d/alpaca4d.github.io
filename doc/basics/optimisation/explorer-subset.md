@@ -5,7 +5,7 @@ designs.
 
 ## 🔧 Grasshopper component
 
-`Explorer Subset (Alpaca4d)` — **Alpaca4d ▸ 12_Explorer**
+`Explorer Subset (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
 <figure><img src="../../.gitbook/assets/components/explorer-subset.png" alt="Explorer Subset component" width="363"><figcaption></figcaption></figure>
 

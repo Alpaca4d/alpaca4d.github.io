@@ -45,9 +45,10 @@ You can try Alpaca4d without a license, within two limits:
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------- |
 | [Run Analysis](../basics/analysis/run-analysis.md) and [Natural Vibration](../basics/analysis/natural-vibration.md)                                           | Models of up to 50 elements | Any size       |
 | [View Results](../basics/visualisation/view-results.md), [Model View](../basics/visualisation/model-view.md) and [Moment Curvature](../basics/moment-curvature/moment-curvature.md) | Not available              | Available      |
+| [Explorer Inputs](../basics/optimisation/explorer-inputs.md), saving a study with [Explorer Record](../basics/optimisation/explorer-record.md), and running [Non-Linear Optimisation](../basics/optimisation/non-linear-optimisation.md) | Not available | Available |
 | Every other component                                                                                                                                         | Available                  | Available      |
 
-A model over the limit, or one of those three components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements, and read its results with the [Results](../basics/results/README.md) components.
+A model over the limit, or one of those components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements, and read its results with the [Results](../basics/results/README.md) components.
 
 ## Independence and warranty
 

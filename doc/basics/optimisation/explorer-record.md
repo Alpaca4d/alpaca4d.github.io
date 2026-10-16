@@ -6,7 +6,7 @@ results, and a picture and a 3D model of each design.
 
 ## 🔧 Grasshopper component
 
-`Explorer Record (Alpaca4d)` — **Alpaca4d ▸ 12_Explorer**
+`Explorer Record (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
 <figure><img src="../../.gitbook/assets/components/explorer-record.png" alt="Explorer Record component" width="348"><figcaption></figcaption></figure>
 

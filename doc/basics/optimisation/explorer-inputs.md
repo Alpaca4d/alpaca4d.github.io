@@ -5,7 +5,7 @@ one solution each, for [Explorer Record](explorer-record.md) to save.
 
 ## 🔧 Grasshopper component
 
-`Explorer Inputs (Alpaca4d)` — **Alpaca4d ▸ 12_Explorer**
+`Explorer Inputs (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
 <figure><img src="../../.gitbook/assets/components/explorer-inputs.png" alt="Explorer Inputs component" width="318"><figcaption></figcaption></figure>
 

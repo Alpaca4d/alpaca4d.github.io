@@ -1,12 +1,18 @@
-# 🧭 Explorer
+# 🎯 Optimisation
 
-The Explorer components run a design study: every combination of a few sliders, one
-solution each, with the results, a picture and the 3D model of each design saved to a folder.
-The [Alpaca4d Explorer](https://alpaca4d.github.io/explorer/) opens that folder in the browser,
-to filter the designs on parallel axes, compare trade-offs and look at any of them in 2D and 3D.
+Two ways to find a good design, both by moving the sliders of a definition and solving it again:
 
-They do what Colibri and Design Explorer did, shipped with Alpaca4d, so there is nothing else
-to install.
+- **Explore a design space** with the Explorer components: every combination of a few sliders,
+  one solution each, with the results, a picture and the 3D model of each design saved to a
+  folder. The [Alpaca4d Explorer](https://alpaca4d.github.io/explorer/) opens that folder in the
+  browser, to filter the designs on parallel axes, compare trade-offs and look at any of them in
+  2D and 3D.
+- **Search for the best design** with [Non-Linear Optimisation](non-linear-optimisation.md): an
+  algorithm moves the sliders towards the smallest or largest value of one number, such as the
+  mass, and can keep other numbers, such as the utilisation, within limits.
+
+They do what Colibri with Design Explorer, and DoDo's NL-Opt, did. Both ship with Alpaca4d, so
+there is nothing else to install.
 
 ## Components in this tab
 
@@ -17,8 +23,22 @@ to install.
 | [Explorer Record](explorer-record.md) | `Explorer Record` | Saves each design: data.csv, a picture, a 3D model. |
 | [Explorer Image](explorer-image.md) | `Explorer Image` | Which views to take a picture of, and how big. |
 | [Explorer Subset](explorer-subset.md) | `Explorer Subset` | Runs part of a study, to try it out or split it between machines. |
+| [Non-Linear Optimisation](non-linear-optimisation.md) | `NL-Opt` | Minimises or maximises a number by moving sliders, with NLopt's algorithms. |
 
-## The workflow
+## Which one
+
+| | Explorer | Non-Linear Optimisation |
+| --- | --- | --- |
+| Answers | What are the options, and what trades off against what? | Which design is best by this measure? |
+| Variables | A few, each in a few steps | Any number, each as finely as its slider allows |
+| Results | As many as you like, weighed afterwards | One objective, and constraints it must meet |
+| Designs solved | Every combination, once | As many as the algorithm needs, one after another |
+| Leaves you with | A study folder to explore and share | The sliders on the best design, and the history of the run |
+
+They work well together. A study shows where the good designs are and what matters; narrow
+the sliders' bounds to that region, then let the optimiser find the best design inside it.
+
+## Exploring a design space
 
 1. Wire the sliders, value lists and panels that make a design into
    [Explorer Inputs](explorer-inputs.md). **Name them**: each name becomes an axis.
@@ -38,7 +58,7 @@ Explorer Inputs skips the designs already saved without solving them. Flying aga
 stop, a crash or an extra slider step only runs what is missing.
 {% endhint %}
 
-## What the explorer does with it
+### What the explorer does with it
 
 - **Filter** by dragging along any axis; combine as many as needed.
 - **Goals**: click a result's name and pick *Minimise* or *Maximise*. **Pareto front** then
@@ -51,3 +71,13 @@ stop, a crash or an extra slider step only runs what is missing.
 A study folder on your computer is read by the browser and never uploaded. To share a study,
 put the folder online - a GitHub repository works - and open it by its address: the address bar
 then holds a link to the study, and to the design picked.
+
+## Searching for the best design
+
+1. Drag from the **Variables** grip of [Non-Linear Optimisation](non-linear-optimisation.md) to
+   the sliders the design depends on.
+2. Drag from the **Objective** grip to the number to minimise or maximise, such as the total mass.
+3. To keep other numbers within limits, drag from the **Constraints** grip to numbers that must
+   end up at or below zero, such as `utilisation - 1`.
+4. Double-click the optimiser, pick an algorithm and press **Start**. When it ends, the sliders
+   are on the best design it found, and one Undo puts them back.

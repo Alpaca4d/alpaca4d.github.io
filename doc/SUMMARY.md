@@ -89,12 +89,13 @@
   * [Mesh Loft](basics/utility/mesh-loft.md)
   * [Mesh Series to Brick](basics/utility/mesh-series-to-brick.md)
   * [Counter](basics/utility/counter.md)
-* [🧭 Explorer](basics/explorer/README.md)
-  * [Explorer Inputs](basics/explorer/explorer-inputs.md)
-  * [Explorer Outputs](basics/explorer/explorer-outputs.md)
-  * [Explorer Record](basics/explorer/explorer-record.md)
-  * [Explorer Image](basics/explorer/explorer-image.md)
-  * [Explorer Subset](basics/explorer/explorer-subset.md)
+* [🎯 Optimisation](basics/optimisation/README.md)
+  * [Explorer Inputs](basics/optimisation/explorer-inputs.md)
+  * [Explorer Outputs](basics/optimisation/explorer-outputs.md)
+  * [Explorer Record](basics/optimisation/explorer-record.md)
+  * [Explorer Image](basics/optimisation/explorer-image.md)
+  * [Explorer Subset](basics/optimisation/explorer-subset.md)
+  * [Non-Linear Optimisation](basics/optimisation/non-linear-optimisation.md)
 
 ## EXAMPLES
 
