@@ -109,7 +109,6 @@
 * [🔒 Connection Design](examples/connection-design/connection-design.md)
 * [📈 Moment Curvature](examples/moment-curvature/moment-curvature.md)
 * [🔋 High Tension Tower](examples/high-tension-tower/high-tension-tower.md)
-* [✍️ Free Form Roof](examples/free-form-roof/free-form-roof.md)
 * [💐 Custom Script](examples/custom-script/custom-script.md)
 * [🏗️ Deconstruct Anything](examples/deconstruct-anything/deconstruct-anything.md)
 * [🕸️ Mesh Loft-Brick](examples/meshloft-meshbrick/meshloft-meshbrick.md)
