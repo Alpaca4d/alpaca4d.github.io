@@ -9,11 +9,11 @@ cross-section, a fibre or a hinge is made of — anywhere only one stress compon
 
 <figure><img src="../../.gitbook/assets/components/uniaxial.png" alt="Uniaxial component" width="363"><figcaption></figcaption></figure>
 
-A switcher component. Right-click it to pick the model:
+A switcher component: pick the unit in the drop-down under it, or right-click it ▸ **Units**:
 
 - **UniaxialElastic** — linear elastic, described below.
-- **ElasticPerfectlyPlastic** — *not yet implemented*; the unit exists but only issues a
-  warning.
+- **ElasticPerfectlyPlastic** — *not yet implemented*. It shows its inputs — Material Name, `E`,
+  `epsyP`, `epsyN`, `eps0` and `Rho` — and a warning, and outputs no material.
 
 ### Inputs — UniaxialElastic
 

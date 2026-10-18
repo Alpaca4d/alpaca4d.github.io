@@ -10,7 +10,7 @@ loads never reach [Assemble](../assemble.md) on their own.
 
 <figure><img src="../../.gitbook/assets/components/load-pattern.png" alt="Load Pattern component" width="453"><figcaption></figcaption></figure>
 
-A switcher component. Right-click it to pick the unit:
+A switcher component: pick the unit in the drop-down under it, or right-click it ▸ **Units**:
 
 - **PlainPattern** — static and quasi-static load cases.
 - **UniformExcitation** — base acceleration applied to every support.

@@ -9,7 +9,7 @@ point of a continuum element. Shells, bricks and tetrahedra all need one.
 
 <figure><img src="../../.gitbook/assets/components/nd.png" alt="nD component" width="363"><figcaption></figcaption></figure>
 
-A switcher component. Right-click it to pick the model:
+A switcher component: pick the unit in the drop-down under it, or right-click it ▸ **Units**:
 
 - **ElasticIsotropic** — the same stiffness in every direction.
 - **ElasticOrthotropic** — different stiffness along three orthogonal directions, for
