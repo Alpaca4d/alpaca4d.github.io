@@ -56,6 +56,7 @@
   * [Damping](basics/analysis/damping.md)
   * [Run Analysis](basics/analysis/run-analysis.md)
   * [Natural Vibration](basics/analysis/natural-vibration.md)
+  * [Linear Buckling](basics/analysis/linear-buckling.md)
 * [🎲 Results](basics/results/README.md)
   * [Nodal Displacements](basics/results/nodal-displacements.md)
   * [Reaction Forces](basics/results/reaction-forces.md)

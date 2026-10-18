@@ -12,8 +12,9 @@ Analysis Step ───┘                        │
                         AlpacaModel ──────┘
 ```
 
-[Natural Vibration](natural-vibration.md) is the exception: it needs no settings at all,
-because an eigenvalue problem has nothing to converge.
+[Natural Vibration](natural-vibration.md) and [Linear Buckling](linear-buckling.md) are the
+exceptions: they need no settings at all, because they are eigenvalue problems, with nothing to
+converge.
 
 ## Components in this tab
 
@@ -26,6 +27,7 @@ because an eigenvalue problem has nothing to converge.
 | [Damping](damping.md) | `Damping` | Rayleigh damping coefficients. |
 | [Run Analysis](run-analysis.md) | `Run Analysis` | Runs it. |
 | [Natural Vibration](natural-vibration.md) | `Natural Vibration` | Modes, periods and frequencies. |
+| [Linear Buckling](linear-buckling.md) | `Linear Buckling` | The load factors the model buckles at, and its buckled shapes. |
 
 ### [Analysis Settings](analysis-settings.md)
 
@@ -98,6 +100,17 @@ converge. Connect the **assembled** model rather than an analysed one, then feed
 model to [Nodal Displacements](../results/nodal-displacements.md) to read a mode shape. The
 participating masses are in its [Modal Report](natural-vibration.md#modal-report) menu.
 
+### [Linear Buckling](linear-buckling.md)
+
+Finds the load factors at which the model buckles under its loads, lowest first, and the shapes
+it buckles into. The first is the critical load factor α_cr, which EN 1993-1-1 compares with 10
+to decide whether a frame needs a second-order analysis.
+
+Like Natural Vibration it needs no [Analysis Settings](analysis-settings.md). Connect the
+**assembled** model, and feed the buckled model to [View Results](../visualisation/view-results.md)
+to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
+its ends.
+
 ## What Alpaca4d can analyse
 
 | Analysis | How to set it up |
@@ -105,6 +118,7 @@ participating masses are in its [Modal Report](natural-vibration.md#modal-report
 | **Linear static** | Analysis Type `Static`, Integrator `LoadControl`, Algorithm `Linear`. |
 | **Non-linear static / pushover** | Analysis Type `Static`, Integrator `LoadControl`, Algorithm `ModifiedNewton` or `KrylovNewton`, and a [Linear](../time-history/linear.md) time series to ramp the load. |
 | **Eigenvalue / modal** | [Natural Vibration](natural-vibration.md) — no settings needed. |
+| **Linear buckling** | [Linear Buckling](linear-buckling.md) — no settings needed. |
 | **Linear or non-linear transient** | Analysis Type `Transient`, Integrator `Newmark` or `CentralDifference`, plus [Damping](damping.md) and a [Path](../time-history/path.md) time series. |
 | **Seismic time history** | As transient, with a [UniformExcitation](../loads/load-pattern.md) pattern. |
 
