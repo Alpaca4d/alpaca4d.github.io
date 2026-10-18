@@ -85,6 +85,7 @@
   * [Deconstruct](basics/utility/deconstruct.md)
   * [Serialize](basics/utility/serialize.md)
   * [Deserialise](basics/utility/deserialise.md)
+  * [Alpaca4D to FEM-Design](basics/utility/alpaca4d-to-femdesign.md)
   * [Custom Code](basics/utility/custom-code.md)
   * [Mesh Loft](basics/utility/mesh-loft.md)
   * [Mesh Series to Brick](basics/utility/mesh-series-to-brick.md)

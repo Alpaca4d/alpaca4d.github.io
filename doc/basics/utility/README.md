@@ -10,6 +10,7 @@ debug, exchange and extend a model.
 | [Deconstruct](deconstruct.md) | `Deconstruct` | Explodes any Alpaca4d object into its fields. |
 | [Serialize](serialize.md) | `Serialize` | Writes the model out as an OpenSees `.tcl` deck. |
 | [Deserialise](deserialise.md) | `Deserialise` | Reads a `.tcl` deck back into an Alpaca4d model. |
+| [Alpaca4D to FEM-Design](alpaca4d-to-femdesign.md) | `A4D_FD` | Writes the model as a FEM-Design `.struxml` file. |
 | [Custom Code](custom-code.md) | `Custom Code` | Appends raw OpenSees commands to the deck. |
 | [Mesh Loft](mesh-loft.md) | `Mesh Loft` | Lofts a series of polylines into a mesh. |
 | [Mesh Series to Brick](mesh-series-to-brick.md) | `Mesh Series to Brick` | Turns a stack of meshes into hexahedra for brick elements. |
@@ -27,6 +28,8 @@ part of using [SSP Brick](../elements/brick.md).
 **Getting the model in and out.** [Serialize](serialize.md) and
 [Deserialise](deserialise.md) are a round trip between Grasshopper and plain OpenSees — hand
 a deck to a collaborator who does not use Rhino, or bring an existing model in.
+[Alpaca4D to FEM-Design](alpaca4d-to-femdesign.md) takes the model on to FEM-Design, to be
+designed there.
 
 **Going past what the components cover.** [Custom Code](custom-code.md) appends anything
 OpenSees understands. It bypasses Alpaca4d's checks, so it is powerful in both directions.
