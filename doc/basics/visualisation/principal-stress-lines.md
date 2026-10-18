@@ -25,6 +25,10 @@ contour shows how much, these show which way — the load paths through a plate.
 | Separation | `dSep` | Number | `0.5` | Target spacing between neighbouring lines, in field mode. |
 | Test Dist. | `dTest` | Number | `0.0` | A new line stops when it comes closer than this to an existing one. `0` disables the check. |
 
+The last four — **Poisson's ratio**, **Bending Stress Lines**, **Separation** and **Test Dist.** — are in the
+**Advanced** menu under the component, which starts folded; click it to show them. A wire to one of
+them keeps working with the menu folded.
+
 ### Outputs
 
 | Name | Nick | Type | Description |

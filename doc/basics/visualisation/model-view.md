@@ -21,7 +21,7 @@ Grasshopper objects into something you can actually check.
 
 ### Options
 
-Three menus live on the component body. Right-click to expand them.
+Three menus live on the component body, folded at first: click a menu's header to unfold it.
 
 **Elements**
 
