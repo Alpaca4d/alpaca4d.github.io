@@ -9,7 +9,7 @@ load to add in a static analysis, or how to march through time in a transient on
 
 <figure><img src="../../.gitbook/assets/components/integrator.png" alt="Integrator component" width="423"><figcaption></figcaption></figure>
 
-A switcher component. Right-click it to pick the unit.
+A switcher component: pick the unit in the drop-down under it, or right-click it ▸ **Units**. The drop-down shows **CentralDifference** as `CentralDiff`.
 
 ### Inputs — LoadControl
 
@@ -18,9 +18,15 @@ For **static** analysis. Adds a fixed increment of load factor at each step.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | Lambda | `Lambda` | Number | `1` | Load factor increment per step. |
-| NumIter | `NumIter` | Integer | `10` | Iterations the integrator aims for at each step. |
-| MinLambda | `MinLambda` | Number | `0.01` | Smallest increment allowed when the step is cut back. |
-| MaxLambda | `MaxLambda` | Number | `10` | Largest increment allowed. |
+| NumIter | `NumIter` | Integer | *(empty)* | Iterations per step to aim for. Left empty, every step adds **Lambda**. Given, together with **MinLambda** and **MaxLambda**, it turns on adaptive stepping — see below. |
+| MinLambda | `MinLambda` | Number | *(empty)* | Smallest increment adaptive stepping may take. |
+| MaxLambda | `MaxLambda` | Number | *(empty)* | Largest increment adaptive stepping may take. |
+
+**NumIter**, **MinLambda** and **MaxLambda** have no defaults on purpose: they are one switch, not three
+settings. Given, OpenSees stops stepping by **Lambda** and adapts each step to take about **NumIter**
+iterations, anywhere between **MinLambda** and **MaxLambda**. The load factor the model ends up under is
+then not **Lambda** times the number of steps, and nothing reports that it changed. Leave them empty for
+a model under exactly **Lambda** × the [Analysis Step](analysis-step.md)'s steps.
 
 ### Inputs — Newmark
 
@@ -66,7 +72,7 @@ with `Transient`, or `Newmark` with `Static`, will not do what you want.
 ## 🔗 Relation to OpenSees
 
 ```tcl
-integrator LoadControl       $lambda $numIter $minLambda $maxLambda
+integrator LoadControl       $lambda $numIter $minLambda $maxLambda   ;# the last three only when given
 integrator Newmark           $gamma $beta
 integrator CentralDifference
 ```
