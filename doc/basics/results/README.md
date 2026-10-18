@@ -58,12 +58,12 @@ They depend on the section's shape, not its material. Same tree layout as Beam F
 ### [Utilisation](utilisation.md)
 
 Checks every beam against the design code of its material — steel to EN 1993-1-1: cross-section
-class, axial force, shear, torsion, bending, bending with axial force and shear, and flexural
-buckling. One value per check per beam, 1 at the limit, with a **Report** of every number worked
-out on the way.
+class, axial force, shear, torsion, bending, bending with axial force and shear, flexural and
+lateral-torsional buckling, and bending with compression as a member (6.3.3, Annex B). One value per
+check per beam, 1 at the limit, with a **Report** of every number worked out on the way.
 
-The steel grade comes from the beam's material. Lateral-torsional buckling and the bending and
-compression interaction of 6.3.3 are not checked yet.
+The steel grade comes from the beam's material. Torsional and torsional-flexural buckling are not
+checked yet.
 
 ### [Shell Forces](shell-forces.md)
 
