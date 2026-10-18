@@ -24,12 +24,13 @@ There is no separate component. Right-click the **ForceBeamColumn** component an
 | Line | `Line` | Curve | — | Centreline of the element, in `m`. |
 | Section | `Section` | Section | — | Interior cross-section. Also the section the hinges are derived from. |
 | GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
+| ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | ReleaseI | `ReleaseI` | Release | fully fixed | Release condition at the **I** end, from [Hinge Release](hinge-release.md). |
 | LpI | `LpI` | Number | `0.05` | Hinge length at the **I** end, **as a fraction of the element length L**. |
 | ReleaseJ | `ReleaseJ` | Release | fully fixed | Release condition at the **J** end. |
 | LpJ | `LpJ` | Number | `0.05` | Hinge length at the **J** end, as a fraction of L. |
-| ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d hinged-beam colour | Display colour in the Rhino viewport. |
+| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 {% hint style="warning" %}
 **LpI and LpJ are ratios, not lengths.** `0.05` means 5 % of the chord length L, whatever
