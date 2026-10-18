@@ -9,9 +9,9 @@ bending with compression as a member.
 
 `Utilisation (Alpaca4d)` — **Alpaca4d ▸ 08_NumericalOutput**
 
-<figure><img src="../../.gitbook/assets/components/utilisation.png" alt="Utilisation component" width="438"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/utilisation.png" alt="Utilisation component" width="483"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/components/utilisation-open.png" alt="Utilisation component with every menu open" width="438"><figcaption><p>With every menu open</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/utilisation-open.png" alt="Utilisation component with every menu open" width="483"><figcaption><p>With every menu open</p></figcaption></figure>
 
 ### Inputs
 
