@@ -15,7 +15,7 @@ Two dropdowns live on the component body, under the **Library** menu:
 
 | Dropdown | Values | Default |
 | --- | --- | --- |
-| **Family** | `I`, `O`, `[]`, `2L`, `All` | `I` |
+| **Family** | `I`, `2L`, `O`, `[]`, `All` | `I` |
 | **Section** | `All`, then the profiles of the selected family | first profile in the family |
 
 Set **Section** to `All` for every profile of the family as a list, and **Family** to `All` for
