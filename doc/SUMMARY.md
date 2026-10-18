@@ -111,6 +111,9 @@
 * [💐 Custom Script](examples/custom-script/custom-script.md)
 * [🏗️ Deconstruct Anything](examples/deconstruct-anything/deconstruct-anything.md)
 * [🕸️ Mesh Loft-Brick](examples/meshloft-meshbrick/meshloft-meshbrick.md)
+* [🔩 Steel Cantilever](examples/steel-cantilever/steel-cantilever.md)
+* [🌉 Footbridge Study](examples/footbridge-study/footbridge-study.md)
+* [⛰️ Non-Linear Optimisation](examples/non-linear-optimisation/non-linear-optimisation.md)
 
 ## REFERENCES
 

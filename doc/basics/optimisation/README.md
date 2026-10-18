@@ -14,6 +14,11 @@ Two ways to find a good design, both by moving the sliders of a definition and s
 They do what Colibri with Design Explorer, and DoDo's NL-Opt, did. Both ship with Alpaca4d, so
 there is nothing else to install.
 
+Two examples to start from: the [Footbridge Study](../../examples/footbridge-study/footbridge-study.md),
+a study of 108 designs for the Explorer, and the
+[Non-Linear Optimisation cases](../../examples/non-linear-optimisation/non-linear-optimisation.md),
+eight problems with known answers.
+
 ## Components in this tab
 
 | Component | Nickname | Does |
