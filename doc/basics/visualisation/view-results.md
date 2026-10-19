@@ -27,7 +27,7 @@ the undeformed shape or the deformed one.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | Info | `Info` | Text | What is drawn, and the range it spans. |
-| Values | `Values` | Number (list) | Every value drawn. Feed it to the **Data** input of [Legend](legend.md); when **Range** is set, give Legend the same Range, or its labels will not match. |
+| Values | `Values` | Number (list) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set. Feed it to the **Data** input of [Legend](legend.md). |
 | Colors | `Colors` | Colour (list) | The gradient used. Feed it to the **Colors** input of Legend, so the legend and the model agree. |
 
 ### Result menu
@@ -73,7 +73,7 @@ Connect the analysed model from [Run Analysis](../analysis/run-analysis.md) or
 the mode.
 
 Feed its **Values** and **Colors** outputs to [Legend](legend.md), so the scale matches what is
-drawn.
+drawn. **Values** follows **Range**, so the legend needs no Range of its own.
 
 *Beam stresses* colours each beam along its length by any output of
 [Beam Stresses](../results/beam-stresses.md) — σN, σMy, σMz, σmax, σmin, τV, τT or Von Mises —

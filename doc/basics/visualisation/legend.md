@@ -13,10 +13,11 @@ Draws a fixed on-screen colour scale — the key that makes a contour readable.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | Title | `Title` | Text | *(empty)* | Heading above the scale. Put the quantity and its unit here — `mxx [kN·m/m]`. |
-| Data | `Data` | Number (list) | *(empty)* | Numbers the min and max labels are taken from. |
-| Colors | `Colors` | Colour (list) | *Turbo* | The gradient, same list you gave the contour component. |
+| Data | `Data` | Number (list) | *(empty)* | Numbers the labels run from the smallest to the largest of — the **Values** output of [View Results](view-results.md). Ignored when **Range** is set. |
+| Colors | `Colors` | Colour (list) | *Turbo* | The gradient, from the low end to the high — the **Colors** output of View Results. |
 | Position | `Pos` | Integer | `0` | `0` left, `1` right, `2` bottom centre. |
-| Scale | `Scale` | Number | `1.5` | Size multiplier. Values at or below zero fall back to `1.5`. |
+| Scale | `Scale` | Number | `1.5` | Size multiplier. Values at or below zero fall back to `1.5`. The legend shrinks below it where it would not fit the viewport. |
+| Range | `Range` | Domain | *(empty)* | The range the colours span, in place of the one **Data** gives. Not needed with Data from View Results. |
 
 ### Outputs
 
@@ -32,14 +33,14 @@ None. The component draws straight to the viewport.
 
 ## 💡 Getting it to agree with the contour
 
-The legend does **not** read the contour component — it reads whatever you give it. To keep
-the two in step:
+The legend does **not** read [View Results](view-results.md) — it reads whatever you give it.
+Wire the **Values** and **Colors** outputs of View Results into **Data** and **Colors**, and
+the two stay in step: **Values** holds the value each colour stands for, over the **Range**
+you gave View Results when you gave one.
 
-- Feed **Colors** from the same [Colors](colors.md) component that feeds the contour.
-- Feed **Data** with the same numbers, from the matching
-  [Results](../results/README.md) component.
-- If you fixed **Range** on the contour, give the legend the same two numbers as **Data** so
-  the labels match the gradient.
+If **Data** comes from somewhere else, such as a [Results](../results/README.md) component,
+give the legend the same **Colors** as the contour, and the same **Range** if you fixed one
+there.
 
 The legend is drawn in **screen space**, so it stays put and stays the same size as you orbit
 and zoom.
