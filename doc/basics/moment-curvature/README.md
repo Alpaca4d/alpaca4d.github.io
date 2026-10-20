@@ -63,7 +63,11 @@ Fibre geometry is drawn in the **world XY plane** and read as the section's loca
 | World **Y** | Local **z** — the blue arrow |
 
 This is the order OpenSees writes a fibre in. [Fiber Section](fiber-section.md) draws both
-arrows so you can see which is which.
+arrows so you can see which is which, at the area centroid of the fibres, which the moments are
+taken about.
+
+**My** and **Mz** are the moments about local *y* and *z*, by the right-hand rule with the beam's
+axis *x* coming out of the drawing: positive My stretches the +z side, positive Mz the −y side.
 
 Everything is in **metres** and **kN**: coordinates in `m`, fibre areas in `m²`, stresses in
 `kN/m²`, curvature in `rad/m`, moments in `kN·m`. Strains are dimensionless.

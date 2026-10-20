@@ -25,15 +25,32 @@ Collects fibre points, layers and patches into one section.
 
 ### Local axes
 
-The component draws the section's local axes as two arrows:
+The component draws the section's local axes at the **area centroid of its fibres**, steel
+included: the point OpenSees takes the section's moments about, and the **Centroid** of
+[Interaction Domain](interaction-domain.md).
 
-| Arrow | Axis | World direction |
-| --- | --- | --- |
-| **Green** | local *y* | world **X** |
-| **Blue** | local *z* | world **Y** |
+| Arrow | Axis | World direction | Moment about it |
+| --- | --- | --- | --- |
+| **Green**, labelled `y, My` | local *y* | world **X** | My |
+| **Blue**, labelled `z, Mz` | local *z* | world **Y** | Mz |
+| **Red** ⊙, labelled `x` | the beam's axis, x = y × z | world **Z**, out of the drawing | — |
 
 That is the order OpenSees writes a fibre in. Draw the section in the world XY plane and the
 mapping takes care of itself; the arrows are there to confirm it.
+
+**My is the moment about *y*, Mz the moment about *z***, by the right-hand rule with *x* coming
+out of the drawing, towards you in the Top view. The double arrowheads are a moment vector's.
+So:
+
+| Positive | Stretches | Squeezes |
+| --- | --- | --- |
+| My | the fibres on the **+z** side | the −z side |
+| Mz | the fibres on the **−y** side | the +y side |
+
+This is the convention of [Moment Curvature](moment-curvature.md), whose Direction 0 bends the
+section about *y* and 90 about *z*, of [Interaction Domain](interaction-domain.md) and
+[Domain Check](domain-check.md), and of the [views](domain-views.md), which draw My along X and
+Mz along Y, as the arrows here lie.
 
 The preview also shows every fibre the section contains, so a patch whose mesh is too coarse
 or a layer pointing the wrong way is visible before anything is run.
