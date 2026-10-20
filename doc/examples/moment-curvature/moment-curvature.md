@@ -13,24 +13,31 @@ interaction, effective cracked stiffness, ductility.
 
 ## What to try
 
-* **Sweep the axial force.** Feed a range into **Axial** (negative for compression) and take
-  the peak moment at each level — that is an M–N interaction diagram.
+* **Read the ductility.** The curve stops where the first fibre reaches its ultimate strain;
+  **κYield**, **κUltimate** and **Ductility** give the section's curvature ductility, and
+  **Failure** says which material failed, and where.
+* **Sweep the axial force.** Feed a range into **Axial** (negative for compression) and watch the
+  ductility fall as the compression grows. For the whole M–N interaction at the ultimate limit
+  state use [Interaction Domain](../../basics/moment-curvature/interaction-domain.md) instead.
+* **Bend it off its axes.** Give **Direction** an angle, `30` say: the moment holds that direction
+  and the neutral axis turns as it needs to.
 * **Change the bar count.** `NumberOfFibers` on the Layer Fiber, and watch where the curve
   flattens.
-* **Turn `MinMax` on** for both materials, so the curve ends where the section actually
-  fails rather than carrying on past it.
 * **Refine the patch mesh.** Each face is one fibre, so the mesh density is the fibre
   density. Compare a coarse and a fine mesh near the neutral axis.
+* **Draw the curves.** [Moment Curvature Diagram](../../basics/moment-curvature/moment-curvature-diagram.md)
+  draws them, with first yield and the ultimate state marked; wire it several results to compare.
 * **Unpack the fibres.** [Fiber Stress Strain](../../basics/moment-curvature/fiber-stress-strain.md)
-  gives the stress and strain history of every fibre, which is how you find out which one
-  failed first and at what curvature.
+  gives the stress and strain history of every fibre.
 
 See [Moment Curvature](../../basics/moment-curvature/README.md) for the reference
 documentation on each component.
 
 {% hint style="info" %}
 Running the definition writes `MomentCurvature.tcl` and a `FiberResults` folder next to the
-Grasshopper file. They are analysis artefacts and can be deleted between runs.
+Grasshopper file, and the materials' curves in `AlpacaResults`. They are analysis artefacts and can
+be deleted between runs. The definition was made with the earlier Moment Curvature; Grasshopper
+offers to upgrade it when it opens.
 {% endhint %}
 
 ## Download

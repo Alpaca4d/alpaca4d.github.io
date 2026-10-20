@@ -5,8 +5,9 @@ material, and integrates their response. It is how a section's real non-linear b
 concrete crushing, reinforcement yielding, the loss of stiffness after cracking — comes out
 of the material laws rather than being assumed.
 
-The **Moment Curvature** component then pushes such a section to a given curvature under a
-held axial force and returns the full curve.
+The **Moment Curvature** component then pushes such a section's curvature under a held axial
+force and returns the full curve, to its ultimate state; **Interaction Domain** gives what the
+section carries at the ultimate limit state, for every combination of N, My and Mz.
 
 {% hint style="info" %}
 This tab is marked **βeta** in Grasshopper (`MomentCurvature_βeta`). It works as a
@@ -38,7 +39,8 @@ section-level tool. Fibre sections cannot yet be assigned to a
 
 | Component | Nickname | Does |
 | --- | --- | --- |
-| [Moment Curvature](moment-curvature.md) | `MC` | Runs the section analysis. |
+| [Moment Curvature](moment-curvature.md) | `MC` | Runs the section analysis, in any direction, to its ultimate state. |
+| [Moment Curvature Diagram](moment-curvature-diagram.md) | `M-κ` | Draws the curves, with first yield and the ultimate state. |
 | [Fiber Stress Strain](fiber-stress-strain.md) | `FBS` | Splits the per-fibre history into fibres, stresses and strains. |
 
 **Resistance domain** — what the section carries at the ultimate limit state.

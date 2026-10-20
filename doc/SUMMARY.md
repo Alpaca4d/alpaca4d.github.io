@@ -81,6 +81,7 @@
   * [Patch](basics/moment-curvature/patch.md)
   * [Fiber Section](basics/moment-curvature/fiber-section.md)
   * [Moment Curvature](basics/moment-curvature/moment-curvature.md)
+  * [Moment Curvature Diagram](basics/moment-curvature/moment-curvature-diagram.md)
   * [Fiber Stress Strain](basics/moment-curvature/fiber-stress-strain.md)
   * [Interaction Domain](basics/moment-curvature/interaction-domain.md)
   * [Domain Check](basics/moment-curvature/domain-check.md)
