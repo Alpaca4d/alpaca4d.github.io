@@ -20,14 +20,14 @@ the undeformed shape or the deformed one.
 | Step | `Step` | Integer | `0` | Which recorded step to draw, or which mode after a natural vibration or buckling analysis. |
 | ElementId | `ElementId` | Text (list) | *(empty)* | Draw only some elements' results: an ElementId (`MyBeam_3`), a wildcard over them (`MyBeam*`, `Col_?`), an element tag (`47`) or a regular expression (`regex:^Col`), mixed freely. What is left out is greyed rather than hidden. Empty draws them all. |
 | Colors | `Colors` | Colour (list) | Turbo | The gradient to colour with, from the low end to the high. Connect [Colors](colors.md) for a ready-made one. Beam force diagrams ignore it and use the colour that belongs to the force. |
-| Range | `Range` | Domain | *(empty)* | The range the gradient is stretched over. Left empty it fits what is drawn, which makes two steps impossible to compare: set it to compare them. |
+| Range | `Range` | Domain | *(empty)* | The range the gradient is stretched over, in the unit picked under **Unit**. Left empty it fits what is drawn, which makes two steps impossible to compare: set it to compare them. |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Info | `Info` | Text | What is drawn, and the range it spans. |
-| Values | `Values` | Number (list) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set. Feed it to the **Data** input of [Legend](legend.md). |
+| Info | `Info` | Text | What is drawn, the unit it is in, and the range it spans — `Displacement - Uz [mm], step 0, min -12.3, max 0`. |
+| Values | `Values` | Number (list) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked under **Unit**. Feed it to the **Data** input of [Legend](legend.md). |
 | Colors | `Colors` | Colour (list) | The gradient used. Feed it to the **Colors** input of Legend, so the legend and the model agree. |
 
 ### Result menu
@@ -38,6 +38,7 @@ What to draw. The menu starts open.
 | --- | --- | --- |
 | Result | Displacement, Beam forces, Beam stresses, Shell forces, Shell stresses, Brick stresses, Reactions | Always |
 | Component | Those of the result, below | Always |
+| Unit | Those of the component, below | Always |
 | Layer through the thickness | Top, Middle, Bottom | For *Shell stresses* |
 | Reactions drawn as | Selected component, Resultant, All three | For *Reactions* |
 | Read in which axes | Global, Local — the element's own axes, from its node numbering | For *Brick stresses* |
@@ -46,11 +47,29 @@ What to draw. The menu starts open.
 | --- | --- |
 | Displacement | Magnitude, Ux, Uy, Uz |
 | Beam forces | N, Vy, Vz, Torsion, My, Mz |
-| Beam stresses | σN, σMy, σMz, σmax, σmin, τV, τT, VonMises, in MPa |
+| Beam stresses | σN, σMy, σMz, σmax, σmin, τV, τT, VonMises |
 | Shell forces | fxx, fyy, fxy, mxx, myy, mxy, vxz, vyz |
 | Shell stresses | σ11, σ22, σ12, σ23, σ31, VonMises |
 | Brick stresses | σ11, σ22, σ33, σ12, σ23, σ13, VonMises |
 | Reactions | Force, Fx, Fy, Fz, Moment, Mx, My, Mz |
+
+**Unit** offers the units of the component picked. A new View Results starts in the unit in bold.
+**Info**, **Values**, the values written on the model and **Range** are all in the unit picked, so
+a legend fed from **Values** reads in it too, and a **Range** is typed in it.
+
+| Component | Units |
+| --- | --- |
+| Displacement | **mm**, cm, m |
+| N, Vy, Vz of *Beam forces*; Force, Fx, Fy, Fz of *Reactions* | N, **kN**, MN |
+| Torsion, My, Mz of *Beam forces*; Moment, Mx, My, Mz of *Reactions* | N·mm, N·m, kN·cm, **kN·m**, MN·m |
+| Every stress — *Beam*, *Shell* and *Brick stresses* | kPa (= kN/m²), **MPa** (= N/mm²), kN/cm² |
+| fxx, fyy, fxy, vxz, vyz of *Shell forces* | N/m, **kN/m** (= N/mm), MN/m |
+| mxx, myy, mxy of *Shell forces* | N·m/m, **kN·m/m**, MN·m/m |
+
+Each kind of quantity keeps its own unit: pick mm for a displacement and MPa for a stress, and
+switching between the two finds each where you left it. A definition saved before **Unit** existed
+opens in the units the solver works in — m, kN, kN·m, kPa, kN/m, kN·m/m, and MPa for beam
+stresses — which is what it drew then, so a **Range** wired into it keeps its meaning.
 
 ### Display menu
 
@@ -64,7 +83,7 @@ How to draw it. The menu starts folded; click its header to unfold it.
 | Extruded beams | off | Draws each beam as its cross-section, coloured by the result. | Always |
 | Diagram and arrow scale | `1`, from 0 to 20 | Stretches the beam force diagrams and the reaction arrows. | For *Beam forces* and *Reactions* |
 | Element edges | on | Draws the edges of the shell, solid and extruded beam elements. | Always |
-| Show values | off | Writes values on the model, to four significant figures: each beam's largest, at the tip of its diagram for beam forces; each shell or solid element's at its centre; each reaction at its arrow. | Always |
+| Show values | off | Writes values on the model, in the unit picked, to four significant figures: each beam's largest, at the tip of its diagram for beam forces; each shell or solid element's at its centre; each reaction at its arrow. | Always |
 | Value text size | `0.5`, from 0.05 to 5 | The height of those values, in model units. | With **Show values** on |
 
 Connect the analysed model from [Run Analysis](../analysis/run-analysis.md) or
@@ -77,7 +96,7 @@ drawn. **Values** follows **Range**, so the legend matches with or without one.
 
 *Beam stresses* colours each beam along its length by any output of
 [Beam Stresses](../results/beam-stresses.md) — σN, σMy, σMz, σmax, σmin, τV, τT or Von Mises —
-in MPa, with each integration point's colour placed where the point sits on the beam. It is the third entry
+in MPa unless another **Unit** is picked, with each integration point's colour placed where the point sits on the beam. It is the third entry
 of the **Result** menu, after *Beam forces*.
 
 *Beam forces* draws each force as a diagram in the plane it acts in, in the beam's local axes
