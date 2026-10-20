@@ -47,7 +47,7 @@ section-level tool. Fibre sections cannot yet be assigned to a
 
 | Component | Nickname | Does |
 | --- | --- | --- |
-| [Interaction Domain](interaction-domain.md) | `Domain` | The N–My–Mz domain of the section. |
+| [Interaction Domain](interaction-domain.md) | `Interaction Domain` | The N–My–Mz domain of the section. |
 | [Domain Check](domain-check.md) | `Domain Check` | Safety factors of design forces against it. |
 | [Domain 3D](domain-views.md#domain-3d) | `Domain 3D` | Draws the domain in three dimensions. |
 | [N-M Diagram](domain-views.md#n-m-diagram) | `N-M` | Draws its cut through the N axis at a moment direction. |

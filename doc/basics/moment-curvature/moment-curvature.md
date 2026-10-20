@@ -16,7 +16,7 @@ yield** and **ultimate state**: the ductility of the section and what makes it f
 | --- | --- | --- | --- | --- |
 | FiberSection | `FiberSection` | FiberSection | — | The section to analyse, from [Fiber Section](fiber-section.md). |
 | Axial | `Axial` | Number | `0.0` | Axial force held constant while the curvature is applied, in `kN`. **Positive is tension, negative is compression.** |
-| Direction | `Direction` | Text | `y` | The moment direction: `y` to bend about the section's local *y* axis, `z` about its *z* axis, or an angle in degrees from *y* towards *z*, such as `30`. See [Any direction](#any-direction). |
+| Direction | `Direction` | Number | `0` | The moment direction, in degrees from the section's local *y* axis towards *z*, from `0` to `90`: `0` bends it about *y*, `90` about *z*. See [Any direction](#any-direction). |
 | NumIncr | `NumIncr` | Integer | `100` | Increments used to reach `MaxPhi`: the number of points on the curve, when it does not stop sooner. |
 | MaxPhi | `MaxPhi` | Number | — | The curvature along Direction to push the section to, in `rad/m`. Left empty, it comes from the section's ultimate state: a fifth past it, or twice it when the analysis is not to stop there. |
 | εud | `εud` | Number | `0.01` | Ultimate strain, either way, of every fibre that is not [Concrete01](concrete01.md), as in [Interaction Domain](interaction-domain.md). |
@@ -70,8 +70,8 @@ ductility of εud / εy = 29.6.
 
 ## Any direction
 
-`Direction` holds the **moment** to its direction and leaves the curvature across it free, as
-bending about *y* always held Mz at zero. A section bent off its axes, or an unsymmetric one,
+`Direction`, between 0 and 90 degrees, holds the **moment** to its direction and leaves the
+curvature across it free, as bending about *y* always held Mz at zero. A section bent off its axes, or an unsymmetric one,
 turns its neutral axis as it needs to, and its curve ends on the [N-M Diagram](domain-views.md#n-m-diagram)
 cut at the same angle. Under the hood the element is turned so that the direction lies on a global
 axis; the forces and deformations come back in the section's own axes.
@@ -124,5 +124,7 @@ Read the whole deck from the **log** output.
 {% hint style="info" %}
 Definitions made with the earlier Moment Curvature, which bent about *y* or *z* only and ran to
 `MaxPhi`, open with it, and Grasshopper offers to upgrade it. The upgraded component keeps its
-wires and values; a `MaxPhi` given stays given, and the curve now stops at the ultimate state.
+wires and values: a Direction of `y` becomes `0` and `z` becomes `90`, a Value List of the two
+wired to it is turned into one of 0 and 90, a `MaxPhi` given stays given, and the curve now stops
+at the ultimate state.
 {% endhint %}

@@ -8,9 +8,9 @@ reinforced concrete of any shape, steel, or both.
 
 ## 🔧 Grasshopper component
 
-`Interaction Domain (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `Domain`
+`Interaction Domain (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `Interaction Domain`
 
-<figure><img src="../../.gitbook/assets/components/interaction-domain.png" alt="Domain component" width="453"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/interaction-domain.png" alt="Interaction Domain component" width="453"><figcaption></figcaption></figure>
 
 ### Inputs
 
