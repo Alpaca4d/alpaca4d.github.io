@@ -73,7 +73,7 @@ Connect the analysed model from [Run Analysis](../analysis/run-analysis.md) or
 the mode.
 
 Feed its **Values** and **Colors** outputs to [Legend](legend.md), so the scale matches what is
-drawn. **Values** follows **Range**, so the legend needs no Range of its own.
+drawn. **Values** follows **Range**, so the legend matches with or without one.
 
 *Beam stresses* colours each beam along its length by any output of
 [Beam Stresses](../results/beam-stresses.md) — σN, σMy, σMz, σmax, σmin, τV, τT or Von Mises —
