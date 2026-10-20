@@ -16,7 +16,7 @@ yield** and **ultimate state**: the ductility of the section and what makes it f
 | --- | --- | --- | --- | --- |
 | FiberSection | `FiberSection` | FiberSection | — | The section to analyse, from [Fiber Section](fiber-section.md). |
 | Axial | `Axial` | Number | `0.0` | Axial force held constant while the curvature is applied, in `kN`. **Positive is tension, negative is compression.** |
-| Direction | `Direction` | Number | `0` | The moment direction, in degrees from the section's local *y* axis towards *z*, from `0` to `90`: `0` bends it about *y*, `90` about *z*. See [Any direction](#any-direction). |
+| Direction | `Direction` | Number | `0` | The moment direction, in degrees from the section's local *y* axis towards *z*, from `-180` to `180`: `0` bends it about *y*, `90` about *z*, and `180` and `-90` the other way about each. See [Any direction](#any-direction). |
 | NumIncr | `NumIncr` | Integer | `100` | Increments used to reach `MaxPhi`: the number of points on the curve, when it does not stop sooner. |
 | MaxPhi | `MaxPhi` | Number | — | The curvature along Direction to push the section to, in `rad/m`. Left empty, it comes from the section's ultimate state: a fifth past it, or twice it when the analysis is not to stop there. |
 | εud | `εud` | Number | `0.01` | Ultimate strain, either way, of every fibre that is not [Concrete01](concrete01.md), as in [Interaction Domain](interaction-domain.md). |
@@ -70,8 +70,10 @@ ductility of εud / εy = 29.6.
 
 ## Any direction
 
-`Direction`, between 0 and 90 degrees, holds the **moment** to its direction and leaves the
-curvature across it free, as bending about *y* always held Mz at zero. A section bent off its axes, or an unsymmetric one,
+`Direction`, between −180 and 180 degrees, holds the **moment** to its direction and leaves the
+curvature across it free, as bending about *y* always held Mz at zero. The two ways about an axis
+differ for a section that is not symmetric: a beam with 3 φ20 at the bottom and 2 φ16 at the top,
+at N = −1000 kN, reaches 249 kN·m at `0` and 264 kN·m at `180`. A section bent off its axes, or an unsymmetric one,
 turns its neutral axis as it needs to, and its curve ends on the [N-M Diagram](domain-views.md#n-m-diagram)
 cut at the same angle. Under the hood the element is turned so that the direction lies on a global
 axis; the forces and deformations come back in the section's own axes.
