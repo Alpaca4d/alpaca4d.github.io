@@ -41,7 +41,9 @@ Plot `My` against `κy` — or `Mz` against `κz` — for the moment–curvature
 - You need the real capacity of a reinforced-concrete or composite section: cracking, yield
   and ultimate moment, all from the material laws.
 - You are assessing ductility — the ratio of ultimate to yield curvature.
-- You need the M–N interaction: sweep **Axial** and take the peak moment at each level.
+- You need the moment at a given axial force and curvature. For the whole N–M or N–My–Mz
+  interaction at the ultimate limit state, use [Interaction Domain](interaction-domain.md):
+  it does not have to converge near the axial capacity, which a held **Axial** does.
 - You want an effective cracked stiffness, `EI = M/κ` on the branch that matters.
 
 **Do not use it when**

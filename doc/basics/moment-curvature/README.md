@@ -41,6 +41,16 @@ section-level tool. Fibre sections cannot yet be assigned to a
 | [Moment Curvature](moment-curvature.md) | `MC` | Runs the section analysis. |
 | [Fiber Stress Strain](fiber-stress-strain.md) | `FBS` | Splits the per-fibre history into fibres, stresses and strains. |
 
+**Resistance domain** — what the section carries at the ultimate limit state.
+
+| Component | Nickname | Does |
+| --- | --- | --- |
+| [Interaction Domain](interaction-domain.md) | `Domain` | The N–My–Mz domain of the section. |
+| [Domain Check](domain-check.md) | `Domain Check` | Safety factors of design forces against it. |
+| [Domain 3D](domain-views.md#domain-3d) | `Domain 3D` | Draws the domain in three dimensions. |
+| [N-M Diagram](domain-views.md#n-m-diagram) | `N-M` | Draws its cut through the N axis at a moment direction. |
+| [My-Mz Diagram](domain-views.md#my-mz-diagram) | `My-Mz` | Draws its levels at chosen axial forces. |
+
 ## Local axes and units
 
 Fibre geometry is drawn in the **world XY plane** and read as the section's local *yz* plane:
@@ -70,3 +80,5 @@ ReinforcingSteel ──► Layer Fiber ─┘                            └─�
    [ReinforcingSteel](reinforcing-steel.md) material.
 3. Collect both in a [Fiber Section](fiber-section.md).
 4. Push it with [Moment Curvature](moment-curvature.md).
+5. Or sweep its [Interaction Domain](interaction-domain.md), check design forces against it with
+   [Domain Check](domain-check.md), and draw it with the [views](domain-views.md).
