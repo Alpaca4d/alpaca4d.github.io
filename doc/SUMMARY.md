@@ -111,6 +111,7 @@
 * [🖨️ 3d Printed Structure](examples/3d-printed-structure/3d-printed-structure.md)
 * [🔒 Connection Design](examples/connection-design/connection-design.md)
 * [📈 Moment Curvature](examples/moment-curvature/moment-curvature.md)
+* [🏛️ Column Domain](examples/column-domain/column-domain.md)
 * [🔋 High Tension Tower](examples/high-tension-tower/high-tension-tower.md)
 * [💐 Custom Script](examples/custom-script/custom-script.md)
 * [🏗️ Deconstruct Anything](examples/deconstruct-anything/deconstruct-anything.md)
