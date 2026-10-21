@@ -17,12 +17,12 @@ Three dropdowns live on the component body, under the **Library** menu:
 | --- | --- | --- |
 | **Type** | Steel, Concrete, Timber, Plastic — plus any type found in a custom database | `Steel` |
 | **Grade** | `All`, then the grades of the selected type | `S235` |
+| **Model** | `Uniaxial` or `nD` | `Uniaxial` |
 
 Set **Grade** to `All` for every grade of the type as a list, in the order the database lists
 them — weakest first for steel, `S235` to `S450`. Pick from it with List Item and a slider to
 let an optimisation choose the grade. Connect a Panel to the output to read the list: each
 material shows as its name.
-| **Model** | `Uniaxial` or `nD` | `Uniaxial` |
 
 Built-in grades:
 
@@ -39,6 +39,7 @@ Built-in grades:
 | --- | --- | --- | --- | --- |
 | Material Name | `Name` | Text | *(empty)* | Type a grade name directly, e.g. `S235`. **Overrides the dropdowns** and moves them to match. An unknown name is an error, not a fallback. |
 | DatabasePath | `DBPath` | Generic | *(empty)* | Path to a custom JSON database with the same schema as the built-in ones. Its type is merged into the **Type** dropdown, and takes priority over a built-in type of the same name. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the material is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by material** — every grade of the list, with **Grade** set to `All`. Left empty, Model View gives each material a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

@@ -26,6 +26,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | G | `G` | Number | `90760000` | Shear modulus, in `kN/m²`. |
 | ν | `ν` | Number | `0.3` | Poisson's ratio. |
 | Rho | `Rho` | Number | `7850` | Density, in `kg/m³`. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the material is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by material**. Left empty, Model View gives each material a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 
