@@ -19,6 +19,7 @@ truss chord or a bracing member bolted through a gusset plate.
 | Thickness | `Thickness` | Number | `0.01` | Leg thickness, in `m`. |
 | Gap | `Gap` | Number | `0.02` | Clear distance between the two angles, in `m` — typically the gusset plate thickness. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

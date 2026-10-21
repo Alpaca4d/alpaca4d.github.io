@@ -38,6 +38,7 @@ as its name.
 | Section Name | `Name` | Text | *(empty)* | Type a profile name directly, e.g. `IPE200`. **Overrides the dropdowns** and moves them to match. |
 | Material | `Material` | Material | Elastic steel | A [Uniaxial](../materials/Uniaxial.md) material. Defaults to Alpaca4d's elastic steel, so the component works with nothing plugged in. |
 | Gap | `Gap` | Number | `0.01` | **Only present when the family is `2L` or `All`.** Clear distance between the two angles, in `m`. The input appears and disappears as you change the family. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section** — every section of the list, with **Section** set to `All`. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

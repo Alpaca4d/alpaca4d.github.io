@@ -16,6 +16,7 @@ A circular cross-section, solid or hollow.
 | Diameter | `Diameter` | Number | `0.15` | Outer diameter, in `m`. |
 | Thickness | `Thickness` | Number | `0.01` | Wall thickness, in `m`. **`0` or `D/2` gives a solid circle.** Anything larger than `D/2` is an error. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

@@ -16,6 +16,7 @@ A solid rectangular cross-section.
 | Width | `Width` | Number | `0.30` | Width, along the local *z* axis, in `m`. |
 | Height | `Height` | Number | `0.60` | Height, along the local *y* axis, in `m`. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

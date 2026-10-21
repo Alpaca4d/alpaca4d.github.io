@@ -22,6 +22,7 @@ in another tool, a value taken from a catalogue table.
 | AlphaY | `AlphaY` | Number | — | Shear area factor along the local *y* axis. |
 | AlphaZ | `AlphaZ` | Number | — | Shear area factor along the local *z* axis. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material, supplying `E`, `G` and the density used for element mass. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

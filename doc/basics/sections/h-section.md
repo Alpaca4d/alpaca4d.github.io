@@ -21,6 +21,7 @@ flanges have independent widths and thicknesses.
 | BottomFlangeThickness | `BottomFlangeThickness` | Number | `0.02` | Thickness of the bottom flange, in `m`. |
 | Web | `Web` | Number | `0.02` | Web thickness, in `m`. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 

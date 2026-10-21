@@ -16,6 +16,7 @@ The section a **shell** element uses: a thickness plus an
 | SectionName | `SecName` | Text | *(empty)* | Label for the section. |
 | Thickness | `Thickness` | Number | `0.15` | Shell thickness, in `m`. |
 | Material | `Material` | Material | — | An [nD](../materials/ND.md) material. A uniaxial material will not be accepted. |
+| Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 
 ### Outputs
 
