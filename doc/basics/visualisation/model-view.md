@@ -32,7 +32,8 @@ Three menus live on the component body, folded at first: click a menu's header t
 | Element IDs | The tag of every element. |
 | Section Names | The section name on each beam. |
 | Local Axes | The local axes of each element as red, green and blue arrows: *x*, *y*, *z* on beams, 1, 2, 3 on shells and solids. These are the axes beam and shell forces and local solid stresses are reported in. |
-| Text size | Height of the ids and section names, in model units. Shown while any of them is on. |
+| Colour by | Dropdown: `Element`, `Section` or `Material`. What the elements are coloured by — see [Colouring by section or material](#colouring-by-section-or-material). `Element` by default. |
+| Text size | Height of the ids, section names and load values, in model units. Shown while any of them is on. |
 | Axes size | How big the local axes are drawn, as a multiple of each element's own size. Shown while Local Axes is on. |
 
 **Loads**
@@ -40,6 +41,7 @@ Three menus live on the component body, folded at first: click a menu's header t
 | Control | Effect |
 | --- | --- |
 | Show Loads | Draws point, line and surface loads as arrows and patches. |
+| Show Values | Writes what each load is worth at the tail of its arrow, in the load's colour: `kN` for a point load (and `kN·m` for its moment, when it has one), `kN/m` once per beam for a line load, `kN/m²` once per shell for a surface load. Works with or without **Show Loads**; its size is **Text size**, under **Elements**. |
 | Load Scale | Slider, 0.1 – 10. Arrow size. |
 
 **Supports**
@@ -55,7 +57,6 @@ Three menus live on the component body, folded at first: click a menu's header t
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | The model, passed through so the component can sit inline. |
-| Info | `Info` | Text | A summary of what the model contains. |
 
 ## 📈 When to use it
 
@@ -80,6 +81,29 @@ Three menus live on the component body, folded at first: click a menu's header t
 | Which way is local *y* on this beam? | **Local Axes** — this is what `My` and `Mz` in [Beam Forces](../results/beam-forces.md) refer to. |
 | Are the supports right? | **Show Supports**, then compare the glyphs against [the preset table](../elements/support.md#the-seven-presets). |
 | Did that load land where I put it? | **Show Loads**, and raise **Load Scale**. |
+| Is it as big as I meant? | **Show Values**. |
+| Did every member get the section I meant? | **Colour by** `Section`, with **Section Names** on. |
+
+## 💡 Colouring by section or material
+
+**Colour by** sets what the elements are drawn in:
+
+| Colour by | Each element is drawn in |
+| --- | --- |
+| `Element` | The colour its element component gave it — the **Colour** input of [ForceBeamColumn](../elements/force-beam-column.md), or the default for its kind. |
+| `Section` | Its section's colour. A solid has no section, and is drawn in its material's. |
+| `Material` | Its section's material's colour, or a solid's own material's. A layered shell is drawn in the material of its first layer. |
+
+A section or material takes the colour given to the **Colour** input of the component that made
+it — every section component, the [Steel Section Library](../sections/library.md), the
+[Uniaxial](../materials/Uniaxial.md) and [nD](../materials/ND.md) materials and the
+[Material Library](../materials/MaterialDatabase.md) have one. Those given none are each picked a
+colour of their own, in the order the model meets them, from a set of ten chosen to be told apart.
+
+Elements that share a section share its colour, and "share" goes by **name**: two Section
+Library components both set to `IPE200` are one colour, though the analysis gets two sections.
+A section or material with no name goes by what it is, so the elastic steel every Section
+Library falls back on is one material in the view, however many components fell back on it.
 
 {% hint style="info" %}
 On a large model, **Extruded** and **Node IDs** are both expensive to draw. Use
