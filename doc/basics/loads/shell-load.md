@@ -12,7 +12,7 @@ A uniform **surface pressure** on shell elements.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| ShellElement | `ShellElement` | Element | *all shells* | The shell element to load. **If left empty the load is applied to every shell element in the model.** |
+| Shell\|Id | `Shell\|Id` | Element or text | *all shells* | The shell to load, or text naming the shells by ElementId: `Slab_1`, a wildcard `Slab*`, an element tag `47`, or `regex:^Slab`. **If left empty the load is applied to every shell element in the model.** |
 | Force | `Force` | Vector | — | Pressure `px, py, pz` in **global** axes, in `kN/m²`. |
 
 ### Outputs
@@ -40,6 +40,13 @@ The pressure is **not** applied along the shell normal. The vector is in global 
 downward load on a pitched roof given as `0, 0, -q` is a load per square metre **of the
 sloping surface**, not of its plan projection. For a snow load defined on plan, scale by
 `cos θ` yourself.
+{% endhint %}
+
+{% hint style="info" %}
+ASD Shell makes one element per mesh face. To load a whole slab, give its mesh one ElementId on
+ASD Shell and type that name into **Shell|Id**: every face of it is loaded, with one Mesh Load.
+Each item makes one load, so two names that match the same shell load it twice. A name that
+matches no shell loads nothing, and Assemble Model warns about it.
 {% endhint %}
 
 ## 🔗 Relation to OpenSees

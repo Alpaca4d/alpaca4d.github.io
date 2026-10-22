@@ -12,7 +12,7 @@ A uniform **line load** along the length of a beam element.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| BeamElement | `BeamElement` | Element | *all beams* | The beam element to load. **If left empty the load is applied to every beam element in the model.** |
+| Beam\|Id | `Beam\|Id` | Element or text | *all beams* | The beam to load, or text naming the beams by ElementId: `Beam_3`, a wildcard `Beam*`, an element tag `47`, or `regex:^Col`. **If left empty the load is applied to every beam element in the model.** |
 | Force | `Force` | Vector | — | Load intensity `qx, qy, qz` in **global** axes, in `kN/m`. |
 
 ### Outputs
@@ -40,9 +40,13 @@ automatically.
 - The action is a surface pressure on a shell → [Shell Load](shell-load.md).
 
 {% hint style="info" %}
-Leaving **BeamElement** empty loads *all* beams, which is convenient but easy to forget. If
-different members need different intensities, use one component per group and plug the
-elements in explicitly.
+Leaving **Beam|Id** empty loads *all* beams, which is convenient but easy to forget. If
+different members need different intensities, use one component per group. Plug the elements
+in, or give the group one ElementId on the beam component and type that name here, so the load
+follows the name instead of a wire.
+
+Each item makes one load, so two names that match the same beam (`Beam*` and `Beam_3`) load it
+twice. A name that matches no beam loads nothing, and Assemble Model warns about it.
 {% endhint %}
 
 ## 🔗 Relation to OpenSees
