@@ -125,8 +125,8 @@ Read the whole deck from the **log** output.
 
 {% hint style="info" %}
 Definitions made with the earlier Moment Curvature, which bent about *y* or *z* only and ran to
-`MaxPhi`, open with it, and Grasshopper offers to upgrade it. The upgraded component keeps its
-wires and values: a Direction of `y` becomes `0` and `z` becomes `90`, a Value List of the two
-wired to it is turned into one of 0 and 90, a `MaxPhi` given stays given, and the curve now stops
-at the ultimate state.
+`MaxPhi`, open with it; Grasshopper's **Upgrade Components…** swaps it for this one. The upgraded
+component keeps its wires and values: a Direction of `y` becomes `0` and `z` becomes `90`, a Value
+List of the two wired to it is turned into one of 0 and 90, a Panel wired to it saying `y` or `z`
+says `0` or `90`, a `MaxPhi` given stays given, and the curve now stops at the ultimate state.
 {% endhint %}
