@@ -27,7 +27,7 @@ the undeformed shape or the deformed one.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | Info | `Info` | Text | What is drawn, the unit it is in, and the range it spans — `Displacement - Uz [mm], step 0, min -12.3, max 0`. |
-| Values | `Values` | Number (list) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked under **Unit**. With **Iso-surfaces** on, the edges of the bands instead, one more than there are colours. Feed it to the **Data** input of [Legend](legend.md). |
+| Values | `Values` | Number (list) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked under **Unit**. With **Iso-surfaces** on, the edges of the bands instead, one more than there are colours. Feed it to the **Values** input of [Legend](legend.md). |
 | Colors | `Colors` | Colour (list) | The gradient used. Feed it to the **Colors** input of Legend, so the legend and the model agree. |
 
 ### Result menu
