@@ -11,6 +11,11 @@ Use it to see how the materials and the reinforcement layout drive stiffness, yi
 and post-yield behaviour, and as a starting point for section-level studies — M–N
 interaction, effective cracked stiffness, ductility.
 
+The section is 300 × 500 mm with φ24 bars 30 mm in from its faces, 8 along one and 3 along the
+other, under 400 kN of compression. Its sizes are typed in millimetres and turned into metres
+on the way in, since a fibre section is in metres and its materials in kN/m²; a size left in
+millimetres, or an area in mm², gives moments thousands of times too large.
+
 ## What to try
 
 * **Read the ductility.** The curve stops where the first fibre reaches its ultimate strain;
@@ -36,8 +41,10 @@ documentation on each component.
 {% hint style="info" %}
 Running the definition writes `MomentCurvature.tcl` and a `FiberResults` folder next to the
 Grasshopper file, and the materials' curves in `AlpacaResults`. They are analysis artefacts and can
-be deleted between runs. The definition was made with the earlier Moment Curvature; Grasshopper
-offers to upgrade it when it opens.
+be deleted between runs. The definition was made with the earlier Moment Curvature: upgrade it with
+Grasshopper's **Upgrade Components…** for the yield and ultimate outputs above. `MaxPhi` is given as
+0.04 rad/m, past the ultimate state, so the upgraded component stops there; empty it to have it
+taken from the section's ultimate state instead.
 {% endhint %}
 
 ## Download
