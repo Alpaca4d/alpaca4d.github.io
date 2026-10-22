@@ -6,7 +6,7 @@ A uniform **surface pressure** on shell elements.
 
 `Mesh Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**, nickname `MeshLoad`
 
-<figure><img src="../../.gitbook/assets/components/mesh-load.png" alt="MeshLoad component" width="378"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/mesh-load.png" alt="MeshLoad component" width="318"><figcaption></figcaption></figure>
 
 ### Inputs
 

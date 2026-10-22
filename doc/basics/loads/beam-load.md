@@ -6,7 +6,7 @@ A uniform **line load** along the length of a beam element.
 
 `Linear Load (Alpaca4d)` — **Alpaca4d ▸ 05_Load**, nickname `LinearLoad`
 
-<figure><img src="../../.gitbook/assets/components/linear-load.png" alt="LinearLoad component" width="363"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/linear-load.png" alt="LinearLoad component" width="303"><figcaption></figcaption></figure>
 
 ### Inputs
 
