@@ -61,4 +61,6 @@ pattern Plain $tag $tsTag -fact $factor {
 ```
 
 The weight of a beam is `A × ρ × L`, of a shell `t × ρ × area`, split between the nodes of
-the element.
+the element. A solid's, `ρ × volume`, is shared equally among its nodes, except a
+[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md)'s: −1/20 of it on each corner and
+1/5 on each edge node, the way the element shares a body force.

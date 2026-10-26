@@ -53,6 +53,7 @@ a transient one for `Transient`. An [MPCO Recorder](../mpco-recorder.md) on the
 | --- | --- |
 | *"OpenSees executable path is not configured"* | Set it — **Alpaca4d ▸ Settings ▸ Set OpenSees Executable…**. See [Setup](../../setup.md). |
 | *"Analysis Failed: OpenSees exited with an error"* | The deck itself failed — a bad command, an undefined material. The **log** names the line. |
+| *"This OpenSees does not know the Ten Node Tetrahedron"* | The model has [Ten Node Tetrahedra](../elements/ten-node-tetrahedron.md) and the OpenSees is 3.8.0 or older, whose element is six times too soft. Use an OpenSees built from master since 16 October 2026, or Four Node Tetrahedron. |
 | *"Analysis Failed: OpenSees 'analyze' did not converge"* | The deck was valid but the solution did not converge. Loosen the [Test](test.md) tolerance, raise its iteration count, take smaller steps in [Analysis Step](analysis-step.md), or change the algorithm. |
 | *"Warning! Double check the log!"* | OpenSees printed a warning and carried on. The results exist but deserve a look. |
 
