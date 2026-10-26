@@ -47,7 +47,7 @@ What to draw. The menu starts open.
 | --- | --- |
 | Displacement | Magnitude, Ux, Uy, Uz |
 | Beam forces | N, Vy, Vz, Torsion, My, Mz |
-| Beam stresses | σN, σMy, σMz, σmax, σmin, τV, τT, VonMises |
+| Beam stresses | σN, σMy, σMz, σx, σmax, σmin, τV, τT, VonMises |
 | Shell forces | fxx, fyy, fxy, mxx, myy, mxy, vxz, vyz |
 | Shell stresses | σ11, σ22, σ12, σ23, σ31, VonMises |
 | Brick stresses | σ11, σ22, σ33, σ12, σ23, σ13, VonMises |
@@ -80,7 +80,7 @@ How to draw it. The menu starts folded; click its header to unfold it.
 | Deformed shape | off | Draws the result on the deformed shape. | Always |
 | Deformation scale | `1`, from 0 to 200 | How much the deformation is magnified. | With **Deformed shape** on |
 | Animate | off | Sweeps the deformation scale from the slider's least value to its greatest and back, moving the slider with it. It reads *Stop animation* while it runs. | With **Deformed shape** on |
-| Extruded beams | off | Draws each beam as its cross-section, coloured by the result. | Always |
+| Extruded beams | off | Draws each beam as its cross-section, coloured by the result. Beam stresses that differ across the section are painted point by point over it — see [Beam stresses over the section](#beam-stresses-over-the-section). | Always |
 | Diagram and arrow scale | `1`, from 0 to 20 | Stretches the beam force diagrams and the reaction arrows. | For *Beam forces* and *Reactions* |
 | Iso-surfaces | off | Colours in bands — one flat colour per range of values — instead of a smooth gradient. See [Iso-surfaces](#iso-surfaces). | For every result but *Beam forces* |
 | Element edges | on | Draws the edges of the shell, solid and extruded beam elements. | Always |
@@ -97,8 +97,10 @@ drawn. **Values** follows **Range**, so the legend matches with or without one.
 
 *Beam stresses* colours each beam along its length by any output of
 [Beam Stresses](../results/beam-stresses.md) — σN, σMy, σMz, σmax, σmin, τV, τT or Von Mises —
-in MPa unless another **Unit** is picked, with each integration point's colour placed where the point sits on the beam. It is the third entry
-of the **Result** menu, after *Beam forces*.
+or by σx, in MPa unless another **Unit** is picked, with each integration point's colour placed
+where the point sits on the beam. It is the third entry of the **Result** menu, after *Beam
+forces*. Drawn as lines, each integration section shows its worst; with **Extruded beams** on, the
+stress is painted over the section itself — see below.
 
 *Beam forces* draws each force as a diagram in the plane it acts in, in the beam's local axes
 (turn on **Local Axes** in [Model View](model-view.md) to see them): Vy and Mz across local *y*,
@@ -111,6 +113,47 @@ of [Beam Forces](../results/beam-forces.md).
 
 **Extruded beams** draws each beam as its cross-section, on the deformed shape too, coloured by
 whatever result is picked.
+
+### Beam stresses over the section
+
+A beam pushed and bent both ways is not stressed alike across its section: one corner works hardest,
+the opposite one least. With **Extruded beams** on, *Beam stresses* paints the stress at every
+point of the section's surface, so that shows — the gradient from the top of the beam to the
+bottom, and from one side to the other.
+
+| Component | Drawn as lines | With **Extruded beams** |
+| --- | --- | --- |
+| σN | N/A | the same: N/A is the same all over the section |
+| σMy, σMz | the largest bending stress each moment causes, in size | My·z/Iy and −Mz·y/Iz at each point, with their signs |
+| σx | σmax or σmin, whichever is larger in size, with its sign | the direct stress at each point, N, My and Mz together: positive in tension |
+| σmax, σmin | the largest and the smallest direct stress on the section | the same, one colour round the section |
+| τV, τT | the peak shear from Vy and Vz, and from torsion | the size of the shear at each point, running along the surface |
+| VonMises | the worst σ with the worst τ | √(σ² + 3τ²) at each point, of the σ and τ that meet there |
+
+σx is the one to look at for an axial force with bending: tension along one edge, compression
+along the other, and the neutral axis where the colour passes zero.
+
+How the shear is spread over the section depends on its shape — Jourawski's parabola on a
+rectangle, thin-walled shear flow on an I, a pair of angles or a box, round the circle on a round
+bar or tube — and torsion's too: Saint-Venant on a rectangle, T·r/Ip on a round section, T·t/J on
+each wall of an I or a pair of angles, Bredt on a box. Within Von Mises, shear and torsion are
+signed along the surface, so on one face of a wall they add and on the other they take away, and
+Von Mises shows the face that is worse. Its largest value at a point is usually below the one the
+line view and [Beam Stresses](../results/beam-stresses.md) give, since the worst σ and the worst τ
+rarely meet at one point: bending peaks at a section's edges and shear on its neutral axis. It is
+not always below it: where Vy and Vz act together, their shear flows add along one wall of an I or
+a box, and the stress there can be higher — by about a fifth on a box sheared equally both ways.
+
+The range fits every point drawn, so turning **Extruded beams** on or off can change the range of
+the same component: σMy, for one, runs from minus its largest to plus it, where as lines it is never
+below zero.
+**Iso-surfaces** bands the field over the section as well. A
+[Generic Section](../sections/parametric-cross-section.md) has no shape to work the stress out
+over, so its beams are coloured by σN only — one colour round the section when extruded — and
+drawn plain grey for every other component.
+
+A definition saved before σx was offered opens on the component it was saved with: σx went into the
+list after σMz, and the rest are moved one place along when such a file is opened.
 
 ### Iso-surfaces
 
