@@ -8,8 +8,9 @@ The full stress tensor at every solid element, plus the Von Mises equivalent str
 
 <figure><img src="../../.gitbook/assets/components/brick-stresses.png" alt="Brick Stresses component" width="423"><figcaption></figcaption></figure>
 
-Applies to [SSP Brick](../elements/brick.md) and
-[Four Node Tetrahedron](../elements/four-node-tetrahedron.md) elements.
+Applies to [SSP Brick](../elements/brick.md),
+[Four Node Tetrahedron](../elements/four-node-tetrahedron.md) and
+[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) elements.
 
 ### Inputs
 
@@ -21,9 +22,10 @@ Applies to [SSP Brick](../elements/brick.md) and
 
 ### Outputs
 
-One value per element. Both element types have a single integration point, so there is
-nothing to sample along the element — the outputs are flat lists, tetrahedra first and then
-bricks, each in the order they were assembled; the **Element** output says which is which.
+One value per element. An SSP Brick and a Four Node Tetrahedron have a single integration
+point; a Ten Node Tetrahedron has four, and its value is their mean, the stress at its centre.
+The outputs are flat lists, four node tetrahedra first, then ten node ones, then bricks, each
+in the order they were assembled; the **Element** output says which is which.
 
 The components are in **global** axes by default. Set **Axes** to local to read them in each
 element's own axes instead — axes 1, 2 and 3 of **Local Axes** in
