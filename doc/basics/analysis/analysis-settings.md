@@ -18,7 +18,7 @@ Collects every object OpenSees needs to define an analysis into one bundle, whic
 | Numberer | `Numberer` | Text | `RCM` | DOF numbering: `RCM`, `AMD`, `Plain`. |
 | System | `System` | Text | `SparseSPD` | Linear system solver: `BandGen`, `BandSPD`, `ProfileSPD`, `SuperLU`, `UmfPack`, `SparseSYM`, `SparseSPD`, `SparseGeneral`, `FullGeneral`. |
 | Test | `Test` | Test | — | Convergence test, from [Test](test.md). |
-| Algorithm | `Algorithm` | Text | `ModifiedNewton` | Solution algorithm: `Linear`, `Newton`, `NewtonLineSearch`, `ModifiedNewton`, `KrylovNewton`, `SecantNewton`, `BFGS`, `Broyden`. |
+| Algorithm | `Algorithm` | Text | `Newton` | Solution algorithm: `Linear`, `Newton`, `NewtonLineSearch`, `ModifiedNewton`, `KrylovNewton`, `SecantNewton`, `BFGS`, `Broyden`. |
 | Integrator | `Integrator` | Integrator | — | From [Integrator](integrator.md). |
 | AnalysisType | `AnalysisType` | Text | `Static` | `Static` or `Transient`. |
 | AnalysisSteps | `AnalysisSteps` | AnalysisStep | — | From [Analysis Step](analysis-step.md). |
@@ -39,9 +39,11 @@ options.
 [rigid links](../constraints/rigid-link.md), and gives a wrong answer rather than an error
 when it meets one.
 
-**Algorithm.** `Linear` for a genuinely linear model — it does one iteration and stops.
-`ModifiedNewton` is a good default for non-linear work; `KrylovNewton` often converges where
-it does not. `Newton` re-forms the tangent every iteration: most accurate, slowest.
+**Algorithm.** `Newton`, the default, re-forms the tangent every iteration. On an elastic model
+it is about 20 % slower than `Linear`, and on a yielding one it is what lets the step converge at
+all. `Linear` does one solve with no iteration. On a non-linear model it still reports success,
+and returns the unconverged first guess. `ModifiedNewton` re-forms the tangent less often, and
+`KrylovNewton` often converges where Newton does not.
 
 **System.** `SparseSPD` suits most structural models, which are symmetric and positive
 definite. `UmfPack` or `SparseGeneral` handle a non-symmetric system — which is what you get
