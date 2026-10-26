@@ -79,6 +79,20 @@ OpenSees's third, `-symmBandLapack`, solves only the standard eigenvalue problem
 without the mass — so it cannot give natural frequencies, and the component stops with an error if
 it is typed in.
 
+`-genBandArpack` does its solves with a linear system solver, which the component picks the way
+[Analysis Settings](analysis-settings.md) does with `Auto`. It uses `Mumps`, on every core, when the
+OpenSees in use has it (see [Setup](../../setup.md#solving-on-several-cores)), and `BandSPD` when it
+does not. Left to itself, OpenSees would fall back on `ProfileSPD`, which is much slower on a large
+model. For 10 modes on an Apple M2 Pro:
+
+| Model | DOF | OpenSees' default, `ProfileSPD` | `Mumps` |
+| --- | ---: | ---: | ---: |
+| Frame 15 × 15 × 15 bays | 23 040 | 7.8 s | 0.47 s |
+| Shell 120 × 120 | 84 966 | 38 s | 1.4 s |
+| Brick block 24 × 24 × 24 | 45 000 | 205 s | 2.1 s |
+
+The eigenvalues are the same with every one of them.
+
 {% hint style="warning" %}
 **Save the Grasshopper file first.** This component writes `AlpacaModel.tcl`,
 `recorder_eigen.mpco` and `ModalReport.txt` beside it, and throws *"Have you saved the
@@ -108,6 +122,10 @@ and from [Mass Point](../loads/mass-point.md). A [Gravity Load](../loads/gravity
 
 ```tcl
 recorder mpco recorder_eigen.mpco ...
+if {[catch {system Mumps -matrixType 1 -numThreads 0}]} {
+    puts stderr "Alpaca4d: this OpenSees has no Mumps solver, so BandSPD solves, on one core"
+    system BandSPD
+}
 set lambdaN [eigen -genBandArpack $numModes]
 puts "$lambdaN"
 modalProperties -file "ModalReport.txt" -unorm
