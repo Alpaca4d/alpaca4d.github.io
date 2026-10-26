@@ -19,6 +19,7 @@ Constructs one tetrahedral element from one 4-vertex mesh.
 | Mesh | `Mesh` | Mesh | — | Tetrahedral mesh with **4 vertices**, in `m`. Passed through `CleanTetrahedron` to order the corners. |
 | Material | `Material` | Material | — | An [nD material](../materials/ND.md). |
 | Colour | `Colour` | Colour | Alpaca4d brick colour | Display colour in the Rhino viewport. |
+| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty meshes labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 ### Outputs
 
