@@ -12,6 +12,7 @@ them up.
 | [ASD Shell](shell.md) | `ASDQ4/ASDT3` | Shell elements from the faces of a mesh — `ASDShellQ4` for quads, `ASDShellT3` for triangles. |
 | [SSP Brick](brick.md) | `SSP Brick` | A stabilized single-point hexahedral solid from an 8-vertex mesh. |
 | [Four Node Tetrahedron](four-node-tetrahedron.md) | `Four Node Tetrahedron` | A linear tetrahedral solid from a 4-vertex mesh. |
+| [Ten Node Tetrahedron](ten-node-tetrahedron.md) | `Ten Node Tetrahedron` | A quadratic tetrahedral solid from a 4-vertex mesh, with a node added at the middle of each edge. Needs an OpenSees newer than 3.8.0. |
 | [Spring Link](spring-link.md) | `Spring Link` | A spring between two nodes that are apart, with its own stiffness in each local direction. |
 | [Support](support.md) | `Support` | A nodal restraint, from a point or from a plane for skewed supports. |
 | [Hinge Release](hinge-release.md) | `Hinge Release` | A release condition consumed by the `WithHinges` beam unit. |
@@ -24,7 +25,7 @@ them up.
 | Yielding expected only at member ends | **ForceBeamColumn**, unit `WithHinges` |
 | One dimension much smaller than the other two — slabs, walls, plates, roofs, tanks | **ASD Shell** |
 | Fully volumetric, and meshable as hexahedra | **SSP Brick** |
-| Fully volumetric, and only meshable as tetrahedra | **Four Node Tetrahedron** |
+| Fully volumetric, and only meshable as tetrahedra | **Ten Node Tetrahedron**; **Four Node Tetrahedron** on OpenSees 3.8.0 and older |
 | A connection with its own stiffness between two parts — a bearing, a bolt, an interlayer | **Spring Link** |
 
 Most models combine several: beams for the frame, shells for slabs and walls, solids for the

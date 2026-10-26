@@ -27,6 +27,7 @@
   * [Shell](basics/elements/shell.md)
   * [Brick](basics/elements/brick.md)
   * [Four Node Tetrahedron](basics/elements/four-node-tetrahedron.md)
+  * [Ten Node Tetrahedron](basics/elements/ten-node-tetrahedron.md)
   * [Spring Link](basics/elements/spring-link.md)
   * [Support](basics/elements/support.md)
 * [🔗 Constraints](basics/constraints/README.md)

@@ -38,6 +38,8 @@ Constructs one tetrahedral element from one 4-vertex mesh.
 - A hexahedral mesh is available → prefer [SSP Brick](brick.md). The linear tetrahedron has
   a constant strain field, so it is stiff in bending and needs a much finer mesh to reach
   the same accuracy.
+- The solid bends and your OpenSees is newer than 3.8.0 → prefer
+  [Ten Node Tetrahedron](ten-node-tetrahedron.md), from the same meshes.
 - The body is thin → use [Shell](shell.md).
 
 ## 🔗 Relation to OpenSees
