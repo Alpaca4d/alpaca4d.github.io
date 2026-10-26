@@ -65,9 +65,13 @@ Torsion uses each shape's own formula:
 | [Double L-Angle](../sections/double-angle.md) | both long legs for Vy, the short leg's root for Vz | T·t / J |
 
 {% hint style="warning" %}
-**Von Mises is an upper bound.** It puts the worst σ with the worst τ, which rarely meet: bending
-peaks at the corners, where a free surface carries no shear, and shear peaks on the neutral axis,
-where bending is zero. Close to exact on slender members, conservative on short deep ones.
+**Von Mises is conservative, mostly.** It puts the worst σ with the worst τ, which rarely meet:
+bending peaks at the corners, where a free surface carries no shear, and shear peaks on the neutral
+axis, where bending is zero. Close to exact on slender members, conservative on short deep ones.
+It is not a strict bound: τV puts the peaks from Vy and Vz together as √(τy² + τz²), but where
+both act their shear flows can add along one wall of an I or a box, and the shear there is then
+higher than τV — by about a fifth on a box sheared equally both ways, and by a few percent under
+Vz alone on a box whose side walls are thinner than its flanges.
 {% endhint %}
 
 {% hint style="info" %}
