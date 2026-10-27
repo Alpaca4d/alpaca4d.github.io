@@ -51,7 +51,7 @@ across the mesh.
 **Do not use it when**
 
 - The body is genuinely volumetric → use [Brick](brick.md) or
-  [Four Node Tetrahedron](four-node-tetrahedron.md).
+  [Ten Node Tetrahedron](ten-node-tetrahedron.md).
 - The behaviour is member-like → use [ForceBeamColumn](force-beam-column.md).
 
 ## 🔗 Relation to OpenSees

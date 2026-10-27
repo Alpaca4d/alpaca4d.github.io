@@ -8,9 +8,9 @@ The full stress tensor at every solid element, plus the Von Mises equivalent str
 
 <figure><img src="../../.gitbook/assets/components/brick-stresses.png" alt="Brick Stresses component" width="423"><figcaption></figcaption></figure>
 
-Applies to [SSP Brick](../elements/brick.md),
-[Four Node Tetrahedron](../elements/four-node-tetrahedron.md) and
-[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) elements.
+Applies to [SSP Brick](../elements/brick.md) and
+[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) elements, and to the four node
+tetrahedra of a definition made before Ten Node Tetrahedron replaced them.
 
 ### Inputs
 
@@ -22,7 +22,7 @@ Applies to [SSP Brick](../elements/brick.md),
 
 ### Outputs
 
-One value per element. An SSP Brick and a Four Node Tetrahedron have a single integration
+One value per element. An SSP Brick and a four node tetrahedron have a single integration
 point; a Ten Node Tetrahedron has four, and its value is their mean, the stress at its centre.
 The outputs are flat lists, four node tetrahedra first, then ten node ones, then bricks, each
 in the order they were assembled; the **Element** output says which is which.

@@ -47,7 +47,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Material | `Material` | Material | nD material, for a [Plate Fiber Section](../sections/plate-fiber.md), an [SSP Brick](../elements/brick.md) or a [Tetrahedron](../elements/four-node-tetrahedron.md). |
+| Material | `Material` | Material | nD material, for a [Plate Fiber Section](../sections/plate-fiber.md), an [SSP Brick](../elements/brick.md) or a [Tetrahedron](../elements/ten-node-tetrahedron.md). |
 
 {% hint style="info" %}
 `G` on the isotropic unit is not written to OpenSees — `ElasticIsotropic` derives its shear
@@ -58,7 +58,7 @@ object may also be read for section properties.
 {% hint style="info" %}
 **Rho is in kg/m³, and it is what gives shells and solids their mass.**
 [Shells](../elements/shell.md), [bricks](../elements/brick.md) and
-[tetrahedra](../elements/four-node-tetrahedron.md) take no mass input of their own — OpenSees
+[tetrahedra](../elements/ten-node-tetrahedron.md) take no mass input of their own — OpenSees
 reads the density straight off this material. Alpaca4d converts it to the solver's mass unit
 when the deck is written.
 

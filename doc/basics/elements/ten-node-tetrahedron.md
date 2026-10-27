@@ -2,12 +2,13 @@
 
 The **ten node tetrahedron** is the quadratic 3D solid element: the four corners of a
 tetrahedron plus a node at the middle of each of its six edges. Its strain varies linearly
-through it, so it can bend, where the [four node tetrahedron](four-node-tetrahedron.md), with
-one constant strain, locks up. It is the element to use for volumes that only mesh into
-tetrahedra.
+through it, so it can bend, where the linear four node tetrahedron, with one constant strain,
+locks up. It is the element to use for volumes that only mesh into tetrahedra.
 
-It is made from the same 4-vertex mesh as the four node tetrahedron. The six edge nodes are
-added for you at the edge midpoints.
+It is made from a 4-vertex mesh per tetrahedron. The six edge nodes are added for you at the edge
+midpoints.
+
+It replaces the Four Node Tetrahedron component.
 
 {% hint style="warning" %}
 **It needs an OpenSees newer than 3.8.0.** In OpenSees 3.8.0 and earlier the element
@@ -63,8 +64,6 @@ between two supported corners with no support of its own.
 
 - A hexahedral mesh is available and coarse is good enough → [SSP Brick](brick.md) is cheaper.
 - The body is thin → use [Shell](shell.md).
-- Your OpenSees is 3.8.0 or older → [Four Node Tetrahedron](four-node-tetrahedron.md), with a
-  much finer mesh.
 
 ## 📊 Results
 

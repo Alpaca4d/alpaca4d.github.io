@@ -36,7 +36,7 @@ way round it when the solid can be described as a series of layers.
 **Do not use it when**
 
 - The geometry is irregular and cannot be described as layers → use
-  [Four Node Tetrahedron](../elements/four-node-tetrahedron.md) with a tetrahedral mesh
+  [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) with a tetrahedral mesh
   instead.
 
 ## 💡 Typical chain

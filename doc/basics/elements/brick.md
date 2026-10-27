@@ -50,7 +50,7 @@ meshes into the component — [Mesh Series to Brick](../utility/mesh-series-to-b
 - The behaviour is bending-dominated and member-like → use
   [ForceBeamColumn](force-beam-column.md).
 - Your geometry only meshes into tetrahedra → use
-  [Four Node Tetrahedron](four-node-tetrahedron.md).
+  [Ten Node Tetrahedron](ten-node-tetrahedron.md).
 
 ## 🔗 Relation to OpenSees
 

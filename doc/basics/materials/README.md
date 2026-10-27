@@ -21,7 +21,7 @@ For the non-linear materials used by fibre sections — `Concrete01`, `Steel01`,
 | --- | --- |
 | A beam cross-section (rectangle, circle, I, 2L, hollow, generic) | a **Uniaxial** material |
 | A [Plate Fiber Section](../sections/plate-fiber.md) for shells | an **nD** material |
-| An [SSP Brick](../elements/brick.md) or [Tetrahedron](../elements/four-node-tetrahedron.md) | an **nD** material |
+| An [SSP Brick](../elements/brick.md) or [Tetrahedron](../elements/ten-node-tetrahedron.md) | an **nD** material |
 | A fibre in a [Fiber Section](../moment-curvature/fiber-section.md) | a **Uniaxial** material |
 
 ## Units

@@ -66,7 +66,7 @@ little from those Alpaca computes for the same profile.
 | Any other Beam With Hinges | A beam or column with the same end releases |
 | [Shell](../elements/shell.md) elements | Plates, and walls where they are vertical. The elements of one section that share edges and lie in one plane become one plate, holes included. |
 | [Spring Link](../elements/spring-link.md) | A point connection with the link's springs, in the link's axes |
-| [Brick](../elements/brick.md), [Four Node Tetrahedron](../elements/four-node-tetrahedron.md) | Not exported |
+| [Brick](../elements/brick.md), [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) | Not exported |
 
 FEM-Design's local z runs along the depth of a section, which is Alpaca's local y, so a beam
 keeps its orientation. A beam's ElementId becomes its name in FEM-Design, numbered: `Column.1`,

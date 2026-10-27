@@ -79,10 +79,10 @@ per element, holding the values at the element's integration points.
 Reads the stress state of every solid element of an analysed model — the six components of the
 stress tensor plus the Von Mises equivalent stress.
 
-One value per element, in global axes or in the element's own. An [SSP Brick](../elements/brick.md) and a
-[Four Node Tetrahedron](../elements/four-node-tetrahedron.md) both have a single integration
-point; a [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) has four, and gives their mean,
-the stress at its centre. These are the three element types it reads.
+One value per element, in global axes or in the element's own. An [SSP Brick](../elements/brick.md)
+has a single integration point; a [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md) has
+four, and gives their mean, the stress at its centre. The four node tetrahedra of a definition made
+before Ten Node Tetrahedron replaced them are read too, at their one point.
 
 The modal report — masses, centre of mass, participation factors and ratios — is no longer a
 component of its own: it is in the [Modal Report](../analysis/natural-vibration.md#modal-report)

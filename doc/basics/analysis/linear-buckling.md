@@ -62,8 +62,8 @@ For the analysis, and only for it (the model connected is not changed):
   box column, swaying in its own plane, would never soften.
 - Beams are split as **Divisions** asks.
 
-Solid elements, [Brick](../elements/brick.md), [Four Node Tetrahedron](../elements/four-node-tetrahedron.md)
-and [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md), have no geometric stiffness in
+Solid elements, [Brick](../elements/brick.md) and
+[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md), have no geometric stiffness in
 OpenSees: they stiffen the model, but never soften under load.
 
 ## ✂️ Divisions
