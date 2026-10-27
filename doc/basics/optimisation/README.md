@@ -14,6 +14,9 @@ Two ways to find a good design, both by moving the sliders of a definition and s
 They do what Colibri with Design Explorer, and DoDo's NL-Opt, did. Both ship with Alpaca4d, so
 there is nothing else to install.
 
+A third works on the material itself rather than on sliders: [Topology Optimisation](topology-optimisation.md)
+finds which part of a block of bricks or tetrahedra a structure needs.
+
 Two examples to start from: the [Footbridge Study](../../examples/footbridge-study/footbridge-study.md),
 a study of 108 designs for the Explorer, and the
 [Non-Linear Optimisation cases](../../examples/non-linear-optimisation/non-linear-optimisation.md),
@@ -29,6 +32,7 @@ eight problems with known answers.
 | [Explorer Image](explorer-image.md) | `Explorer Image` | Which views to take a picture of, and how big. |
 | [Explorer Subset](explorer-subset.md) | `Explorer Subset` | Runs part of a study, to try it out or split it between machines. |
 | [Non-Linear Optimisation](non-linear-optimisation.md) | `NL-Opt` | Minimises or maximises a number by moving sliders, with NLopt's algorithms. |
+| [Topology Optimisation](topology-optimisation.md) | `Topology` | Finds where a solid of bricks or tetrahedra needs its material. |
 
 ## Which one
 

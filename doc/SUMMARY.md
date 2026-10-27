@@ -102,6 +102,7 @@
   * [Explorer Image](basics/optimisation/explorer-image.md)
   * [Explorer Subset](basics/optimisation/explorer-subset.md)
   * [Non-Linear Optimisation](basics/optimisation/non-linear-optimisation.md)
+  * [Topology Optimisation](basics/optimisation/topology-optimisation.md)
 
 ## EXAMPLES
 
