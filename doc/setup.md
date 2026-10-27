@@ -14,6 +14,10 @@ Save the executable somewhere permanent on your machine (e.g. `C:\OpenSees\OpenS
 
 An OpenSees built with Mumps solves large models on every core of the machine, and Alpaca4d uses it when it finds it: see [Solving on several cores](#solving-on-several-cores).
 
+{% hint style="info" %}
+The [Ten Node Tetrahedron](basics/elements/ten-node-tetrahedron.md) needs an OpenSees built from the master branch since 16 October 2026. OpenSees 3.8.0 and the releases before it do not have the element's fixes, and Run Analysis says so rather than solve with it. Every other element runs on 3.8.0.
+{% endhint %}
+
 ## Step 2 — Set the OpenSees Executable in Alpaca4d
 
 Once OpenSees is downloaded:
