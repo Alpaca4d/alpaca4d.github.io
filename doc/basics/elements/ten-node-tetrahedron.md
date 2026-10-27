@@ -65,6 +65,11 @@ between two supported corners with no support of its own.
 - A hexahedral mesh is available and coarse is good enough → [SSP Brick](brick.md) is cheaper.
 - The body is thin → use [Shell](shell.md).
 
+**Examples:** [Spot the Cow](ten-node-tetrahedron/spot-the-cow/spot-the-cow.md),
+[Femur](ten-node-tetrahedron/femur/femur.md) and
+[Inigo the Dragon](ten-node-tetrahedron/inigo-the-dragon/inigo-the-dragon.md) bring tetrahedral meshes
+from a mesher into Grasshopper, under their own weight, a point force and in vibration.
+
 ## 📊 Results
 
 [Brick Stresses](../results/brick-stresses.md) gives one value per element: the mean of its four
