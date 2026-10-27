@@ -99,7 +99,7 @@ A run that stops before it has settled can go on from where it stopped:
 Going on gives exactly what one run of all the iterations gives: the optimisation carries nothing
 from one iteration to the next but the densities, and those are kept.
 
-### Watching the run again, and hearing it
+### Watching the run again
 
 Every iteration's design is kept, so a slider on **Step** plays the run back: from the uniform
 block it starts as, through the first rough members, to the design it settles on. Left empty, or
@@ -109,21 +109,6 @@ The designs are kept small: a density as a byte - steps of 0.004, finer than any
 from it can show - and each design stored as its change from the one before, which is nearly
 nothing once a run settles, compressed. The 200 designs of the cantilever below take 92 KB,
 82 times less than as numbers, and any one of them is back in a fraction of a millisecond.
-
-Each step shown also plays a note: the next note of Grieg's *In the Hall of the Mountain King*, so
-dragging Step plays the tune - faster as you drag faster, as the piece itself speeds up - and the
-step the run converged at plays the opening of Beethoven's Fifth. Right-click the component ▸
-**Sound** to choose another:
-
-| Sound | Plays |
-| --- | --- |
-| In the Hall of the Mountain King | The default: the next note of Grieg's tune for every step. |
-| Ode to Joy | The next note of Beethoven's tune for every step. |
-| Compliance | A tone whose pitch rises as the design gets stiffer - its compliance, from the first design's to the run's lowest, on a pentatonic scale over two octaves. You hear quick climbs while the structure forms and a held note once it has settled. |
-| Off | Nothing. |
-
-The tones are made by Alpaca4d and played by Windows or macOS; the choice is saved with the
-definition. Both tunes are in the public domain, written from the scores.
 
 {% hint style="info" %}
 **Keep material round supports and loads.** A support or a load on a single row of nodes asks
