@@ -46,7 +46,7 @@ warns that they are there.
 | VolumeFraction | `0.3` | The share of the designed solids' volume to keep. The solids in Keep come on top. |
 | Iterations | `100` | How many iterations at most, counted from the first. A run usually settles in 50 to 200. Raised after a run, the run goes on from where it stopped. |
 | Run | `false` | `true` runs the optimisation, `false` pauses it. |
-| Step | latest | Which iteration's design Surface, Solid and Density show: `0` the one the run starts from, `1` after the first iteration, and so on. Connect a slider to watch the run again. |
+| Step | latest | Which iteration's design Surface, Solid, Density and AlpacaModel show: `0` the one the run starts from, `1` after the first iteration, and so on. Connect a slider to watch the run again. |
 
 In the **Settings** menu:
 
@@ -57,21 +57,22 @@ In the **Settings** menu:
 | Tolerance | `0.01` | The run stops when no density changes by more than this in an iteration. Made smaller after a run, the run goes on from where it stopped. |
 | MinStiffness | `1e-9` | The stiffness a void element keeps, as a share of the solid's. |
 | Move | `0.2` | The most a density can change in one iteration. |
-| Threshold | `0.5` | The density from which an element counts as solid, for **Surface** and **Solid**. It changes nothing in the run. |
+| Threshold | `0.5` | The density from which an element counts as solid, for **Surface**, **Solid** and **AlpacaModel**. It changes nothing in the run. |
 | System | `Auto` | The system of equations, as in [Analysis Settings](../analysis/analysis-settings.md): Mumps on every core when the OpenSees has it, BandSPD when not. |
 
 ### Outputs
 
 | Output | Description |
 | --- | --- |
-| Surface | The outline of the material kept: one closed mesh through where the density crosses Threshold, capped where it meets the edge of the domain. |
-| Solid | The solids at or above Threshold, as the model has them: assemble them again with the supports and loads to check the design with Run Analysis. |
+| Surface | The outline of the material kept: one closed mesh through where the density crosses Threshold, capped where it meets the edge of the domain. It outlines what **Solid** holds, without the crumbs a thin member's surface breaks into where it fades out around Threshold. |
+| Solid | The solids that make the design, as new copies of the model's: those at or above Threshold, without pieces nothing holds, and with the elements that join a member's steps. See [Analysing the design](#analysing-the-design). |
 | Density | Each solid's density, 0 to 1, in the order of Element. |
 | Element | The solids. |
 | Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. |
 | Volume | Each iteration's share of the designed solids' volume. |
 | Converged | `true` when the run ended because the densities stopped moving. |
-| Step | The iteration whose design Surface, Solid and Density show. |
+| Step | The iteration whose design Surface, Solid, Density and AlpacaModel show. |
+| AlpacaModel | Once the run has stopped, the design as a model of its own, ready for [Run Analysis](../analysis/run-analysis.md): **Solid** at full stiffness, the model's other elements, and the supports, point loads and masses that stand on them. |
 | History, log | In the Settings menu: each iteration's compliance, volume, change and timings; what OpenSees printed. |
 
 ## ▶️ Running it
@@ -139,6 +140,44 @@ On an Apple M2 Pro, with Mumps:
 | 4 800 | 19 200 | 0.23 s | 23 s |
 | 9 600 | 38 100 | 0.46 s | 46 s |
 | 19 200 | 67 800 | 1.0 s | 100 s |
+
+## 🔍 Analysing the design
+
+Once the run has stopped, **AlpacaModel** is the design as a model of its own: wire it to
+[Run Analysis](../analysis/run-analysis.md) and read it as any analysed model, with View Results,
+Nodal Displacements or the other result components. Three things happen on the way from the
+densities to a model:
+
+- **Solid or void.** The elements at or above Threshold are solid, at their material's full
+  stiffness. The others are left out of the model, rather than kept at a billionth of it.
+- **Pieces nothing holds are left out.** Solid elements make one piece where they share a face. A
+  piece the supports on its nodes do not hold still - every translation and rotation stopped - is
+  left out: the bits the optimisation leaves floating carry nothing, and an analysis would find
+  them free to move. A piece that touches a beam or a shell is kept, as the beam may hold it.
+- **Steps are joined.** On a coarse mesh a diagonal member one or two elements thick comes out
+  as a staircase, its steps meeting only along edges, where it would hinge. The material the
+  filter spread between the steps is there, just under Threshold: where two pieces meet only along
+  an edge or at a corner, the denser of the elements that join them face to face is made solid too.
+
+**Solid** holds the same elements, and **Surface** outlines them. Where a thin member fades out
+around Threshold, the surface through the averaged densities can break into crumbs, apart from the
+rest though the member's elements are joined to it: Surface leaves out pieces under a hundredth of
+the largest. The component says how many elements it left out or added, and how many crumbs.
+
+Supports that stand where the design is void are left out of the model: the cantilever below is
+held all over its end, and the design opens a gap in the middle of it. A load that stands on void
+is left out too, with a warning, as the model no longer carries every load the design was made
+for: keep the solids under the loads.
+
+<figure><img src="../../.gitbook/assets/topology-optimisation/bridge-analysed.png" alt="The bridge example's design analysed: the arch and the columns coloured by Von Mises stress, with a legend" width="560"><figcaption><p>The <a href="#example">bridge</a>'s design, analysed: its Von Mises stresses.</p></figcaption></figure>
+
+Solid and void, the design comes out a little stiffer than the optimiser's last compliance says,
+by about a quarter on the benchmarks below: the grey elements it keeps get their full stiffness.
+
+{% hint style="info" %}
+**Copies.** Solid and AlpacaModel hand out new copies of the model's solids. Assembling the
+model's own again would renumber them under the run.
+{% endhint %}
 
 ## 🧪 Benchmarks
 
