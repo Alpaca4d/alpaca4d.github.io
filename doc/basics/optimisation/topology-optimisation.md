@@ -148,7 +148,7 @@ penalty 3, a filter of 1.5 elements, unit modulus and loads.
 top3d's own problem, `top3d(60,20,4,0.3,3,1.5)`: 60 x 20 x 4 bricks, held at one end, loaded at the
 bottom of the other.
 
-<figure><img src="../../.gitbook/assets/topology-optimisation/cantilever-3d.png" alt="Cantilever"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/topology-optimisation/cantilever-3d.png" alt="The cantilever after 200 iterations: top and bottom flanges joined by diagonal webs, held along its left end and loaded at the bottom of its right"><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/topology-optimisation/cantilever-vs-top3d.png" alt="The cantilever by Alpaca4d and by top3d"><figcaption><p>The density through the depth, by Alpaca4d (top) and top3d (bottom).</p></figcaption></figure>
 
@@ -157,7 +157,7 @@ bottom of the other.
 120 x 20 x 4 bricks, pinned along the bottom of one end and on rollers along the other, loaded
 at the top in the middle.
 
-<figure><img src="../../.gitbook/assets/topology-optimisation/simply-supported-3d.png" alt="Simply supported beam"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/topology-optimisation/simply-supported-3d.png" alt="The simply supported beam after 200 iterations: a truss with its tie thickest at mid-span, under the load at the top in the middle"><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/topology-optimisation/simply-supported-vs-top3d.png" alt="The simply supported beam by Alpaca4d and by top3d"><figcaption><p>The density through the depth, by Alpaca4d (top) and top3d (bottom).</p></figcaption></figure>
 
