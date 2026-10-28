@@ -1,6 +1,6 @@
 # 🏛️ Column Domain
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/column-domain/column-domain.png" alt="A 400 x 600 reinforced concrete column's N-My-Mz domain, its My-Mz diagrams at three axial forces with three design combinations checked against them, and its N-My and N-Mz diagrams"><figcaption></figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/column-domain/column-domain.png" alt="A 400 x 600 reinforced concrete column in Rhino: its fibre section, its N-My-Mz domain, its My-Mz diagrams at three axial forces with three design combinations checked against them, its N-My and N-Mz diagrams, and its results"><figcaption></figcaption></figure>
 
 [column-domain](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/column-domain/column-domain.gh)
 
