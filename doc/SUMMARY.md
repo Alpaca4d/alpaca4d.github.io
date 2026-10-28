@@ -124,6 +124,8 @@
 * [🔩 Steel Cantilever](examples/steel-cantilever/steel-cantilever.md)
 * [🌉 Footbridge Study](examples/footbridge-study/footbridge-study.md)
 * [⛰️ Non-Linear Optimisation](examples/non-linear-optimisation/non-linear-optimisation.md)
+* [🌈 Topology Bridge](examples/topology-bridge/topology-bridge.md)
+* [🧪 Topology Benchmarks](examples/topology-benchmarks/topology-benchmarks.md)
 
 ## REFERENCES
 

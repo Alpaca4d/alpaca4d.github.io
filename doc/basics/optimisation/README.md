@@ -17,10 +17,16 @@ there is nothing else to install.
 A third works on the material itself rather than on sliders: [Topology Optimisation](topology-optimisation.md)
 finds which part of a block of bricks or tetrahedra a structure needs.
 
-Two examples to start from: the [Footbridge Study](../../examples/footbridge-study/footbridge-study.md),
-a study of 108 designs for the Explorer, and the
-[Non-Linear Optimisation cases](../../examples/non-linear-optimisation/non-linear-optimisation.md),
-eight problems with known answers.
+Examples to start from:
+
+- the [Footbridge Study](../../examples/footbridge-study/footbridge-study.md), a study of 108
+  designs for the Explorer;
+- the [Non-Linear Optimisation cases](../../examples/non-linear-optimisation/non-linear-optimisation.md),
+  eight problems with known answers;
+- the [Topology Bridge](../../examples/topology-bridge/topology-bridge.md), where a bridge needs its
+  steel;
+- the [Topology Benchmarks](../../examples/topology-benchmarks/topology-benchmarks.md), two problems
+  checked against top3d.
 
 ## Components in this tab
 

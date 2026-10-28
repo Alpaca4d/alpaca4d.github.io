@@ -219,19 +219,20 @@ follow each other: the simply supported beam to 2e-8 all the way, and the cantil
 design. The checks and the reference are in `Alpaca4d.Test/TopologyOptimisation` in the Alpaca4d
 repository.
 
-To run both in Grasshopper, open `Tools/Examples/TopologyBenchmarks.gh` from the Alpaca4d
-repository: each problem has its own **Run** toggle, and panels beside it give the compliance to
+To run both in Grasshopper, download the [Topology Benchmarks](../../examples/topology-benchmarks/topology-benchmarks.md)
+example: each problem has its own **Run** toggle, and panels beside it give the compliance to
 expect after 200 iterations.
 
 ## Example
 
-`Tools/Examples/TopologyBridge.gh` in the Alpaca4d repository: a steel block 16 m long, 2 m wide
-and 4 m high, pinned along both ends of its bottom. Its top layer is a deck, kept solid through
+The [Topology Bridge](../../examples/topology-bridge/topology-bridge.md) example is a steel block
+16 m long, 2 m wide and 4 m high, pinned along both ends of its bottom. Its top layer is a deck, kept solid through
 Keep, carrying 10 kN/m². With 20% of the rest, the optimisation finds an arch from support to
 support that rises into the deck at mid-span, with a column up to the deck near each end - 3 456
 bricks, 77 iterations, 14 seconds. At two bricks per metre the deck is a 0.5 m slab of solid steel,
 stiff enough to span most of the way itself, and the steel goes into two legs that shorten its
-span instead: what is best depends on what is already there.
+span instead: what is best depends on what is already there. Its last group analyses the design
+from **AlpacaModel** once the run has stopped, as in the picture above.
 
 ## 📚 References
 
