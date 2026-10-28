@@ -10,6 +10,10 @@ part of it to keep to make it as stiff as possible with the share of material yo
 
 `Topology Optimisation (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
+<figure><img src="../../.gitbook/assets/components/topology-optimisation.png" alt="Topology component" width="513"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/components/topology-optimisation-open.png" alt="Topology component with every menu open" width="513"><figcaption><p>With every menu open</p></figcaption></figure>
+
 It takes the assembled model and works on its solids. Each solid gets a density between 0 and 1,
 and a stiffness of density³ times its material's: SIMP, the method of top3d and of most topology
 optimisation codes. Each iteration analyses the model, works out from every element's strain
