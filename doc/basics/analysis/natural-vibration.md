@@ -27,11 +27,21 @@ to converge.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | The model with mode shapes attached. Feed it to [View Results](../visualisation/view-results.md) — the **Step** input then selects the mode. |
+| AlpacaModel | `AlpacaModel` | Model | The model with mode shapes attached, each scaled so that its largest translation is 1. Feed it to [View Results](../visualisation/view-results.md) or [Nodal Displacements](../results/nodal-displacements.md) — the **Step** input then selects the mode, 0 the first. |
 | Eigenvalues | `Eigenvalues` | Number (list) | $$\lambda_n = \omega_n^2$$, one per mode. |
 | Period | `Period` | Number (list) | $$T_n$$, in `s`. |
 | Frequencies | `Frequencies` | Number (list) | $$f_n = \sqrt{\lambda_n}/2\pi$$, in `Hz`. |
 | log | `log` | Text | The OpenSees console output. |
+
+{% hint style="info" %}
+**A mode has no size of its own.** OpenSees scales each mode to a modal mass of one,
+φᵀMφ = 1, so the heavier the model, the smaller the mode: a building of a few thousand tonnes
+moved a few centimetres and needed a deformation scale in the hundreds. Alpaca4d reads each mode
+with its largest translation 1, as [Linear Buckling](linear-buckling.md) does its buckling modes,
+and [View Results](../visualisation/view-results.md) draws it at **Deformation scale** 1 with its
+largest movement 8 % of the model's diagonal, whatever the model's size or mass. The slider
+runs from −2 to 2 there, so **Animate** swings the mode through its rest and out the other side.
+{% endhint %}
 
 ### Modal Report
 

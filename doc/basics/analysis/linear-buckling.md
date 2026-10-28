@@ -25,7 +25,7 @@ Like [Natural Vibration](natural-vibration.md), it needs no
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | The buckled model. Its steps are the buckling modes, step 0 the first, each scaled to a largest translation of 1. Feed it to [View Results](../visualisation/view-results.md) or [Nodal Displacements](../results/nodal-displacements.md). Its beams are split as **Divisions** asks. |
+| AlpacaModel | `AlpacaModel` | Model | The buckled model. Its steps are the buckling modes, step 0 the first, each scaled to a largest translation of 1. Feed it to [View Results](../visualisation/view-results.md), which draws a mode at **Deformation scale** 1 with its largest movement 8 % of the model's diagonal, on a slider from −2 to 2, or to [Nodal Displacements](../results/nodal-displacements.md). Its beams are split as **Divisions** asks. |
 | Load Factors | `Load Factors` | Number (list) | One per mode, lowest first: what the loads are multiplied by for the model to buckle. The first is $$\alpha_{cr}$$. Below 1, the model buckles before its loads are reached. |
 | log | `log` | Text | What OpenSees printed. Read it when the analysis fails. |
 

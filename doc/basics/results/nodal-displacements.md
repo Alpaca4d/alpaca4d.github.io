@@ -45,6 +45,7 @@ nodes in — not the order you drew anything.
 
 {% hint style="info" %}
 On a model from [Natural Vibration](../analysis/natural-vibration.md), **Displacement** is
-the **mode shape**, and `Step` selects the mode. Mode shapes are normalised, so the
-magnitudes are not physical displacements — only their relative values mean anything.
+the **mode shape**, and `Step` selects the mode. Each mode is scaled so that its largest
+translation is 1, and its rotations by the same factor, so the magnitudes are not physical
+displacements — only their relative values mean anything.
 {% endhint %}

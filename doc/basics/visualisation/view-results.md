@@ -78,7 +78,7 @@ How to draw it. The menu starts folded; click its header to unfold it.
 | Control | Default | Does | Shown |
 | --- | --- | --- | --- |
 | Deformed shape | off | Draws the result on the deformed shape. | Always |
-| Deformation scale | `1`, from 0 to 200 | How much the deformation is magnified. | With **Deformed shape** on |
+| Deformation scale | `1`, from 0 to 200; from −2 to 2 on a natural vibration or buckling model | How much the deformation is magnified. A natural vibration or buckling mode has no size of its own, so at 1 it is drawn with its largest movement 8 % of the model's diagonal, as far off the model as the force diagrams; any other displacement at true size. A mode goes either way, so a natural vibration or buckling model switches the slider to −2 to 2, and another model switches it back. A range of your own, set by double-clicking the slider, is kept whatever the model. | With **Deformed shape** on |
 | Animate | off | Sweeps the deformation scale from the slider's least value to its greatest and back, moving the slider with it. It reads *Stop animation* while it runs. | With **Deformed shape** on |
 | Extruded beams | off | Draws each beam as its cross-section, coloured by the result. Beam stresses that differ across the section are painted point by point over it — see [Beam stresses over the section](#beam-stresses-over-the-section). | Always |
 | Diagram and arrow scale | `1`, from 0 to 20 | Stretches the beam force diagrams and the reaction arrows. | For *Beam forces* and *Reactions* |

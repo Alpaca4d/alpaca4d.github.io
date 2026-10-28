@@ -263,11 +263,11 @@ The definition opens on mode 4. Tick **Animate** in View Results' **Display** me
 move.
 
 {% hint style="warning" %}
-**A mode has no size of its own.** OpenSees scales each mode to a modal mass of one, and View
-Results draws it at that size: 2.6 at the wing tip in mode 4, in metres per √tonne. The numbers on
-the legend show where the dragon moves most, not by how much. A heavier model has smaller modes and
-needs a larger **Deformation scale**. Here 0.1 moves the wing tip by a quarter of a metre, and
-**Animate** sweeps the scale from 0 to 0.2 and back.
+**A mode has no size of its own.** Each mode is read with its largest translation 1, and View
+Results draws it at **Deformation scale** 1 with its largest movement 8 % of the model's diagonal:
+0.68 m on the dragon. The numbers on the legend show where the dragon moves most, not by how much.
+Here 0.4 moves the wing tip by a quarter of a metre, and **Animate** sweeps the scale from 0 to 0.8
+and back.
 {% endhint %}
 
 #### The geometry
