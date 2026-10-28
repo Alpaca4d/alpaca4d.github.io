@@ -25,13 +25,24 @@ face becomes one element: 4 vertices → `ASDShellQ4`, 3 vertices → `ASDShellT
 | Mesh | `Mesh` | Mesh | — | Surface mesh, in `m`. Quads and triangles may be mixed. |
 | Section | `Section` | Section | — | Shell section — a [Plate Fiber Section](../sections/plate-fiber.md), which carries the thickness and an [nD material](../materials/ND.md). |
 | Colour | `Colour` | Colour | Alpaca4d shell colour | Display colour in the Rhino viewport. |
-| Local X Axis | `LocalX` | Vector | element default | Direction the element's local *x* axis is aligned to. Sets the axes that [Shell Forces](../results/shell-forces.md) are reported in. Leave empty to let OpenSees pick per face. |
+| Local X Axis | `LocalX` | Vector | element default | Direction the element's local *x* axis is aligned to. Sets the axes that [Shell Forces](../results/shell-forces.md) are reported in. It is flattened onto each face, so it only has to point roughly the right way, but not along the shell's normal: within 1° of the normal of any face is an error that names those faces. Leave empty to let OpenSees pick per face. |
 | Is Corotational | `IsCorotational` | Boolean | `false` | Use the corotational formulation, for large displacements and rotations. |
 
 {% hint style="info" %}
 Set **Local X Axis** on any model where you intend to read `pxx`, `myy` and the rest. Without
 it each face orients itself independently, and the per-face results are no longer comparable
 across the mesh.
+{% endhint %}
+
+{% hint style="warning" %}
+**The Local X Axis cannot stand square to the shell.** It is flattened onto each face, and along a
+face's normal nothing is left to flatten: OpenSees stops at Run Analysis with only *Analysis
+Failed* to show for it, and a vector a hair off the normal gives an axis that turns with every tilt
+of the face. So ASD Shell turns away a Local X within 1° of the normal of any face and lists the
+faces, counting from 0. On a horizontal slab give a horizontal vector, not Z. On a curved shell,
+pick one that no face stands square to: a cylinder's own axis, or a horizontal vector on a dome
+that stops short of vertical. A shell whose faces turn to face every way has no such vector, so
+split it and give each part its own.
 {% endhint %}
 
 ### Outputs
