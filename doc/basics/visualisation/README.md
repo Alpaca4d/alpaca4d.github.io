@@ -12,6 +12,7 @@ read the answer.
 | [View Results](view-results.md) | `View Results_WIP` | Any result on the model: displacements, beam force diagrams, shell forces and stresses, solid stresses, reactions. |
 | [Principal Stress Lines](principal-stress-lines.md) | `Principal Stress Lines` | Streamlines following the principal directions on shells. |
 | [Principal Stress Lines 3D](principal-stress-lines-3d.md) | `Principal Stress Lines 3D` | Streamlines following the three principal stresses through solids. |
+| [Shell Section](shell-section.md) | `Shell Section` | A section drawn across shells: the diagram of the forces along it, and their totals. |
 | [Legend](legend.md) | `Legend` | A fixed on-screen colour scale. |
 | [Colors](colors.md) | `Colors` | 18 ready-made gradients to feed View Results and Legend. |
 

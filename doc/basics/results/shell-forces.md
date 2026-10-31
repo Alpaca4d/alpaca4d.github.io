@@ -45,6 +45,8 @@ One branch per shell element, values at the element's integration points.
 - You want a contour → [View Results](../visualisation/view-results.md), with *Shell forces* picked as the result.
 - You want the principal directions → [Principal Stress
   Lines](../visualisation/principal-stress-lines.md) traces them as curves.
+- You want the forces through a line across the shells, or their totals → [Shell
+  Section](../visualisation/shell-section.md).
 
 {% hint style="warning" %}
 **These are local-axis results, and the local axes are per face** unless you set them. Two
