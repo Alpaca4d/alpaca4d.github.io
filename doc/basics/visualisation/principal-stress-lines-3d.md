@@ -11,6 +11,8 @@ where the tension wraps round it.
 
 `Principal Stress Lines 3D (Alpaca4d)` — **Alpaca4d ▸ 09_Visualisation**
 
+<figure><img src="../../.gitbook/assets/components/principal-stress-lines-3d.png" alt="Principal Stress Lines 3D component" width="348"><figcaption></figcaption></figure>
+
 ### Inputs
 
 | Name | Nick | Type | Default | Description |
