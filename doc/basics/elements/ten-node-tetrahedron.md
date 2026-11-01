@@ -187,7 +187,7 @@ of nodes.
 | 2 - Bone, and Ten Node Tetrahedra | An [nD](../materials/ND.md) Elastic Isotropic material: cortical bone, E = 17 GPa, ν = 0.3. |
 | 3 - Held at the knee | Every element's ten nodes from its **Points** output; those in the bottom 2 cm, once each, held in X, Y and Z, as a bone potted in cement for a test. |
 | 4 - The hip's force | The highest node is the top of the head. The force is shared equally among the nodes within 15 mm of it: **List Length** counts them and **Division** gives each its share of the 2 kN, as [Point Loads](../loads/point-load.md). |
-| 5 - Assemble Model | [Assemble](../assemble.md), and [Model View](../visualisation/model-view.md) to see the supports and the loads. |
+| 5 - Assemble Model | [Assemble](../assemble.md), with a **Tolerance** of 0.0001 m (0.1 mm). The default, 1 cm, is larger than the tetrahedra and would weld their nodes together. [Model View](../visualisation/model-view.md) shows the supports and the loads. |
 | 6 - Solve, and the displacement | [Run Analysis](../analysis/run-analysis.md), and [View Results](../visualisation/view-results.md) on Displacement, drawn 20 times larger, with its [Legend](../visualisation/legend.md). |
 
 #### The load
@@ -201,6 +201,10 @@ single node.
 
 The head moves 3.4 mm, mostly sideways. The shaft bends over the knee, as it does under the
 eccentric load of the neck. The reactions at the knee balance the 2 kN exactly.
+
+Next to the groups, a [Natural Vibration Analysis](../analysis/natural-vibration.md) and a second
+View Results show the bone's modes. Move the **Step** slider to go through them. The first two
+are at 57 and 61 Hz.
 
 Treat the numbers as an illustration, not as biomechanics. The bone is solid cortical bone all
 through: the canal and the softer bone inside the ends are filled in, so this femur is stiffer than
