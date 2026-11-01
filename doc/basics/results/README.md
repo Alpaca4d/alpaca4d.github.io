@@ -16,6 +16,7 @@ from the `recorder.mpco` file that the analysis leaves beside the Grasshopper do
 | --- | --- | --- |
 | [Nodal Displacements](nodal-displacements.md) | `Nodal Displacements` | Displacement, rotation, velocity, acceleration at every node. |
 | [Reaction Forces](reaction-forces.md) | `Reaction Forces` | Force and moment at every support, in the support's own axes. |
+| [Node Forces](node-forces.md) | `Node Forces` | The forces every beam and truss brings into a node, for designing the joint. |
 | [Beam Forces](beam-forces.md) | `Beam Forces` | N, Vy, Vz, Mx, My, Mz along every beam. |
 | [Beam Stresses](beam-stresses.md) | `Beam Stresses` | Axial, bending, shear, torsion and Von Mises stresses along every beam. |
 | [Utilisation](utilisation.md) | `Utilisation` | How much of its resistance every steel beam uses, to EN 1993-1-1. |
@@ -38,6 +39,14 @@ Reads the force and the moment carried by every support of an analysed model.
 One value per support, given in the support's own axes, so a [Support](../elements/support.md)
 placed on a **Plane** reports along that plane rather than along the global axes.
 **SupportPosition** gives both where each support sits and the frame its reactions are in.
+
+### [Node Forces](node-forces.md)
+
+Reads the forces that every beam and truss brings into a node, for designing the joint there.
+
+Pick the nodes by **Point** or by **NodeTag**, or leave both empty for every node a beam meets.
+One branch per node, with an item per member: its section forces at that end, signed as Beam
+Forces signs them, and the force and moment it puts on the node in global axes.
 
 ### [Beam Forces](beam-forces.md)
 
@@ -106,6 +115,7 @@ index in front of whatever index it already had:
 | --- | --- | --- |
 | [Nodal Displacements](nodal-displacements.md) | a list, one item per node | a tree `{step}`, that step's value per node |
 | [Reaction Forces](reaction-forces.md) | a list, one item per support | a tree `{step}` for the force and the moment; **SupportPosition** stays a flat list, since supports do not move |
+| [Node Forces](node-forces.md) | a tree `{tag}`, one branch per node | a tree `{step; tag}`, every output alike |
 | [Beam Forces](beam-forces.md) | a tree `{element}` | a tree `{step; element}` |
 | [Beam Stresses](beam-stresses.md) | a tree `{element}` | a tree `{step; element}` |
 | [Shell Forces](shell-forces.md) | a tree `{element}` | a tree `{step; element}` |

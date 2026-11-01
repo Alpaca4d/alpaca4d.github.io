@@ -60,6 +60,7 @@
 * [🎲 Results](basics/results/README.md)
   * [Nodal Displacements](basics/results/nodal-displacements.md)
   * [Reaction Forces](basics/results/reaction-forces.md)
+  * [Node Forces](basics/results/node-forces.md)
   * [Beam Forces](basics/results/beam-forces.md)
   * [Beam Stresses](basics/results/beam-stresses.md)
   * [Utilisation](basics/results/utilisation.md)
