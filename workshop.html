@@ -1,164 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Alpaca4d</title>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop · Alpaca4d</title>
+  <meta name="description" content="A one-day online Alpaca4d workshop for beginner to intermediate users, with Marco Pellegrino.">
   <meta name="author" content="Marco Pellegrino">
-
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-
-  <link rel="stylesheet" href="./assets/css/prism.css">
-
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="./assets/images/icons/logo_200_200.png">
-
+  <meta property="og:title" content="Workshop · Alpaca4d">
+  <meta property="og:image" content="https://alpaca4d.github.io/assets/site/img/og.jpg">
+  <meta name="theme-color" content="#f4f4f4">
+  <link rel="icon" href="./assets/site/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/site/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/site/site.css?v=2">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 
-<body>
+<body data-root="./" data-page="workshop">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
 
-
-  <!-- nav bar -->
-  <div id="navbar"></div>
-  <script src="./assets/js/navbar.js"></script>
-
-
-  <div class="container">
-
-    <div class="row">
-
-      <div>
-        <div>&nbsp;</div>
-        <div><b>Tutor: Marco Pellegrino</b></div>
-        <div><b>Location: Online</b></div>
-        <div><b>Date: TBC</b></div>
-      </div>
-
-      <div>
-        <p>The day workshop is intended for beginner to intermediate users of <a class="red-text"
-            href="/index.html" target="_blank">Alpaca4d</a>. Marco will explore with you more some
-          techniques of working with complex parametric structural models through scripting using Grasshopper.
-        </p>
-
-        <p>
-          <br>
-          <b>Note</b>
-          The workshop has been set up in order to self sponsor the development and it will allow to get resources
-          needed
-          to keep up to speed the implementations. 😊
-        </p>
-
-      </div>
-
-
-
-      <div class="col s12 m12 l12">
-        <div class="card" style="border-radius: 20px;">
-          <div class="card-image">
-            <img src="./assets/model/Serpentille Pavillon_BIG/images/image_4.jpg" style="border-radius: 20px;">
+  <main id="main">
+    <section class="page-hero canvas-grid">
+      <div class="wrap two-col" style="align-items: center">
+        <div>
+          <span class="eyebrow">Workshop</span>
+          <h1 class="display">A day with the alpaca<span class="dot">.</span></h1>
+          <p class="lead">A one-day online workshop for beginner to intermediate users of Alpaca4d. Marco will explore with you techniques for working with complex parametric structural models through scripting in Grasshopper.</p>
+          <div class="hero-actions" style="margin-top: 28px">
+            <a class="btn btn-primary" id="workshop-google-form" href="#" target="_blank" rel="noopener noreferrer">Register (Google Form)</a>
           </div>
         </div>
+        <div class="panel reveal" style="box-shadow: 0 8px 0 var(--ink)">
+          <dl class="kv">
+            <dt>Tutor</dt><dd>Marco Pellegrino</dd>
+            <dt>Location</dt><dd>Online</dd>
+            <dt>Date</dt><dd>TBC</dd>
+            <dt>Language</dt><dd>English</dd>
+            <dt>Fee</dt><dd>EUR 395,- (+VAT)</dd>
+            <dt>Students</dt><dd>50% off, full-time, with proof of status</dd>
+          </dl>
+        </div>
       </div>
+    </section>
 
-
-      <div>
-        <div><b>Day 1 – Get Started with Alpaca4D</b></div>
-        <div>
+    <section class="section white">
+      <div class="wrap two-col">
+        <figure class="figure reveal" style="margin: 0">
+          <img src="./assets/model/Serpentille Pavillon_BIG/images/image_4.jpg" alt="A pavilion modelled with Alpaca4d" width="1520" height="811" loading="lazy">
+        </figure>
+        <div class="prose reveal" style="--d: .08s">
+          <h2 style="margin-top: 0">Day 1: Get started with Alpaca4D</h2>
           <ul>
-            <b><li>Introduction</li></b>
+            <li><strong>Introduction</strong></li>
             <li>Definition of a structural model with beams, shells, supports and loads.</li>
             <li>Results retrieval and display for beams, shells and supports.</li>
           </ul>
-          <!-- <p><b>Day 2 – Implementation</b></p>
-          <ul>
-            <li>Explaining Source Code</li>
-            <li>Debugging</li>
-            <li>Create a new Element and Component for Grasshopper</li>
-          </ul> -->
-          <p><b>Course requirements:&nbsp;</b>Prior knowledge of Grasshopper is strongly recommended. OpenSees is only
-            recommended but not mandatory. Rhino 7 licenses can be downloaded and use with 90 days trial version.</p>
-          <p><b>Online course fees:&nbsp;</b>EUR 395,- (+VAT); full-time students get a 50% discount (proof of status
-            required). Please note, your seat is confirmed only after payment has cleared.</p>
-          <p><b>Min. number of participants for each course:</b> 4. If there is no quorum, the course will be cancelled
-            15
-            days before.</p>
-          <p><b>Course language:</b> English</p>
+          <h3>Course requirements</h3>
+          <p>Prior knowledge of Grasshopper is strongly recommended. OpenSees is only recommended but not mandatory. Rhino 7 licenses can be downloaded and used with a 90-day trial version.</p>
+          <h3>Fees</h3>
+          <p>EUR 395,- (+VAT); full-time students get a 50% discount (proof of status required). Please note, your seat is confirmed only after payment has cleared.</p>
+          <h3>Participants</h3>
+          <p>Minimum 4 for each course. If there is no quorum, the course will be cancelled 15 days before.</p>
+          <div class="notice" style="margin-top: 24px">
+            <span><strong>Note.</strong> The workshop helps fund the development of Alpaca4d, and the resources it brings keep the new features coming. 😊</span>
+          </div>
         </div>
       </div>
+    </section>
 
-
-      <div class="col s12">
-        <div>&nbsp;</div>
-        <a id="workshop-google-form-card"
-          class="card hoverable"
-          style="border-radius: 20px; display: block; text-decoration: none; color: inherit;"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Alpaca4d workshop interest form">
-          <div class="card-content center-align">
-            <span class="card-title center-align"><b>Register / Subscribe</b></span>
-            <div>&nbsp;</div>
-            <div class="row" style="margin-bottom: 0;">
-              <div class="col s12 center-align">
-                <span
-                  class="btn green darken-2"
-                  style="display: inline-block; font-weight: 600; border-radius: 10px; min-width: 260px;">
-                  Register (Google Form)
-                </span>
-              </div>
-            </div>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="cta-band reveal">
+          <img class="cta-alpaca" src="./assets/site/img/logo.png" alt="">
+          <div>
+            <h2 class="h2">Save your seat<span class="dot">.</span></h2>
+            <p>Register your interest and we will be in touch with the date.</p>
           </div>
-        </a>
+          <div class="actions">
+            <a class="btn btn-primary" id="workshop-google-form-2" href="#" target="_blank" rel="noopener noreferrer">Register (Google Form)</a>
+          </div>
+        </div>
       </div>
+    </section>
+  </main>
 
-    </div>
-  </div>
-
-
-
-  <!-- footer -->
-  <div id="footer"></div>
-  <script src="./assets/js/footer.js"></script>
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <script src="assets/js/multipage.js"></script> -->
-
-
-
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="./assets/site/site.js?v=2"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
+    // The registration form. Left empty, the buttons fall back to an email.
+    const WORKSHOP_GOOGLE_FORM_URL = "https://forms.gle/biFXNtorZLFJXo2k8";
+    const fallback = "mailto:alpaca4d@gmail.com?subject=Alpaca4d%20Workshop%20Registration";
+    document.querySelectorAll("#workshop-google-form, #workshop-google-form-2").forEach((a) => {
+      a.href = WORKSHOP_GOOGLE_FORM_URL.trim() || fallback;
     });
   </script>
-
-  <script>
-    // TODO (site owner): replace with your real Google Form "Send" link, e.g. https://forms.gle/XXXXXXXXXXXX
-    const WORKSHOP_GOOGLE_FORM_URL = "https://forms.gle/biFXNtorZLFJXo2k8";
-
-    const formCard = document.getElementById("workshop-google-form-card");
-    if (formCard) {
-      if (WORKSHOP_GOOGLE_FORM_URL && WORKSHOP_GOOGLE_FORM_URL.trim().length > 0) {
-        formCard.href = WORKSHOP_GOOGLE_FORM_URL.trim();
-      } else {
-        // Fallback (so the button still works even if the form URL isn't configured yet)
-        formCard.href = "mailto:alpaca4d@gmail.com?subject=Alpaca4d%20Workshop%20Registration%20(Google%20Form%20link%20missing)&body=Hi%2C%0A%0AI%20clicked%20the%20Google%20Form%20button%20but%20the%20link%20is%20not%20configured%20on%20the%20website.%0A%0AThanks!";
-      }
-    }
-  </script>
-
 </body>
-
-
 </html>
