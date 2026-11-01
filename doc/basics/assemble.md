@@ -60,6 +60,22 @@ The same search attaches [point loads](loads/point-load.md),
 Check the node count in [Model View](visualisation/model-view.md) with **Node IDs** turned on
 before trusting any result.
 
+## 💡 Two supports on one node
+
+Two supports can land on the same node: the same point given twice, or two points within
+**Tolerance** of each other. Assemble makes them one support that holds every direction any of
+them holds. OpenSees would do the same, after a warning in the log for each direction fixed a
+second time. With one support, the node also gets one row in
+[Reaction Forces](results/reaction-forces.md), not one per support, so the rows add up to the
+load.
+
+Assemble shows a **remark** when it does this. If the supports held different directions, the
+remark also says which directions the node is held in. Stacking supports on purpose, such as one
+for Tx and another for Tz, gives the same result as a single support holding both.
+
+Skewed supports and spring supports are never merged. Each one acts on its own, and side by side
+they share the load.
+
 ## 💡 Degrees of freedom
 
 A node gets **6 DOF** if any beam or shell touches it, and **3 DOF** if only solids do. This
