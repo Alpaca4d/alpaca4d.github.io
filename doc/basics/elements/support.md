@@ -25,6 +25,9 @@ for an inclined roller or a support on a sloping face.
 A point arriving on **Position** is cast to a world-aligned plane at that point, so a model
 built before planes were an option behaves exactly as it did.
 
+Give each point once. If two supports land on the same node, Assemble merges them into one
+support; see [Two supports on one node](../assemble.md#two-supports-on-one-node).
+
 ### Outputs
 
 | Name | Nick | Type | Description |
