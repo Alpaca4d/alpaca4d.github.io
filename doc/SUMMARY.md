@@ -70,7 +70,6 @@
   * [Model View](basics/visualisation/model-view.md)
   * [View Results](basics/visualisation/view-results.md)
   * [Principal Stress Lines](basics/visualisation/principal-stress-lines.md)
-  * [Principal Stress Lines 3D](basics/visualisation/principal-stress-lines-3d.md)
   * [Shell Section](basics/visualisation/shell-section.md)
   * [Legend](basics/visualisation/legend.md)
   * [Colors](basics/visualisation/colors.md)
