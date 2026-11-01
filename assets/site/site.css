@@ -171,6 +171,53 @@ h1, h2, h3, h4 { margin: 0; line-height: 1.05; letter-spacing: -0.025em; font-we
 }
 .nav a:hover { background: rgba(42, 45, 49, 0.06); color: var(--ink); }
 .nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -3px 0 var(--green); border-radius: 10px 10px 4px 4px; }
+
+/* Learn and Tools: a button that opens a card of pages under it. */
+.nav-group { position: relative; }
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-toggle:hover, .nav-group.open > .nav-toggle { background: rgba(42, 45, 49, 0.06); color: var(--ink); }
+.nav-group.current > .nav-toggle { color: var(--ink); box-shadow: inset 0 -3px 0 var(--green); border-radius: 10px 10px 4px 4px; }
+.nav-toggle svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+.nav-group.open > .nav-toggle svg { transform: rotate(180deg); }
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  width: 320px;
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 0 6px 0 var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -6px);
+  transition: opacity 0.15s, transform 0.15s var(--ease), visibility 0.15s;
+}
+.nav-group.open > .nav-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+.nav .nav-menu a { display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: center; padding: 10px; border-radius: 12px; }
+.nav .nav-menu a:hover { background: rgba(42, 45, 49, 0.06); }
+.nav .nav-menu a[aria-current="page"] { box-shadow: inset 4px 0 0 var(--green); border-radius: 12px; background: rgba(42, 45, 49, 0.04); }
+.nav-icon { width: 42px; height: 42px; display: grid; place-items: center; background: var(--c); border: 2px solid var(--ink); border-radius: 11px; }
+.nav-icon img { width: 26px; height: 26px; }
+.nav-menu b { display: block; color: var(--ink); font-size: 16px; font-weight: 800; line-height: 1.2; }
+.nav-menu small { display: block; margin-top: 2px; color: var(--ink-3); font-size: 13.5px; font-weight: 500; line-height: 1.35; }
 .nav-cta { display: flex; gap: 10px; align-items: center; }
 
 .burger { display: none; margin-left: auto; width: 46px; height: 46px; border: 2px solid var(--ink); border-radius: 12px; background: #fff; cursor: pointer; padding: 0; }
@@ -201,6 +248,15 @@ h1, h2, h3, h4 { margin: 0; line-height: 1.05; letter-spacing: -0.025em; font-we
   }
   .menu-open .nav a { font-size: 24px; font-weight: 800; padding: 14px 6px; border-bottom: 1px solid var(--line); border-radius: 0; color: var(--ink); }
   .menu-open .nav a[aria-current="page"] { box-shadow: inset 4px 0 0 var(--green); padding-left: 16px; }
+  /* In the phone menu, Learn and Tools open in place. */
+  .menu-open .nav-group { border-bottom: 1px solid var(--line); }
+  .menu-open .nav-group > .nav-toggle { width: 100%; justify-content: space-between; font-size: 24px; font-weight: 800; padding: 14px 6px; border-radius: 0; color: var(--ink); background: none; }
+  .menu-open .nav-group.current > .nav-toggle { box-shadow: inset 4px 0 0 var(--green); padding-left: 16px; border-radius: 0; }
+  .menu-open .nav-toggle svg { width: 16px; height: 16px; }
+  .menu-open .nav-group > .nav-menu { position: static; display: none; width: auto; padding: 0 0 14px; border: 0; box-shadow: none; background: none; opacity: 1; visibility: visible; transform: none; transition: none; }
+  .menu-open .nav-group.open > .nav-menu { display: grid; }
+  .menu-open .nav .nav-menu a { font-size: 16px; font-weight: 600; padding: 8px 6px; border-bottom: 0; border-radius: 12px; }
+  .menu-open .nav .nav-menu a[aria-current="page"] { padding-left: 14px; }
   .menu-open .nav-cta {
     display: flex;
     position: fixed;

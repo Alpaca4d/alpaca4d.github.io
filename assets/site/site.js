@@ -14,14 +14,30 @@
   const toLocalDocs = (href) =>
     root + "docs/" + href.slice(docs.length).replace(/^\//, "").replace(/^examples\/([^/#]+)/, "examples/$1/$1");
 
+  // Features and About us are links; Learn and Tools open a menu of pages. Each page's icon and
+  // colour are the ones of its card on the home page.
   const nav = [
     { id: "features", label: "Features", href: root + "index.html#features" },
-    { id: "examples", label: "Examples", href: root + "index.html#examples" },
-    { id: "docs", label: "Docs", href: docs },
-    { id: "explorer", label: "Explorer", href: root + "explorer/" },
-    { id: "workshop", label: "Workshop", href: root + "workshop.html" },
+    { id: "learn", label: "Learn", items: [
+      { id: "docs", label: "Docs", note: "Every component, with its inputs and outputs", href: docs, icon: "legend", c: "blue" },
+      { id: "examples", label: "Examples", note: "Grasshopper files to open and take apart", href: root + "index.html#examples", icon: "shell", c: "green" },
+      { id: "workshop", label: "Workshop", note: "A day online with the developer", href: root + "workshop.html", icon: "supporter", c: "orange" },
+    ] },
+    { id: "tools", label: "Tools", items: [
+      { id: "explorer", label: "Explorer", note: "Compare design studies in your browser", href: root + "explorer/", icon: "explorer", c: "purple" },
+      { id: "playground", label: "Playground", note: "Coming soon", href: root + "playground.html", c: "white" },
+    ] },
     { id: "about", label: "About us", href: root + "about/" },
   ];
+  const current = (id) => (id === page ? ' aria-current="page"' : "");
+  const navLink = (n) => `<a href="${n.href}"${current(n.id)}>${n.label}</a>`;
+  const navGroup = (g) => `
+    <div class="nav-group${g.items.some((i) => i.id === page) ? " current" : ""}">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-${g.id}">${g.label}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+      <div class="nav-menu" id="nav-${g.id}">
+        ${g.items.map((i) => `<a href="${i.href}"${current(i.id)}><span class="nav-icon" style="--c: var(--${i.c})"><img src="${root}assets/site/img/${i.icon ? `icons/${i.icon}.svg` : "logo.png"}" alt=""></span><span><b>${i.label}</b><small>${i.note}</small></span></a>`).join("")}
+      </div>
+    </div>`;
 
   const icons = {
     mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
@@ -39,7 +55,7 @@
           <span>Alpaca4d</span>
         </a>
         <nav class="nav" id="site-nav" aria-label="Main">
-          ${nav.map((n) => `<a href="${n.href}"${n.id === page ? ' aria-current="page"' : ""}${n.href.startsWith("http") ? ' rel="noopener"' : ""}>${n.label}</a>`).join("")}
+          ${nav.map((n) => (n.items ? navGroup(n) : navLink(n))).join("")}
         </nav>
         <div class="nav-cta">
           <a class="btn btn-small" href="${root}buy.html">Buy</a>
@@ -48,14 +64,40 @@
         <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
       </div>`;
 
+    // Learn and Tools: a click opens the menu; a click elsewhere, Escape or tabbing away closes
+    // it. In the phone menu they open in place, the one holding this page already open.
+    const groups = [...header.querySelectorAll(".nav-group")];
+    const setGroup = (g, open) => {
+      g.classList.toggle("open", open);
+      g.querySelector(".nav-toggle").setAttribute("aria-expanded", String(open));
+    };
+    groups.forEach((g) => {
+      g.querySelector(".nav-toggle").addEventListener("click", () => {
+        const open = !g.classList.contains("open");
+        groups.forEach((o) => setGroup(o, o === g && open));
+      });
+      g.addEventListener("focusout", (e) => {
+        if (!body.classList.contains("menu-open") && !g.contains(e.relatedTarget)) setGroup(g, false);
+      });
+    });
+    document.addEventListener("click", (e) => {
+      if (!body.classList.contains("menu-open") && !e.target.closest(".nav-group")) groups.forEach((g) => setGroup(g, false));
+    });
+
     const burger = header.querySelector(".burger");
     const setMenu = (open) => {
       body.classList.toggle("menu-open", open);
       burger.setAttribute("aria-expanded", String(open));
+      groups.forEach((g) => setGroup(g, open && g.classList.contains("current")));
     };
     burger.addEventListener("click", () => setMenu(!body.classList.contains("menu-open")));
     header.querySelectorAll(".nav a, .nav-cta a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const open = document.activeElement && document.activeElement.closest(".nav-group.open");
+      setMenu(false);
+      if (open) open.querySelector(".nav-toggle").focus();
+    });
 
     const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
     onScroll();
@@ -83,7 +125,7 @@
               <li><a href="${root}download.html">Download</a></li>
               <li><a href="${root}buy.html">Buy a license</a></li>
               <li><a href="${root}explorer/">Explorer</a></li>
-              <li><a href="${root}workshop.html">Workshop</a></li>
+              <li><a href="${root}playground.html">Playground</a></li>
             </ul>
           </div>
           <div>
@@ -91,6 +133,7 @@
             <ul>
               <li><a href="${docs}">Documentation</a></li>
               <li><a href="${docs}/examples/multi-storey-building">Examples</a></li>
+              <li><a href="${root}workshop.html">Workshop</a></li>
               <li><a href="${docs}/benchmark/intro">Benchmarks</a></li>
               <li><a href="${docs}/references/publications">Publications</a></li>
             </ul>
