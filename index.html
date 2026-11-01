@@ -1,83 +1,518 @@
 <!DOCTYPE html>
-<html lang="en" style="margin: 0; height: 100vh;">
+<html lang="en">
 <head>
-    <title>Alpaca4d</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Marco Pellegrino">
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-
-    <link rel="stylesheet" href="assets/css/prism.css">
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href= "./assets/images/icons/logo_200_200.png">
-
-
-    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
-    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
-
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-      }
-      /* full-width model viewer occupying remaining viewport */
-      #hero-viewer {
-        width: 100vw;
-        height: calc(100vh - 64px); /* adjust if navbar height differs */
-        display: block;
-      }
-      @media (max-width: 992px) {
-        #hero-viewer { height: calc(100vh - 56px); } /* shorter mobile navbar */
-      }
-    </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpaca4d · OpenSees for Grasshopper</title>
+  <meta name="description" content="Alpaca4d connects Rhino and Grasshopper to OpenSees, the finite element engine from UC Berkeley (subject to its own license). Model beams, shells and solids, run static, modal, buckling and earthquake analyses, and explore design options without code.">
+  <meta name="author" content="Marco Pellegrino">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alpaca4d · OpenSees for Grasshopper">
+  <meta property="og:description" content="Structural analysis at the speed of design. Grasshopper, connected to the OpenSees engine from UC Berkeley.">
+  <meta property="og:url" content="https://alpaca4d.github.io/">
+  <meta property="og:image" content="https://alpaca4d.github.io/assets/site/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f4f4">
+  <link rel="icon" href="./assets/site/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/site/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/site/site.css?v=2">
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="importmap">
+    { "imports": {
+        "three": "./explorer/vendor/three/build/three.module.min.js",
+        "three/addons/": "./explorer/vendor/three/examples/jsm/"
+    } }
+  </script>
 </head>
 
-<body style="margin: 0; height: 100vh;">
+<body data-root="./" data-page="home">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
 
+  <main id="main">
 
-<div style="height: 100vh; margin: 0;">
+    <!-- ============ Hero: pinned while the alpaca is meshed ============ -->
+    <div class="hero-pin" data-hero-pin data-bg="paper">
+    <section class="hero canvas-grid">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">OpenSees for Grasshopper</span>
+          <h1 class="display">Structural analysis at the speed of design<span class="dot">.</span></h1>
+          <p class="lead">Alpaca4d connects Rhino and Grasshopper to OpenSees, the finite element engine from UC Berkeley (subject to <a href="https://opensees.berkeley.edu/OpenSees/copyright.php" rel="noopener">its own license</a>). Model beams, shells and solids, run static, modal, buckling and earthquake analyses, and explore hundreds of design options, without writing a line of code.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./download.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
+              <span class="long">Download and try it free</span><span class="short">Try it free</span>
+            </a>
+            <a class="btn" href="https://alpaca4d.gitbook.io/docs"><span class="long">Read the docs</span><span class="short">Docs</span></a>
+          </div>
+          <div class="hero-meta">
+            <span style="--c: var(--red)">Rhino 7 &amp; 8</span>
+            <span style="--c: var(--blue)">Windows &amp; macOS</span>
+            <span style="--c: var(--green)">Free for models up to 50 elements</span>
+          </div>
+        </div>
 
-  <!-- nav bar -->
-  <div id="navbar"></div>
-  <script src="./assets/js/navbar.js"></script>
+        <div class="hero-stage" data-hero-stage data-model="./alpaca4d_modelViewer/Alpaca4dModel.glb">
+          <img class="poster" src="./alpaca4d_modelViewer/poster.png" alt="The Alpaca4d alpaca, a colourful low-poly model">
+          <ol class="hero-hud" aria-hidden="true">
+            <li style="--c: var(--blue)"><i></i><b>Mesh</b> <span data-hud="mesh">triangles</span></li>
+            <li style="--c: var(--green)"><i></i><b>Support</b> <span>4 hooves</span></li>
+            <li style="--c: var(--orange)"><i></i><b>Analyse</b> <span>displacement</span></li>
+          </ol>
+          <div class="hero-legend" aria-hidden="true">
+            Displacement
+            <div class="bar"></div>
+            <div class="ends"><span>0</span><span>max</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><i></i> scroll to mesh the alpaca</div>
+    </section>
+    </div>
 
+    <!-- ============ Cited in ============ -->
+    <section class="strip" aria-label="Where Alpaca4d has been cited" data-bg="paper">
+      <div class="wrap strip-inner">
+        <span class="strip-label">Cited in</span>
+        <div class="marquee">
+          <div class="marquee-track">
+            <span style="--c: var(--red)">Structures</span>
+            <span style="--c: var(--orange)">Journal of Building Engineering</span>
+            <span style="--c: var(--purple)">Buildings</span>
+            <span style="--c: var(--green)">Shell and Spatial Structures · IWSS 2023</span>
+            <span style="--c: var(--blue)">Civil Engineering and Architecture</span>
+            <span style="--c: var(--navy)">ISPRS Archives</span>
+            <span style="--c: var(--red)">E3S Web of Conferences</span>
+            <span style="--c: var(--orange)">Journal of Design for Resilience in Architecture and Planning</span>
+            <span style="--c: var(--purple)">Archi</span>
+            <span style="--c: var(--green)">BIM Corner</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <model-viewer id="hero-viewer" bounds="tight" src="./alpaca4d_modelViewer/Alpaca4dModel.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="./alpaca4d_modelViewer/poster.png" shadow-intensity="0.4" exposure="1.56" shadow-softness="0.56" environment-image="neutral" camera-orbit="37.67deg 77.72deg auto" auto-rotate auto-rotate-delay="1" rotation-per-second="200%" min-camera-orbit="auto auto 80%" max-camera-orbit="auto auto 120%"></model-viewer>
-  <div class="progress-bar hide" slot="progress-bar">
-      <div class="update-bar"></div>
-  </div>
+    <!-- ============ Why ============ -->
+    <section class="section" data-bg="paper">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why Alpaca4d</span>
+          <h2 class="h2">A research-grade solver, wired like any other component<span class="dot">.</span></h2>
+        </div>
+        <div class="pillars">
+          <article class="pillar reveal" style="--c: var(--blue)">
+            <div class="badge"><img src="./assets/site/img/icons/explorer.svg" alt=""></div>
+            <h3 class="h3">Parametric to the core</h3>
+            <p>Your structural model is a Grasshopper definition. Move a slider and the geometry, the mesh, the analysis and the results all follow.</p>
+          </article>
+          <article class="pillar reveal" style="--c: var(--orange); --d: .08s">
+            <div class="badge"><img src="./assets/site/img/icons/run-analysis.svg" alt=""></div>
+            <h3 class="h3">OpenSees under the hood</h3>
+            <p>Alpaca4d writes plain OpenSees input and runs the open-source engine from UC Berkeley: nonlinear materials, fibre sections, dynamics. You never touch Tcl, and the file is always yours.</p>
+          </article>
+          <article class="pillar reveal" style="--c: var(--green); --d: .16s">
+            <div class="badge"><img src="./assets/site/img/icons/topology.svg" alt=""></div>
+            <h3 class="h3">Made to optimise</h3>
+            <p>Record design studies with Explorer, search them with Non-Linear Optimisation, and let Topology Optimisation carve away what a solid does not need.</p>
+          </article>
+        </div>
 
-  <script src="./alpaca4d_modelViewer/script.js"></script>
-  <!-- Loads <model-viewer> for browsers: -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        <div class="stats" style="margin-top: 20px">
+          <!-- Downloads: Rhino's Package Manager reported 10 965 on 2026-10-28
+               (https://yak.rhino3d.com/packages/Alpaca4d, "download_count"). Round down when updating. -->
+          <div class="stat reveal" style="--c: var(--red)"><b><span data-count="10900" data-suffix="+">10,900+</span></b><span>downloads from Rhino's Package Manager</span></div>
+          <div class="stat reveal" style="--c: var(--purple); --d: .06s"><b><span data-count="90" data-suffix="+">90+</span></b><span>Grasshopper components in one tab</span></div>
+          <div class="stat reveal" style="--c: var(--green); --d: .12s"><b><span data-count="14">14</span></b><span>papers, theses and articles that use or cite it</span></div>
+          <div class="stat reveal" style="--c: var(--blue); --d: .18s"><b>2020</b><span>the year the first alpaca was meshed</span></div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- ============ Scroll story ============ -->
+    <section class="section on-dark story" id="how-it-works" data-story data-bg="night">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2 class="h2">From a sketch to a structure in four steps<span class="dot">.</span></h2>
+          <p class="lead">Scroll to model, support, load and analyse a concrete shell, then explore a whole family of them.</p>
+        </div>
+      </div>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <script src="assets/js/multipage.js"></script> -->
+      <div class="story-pin">
+        <div class="story-sticky">
+          <div class="wrap">
+          <div class="story-steps">
+            <article class="story-step" style="--c: var(--blue)" data-tag="01 · Model">
+              <div class="inner">
+                <span class="num">01 · MODEL</span>
+                <h3>Draw it in Rhino.</h3>
+                <p>Turn the curves, surfaces, meshes and solids you already have into beams, shells, bricks and tetrahedra. Assemble Model welds them into one structure.</p>
+                <div class="chips"><span class="chip">ForceBeamColumn</span><span class="chip">ASD Shell</span><span class="chip">SSP Brick</span><span class="chip">Ten Node Tetrahedron</span></div>
+              </div>
+            </article>
+            <article class="story-step" style="--c: var(--green)" data-tag="02 · Support &amp; load">
+              <div class="inner">
+                <span class="num">02 · SUPPORT &amp; LOAD</span>
+                <h3>Hold it, then load it.</h3>
+                <p>Fix the corners, tie floors together with rigid diaphragms and links. Apply gravity, point, beam and shell loads, masses and ground motions, grouped in load patterns.</p>
+                <div class="chips"><span class="chip">Support</span><span class="chip">Gravity Load</span><span class="chip">Shell Load</span><span class="chip">Load Pattern</span></div>
+              </div>
+            </article>
+            <article class="story-step" style="--c: var(--orange)" data-tag="03 · Analyse">
+              <div class="inner">
+                <span class="num">03 · ANALYSE</span>
+                <h3>Let OpenSees do the maths.</h3>
+                <p>Alpaca4d writes a plain OpenSees file and Run Analysis solves it with the OpenSees on your computer: static, nonlinear, modal, buckling or time history. The results land back on your geometry.</p>
+                <div class="chips"><span class="chip">Assemble Model</span><span class="chip">Run Analysis</span><span class="chip">View Results</span></div>
+              </div>
+            </article>
+            <article class="story-step" style="--c: var(--purple)" data-tag="04 · Explore">
+              <div class="inner">
+                <span class="num">04 · EXPLORE</span>
+                <h3>Then ask: what if?</h3>
+                <p>Every slider is a design variable. Record hundreds of options with Explorer, let Non-Linear Optimisation search for the best, or let Topology Optimisation find where the material belongs.</p>
+                <div class="chips"><span class="chip">Explorer Record</span><span class="chip">Non-Linear Optimisation</span><span class="chip">Topology Optimisation</span></div>
+              </div>
+            </article>
+          </div>
 
+          <div class="story-stage">
+            <div class="story-canvas"></div>
+            <div class="story-hud" aria-hidden="true">
+              <div class="progress"><i></i></div>
+              <div class="tag">01 · Model</div>
+              <div class="legend">Displacement<div class="bar"></div><div class="ends"><span>0</span><span>max</span></div></div>
+              <div class="explore"><svg></svg><div class="count">Design 01 of 64</div></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ The definition ============ -->
+    <section class="section white canvas-grid" data-bg="blue">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Feels like home</span>
+          <h2 class="h2">It reads like any Grasshopper definition<span class="dot">.</span></h2>
+          <p class="lead">No scripting and no new interface. Materials flow into sections, sections into elements, elements into a model, and the model into OpenSees, one wire at a time.</p>
+        </div>
 
+        <div class="definition" data-definition="m:0>s:2, s:0>b:1, b:0>a:0, a:0>r:0, r:1>v:0">
+          <svg class="wires" aria-hidden="true"></svg>
+          <div class="def-grid">
+            <div class="node" style="--y: 0px">
+              <div class="gh" data-id="m">
+                <div class="gh-io in"><span>Name</span><span>DBPath</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/material-library.svg" alt=""></div>
+                <div class="gh-io out"><span>Material</span></div>
+                <div class="gh-tab">Material Library</div>
+              </div>
+              <p class="node-cap"><b>01 MATERIAL</b>Pick a grade from the library, or type in your own values.</p>
+            </div>
+            <div class="node" style="--y: 64px">
+              <div class="gh" data-id="s">
+                <div class="gh-io in"><span>Height</span><span>Web</span><span>Material</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/i-section.svg" alt=""></div>
+                <div class="gh-io out"><span>Section</span></div>
+                <div class="gh-tab">I Section</div>
+              </div>
+              <p class="node-cap"><b>02 SECTION</b>Standard profiles, a steel library, or any shape you draw.</p>
+            </div>
+            <div class="node" style="--y: 16px">
+              <div class="gh" data-id="b">
+                <div class="gh-io in"><span>Line</span><span>Section</span><span>GeomTransf</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/beam.svg" alt=""></div>
+                <div class="gh-io out"><span>Element</span></div>
+                <div class="gh-tab">ForceBeamColumn</div>
+              </div>
+              <p class="node-cap"><b>03 ELEMENT</b>Beams, shells, bricks and tetrahedra, straight from Rhino geometry.</p>
+            </div>
+            <div class="node" style="--y: 24px">
+              <div class="gh" data-id="a">
+                <div class="gh-io in"><span>Elements</span><span>Supports</span><span>LoadPatterns</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/assemble.svg" alt=""></div>
+                <div class="gh-io out"><span>AlpacaModel</span><span>Mass</span></div>
+                <div class="gh-tab">Assemble Model</div>
+              </div>
+              <p class="node-cap"><b>04 ASSEMBLE</b>One model: nodes welded, supports and loads in place.</p>
+            </div>
+            <div class="node" style="--y: 0px">
+              <div class="gh" data-id="r">
+                <div class="gh-io in"><span>AlpacaModel</span><span>Settings</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/run-analysis.svg" alt=""></div>
+                <div class="gh-io out"><span>log</span><span>AlpacaModel</span></div>
+                <div class="gh-tab">Run Analysis</div>
+              </div>
+              <p class="node-cap"><b>05 ANALYSE</b>OpenSees solves it, on your own machine.</p>
+            </div>
+            <div class="node" style="--y: 56px">
+              <div class="gh" data-id="v">
+                <div class="gh-io in"><span>AlpacaModel</span><span>Step</span><span>Colors</span></div>
+                <div class="gh-icon"><img src="./assets/site/img/icons/view-results.svg" alt=""></div>
+                <div class="gh-io out"><span>Info</span><span>Values</span></div>
+                <div class="gh-tab">View Results</div>
+              </div>
+              <p class="node-cap"><b>06 VIEW</b>Contours, diagrams and legends, right in the Rhino viewport.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-    });
-    </script>
+    <!-- ============ Features ============ -->
+    <section class="section" id="features" data-bg="green">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Everything in the toolbar</span>
+          <h2 class="h2">The whole workflow, in one tab<span class="dot">.</span></h2>
+          <p class="lead">From the first material to the last optimisation run. Every component is documented, with its inputs, outputs and a picture.</p>
+        </div>
+        <div class="features">
+          <a class="feature reveal" href="https://alpaca4d.gitbook.io/docs/basics/materials"><span class="ico"><img src="./assets/site/img/icons/material.svg" alt=""></span><h3>Materials</h3><p>Elastic, uniaxial and nD materials, plus a material library to pick grades from.</p></a>
+          <a class="feature reveal" style="--d:.04s" href="https://alpaca4d.gitbook.io/docs/basics/sections"><span class="ico"><img src="./assets/site/img/icons/i-section.svg" alt=""></span><h3>Sections</h3><p>Rectangular, circular, hollow, I, double angle and generic sections, a steel section library and plate fibre sections.</p></a>
+          <a class="feature reveal" style="--d:.08s" href="https://alpaca4d.gitbook.io/docs/basics/elements"><span class="ico"><img src="./assets/site/img/icons/beam.svg" alt=""></span><h3>Beams</h3><p>Force-based beam-columns, beams with hinges, hinge releases and spring links.</p></a>
+          <a class="feature reveal" style="--d:.12s" href="https://alpaca4d.gitbook.io/docs/basics/elements/shell"><span class="ico"><img src="./assets/site/img/icons/shell.svg" alt=""></span><h3>Shells</h3><p>ASDShellQ4 and ASDShellT3 shells, with elastic or plate fibre sections.</p></a>
+          <a class="feature reveal" href="https://alpaca4d.gitbook.io/docs/basics/elements/ten-node-tetrahedron"><span class="ico"><img src="./assets/site/img/icons/tetrahedron.svg" alt=""></span><h3>Solids</h3><p>SSP bricks and ten-node tetrahedra for anything with a volume, from a footing to a concrete cow.</p></a>
+          <a class="feature reveal" style="--d:.04s" href="https://alpaca4d.gitbook.io/docs/basics/constraints"><span class="ico"><img src="./assets/site/img/icons/support.svg" alt=""></span><h3>Supports &amp; constraints</h3><p>Supports with any mix of fixities, rigid diaphragms, rigid links and equal DOF.</p></a>
+          <a class="feature reveal" style="--d:.08s" href="https://alpaca4d.gitbook.io/docs/basics/loads"><span class="ico"><img src="./assets/site/img/icons/gravity.svg" alt=""></span><h3>Loads &amp; masses</h3><p>Gravity, point, beam and shell loads, mass points, load patterns and time series.</p></a>
+          <a class="feature reveal" style="--d:.12s" href="https://alpaca4d.gitbook.io/docs/basics/analysis"><span class="ico"><img src="./assets/site/img/icons/run-analysis.svg" alt=""></span><h3>Analysis</h3><p>Static and nonlinear analysis, with control over integrator, convergence test, steps and damping.</p></a>
+          <a class="feature reveal" href="https://alpaca4d.gitbook.io/docs/basics/analysis/natural-vibration"><span class="ico"><img src="./assets/site/img/icons/modal.svg" alt=""></span><h3>Dynamics &amp; buckling</h3><p>Natural vibration modes, ground-motion time histories and linear buckling.</p></a>
+          <a class="feature reveal" style="--d:.04s" href="https://alpaca4d.gitbook.io/docs/basics/visualisation"><span class="ico"><img src="./assets/site/img/icons/model-view.svg" alt=""></span><h3>Results &amp; views</h3><p>Displacements, reactions, forces and stresses, as numbers or as contours, diagrams, legends and principal stress lines.</p></a>
+          <a class="feature reveal" style="--d:.08s" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature"><span class="ico"><img src="./assets/site/img/icons/interaction-domain.svg" alt=""></span><h3>Section design</h3><p>Moment–curvature, N–My–Mz interaction domains and utilisation checks to EN 1993-1-1.</p></a>
+          <a class="feature reveal" style="--d:.12s" href="https://alpaca4d.gitbook.io/docs/basics/optimisation"><span class="ico"><img src="./assets/site/img/icons/nl-opt.svg" alt=""></span><h3>Optimisation</h3><p>Explorer design studies, Non-Linear Optimisation and Topology Optimisation.</p></a>
+        </div>
+        <p class="muted reveal" style="margin-top: 28px; font-size: 17px">Need more? Write your own OpenSees commands with <a href="https://alpaca4d.gitbook.io/docs/basics/utility/custom-code">Custom Code</a>, open up any object with <a href="https://alpaca4d.gitbook.io/docs/basics/utility/deconstruct">Deconstruct</a>, or send the model on to <a href="https://alpaca4d.gitbook.io/docs/basics/utility/alpaca4d-to-femdesign">FEM-Design</a>.</p>
+      </div>
+    </section>
 
+    <!-- ============ Examples ============ -->
+    <section class="section on-dark" id="examples" data-bg="night">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Examples</span>
+          <h2 class="h2">Shells, towers, bridges<span class="rainbow-text">…</span> and a cow.</h2>
+          <p class="lead">Every picture here comes from an example in the docs, with its Grasshopper file ready to download, open and take apart.</p>
+        </div>
+        <div class="bento">
+          <a class="tile t-w4 t-h2 t-wide-m reveal" style="--tile: var(--purple)" href="https://alpaca4d.gitbook.io/docs/examples/compressed-shell">
+            <img src="./assets/site/img/showcase/compressed-shell.jpg" alt="A form-found shell coloured by its results" loading="lazy">
+            <span class="cap"><span><strong>Compressed Shell</strong><small>Kangaroo form-finding, then shells</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w2 t-h2 reveal" style="--d:.06s; --tile: var(--orange)" href="https://alpaca4d.gitbook.io/docs/basics/elements/ten-node-tetrahedron">
+            <img src="./assets/site/img/showcase/spot-the-cow.jpg" alt="A concrete cow in tetrahedra, coloured by vertical stress" loading="lazy">
+            <span class="cap"><span><strong>Spot the Cow</strong><small>5 030 ten-node tetrahedra</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile cover t-w3 reveal" style="--tile: var(--navy)" href="https://alpaca4d.gitbook.io/docs/examples/natural-vibration">
+            <img src="./assets/site/img/showcase/natural-vibration.jpg" alt="Cylindrical shells showing their vibration modes" loading="lazy">
+            <span class="cap"><span><strong>Natural Vibration</strong><small>Mode shapes and frequencies</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w3 reveal" style="--d:.06s; --tile: var(--green)" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/topology-optimisation">
+            <img src="./assets/site/img/showcase/topology-cantilever.jpg" alt="A cantilever block carved by topology optimisation" loading="lazy">
+            <span class="cap"><span><strong>Topology Optimisation</strong><small>Material only where it works</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w2 t-h2 reveal" style="--tile: var(--orange)" href="https://alpaca4d.gitbook.io/docs/examples/high-tension-tower">
+            <img src="./assets/site/img/showcase/high-tension-tower.jpg" alt="A lattice high-tension tower coloured by displacement" loading="lazy">
+            <span class="cap"><span><strong>High Tension Tower</strong><small>A lattice of beam elements</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w4 t-h2 t-wide-m reveal" style="--d:.06s; --tile: var(--blue)" href="https://alpaca4d.gitbook.io/docs/examples/multi-storey-building">
+            <img src="./assets/site/img/showcase/multi-storey-building.jpg" alt="A multi-storey frame coloured by its results" loading="lazy">
+            <span class="cap"><span><strong>Multi Storey Building</strong><small>Beams, columns, slabs, diaphragms</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w4 t-wide-m reveal" style="--tile: var(--green)" href="https://alpaca4d.gitbook.io/docs/basics/elements/ten-node-tetrahedron">
+            <img src="./assets/site/img/showcase/inigo-the-dragon.jpg" alt="A dragon in tetrahedra in three of its vibration modes" loading="lazy">
+            <span class="cap"><span><strong>Inigo the Dragon</strong><small>Sways, wags its tail, flaps its wings</small></span><span class="go">→</span></span>
+          </a>
+          <a class="tile t-w2 t-h2-m reveal" style="--d:.06s; --tile: var(--purple)" href="https://alpaca4d.gitbook.io/docs/examples/earthquake">
+            <img src="./assets/site/img/showcase/earthquake.jpg" alt="Towers shaking under a ground-motion record" loading="lazy">
+            <span class="cap"><span><strong>Earthquake</strong><small>Nonlinear dynamics</small></span><span class="go">→</span></span>
+          </a>
+        </div>
+        <div style="margin-top: 36px" class="reveal">
+          <a class="btn btn-primary" href="https://alpaca4d.gitbook.io/docs/examples/multi-storey-building">Browse all the examples</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ What users say ============
+         PLACEHOLDER: replace the three quotes with real ones before publishing. Until then the
+         section is hidden: take the hidden attribute off to show it.
+         - For each quote: two or three lines from a real user, their name, role and firm or
+           university, and their written OK to publish it with their name.
+         - The initials circle can become a photo: <img class="avatar" src="..." alt="">.
+         - "Taught at" lists only schools where Alpaca4d is really taught. Logos only with the
+           organisation's OK, in assets/site/img/logos, from the organisation's own site: IAAC (header of iaac.net).
+           A new one: add an li.logo with a .logo-name span, and a size for it in site.css. An <li>Logo</li> is an empty slot. -->
+    <section class="section" id="testimonials" data-bg="purple" hidden>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">What users say</span>
+          <h2 class="h2">In their own words<span class="dot">.</span></h2>
+        </div>
+        <div class="quotes">
+          <figure class="quote reveal" style="--c: var(--orange)">
+            <blockquote>Placeholder: a quote from an engineer at a practice. What they modelled with Alpaca4d, and what it changed in their work.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">NS</span><span><strong>Name Surname</strong><small>Structural engineer · Firm</small></span></figcaption>
+          </figure>
+          <figure class="quote reveal" style="--c: var(--green); --d: .08s">
+            <blockquote>Placeholder: a quote from a researcher or teacher. How Alpaca4d is used in a course, a thesis or a paper.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">NS</span><span><strong>Name Surname</strong><small>Professor · University</small></span></figcaption>
+          </figure>
+          <figure class="quote reveal" style="--c: var(--blue); --d: .16s">
+            <blockquote>Placeholder: a quote from an architect or a student. The design question Alpaca4d helped them answer.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">NS</span><span><strong>Name Surname</strong><small>Architect · Studio</small></span></figcaption>
+          </figure>
+        </div>
+        <div class="used-at reveal">
+          <span class="strip-label">Taught at</span>
+          <ul aria-label="Schools where Alpaca4d is taught">
+            <li class="logo"><span class="logo-iaac" role="img" aria-label="IAAC, Institute for Advanced Architecture of Catalonia"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Get started ============ -->
+    <section class="section white" id="get-started" data-bg="white">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Get started</span>
+          <h2 class="h2">Up and running in three steps<span class="dot">.</span></h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal" style="--c: var(--green)">
+            <span class="n">1</span>
+            <h3 class="h3">Install</h3>
+            <p>Find Alpaca4d in Rhino's Package Manager and click Install. Rhino 7 and 8, on Windows and macOS.</p>
+            <div class="actions">
+              <a class="btn btn-small btn-primary" href="rhino://package/search?name=Alpaca4d">Open in Rhino</a>
+              <a class="btn btn-small" href="./download.html">Install guide</a>
+            </div>
+          </div>
+          <div class="step reveal" style="--c: var(--blue); --d: .08s">
+            <span class="n">2</span>
+            <h3 class="h3">Set up OpenSees</h3>
+            <p>Download OpenSees from UC Berkeley (subject to <a href="https://opensees.berkeley.edu/OpenSees/copyright.php" rel="noopener">its own license</a>) and point Alpaca4d at it once. OpenSees is the engine; Alpaca4d is the cockpit.</p>
+            <div class="actions">
+              <a class="btn btn-small" href="https://alpaca4d.gitbook.io/docs/setup">Setup guide</a>
+            </div>
+          </div>
+          <div class="step reveal" style="--c: var(--orange); --d: .16s">
+            <span class="n">3</span>
+            <h3 class="h3">Learn</h3>
+            <p>Follow the docs, open an example, or spend a day on a workshop with the developer.</p>
+            <div class="actions">
+              <a class="btn btn-small" href="https://alpaca4d.gitbook.io/docs">Docs</a>
+              <a class="btn btn-small" href="./workshop.html">Workshop</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="license-band reveal">
+          <div>
+            <span class="eyebrow">Without a license</span>
+            <h3 class="h3">Try it, free</h3>
+            <ul>
+              <li>Build and analyse models of up to 50 elements</li>
+              <li>Read the results with the Results components</li>
+              <li style="--c: var(--line)">The viewers, the section tools, Explorer and the optimisers need a license</li>
+            </ul>
+            <a class="link-arrow" href="./buy.html#compare" style="justify-self: start; margin-top: 6px">What is included</a>
+          </div>
+          <div>
+            <span class="eyebrow">With a license</span>
+            <h3 class="h3" style="color:#fff">Everything, any size</h3>
+            <ul>
+              <li>Any model size, every component</li>
+              <li>Students 30&nbsp;€, professionals 490&nbsp;€ a year, + VAT</li>
+              <li>Email support, answered within 48 hours</li>
+            </ul>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 8px">
+              <a class="btn btn-primary" href="./buy.html" style="border-color:#000; box-shadow: 0 4px 0 #000">Buy a license</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ About teaser ============ -->
+    <section class="section" data-bg="orange">
+      <div class="wrap team-teaser">
+        <div class="portrait-stack reveal">
+          <figure class="portrait solo"><img src="./assets/images/mp_profile_picture.jpg" alt="Marco Pellegrino" loading="lazy" style="object-position: 50% 30%"><figcaption>Marco Pellegrino</figcaption></figure>
+          <div class="sticker">“I wish to be an artist. Meanwhile, I do engineering.”<small>— MARCO</small></div>
+        </div>
+        <div class="reveal" style="--d:.08s; display:grid; gap: 22px; justify-items: start">
+          <span class="eyebrow">About us</span>
+          <h2 class="h2">Made by an engineer who would rather be an artist<span class="dot">.</span></h2>
+          <p class="lead">Alpaca4d is made by Marco Pellegrino, a structural engineer and researcher who wanted the power of OpenSees without the scripting. He has been building it since 2020, and he answers your emails himself.</p>
+          <a class="btn btn-dark" href="./about/">Meet Marco</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Learn ============ -->
+    <section class="section white" data-bg="paper">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Learn</span>
+          <h2 class="h2">Learn it your way<span class="dot">.</span></h2>
+        </div>
+        <div class="cards">
+          <a class="card reveal" style="--c: var(--blue)" href="https://alpaca4d.gitbook.io/docs">
+            <div class="top"><img src="./assets/site/img/icons/legend.svg" alt=""></div>
+            <h3>Documentation</h3>
+            <p>Every component explained, with its inputs, outputs and a picture.</p>
+            <span class="more">Read the docs</span>
+          </a>
+          <a class="card reveal" style="--c: var(--green); --d:.06s" href="https://alpaca4d.gitbook.io/docs/examples/multi-storey-building">
+            <div class="top"><img src="./assets/site/img/icons/shell.svg" alt=""></div>
+            <h3>Examples</h3>
+            <p>Grasshopper files to open, run and take apart, from beams to dragons.</p>
+            <span class="more">Open the examples</span>
+          </a>
+          <a class="card reveal" style="--c: var(--orange); --d:.12s" href="./workshop.html">
+            <div class="top"><img src="./assets/site/img/icons/supporter.svg" alt=""></div>
+            <h3>Workshop</h3>
+            <p>A day online with the developer, from your first model to its results.</p>
+            <span class="more">See the programme</span>
+          </a>
+          <a class="card reveal" style="--c: var(--purple); --d:.18s" href="./explorer/">
+            <div class="top"><img src="./assets/site/img/icons/explorer.svg" alt=""></div>
+            <h3>Explorer</h3>
+            <p>A web app for design studies: filter, compare and pick a design, in your browser.</p>
+            <span class="more">Open Explorer</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section tight" data-bg="paper">
+      <div class="wrap">
+        <div class="cta-band reveal">
+          <img class="cta-alpaca" src="./assets/site/img/logo.png" alt="">
+          <div>
+            <h2 class="h2">Give OpenSees a canvas<span class="dot">.</span></h2>
+            <p>Download Alpaca4d and analyse your first model this afternoon. Free for models of up to 50 elements.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="./download.html">Download</a>
+            <a class="btn btn-ghost" href="./buy.html">Buy a license</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="./assets/site/site.js?v=2"></script>
+  <script type="module" src="./assets/site/hero.js?v=2"></script>
+  <script type="module" src="./assets/site/story.js?v=2"></script>
 </body>
-
-
 </html>
