@@ -19,6 +19,8 @@ tetrahedra of a definition made before Ten Node Tetrahedron replaced them.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per element. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
+| ElementId | `ElementId` | Text (list) | *(empty)* | Read only some of the solids: an ElementId, a wildcard over them, a tag, or a regular expression. Empty reads them all. |
+| Axes | `Axes` | Integer | `0` | The frame the six components are read in: 0 global, 1 each element's own. |
 
 ### Outputs
 
@@ -41,6 +43,8 @@ element's own axes instead — axes 1, 2 and 3 of **Local Axes** in
 | Sigma23 | `σ₂₃` | Number (list) | Shear stress in the 2–3 plane. |
 | Sigma13 | `σ₁₃` | Number (list) | Shear stress in the 1–3 plane. |
 | VonMises | `VonMises` | Number (list) | Von Mises equivalent stress, in `kN/m²`. |
+| Element | `Element` | Element (list) | The solids read, in the same order as the stresses. |
+| Plane | `Plane` | Plane (list) | The frame each element's components are in: the world plane at its centre with **Axes** global, its own axes with **Axes** local. |
 
 With **History** on, each of them becomes a tree with one branch per step, `{step}`, holding
 that step's value per element.

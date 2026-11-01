@@ -16,11 +16,12 @@ bending moments.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. The outputs become trees `{step; element}`. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
+| ElementId | `ElementId` | Text (list) | *(empty)* | Read only some of the beams: an ElementId, a wildcard over them, a tag, or a regular expression. Empty reads them all. |
 
 ### Outputs
 
-All six are **data trees, one branch per beam element**. Within a branch, the values are at
-the element's integration points, ordered from the I end to the J end.
+The six forces are **data trees, one branch per beam element**, keyed by its tag. Within a
+branch, the values are at the element's integration points, ordered from the I end to the J end.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
@@ -30,6 +31,7 @@ the element's integration points, ordered from the I end to the J end.
 | Mx | `Mx` | Number (tree) | Torsion about the local *x* axis, in `kN·m`. Right-hand rule about *x*. |
 | My | `My` | Number (tree) | Bending about the local *y* axis, in `kN·m`. Positive puts the +*z* side in tension. |
 | Mz | `Mz` | Number (tree) | Bending about the local *z* axis, in `kN·m`. Positive puts the +*y* side in compression. |
+| Element | `Element` | Element (list) | The beams read, in the order of the branches. Deconstruct them for the tag and the geometry. |
 
 ## 📈 When to use it
 

@@ -15,19 +15,24 @@ Displacement, rotation, velocity and acceleration at every node of the model.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per node. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step, or mode number for a modal model. |
+| NodeTag | `NodeTag` | Integer (list) | *(empty)* | Read only these nodes, by tag. Empty reads every node. |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
+| Position | `Position` | Point (list) | Where each node read sits, undeformed. Read with **NodeTag**, this is what ties the results back to the model. |
 | Displacement | `Displacement` | Vector (list) | Translation at each node, in `m`, global axes. |
 | Rotation | `Rotation` | Vector (list) | Rotation at each node, in `rad`, global axes. |
 | -------- | `--------` | — | A visual separator. Nothing comes out of it. |
-| Velocity | `Velocity` | Vector (list) | Velocity, in `m/s`. Transient analysis only. |
-| Acceleration | `Acceleration` | Vector (list) | Acceleration, in `m/s²`. Transient analysis only. |
+| Velocity | `Velocity` | Vector (list) | Velocity, in `m/s`, global axes. Transient analysis only. |
+| AngularVelocity | `AngularVelocity` | Vector (list) | Angular velocity, in `rad/s`, about the global axes. Transient analysis only. |
+| Acceleration | `Acceleration` | Vector (list) | Acceleration, in `m/s²`, global axes. Transient analysis only. |
+| AngularAcceleration | `AngularAcceleration` | Vector (list) | Angular acceleration, in `rad/s²`, about the global axes. Transient analysis only. |
 
 The lists are ordered by node tag, which is the order [Assemble](../assemble.md) numbered the
-nodes in — not the order you drew anything.
+nodes in — not the order you drew anything. Read with **NodeTag**, they hold the nodes asked
+for, still in tag order.
 
 ## 📈 When to use it
 
