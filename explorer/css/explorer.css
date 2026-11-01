@@ -756,6 +756,8 @@ table.designs .stars-mini { color: var(--alpaca-orange); letter-spacing: 1px; }
   :root { --thumb: 150px; }
   .legend-ramp { width: 70px; }
 }
+/* The smallest phones: the legend wraps instead of widening the page. */
+@media (max-width: 380px) { .legend { flex-wrap: wrap; } }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
