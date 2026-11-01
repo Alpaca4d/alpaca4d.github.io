@@ -1,123 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Alpaca4d</title>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download · Alpaca4d</title>
+  <meta name="description" content="Install Alpaca4d from Rhino's Package Manager, on Rhino 7 and 8, for Windows and macOS, then point it at OpenSees.">
   <meta name="author" content="Marco Pellegrino">
-
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-
-  <link rel="stylesheet" href="./assets/css/prism.css">
-
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="./assets/images/icons/logo_200_200.png">
-  <style>
-    .gradient-download-btn {
-      background-image: linear-gradient(90deg,
-        #d32f2f,
-        #feca57,
-        #1dd1a1,
-        #48dbfb,
-        #5f27cd
-      );
-      border-radius: 25px;
-      font-size: 1.2rem;
-      width: 70%;
-      border: 2px solid #000000;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: auto;
-      line-height: 1.2;
-      padding: 0.75rem 1.5rem;
-      text-align: center;
-      color: #ffffff !important;
-      text-transform: none;
-      font-weight: 600;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-    }
-    .gradient-download-btn:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.3);
-    }
-  </style>
+  <meta property="og:title" content="Download · Alpaca4d">
+  <meta property="og:image" content="https://alpaca4d.github.io/assets/site/img/og.jpg">
+  <meta name="theme-color" content="#f4f4f4">
+  <link rel="icon" href="./assets/site/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/site/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/site/site.css?v=2">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 
-<body>
+<body data-root="./" data-page="download">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
 
-
-  <!-- nav bar -->
-  <div id="navbar"></div>
-  <script src="./assets/js/navbar.js"></script>
-
-
-  <div class="container">
-    <p>
-      <b>Alpaca4D</b> is available for installation on both Rhino 7 and Rhino 8 (compatible with PC and Mac). You can install it directly via the Rhino Package Manager. Click the button below to open the Package Manager in Rhino. (this link opens in Rhino)
-    </p>
-
-    <h4>Package Manager</h4>
-
-    <ol style="list-style-type:disc; line-height:150%">
-      <li>Open Rhino3D and launch the Package Manager from the Tools menu.</li>
-      <li>Search for <b>Alpaca4d</b> and click the "Install" button. The Package Manager will download and install the
-        plugin.</li>
-      <li>Restart Rhino3D to activate the plugin. You should now be able to use the plugin in Grasshopper.</li>
-    </ol>
-
-
-    <div style="margin-top: 16px; display: flex; justify-content: center;">
-      <div style="position: relative; width: 50%; display: flex; flex-direction: column; align-items: center;">
-        <img 
-          style="width: 100%; object-fit: contain; display: block; margin-bottom: 12px; margin-top: 0;" 
-          src="/assets/images/installation/package_manager.png" 
-          alt="Alpaca4d Package Manager Screenshot">
-        <a href="rhino://package/search?name=Alpaca4d"
-          class="btn waves-effect waves-light gradient-download-btn"
-          style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-          Download using Package Manager in Rhino
-        </a>
+  <main id="main">
+    <section class="page-hero canvas-grid">
+      <div class="wrap">
+        <span class="eyebrow">Download</span>
+        <h1 class="display">Install it in a minute<span class="dot">.</span></h1>
+        <p class="lead">Alpaca4d installs from Rhino's Package Manager, on Rhino 7 and Rhino 8, for Windows and macOS. The button below opens the Package Manager in Rhino.</p>
+        <div class="hero-actions" style="margin-top: 30px">
+          <a class="btn btn-primary" href="rhino://package/search?name=Alpaca4d">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
+            Open the Package Manager in Rhino
+          </a>
+          <a class="btn" href="https://alpaca4d.gitbook.io/docs/setup">Set up OpenSees</a>
+        </div>
       </div>
+    </section>
+
+    <section class="section white">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Package Manager</span>
+          <h2 class="h2">Three clicks<span class="dot">.</span></h2>
+        </div>
+        <div class="two-col centred">
+          <div class="steps compact reveal">
+            <div class="step" style="--c: var(--green)">
+              <span class="n">1</span>
+              <p>Open Rhino and launch the <strong>Package Manager</strong> from the <strong>Tools</strong> menu.</p>
+            </div>
+            <div class="step" style="--c: var(--blue)">
+              <span class="n">2</span>
+              <p>Search for <strong>Alpaca4d</strong> and click <strong>Install</strong>. The Package Manager downloads and installs the plug-in.</p>
+            </div>
+            <div class="step" style="--c: var(--orange)">
+              <span class="n">3</span>
+              <p>Restart Rhino. You will find the Alpaca4d tab in Grasshopper.</p>
+            </div>
+          </div>
+          <figure class="figure reveal" style="--d: .08s; margin: 0">
+            <img src="./assets/images/installation/package_manager.png" alt="Alpaca4d in Rhino's Package Manager" width="1283" height="739">
+            <figcaption>Alpaca4d in Rhino's Package Manager</figcaption>
+          </figure>
+        </div>
+        <div class="tab-tour reveal">
+          <h3 class="h3">Then open Grasshopper: this is your new tab<span class="dot">.</span></h3>
+<!-- ribbon:start -->
+<div class="gh-window" data-ribbon>
+  <div class="gh-tabs" aria-hidden="true"><span>Params</span><span>Maths</span><span>Sets</span><span>Vector</span><span>Curve</span><span>Surface</span><span>Mesh</span><span>Intersect</span><span>Transform</span><span>Display</span><span class="on">Alpaca4d</span></div>
+  <div class="gh-ribbon" aria-label="The Alpaca4d tab in Grasshopper">
+    <div class="rb-panel" role="group" aria-label="00_Material">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="nD" data-panel="00_Material" data-desc="" aria-label="nD" href="https://alpaca4d.gitbook.io/docs/basics/materials/nd"><i style="--x: -192px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="Uniaxial" data-panel="00_Material" data-desc="" aria-label="Uniaxial" href="https://alpaca4d.gitbook.io/docs/basics/materials/uniaxial"><i style="--x: -192px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Material Library Elastic" data-panel="00_Material" data-desc="Select a material type and grade to create an Elastic Material" aria-label="Material Library Elastic" href="https://alpaca4d.gitbook.io/docs/basics/materials/materialdatabase"><i style="--x: -312px; --y: -48px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">00_Material</div>
     </div>
-
-    <p>👏 Congratulations! If you have correctly follow the step above, you will find the Alpaca4d toolbar on
-      Grasshopper.</p>
-
-    <p></p>
-    <img style='height: 100%; width: 100%; object-fit: contain' src="/assets/images/installation/alpacatoolbar.png">
+    <div class="rb-panel" role="group" aria-label="01_Section">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="2LAngleCS" data-panel="01_Section" data-desc="Construct a Double L-Angle Cross Section" aria-label="2LAngleCS" href="https://alpaca4d.gitbook.io/docs/basics/sections/double-angle"><i style="--x: -96px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="CircleCS" data-panel="01_Section" data-desc="Construct an Circle Cross Section" aria-label="CircleCS" href="https://alpaca4d.gitbook.io/docs/basics/sections/circular"><i style="--x: -216px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Generic Section" data-panel="01_Section" data-desc="Construct an Generic Section" aria-label="Generic Section" href="https://alpaca4d.gitbook.io/docs/basics/sections/parametric-cross-section"><i style="--x: -120px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="I Section" data-panel="01_Section" data-desc="Construct an I Cross Section" aria-label="I Section" href="https://alpaca4d.gitbook.io/docs/basics/sections/h-section"><i style="--x: -72px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="RectangleCS" data-panel="01_Section" data-desc="Construct an Rectangle Cross Section" aria-label="RectangleCS" href="https://alpaca4d.gitbook.io/docs/basics/sections/rectangular"><i style="--x: -120px; --y: -96px"></i></a>
+          <a class="rb-item" data-name="RectangleHollow" data-panel="01_Section" data-desc="Construct an Rectangle Hollow Section Cross Section" aria-label="RectangleHollow" href="https://alpaca4d.gitbook.io/docs/basics/sections/rectangular-hollow"><i style="--x: -144px; --y: -96px"></i></a>
+        </div>
+        <div class="rb-group">
+          <span class="rb-item" data-name="Layered Shell Section" data-panel="01_Section" data-desc="Construct a shell section as a stack of layers, each with its own material and thickness - reinforced concrete, cross-laminated timber, a laminate." aria-label="Layered Shell Section" tabindex="0"><i style="--x: -120px; --y: -48px"></i></span>
+          <a class="rb-item" data-name="Plate Fiber Section" data-panel="01_Section" data-desc="Construct an Plate Fiber Section" aria-label="Plate Fiber Section" href="https://alpaca4d.gitbook.io/docs/basics/sections/plate-fiber"><i style="--x: -360px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Steel Section Library" data-panel="01_Section" data-desc="Select a steel section family (I, O, [], 2L) and section from the embedded database" aria-label="Steel Section Library" href="https://alpaca4d.gitbook.io/docs/basics/sections/library"><i style="--x: -264px; --y: -96px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">01_Section</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="02_Element">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="ForceBeamColumn" data-panel="02_Element" data-desc="Construct a beam element." aria-label="ForceBeamColumn" href="https://alpaca4d.gitbook.io/docs/basics/elements/beam-with-hinges"><i style="--x: -120px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Spring Link" data-panel="02_Element" data-desc="A spring between two nodes that are apart - a bearing, a bolt, a damper, the interlayer of a laminate." aria-label="Spring Link" href="https://alpaca4d.gitbook.io/docs/basics/elements/spring-link"><i style="--x: -264px; --y: -48px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="ASD Shell" data-panel="02_Element" data-desc="Construct a ASDShellQ4 element or ASDShellT3 Shell" aria-label="ASD Shell" href="https://alpaca4d.gitbook.io/docs/basics/elements/shell"><i style="--x: -72px; --y: -0px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="SSP Brick" data-panel="02_Element" data-desc="Construct a SSP (Stabilized Single Point) Brick element from an eight vertex mesh." aria-label="SSP Brick" href="https://alpaca4d.gitbook.io/docs/basics/elements/brick"><i style="--x: -24px; --y: -120px"></i></a>
+          <a class="rb-item" data-name="TenNodeTetrahedron" data-panel="02_Element" data-desc="Construct a quadratic tetrahedron from a four vertex mesh: the four corners and a node at the middle of each edge." aria-label="TenNodeTetrahedron" href="https://alpaca4d.gitbook.io/docs/basics/elements/ten-node-tetrahedron"><i style="--x: -96px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Hinge Release" data-panel="02_Element" data-desc="Define a release condition for a beam hinge." aria-label="Hinge Release" href="https://alpaca4d.gitbook.io/docs/basics/elements/hinge-release"><i style="--x: -0px; --y: -48px"></i></a>
+          <span class="rb-item" data-name="Spring Support" data-panel="02_Element" data-desc="A support that holds through springs rather than rigidly." aria-label="Spring Support" tabindex="0"><i style="--x: -0px; --y: -120px"></i></span>
+          <a class="rb-item" data-name="Support" data-panel="02_Element" data-desc="Construct a Support" aria-label="Support" href="https://alpaca4d.gitbook.io/docs/basics/elements/support"><i style="--x: -72px; --y: -120px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">02_Element</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="03_Constraint">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Equal DOF" data-panel="03_Constraint" data-desc="Copy chosen degrees of freedom from one node to another, so the two read the same in those and stay independent in the rest." aria-label="Equal DOF" href="https://alpaca4d.gitbook.io/docs/basics/constraints/equal-dof"><i style="--x: -144px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Rigid Diaphragm" data-panel="03_Constraint" data-desc="Construct a Rigid Diaphgram" aria-label="Rigid Diaphragm" href="https://alpaca4d.gitbook.io/docs/basics/constraints/diaphragm"><i style="--x: -192px; --y: -96px"></i></a>
+          <a class="rb-item" data-name="Rigid Link" data-panel="03_Constraint" data-desc="Join two nodes with no give at all, so the second follows the first as a rigid body." aria-label="Rigid Link" href="https://alpaca4d.gitbook.io/docs/basics/constraints/rigid-link"><i style="--x: -216px; --y: -96px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">03_Constraint</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="04_Time Series">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Constant Time Series" data-panel="04_Time Series" data-desc="Construct a Constant Time Series" aria-label="Constant Time Series" href="https://alpaca4d.gitbook.io/docs/basics/time-history/constant"><i style="--x: -264px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Linear Time Series" data-panel="04_Time Series" data-desc="Construct a Linear Time Series" aria-label="Linear Time Series" href="https://alpaca4d.gitbook.io/docs/basics/time-history/linear"><i style="--x: -240px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Path Time Series" data-panel="04_Time Series" data-desc="Construct a Path Time Series" aria-label="Path Time Series" href="https://alpaca4d.gitbook.io/docs/basics/time-history/path"><i style="--x: -312px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="Trigonometric Time Series" data-panel="04_Time Series" data-desc="Construct a Trigonometric Time Series" aria-label="Trigonometric Time Series" href="https://alpaca4d.gitbook.io/docs/basics/time-history/trigonometric"><i style="--x: -168px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Read Time Series" data-panel="04_Time Series" data-desc="Read a Path Time Series" aria-label="Read Time Series" href="https://alpaca4d.gitbook.io/docs/basics/time-history/read-time-series"><i style="--x: -96px; --y: -96px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">04_Time Series</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="05_Load">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Gravity Load" data-panel="05_Load" data-desc="Construct a Gravity Load." aria-label="Gravity Load" href="https://alpaca4d.gitbook.io/docs/basics/loads/gravity"><i style="--x: -360px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Linear Load" data-panel="05_Load" data-desc="Construct a LinearLoad" aria-label="Linear Load" href="https://alpaca4d.gitbook.io/docs/basics/loads/beam-load"><i style="--x: -216px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Mesh Load" data-panel="05_Load" data-desc="Construct a MeshLoad" aria-label="Mesh Load" href="https://alpaca4d.gitbook.io/docs/basics/loads/shell-load"><i style="--x: -360px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Point Load" data-panel="05_Load" data-desc="Construct a PointLoad" aria-label="Point Load" href="https://alpaca4d.gitbook.io/docs/basics/loads/point-load"><i style="--x: -24px; --y: -96px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Load Pattern" data-panel="05_Load" data-desc="Pattern Base Component" aria-label="Load Pattern" href="https://alpaca4d.gitbook.io/docs/basics/loads/load-pattern"><i style="--x: -336px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Mass Point" data-panel="05_Load" data-desc="Construct a lumped mass at a point." aria-label="Mass Point" href="https://alpaca4d.gitbook.io/docs/basics/loads/mass-point"><i style="--x: -288px; --y: -48px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">05_Load</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="06_Assemble">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="AssembleModel" data-panel="06_Assemble" data-desc="Assemble a Model" aria-label="AssembleModel" href="https://alpaca4d.gitbook.io/docs/basics/assemble"><i style="--x: -96px; --y: -0px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="MPCO Recorder" data-panel="06_Assemble" data-desc="Chooses which results Run Analysis writes to the results file, in place of the set it picks for the analysis type." aria-label="MPCO Recorder" href="https://alpaca4d.gitbook.io/docs/basics/mpco-recorder"><i style="--x: -120px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Alpaca4DToFEM-Design" data-panel="06_Assemble" data-desc="Write an assembled Alpaca model to a .struxml file that FEM-Design opens." aria-label="Alpaca4DToFEM-Design" href="https://alpaca4d.gitbook.io/docs/basics/utility/alpaca4d-to-femdesign"><i style="--x: -0px; --y: -0px"></i></a>
+          <span class="rb-item" data-name="Karamba3DToAlpaca4D" data-panel="06_Assemble" data-desc="Convert an assembled Karamba3D 3.1 model into the parts of an Alpaca model: elements, supports, masses and one load pattern per load case." aria-label="Karamba3DToAlpaca4D" tabindex="0"><i style="--x: -96px; --y: -48px"></i></span>
+        </div>
+      </div>
+      <div class="rb-label">06_Assemble</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="07_Analysis">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Run Analysis" data-panel="07_Analysis" data-desc="Writes the assembled model out as an OpenSees script, solves it, and returns the model with its results attached." aria-label="Run Analysis" href="https://alpaca4d.gitbook.io/docs/basics/analysis/run-analysis"><i style="--x: -240px; --y: -96px"></i></a>
+          <a class="rb-item" data-name="Linear Buckling Analysis" data-panel="07_Analysis" data-desc="Finds the load factors at which the model buckles under its loads, lowest first - the first is the critical load factor α_cr - and the shapes it buckles into." aria-label="Linear Buckling Analysis" href="https://alpaca4d.gitbook.io/docs/basics/analysis/linear-buckling"><i style="--x: -192px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Natural Vibration Analysis" data-panel="07_Analysis" data-desc="Solves the eigenvalue problem of the model and returns its modes, eigenvalues, periods and frequencies." aria-label="Natural Vibration Analysis" href="https://alpaca4d.gitbook.io/docs/basics/analysis/natural-vibration"><i style="--x: -168px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Analysis Settings" data-panel="07_Analysis" data-desc="Collects everything OpenSees needs in order to solve - constraint handler, numberer, system of equations, convergence test, solution algorithm, integrator and stepping - into the one object Run Analysis takes." aria-label="Analysis Settings" href="https://alpaca4d.gitbook.io/docs/basics/analysis/analysis-settings"><i style="--x: -24px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Analysis Step" data-panel="07_Analysis" data-desc="How many increments the analysis solves, and how long each one lasts." aria-label="Analysis Step" href="https://alpaca4d.gitbook.io/docs/basics/analysis/analysis-step"><i style="--x: -48px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Integrator" data-panel="07_Analysis" data-desc="How the analysis advances from one step to the next." aria-label="Integrator" href="https://alpaca4d.gitbook.io/docs/basics/analysis/integrator"><i style="--x: -24px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Test" data-panel="07_Analysis" data-desc="When an iteration inside a step has converged, and how many iterations to allow before the step is declared failed." aria-label="Test" href="https://alpaca4d.gitbook.io/docs/basics/analysis/test"><i style="--x: -120px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Damping" data-panel="07_Analysis" data-desc="Rayleigh damping for every element and node of the model, as a combination of the mass and stiffness matrices:
+D = alphaM*M + betaKcurr*Kcurrent + betaKinit*Kinit + betaKcomm*KlastCommit
+For a damping ratio at a known circular frequency omega, taken from a Natural Vibration Analysis, stiffness-proportional damping is betaKcomm = 2*ratio/omega - so 5% at omega gives 0.1/omega." aria-label="Damping" href="https://alpaca4d.gitbook.io/docs/basics/analysis/damping"><i style="--x: -336px; --y: -0px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">07_Analysis</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="08_NumericalOutput">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Nodal Displacements" data-panel="08_NumericalOutput" data-desc="Reads displacement, rotation, velocity and acceleration at every node of an analysed model." aria-label="Nodal Displacements" href="https://alpaca4d.gitbook.io/docs/basics/results/nodal-displacements"><i style="--x: -240px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="Reaction Forces" data-panel="08_NumericalOutput" data-desc="Reads the force and the moment carried by every support of an analysed model." aria-label="Reaction Forces" href="https://alpaca4d.gitbook.io/docs/basics/results/reaction-forces"><i style="--x: -72px; --y: -96px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Beam Forces" data-panel="08_NumericalOutput" data-desc="Reads the internal forces along every beam element of an analysed model - axial force, two shears, torsion and two bending moments." aria-label="Beam Forces" href="https://alpaca4d.gitbook.io/docs/basics/results/beam-forces"><i style="--x: -144px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Beam Stresses" data-panel="08_NumericalOutput" data-desc="Reads the stresses along every beam element of an analysed model - axial, bending, shear and torsion, and the Von Mises equivalent - recovered from the beam forces with elastic beam theory." aria-label="Beam Stresses" href="https://alpaca4d.gitbook.io/docs/basics/results/beam-stresses"><i style="--x: -168px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Utilisation" data-panel="08_NumericalOutput" data-desc="Checks every beam against the design code of its material and reports how much of each resistance it uses: 1 is exactly at the limit." aria-label="Utilisation" href="https://alpaca4d.gitbook.io/docs/basics/results/utilisation"><i style="--x: -216px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Shell Forces" data-panel="08_NumericalOutput" data-desc="Reads the stress resultants of every shell element of an analysed model - membrane forces pxx, pyy and pxy, bending moments mxx, myy and mxy, and transverse shears vxz and vyz." aria-label="Shell Forces" href="https://alpaca4d.gitbook.io/docs/basics/results/shell-forces"><i style="--x: -336px; --y: -96px"></i></a>
+          <span class="rb-item" data-name="Shell Stresses" data-panel="08_NumericalOutput" data-desc="Reads the true stresses through the thickness of every shell element of an analysed model - the in-plane components, the transverse shears and the Von Mises equivalent." aria-label="Shell Stresses" tabindex="0"><i style="--x: -360px; --y: -96px"></i></span>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Brick Stresses" data-panel="08_NumericalOutput" data-desc="Reads the stress state of every solid element of an analysed model - the six components of the stress tensor plus the Von Mises equivalent stress." aria-label="Brick Stresses" href="https://alpaca4d.gitbook.io/docs/basics/results/brick-stresses"><i style="--x: -192px; --y: -0px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">08_NumericalOutput</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="09_Visualisation">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Model View" data-panel="09_Visualisation" data-desc="Visualise the assembled model in the viewport" aria-label="Model View" href="https://alpaca4d.gitbook.io/docs/basics/visualisation/model-view"><i style="--x: -48px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="View Results_WIP" data-panel="09_Visualisation" data-desc="Draw any result on the model: displacements, beam force diagrams, beam stresses, shell forces, shell stresses, solid stresses, reactions." aria-label="View Results_WIP" href="https://alpaca4d.gitbook.io/docs/basics/visualisation/view-results"><i style="--x: -240px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Principal Stress Lines" data-panel="09_Visualisation" data-desc="Plot principal stress lines on shell elements using nodal displacements/rotations." aria-label="Principal Stress Lines" href="https://alpaca4d.gitbook.io/docs/basics/visualisation/principal-stress-lines"><i style="--x: -48px; --y: -96px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Colors" data-panel="09_Visualisation" data-desc="Preset of gradient colors perfect for Data Visualisation" aria-label="Colors" href="https://alpaca4d.gitbook.io/docs/basics/visualisation/colors"><i style="--x: -336px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Legend" data-panel="09_Visualisation" data-desc="Draw a fixed on-screen legend with colors and labels" aria-label="Legend" href="https://alpaca4d.gitbook.io/docs/basics/visualisation/legend"><i style="--x: -168px; --y: -48px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">09_Visualisation</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="10_Utility">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Deconstruct" data-panel="10_Utility" data-desc="Deconstruct any object" aria-label="Deconstruct" href="https://alpaca4d.gitbook.io/docs/basics/utility/deconstruct"><i style="--x: -360px; --y: -0px"></i></a>
+        </div>
+        <div class="rb-group">
+          <span class="rb-item" data-name="Mesh Brep" data-panel="10_Utility" data-desc="Quad mesh of surfaces and polysurfaces for shell elements, made by Rhino's QuadRemesh." aria-label="Mesh Brep" tabindex="0"><i style="--x: -336px; --y: -48px"></i></span>
+          <a class="rb-item" data-name="MeshLoft" data-panel="10_Utility" data-desc="Mesh Loft" aria-label="MeshLoft" href="https://alpaca4d.gitbook.io/docs/basics/utility/mesh-loft"><i style="--x: -0px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="MeshSeriesToBrick" data-panel="10_Utility" data-desc="MeshSeriesToBrick" aria-label="MeshSeriesToBrick" href="https://alpaca4d.gitbook.io/docs/basics/utility/mesh-series-to-brick"><i style="--x: -24px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Counter" data-panel="10_Utility" data-desc="Timer-based counter" aria-label="Counter" href="https://alpaca4d.gitbook.io/docs/basics/utility/counter"><i style="--x: -288px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Custom code" data-panel="10_Utility" data-desc="Add a custom OpenSees code" aria-label="Custom code" href="https://alpaca4d.gitbook.io/docs/basics/utility/custom-code"><i style="--x: -312px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="Deserialise" data-panel="10_Utility" data-desc="Read an OpenSees .tcl file back into an Alpaca model, ready to view and to analyse." aria-label="Deserialise" href="https://alpaca4d.gitbook.io/docs/basics/utility/deserialise"><i style="--x: -0px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Serialize" data-panel="10_Utility" data-desc="Serialize a model and write the content to a file" aria-label="Serialize" href="https://alpaca4d.gitbook.io/docs/basics/utility/serialize"><i style="--x: -312px; --y: -96px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">10_Utility</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="12_Optimisation">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Explorer Inputs" data-panel="12_Optimisation" data-desc="Runs a design study: every combination of the sliders, value lists and panels connected to it, one solution each, for Explorer Record to save and the Alpaca4d Explorer to show." aria-label="Explorer Inputs" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/explorer-inputs"><i style="--x: -192px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Explorer Outputs" data-panel="12_Optimisation" data-desc="Names the results of a design - mass, deflection, utilisation, period - for Explorer Record to save, and for the explorer to show as the axes to the right of the inputs." aria-label="Explorer Outputs" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/explorer-outputs"><i style="--x: -216px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Explorer Record" data-panel="12_Optimisation" data-desc="Saves each design of a study into a folder the Alpaca4d Explorer opens: data.csv with the inputs and results, and a picture and a 3D model of each design." aria-label="Explorer Record" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/explorer-record"><i style="--x: -240px; --y: -24px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Explorer Image" data-panel="12_Optimisation" data-desc="Which views Explorer Record takes a picture of for each design, and at what size." aria-label="Explorer Image" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/explorer-image"><i style="--x: -168px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Explorer Subset" data-panel="12_Optimisation" data-desc="Runs part of a study." aria-label="Explorer Subset" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/explorer-subset"><i style="--x: -264px; --y: -24px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Non-Linear Optimisation" data-panel="12_Optimisation" data-desc="Minimises or maximises a number by moving number sliders, with NLopt's derivative-free algorithms." aria-label="Non-Linear Optimisation" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/non-linear-optimisation"><i style="--x: -264px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="Topology Optimisation" data-panel="12_Optimisation" data-desc="Finds where a solid needs its material." aria-label="Topology Optimisation" href="https://alpaca4d.gitbook.io/docs/basics/optimisation/topology-optimisation"><i style="--x: -144px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <span class="rb-item" data-name="Design Group" data-panel="12_Optimisation" data-desc="Beams that the Section Optimiser gives one section: the beams with these ElementIds, and the sections it may be." aria-label="Design Group" tabindex="0"><i style="--x: -24px; --y: -24px"></i></span>
+          <span class="rb-item" data-name="Section Optimiser" data-panel="12_Optimisation" data-desc="Sizes beams from lists of sections." aria-label="Section Optimiser" tabindex="0"><i style="--x: -288px; --y: -96px"></i></span>
+        </div>
+      </div>
+      <div class="rb-label">12_Optimisation</div>
+    </div>
+    <div class="rb-panel" role="group" aria-label="MomentCurvature_βeta">
+      <div class="rb-groups">
+        <div class="rb-group">
+          <a class="rb-item" data-name="Concrete01" data-panel="MomentCurvature_βeta" data-desc="Construct a concrete material with zero tensile strength (OpenSees Concrete01)." aria-label="Concrete01" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/concrete01"><i style="--x: -240px; --y: -0px"></i></a>
+          <a class="rb-item" data-name="ReinforcingSteel" data-panel="MomentCurvature_βeta" data-desc="Construct a reinforcing bar material (OpenSees ReinforcingSteel)." aria-label="ReinforcingSteel" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/reinforcing-steel"><i style="--x: -168px; --y: -96px"></i></a>
+          <a class="rb-item" data-name="Steel01" data-panel="MomentCurvature_βeta" data-desc="Construct a bilinear steel material with kinematic hardening (OpenSees Steel01)." aria-label="Steel01" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/steel01"><i style="--x: -48px; --y: -120px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Fiber Point" data-panel="MomentCurvature_βeta" data-desc="One fibre of a fibre section - a point with an area and a material." aria-label="Fiber Point" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/fiber-point"><i style="--x: -0px; --y: -96px"></i></a>
+          <a class="rb-item" data-name="Fiber Section" data-panel="MomentCurvature_βeta" data-desc="Collects fibre points, layers and patches into one section." aria-label="Fiber Section" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/fiber-section"><i style="--x: -288px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Layer Fiber" data-panel="MomentCurvature_βeta" data-desc="A row of equally spaced fibres along a curve - a layer of reinforcement." aria-label="Layer Fiber" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/layer"><i style="--x: -144px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Patch" data-panel="MomentCurvature_βeta" data-desc="An area of the section filled with fibres - one fibre per mesh face, at its centroid." aria-label="Patch" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/patch"><i style="--x: -288px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="MomentCurvature" data-panel="MomentCurvature_βeta" data-desc="Pushes a fibre section's curvature in any moment direction under a held axial force, and returns the moment-curvature curve, the stress-strain history of every fibre, and the curve's first yield and ultimate state." aria-label="MomentCurvature" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/moment-curvature"><i style="--x: -72px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Fiber Stress Strain" data-panel="MomentCurvature_βeta" data-desc="Splits a MomentCurvature fibre result into its fibres, stresses and strains - one branch per fibre." aria-label="Fiber Stress Strain" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/fiber-stress-strain"><i style="--x: -312px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Moment Curvature Diagram" data-panel="MomentCurvature_βeta" data-desc="Draws moment-curvature curves: κ along the plane's X, M along its Y, scaled to fit Size, with each curve's first yield in orange and its ultimate state in red." aria-label="Moment Curvature Diagram" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/moment-curvature-diagram"><i style="--x: -96px; --y: -72px"></i></a>
+        </div>
+        <div class="rb-group">
+          <a class="rb-item" data-name="Interaction Domain" data-panel="MomentCurvature_βeta" data-desc="The N-My-Mz resistance domain of a fibre section at the ultimate limit state: every combination of axial force and biaxial bending it carries before a fibre passes its material's ultimate strain." aria-label="Interaction Domain" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/interaction-domain"><i style="--x: -48px; --y: -48px"></i></a>
+          <a class="rb-item" data-name="Domain Check" data-panel="MomentCurvature_βeta" data-desc="Checks design forces against an interaction domain: the safety factor of each combination, and the point where it meets the boundary." aria-label="Domain Check" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/domain-check"><i style="--x: -72px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="Domain 3D" data-panel="MomentCurvature_βeta" data-desc="Draws an interaction domain in three dimensions: My along the plane's X, Mz along its Y, and N along its normal with compression up, scaled to fit Size." aria-label="Domain 3D" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/domain-views"><i style="--x: -48px; --y: -24px"></i></a>
+          <a class="rb-item" data-name="My-Mz Diagram" data-panel="MomentCurvature_βeta" data-desc="Draws the My-Mz interaction diagram of a domain at each axial force N: My along the plane's X, Mz along its Y, to one scale for both." aria-label="My-Mz Diagram" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/domain-views"><i style="--x: -144px; --y: -72px"></i></a>
+          <a class="rb-item" data-name="N-M Diagram" data-panel="MomentCurvature_βeta" data-desc="Draws the N-M interaction diagram of a domain: its cut by the plane that holds the N axis and the moment direction Angle - 0° for N-My, 90° for N-Mz." aria-label="N-M Diagram" href="https://alpaca4d.gitbook.io/docs/basics/moment-curvature/domain-views"><i style="--x: -216px; --y: -72px"></i></a>
+        </div>
+      </div>
+      <div class="rb-label">MomentCurvature_βeta</div>
+    </div>
   </div>
+  <div class="rb-tip" role="tooltip" hidden><strong></strong><small></small><span></span></div>
+</div>
+<p class="rb-caption">91 components in 13 panels, drawn from the plug-in itself. Scroll along the tab, point at an icon to see what it does, click it to open its page in the docs.</p>
+<!-- ribbon:end -->
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="wrap two-col">
+        <div class="reveal" style="display: grid; gap: 18px; align-content: start">
+          <span class="eyebrow">Next</span>
+          <h2 class="h2">Point it at OpenSees<span class="dot">.</span></h2>
+          <p class="lead">Alpaca4d writes your model for OpenSees, the analysis engine from UC Berkeley, and runs it on your computer. Download OpenSees yourself (subject to <a href="https://opensees.berkeley.edu/OpenSees/copyright.php" rel="noopener">its own license</a>) and tell Alpaca4d where it is, once.</p>
+          <div><a class="btn btn-dark" href="https://alpaca4d.gitbook.io/docs/setup">Follow the setup guide</a></div>
+        </div>
+        <div class="panel reveal" style="--d: .08s">
+          <h3 class="h3" style="margin-bottom: 12px">Free, or licensed</h3>
+          <p class="muted">Without a license you can build and analyse models of up to 50 elements and read their results. A license lifts the limit and unlocks the viewers, the section tools, Explorer and the optimisers.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px">
+            <a class="btn btn-primary btn-small" href="./buy.html">Buy a license</a>
+            <a class="btn btn-small" href="./buy.html#compare">What is included</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-
-  <!-- footer -->
-  <div id="footer"></div>
-  <script src="./assets/js/footer.js"></script>
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <script src="assets/js/multipage.js"></script> -->
-
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-    });
-  </script>
-
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="./assets/site/site.js?v=2"></script>
 </body>
-
-
 </html>
