@@ -19,8 +19,8 @@ in another tool, a value taken from a catalogue table.
 | Izz | `Izz` | Number | — | Second moment of area about the local *z* axis, in `m⁴`. |
 | Iyy | `Iyy` | Number | — | Second moment of area about the local *y* axis, in `m⁴`. |
 | J | `J` | Number | — | Torsion constant, in `m⁴`. |
-| AlphaY | `AlphaY` | Number | — | Shear area factor along the local *y* axis. |
-| AlphaZ | `AlphaZ` | Number | — | Shear area factor along the local *z* axis. |
+| AlphaY | `AlphaY` | Number | `5/6` | Shear area factor along the local *y* axis: the fraction of the area that carries shear. 5/6 for a rectangle. 0 makes the section rigid in shear, which ignores shear deformation. |
+| AlphaZ | `AlphaZ` | Number | `5/6` | Shear area factor along the local *z* axis, as **AlphaY**. |
 | Material | `Material` | Material | — | A [Uniaxial](../materials/Uniaxial.md) material, supplying `E`, `G` and the density used for element mass. |
 | Colour | `Colour` | Colour | *(empty)* | The colour the section is drawn in when [Model View](../visualisation/model-view.md) colours the elements **by section**. Left empty, Model View gives each section a colour of its own. Display only: the analysis never reads it. |
 

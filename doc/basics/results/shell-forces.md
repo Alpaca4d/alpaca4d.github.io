@@ -16,6 +16,7 @@ transverse shears, all per unit width.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. The outputs become trees `{step; element}`. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
+| ElementId | `ElementId` | Text (list) | *(empty)* | Read only some of the shells: an ElementId, a wildcard over them, a tag, or a regular expression. Empty reads them all. |
 
 ### Outputs
 
@@ -31,6 +32,7 @@ One branch per shell element, values at the element's integration points.
 | mxy | `mxy` | Number (tree) | Twisting moment, in `kN·m/m`. |
 | vxz | `vxz` | Number (tree) | Transverse shear on the *x* face, in `kN/m`. |
 | vyz | `vyz` | Number (tree) | Transverse shear on the *y* face, in `kN/m`. |
+| Element | `Element` | Element (list) | The shells read, in the order of the branches. Deconstruct them for the tag and the geometry. |
 
 ## 📈 When to use it
 

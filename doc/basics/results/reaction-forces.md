@@ -16,6 +16,7 @@ reported **in the support's own axes**.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. **ReactionForce** and **ReactionMoment** become trees `{step}`; **SupportPosition** stays a flat list. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
+| PointPos | `PointPos` | Point (list) | *(empty)* | Read only the supports at these points, the same points you gave the [Support](../elements/support.md) component. A point counts as at a support within the model's tolerance. Empty reads them all. |
 
 ### Outputs
 
@@ -24,8 +25,10 @@ reported **in the support's own axes**.
 | SupportPosition | `SupportPosition` | Plane (list) | Where each support is, **and the axes its reactions are given in**. Its origin is the support position; its axes are the frame below. |
 | ReactionForce | `ReactionForce` | Vector (list) | Reaction force, in `kN`, in the support's own axes. |
 | ReactionMoment | `ReactionMoment` | Vector (list) | Reaction moment, in `kN·m`, in the support's own axes. |
+| NodeTag | `NodeTag` | Integer (list) | The node each support sits on. |
 
-The three lists are parallel: item *i* of each belongs to the same support.
+The four lists are parallel: item *i* of each belongs to the same support. A point in **PointPos**
+that no support is at is named in a warning, rather than read as a support carrying nothing.
 
 ## 💡 Why the support's own axes
 

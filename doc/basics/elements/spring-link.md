@@ -25,7 +25,7 @@ glass.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Element | `Element` | Element (list) | The links, for the **Elements** input of [Assemble](../assemble.md). |
+| Element | `Element` | Element (list) | The links, for the **Elements** input of [Assemble](../assemble.md). They are on the branch their lines came from, as beams are on theirs, so links and beams wire into Assemble together without flattening. |
 
 ### The six directions
 

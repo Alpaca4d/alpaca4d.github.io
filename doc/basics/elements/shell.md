@@ -49,7 +49,7 @@ split it and give each part its own.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Element | `Element` | Element | List of shell elements, one per mesh face, to be connected to [Assemble](../assemble.md). |
+| Element | `Element` | Element (list) | The shell elements, one per mesh face, to be connected to [Assemble](../assemble.md). They are on the branch their mesh came from, as beams are on their line's, so shells and beams wire into Assemble together without flattening. |
 
 ## 📈 When to use it
 
