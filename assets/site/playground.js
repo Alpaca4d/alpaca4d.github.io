@@ -470,7 +470,10 @@ function init(root) {
   samples.forEach((s) => {
     s.y = Math.max(s.h, 0) + 0.05;
     for (const a of LEVELS) {
-      if (a.span && Math.hypot(s.u - a.u, s.v - a.v) < a.span / 2 + 0.6) s.y = Math.max(s.y, a.h + (a.kind === "river" ? 1.25 : 0.7));
+      if (a.span && Math.hypot(s.u - a.u, s.v - a.v) < a.span / 2 + 0.6) {
+        s.y = Math.max(s.y, a.h + (a.kind === "river" ? 1.25 : 0.7));
+        s.deck = true;
+      }
     }
   });
   const stones = [];
@@ -595,8 +598,11 @@ function init(root) {
   // ---- The alpaca ----
   const alpaca = new THREE.Group();
   scene.add(alpaca);
+  alpaca.rotation.order = "YXZ";
+  // Where it is: a place along the path (in samples) and a step to the side of it.
   let walkAt = LEVELS[CURRENT].at;
   let walkTo = walkAt;
+  let side = 0;
   let heading = toWorld(LEVELS[CURRENT].t[0], LEVELS[CURRENT].t[1]).normalize();
   new GLTFLoader().load(root.dataset.model, (gltf) => {
     let src = null;
@@ -802,10 +808,50 @@ function init(root) {
       m.el.classList.toggle("off", out);
     });
   };
-  const walkPoint = (f) => {
-    const i = Math.floor(f), k = f - i, a = samples[i], b = samples[Math.min(samples.length - 1, i + 1)];
-    return toWorld(mix(a.u, b.u, k), mix(a.v, b.v, k), mix(a.y, b.y, k));
+  // A place along the path, stepped to its side: in map coordinates, then in the world.
+  const mapAt = (f, off) => {
+    const i = Math.max(1, Math.min(samples.length - 2, Math.floor(f))), k = f - i;
+    const a = samples[i], b = samples[i + 1], p = samples[i - 1];
+    const tu = b.u - p.u, tv = b.v - p.v, tl = Math.hypot(tu, tv) || 1;
+    return [mix(a.u, b.u, k) - (tv / tl) * off, mix(a.v, b.v, k) + (tu / tl) * off, mix(a.y, b.y, k)];
   };
+  const alpacaAt = (f, off) => {
+    const [u, v, y] = mapAt(f, off);
+    return toWorld(u, v, Math.abs(off) < 0.01 ? y : Math.max(height(u, v), 0) + 0.05);
+  };
+
+  // At rest the alpaca strolls up and down the path near its area, grazes, looks around and now
+  // and then hops. It steps off the path only onto solid ground, and keeps to the deck of a bridge.
+  const rest = { mode: "look", until: 0, start: 0, home: walkAt, to: walkAt, sideTo: 0 };
+  const areaAt = (i) => LEVELS.reduce((best, a) => (Math.abs(a.at - i) < Math.abs(best.at - i) ? a : best), LEVELS[0]);
+  function nextRest() {
+    const r = Math.random();
+    rest.start = time;
+    if (r < 0.45) {
+      rest.mode = "stroll";
+      // 3 to 11 m along the path either way from its area, and up to 3.4 m to the side.
+      const along = (Math.random() < 0.5 ? -1 : 1) * (12 + Math.random() * 28);
+      rest.to = Math.max(1, Math.min(samples.length - 2, rest.home + along));
+      rest.sideTo = 0;
+      if (!areaAt(rest.home).span) {
+        const off = (Math.random() * 2 - 1) * 3.4, [u, v] = mapAt(rest.to, off);
+        if (height(u, v) > 0.4 && cutWeight(u, v) === 0) rest.sideTo = off;
+      }
+    } else if (r < 0.75) { rest.mode = "graze"; rest.until = time + 2 + Math.random() * 2.5; }
+    else if (r < 0.9) { rest.mode = "look"; rest.until = time + 1.5 + Math.random() * 2; }
+    else { rest.mode = "hop"; rest.until = time + 0.6; }
+  }
+  function idle(dt) {
+    if (rest.mode !== "stroll") { if (time > rest.until) nextRest(); return; }
+    const di = rest.to - walkAt, ds = rest.sideTo - side;
+    walkAt += Math.sign(di) * Math.min(Math.abs(di), dt * 14);
+    side += Math.sign(ds) * Math.min(Math.abs(ds), dt * 1.6);
+    walkTo = walkAt;
+    stride += dt * 9;
+    if (Math.abs(di) < 0.05 && Math.abs(ds) < 0.02) { rest.mode = "look"; rest.start = time; rest.until = time + 1 + Math.random() * 2; }
+  }
+  // 0 to 1 and back over a pose, so it eases in and out.
+  const ease = (from, to, edge = 0.4) => Math.min(1, (time - from) / edge, (to - time) / edge);
   let time = 0, last = performance.now(), stride = 0, walkSpeed = 0;
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
@@ -822,27 +868,39 @@ function init(root) {
       const pulse = 0.5 + 0.5 * Math.sin(time * 3);
       rings.forEach((r, i) => { if (stateOf(i) === "current") r.material.opacity = 0.45 + 0.5 * pulse; });
     }
-    // The alpaca walks the path, the camera following: at least 18 m a second, and never more
-    // than about three seconds from one area to another.
+    // The alpaca walks the path to a picked area, the camera following: at least 18 m a second,
+    // and never more than about three seconds from one area to another. Then it rests there.
+    const before = alpacaAt(walkAt, side);
     const walking = Math.abs(walkTo - walkAt) > 0.5;
     if (walking) {
       if (!walkSpeed) walkSpeed = Math.max(70, Math.abs(walkTo - walkAt) / 3);
-      const step = Math.min(Math.abs(walkTo - walkAt), dt * walkSpeed);
-      const before = walkPoint(walkAt);
-      walkAt += Math.sign(walkTo - walkAt) * step;
-      const after = walkPoint(walkAt);
-      const d = after.clone().sub(before).setY(0);
-      if (d.lengthSq() > 1e-6) heading.lerp(d.normalize(), 0.25).normalize();
+      walkAt += Math.sign(walkTo - walkAt) * Math.min(Math.abs(walkTo - walkAt), dt * walkSpeed);
+      side *= Math.exp(-dt * 6);
       stride += dt * 11;
-      glide = after.clone();
+      Object.assign(rest, { home: walkTo, mode: "look", start: time, until: time + 1.2 });
     } else {
-      walkAt = walkTo;
       walkSpeed = 0;
-      stride = 0;
+      if (!reduceMotion) idle(dt);
     }
-    const p = walkPoint(walkAt);
-    alpaca.position.set(p.x, p.y + (walking ? Math.abs(Math.sin(stride)) * 0.5 : 0), p.z);
-    alpaca.rotation.set(0, Math.atan2(-heading.z, heading.x), walking ? Math.sin(stride) * 0.05 : 0);
+    const p = alpacaAt(walkAt, side);
+    if (walking) glide = p.clone();
+    const d = p.clone().sub(before).setY(0);
+    if (d.lengthSq() > 1e-6) heading.lerp(d.normalize(), walking ? 0.25 : 0.12).normalize();
+    const strolling = !walking && rest.mode === "stroll";
+    let lift = 0, pitch = 0, look = 0;
+    if (walking || strolling) {
+      lift = Math.abs(Math.sin(stride)) * (walking ? 0.5 : 0.28);
+      pitch = Math.sin(stride) * 0.05;
+    } else if (!reduceMotion) {
+      const k = Math.max(0, ease(rest.start, rest.until));
+      if (rest.mode === "graze") pitch = -k * (0.24 + 0.03 * Math.sin(time * 6));
+      if (rest.mode === "look") look = k * 0.5 * Math.sin((time - rest.start) * 1.4);
+      if (rest.mode === "hop") { lift = Math.sin(Math.PI * Math.min(1, (time - rest.start) / 0.6)) * 1.2; pitch = 0.08 * Math.sin((2 * Math.PI * (time - rest.start)) / 0.6); }
+    }
+    alpaca.position.set(p.x, p.y + lift, p.z);
+    alpaca.rotation.set(0, Math.atan2(-heading.z, heading.x) + look, pitch);
+    // It breathes when it stands still.
+    alpaca.scale.y = walking || strolling || reduceMotion ? 1 : 1 + 0.018 * Math.sin(time * 2.6);
     if (glide) {
       target.lerp(V(glide.x, target.y, glide.z), 1 - Math.exp(-dt * (walking ? 6 : 3.5)));
       placeCamera();
