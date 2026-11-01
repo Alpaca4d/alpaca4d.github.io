@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playground · Alpaca4d</title>
+  <meta name="description" content="The Alpaca4d Playground: learn Alpaca4d and structural engineering on an island of ten areas. Coming soon.">
+  <meta name="author" content="Marco Pellegrino">
+  <!-- A sketch: kept out of search results until the Playground is built. -->
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Playground · Alpaca4d">
+  <meta property="og:image" content="https://alpaca4d.github.io/assets/site/img/og.jpg">
+  <meta name="theme-color" content="#f4f4f4">
+  <link rel="icon" href="./assets/site/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/site/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/site/site.css?v=2">
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="importmap">
+    { "imports": {
+        "three": "./explorer/vendor/three/build/three.module.min.js",
+        "three/addons/": "./explorer/vendor/three/examples/jsm/"
+    } }
+  </script>
+</head>
+
+<body data-root="./" data-page="playground">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+
+  <!-- The island: three.js draws it in [data-stage]; playground.js holds the levels. -->
+  <main id="main" class="pg" data-playground data-model="./alpaca4d_modelViewer/Alpaca4dModel.glb">
+    <div class="pg-stage" data-stage></div>
+    <div class="pg-markers" data-markers></div>
+
+    <section class="pg-intro">
+      <span class="eyebrow">Playground · a sketch</span>
+      <h1 class="h2">The island<span class="dot">.</span></h1>
+      <p>Ten areas, one structure each. Build it with Alpaca4d's components, and the alpaca walks on to the next area.</p>
+      <p class="pg-progress"><b>3</b> of 10 areas · <b>8</b> of 30 stars</p>
+      <p class="pg-note">The exercises come later. The progress shown is an example.</p>
+    </section>
+
+    <aside class="pg-card" data-card aria-live="polite" hidden>
+      <div class="pg-card-head">
+        <span class="pg-chip" data-chip></span>
+        <button class="pg-close" type="button" data-close aria-label="Close">×</button>
+      </div>
+      <h2 data-title></h2>
+      <dl>
+        <dt>You build</dt><dd data-build></dd>
+        <dt>In Alpaca4d</dt><dd data-skill></dd>
+        <dt>Engineering</dt><dd data-idea></dd>
+      </dl>
+      <button class="btn btn-primary btn-small" type="button" data-start disabled></button>
+    </aside>
+
+    <div class="pg-controls">
+      <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+      <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+      <button type="button" data-home aria-label="See the whole island">⌂</button>
+    </div>
+    <p class="pg-hint" data-hint>Drag to move · scroll to zoom · pick an area</p>
+    <p class="pg-fallback">The island needs WebGL, which this browser does not offer.</p>
+  </main>
+
+  <script src="./assets/site/site.js?v=2"></script>
+  <script type="module" src="./assets/site/playground.js"></script>
+</body>
+</html>
