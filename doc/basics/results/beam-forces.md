@@ -83,3 +83,10 @@ The two shears do not follow the same rule. That is OpenSees's convention, not a
 defines each shear as the slope of the moment it goes with, and Mz and My take opposite signs
 for the same curvature. [Beam Stresses](beam-stresses.md) and [Utilisation](utilisation.md)
 use these signs as they are.
+
+## 💡 Sections without shear
+
+A [Generic Section](../sections/parametric-cross-section.md) with **AlphaY** or **AlphaZ** of 0 is
+rigid in shear, and OpenSees records only N, Mz, My and Mx along a beam made of it. Vy and Vz are then
+worked out as the slopes of Mz and My along the beam. That is exact for the loads Alpaca4d puts
+on beams: under a uniform load the moments are quadratic along the beam.
