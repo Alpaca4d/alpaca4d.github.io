@@ -162,7 +162,8 @@ wipe
 
 Alpaca4d adds the geometric stiffness of the shells, built from their membrane forces, and
 solves the eigenvalue problem. The buckled shapes are written to
-`recorder_buckling_0.mpco`, in the `AlpacaResults` folder next to the Grasshopper file. A model
+`recorder_buckling_<id>_0.mpco`, in the `AlpacaResults` folder next to the Grasshopper file, where
+`<id>` is the start of the component's InstanceGuid: each Linear Buckling keeps a file of its own. A model
 whose ties are chained, such as a rigid link from a node of a rigid diaphragm, runs on the
 `Penalty` constraint handler, since `Transformation` gets chains wrong; so does a model with a
 shell on a tied node.
