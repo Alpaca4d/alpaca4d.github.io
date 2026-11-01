@@ -14,16 +14,16 @@ Your license covers that plug-in in full — every component in the toolbar: mat
 
 ## What you are not buying: OpenSees
 
-OpenSees is the analysis engine — the program that actually solves your model. It is free, open-source software developed at UC Berkeley, and **it is not part of your purchase**. Alpaca4d does not include, bundle, or resell it.
+OpenSees is the analysis engine — the program that actually solves your model. It is open-source software developed at UC Berkeley, subject to its own license, and **it is not part of your purchase**. Alpaca4d does not include, bundle, or resell it.
 
-You download OpenSees yourself, at no cost, from the official UC Berkeley page, and point Alpaca4d at it once — [Setup](../setup.md) walks you through it. From then on, Alpaca4d simply writes a file that OpenSees understands and launches the program you installed.
+You download OpenSees yourself, from the official UC Berkeley page, and point Alpaca4d at it once — [Setup](../setup.md) walks you through it. From then on, Alpaca4d simply writes a file that OpenSees understands and launches the program you installed.
 
 So your use of OpenSees runs under UC Berkeley's own terms, which you accept directly with them when you download it. Paying for Alpaca4d changes nothing in either direction: it buys you no rights in OpenSees, and it takes none away. Those terms are short — read them on the [OpenSees](opensees.md) page, where they are reproduced in full.
 
 |                                                                              | Where it comes from                             | Terms that apply                                          |
 | ---------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------- |
 | **Alpaca4d** — Grasshopper components, `.tcl` writer, result readers, views   | Purchased from us                               | This page                                                 |
-| **OpenSees** — the analysis engine                                            | Downloaded free by you, from UC Berkeley        | [The Regents' license](opensees.md#copyright-and-license) |
+| **OpenSees** — the analysis engine                                            | Downloaded by you, from UC Berkeley             | [The Regents' license](opensees.md#copyright-and-license) |
 
 ## Your models stay yours
 
@@ -33,20 +33,26 @@ The `.tcl` file Alpaca4d writes is plain text in the public, documented OpenSees
 
 After payment you receive a product key by email, which activates Alpaca4d on the computer you install it on. To activate it, open **Alpaca4d ▸ License ▸ Activate License** in Grasshopper and add it there. Get in touch if you change machine.
 
-The purchase covers a **one-year maintenance period**: all versions of Alpaca4d released in that year are yours to use indefinitely, along with email support. Renewing extends the period so that newer releases are covered too.
+There are two licenses, and they unlock the same components:
 
-Current price and the full maintenance terms are on the [buy page](https://alpaca4d.github.io/buy.html); email [alpaca4d@gmail.com](mailto:alpaca4d@gmail.com) first if you need a quotation, a proforma invoice, or your company details on the invoice.
+* **Student**, for study and research only, not for commercial work. It needs a valid student ID.
+* **Professional**, for any work, commercial work included.
+
+A license runs for **one year**, with email support. When it ends, Alpaca4d goes back to the limits below until you renew; your files and models are not affected.
+
+Prices, the full terms and a table of what each license can do are on the [buy page](https://alpaca4d.github.io/buy.html); email [alpaca4d@gmail.com](mailto:alpaca4d@gmail.com) first if you need a quotation, a proforma invoice, or your company details on the invoice.
 
 ## Without a license
 
 You can try Alpaca4d without a license, within two limits:
 
-|                                                                                                                                                               | Without a license          | With a license |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------- |
-| [Run Analysis](../basics/analysis/run-analysis.md) and [Natural Vibration](../basics/analysis/natural-vibration.md)                                           | Models of up to 50 elements | Any size       |
-| [View Results](../basics/visualisation/view-results.md), [Model View](../basics/visualisation/model-view.md) and [Moment Curvature](../basics/moment-curvature/moment-curvature.md) | Not available              | Available      |
-| [Explorer Inputs](../basics/optimisation/explorer-inputs.md), saving a study with [Explorer Record](../basics/optimisation/explorer-record.md), and running [Non-Linear Optimisation](../basics/optimisation/non-linear-optimisation.md) | Not available | Available |
-| Every other component                                                                                                                                         | Available                  | Available      |
+|  | Without a license | With a license |
+| --- | --- | --- |
+| [Run Analysis](../basics/analysis/run-analysis.md), [Natural Vibration](../basics/analysis/natural-vibration.md) and [Linear Buckling](../basics/analysis/linear-buckling.md) | Models of up to 50 elements | Any size |
+| [View Results](../basics/visualisation/view-results.md) and [Model View](../basics/visualisation/model-view.md) | Not available | Available |
+| [Moment Curvature](../basics/moment-curvature/moment-curvature.md), [Moment Curvature Diagram](../basics/moment-curvature/moment-curvature-diagram.md), [Interaction Domain](../basics/moment-curvature/interaction-domain.md), its [views](../basics/moment-curvature/domain-views.md) and [Domain Check](../basics/moment-curvature/domain-check.md) | Not available | Available |
+| [Explorer Inputs](../basics/optimisation/explorer-inputs.md), saving a study with [Explorer Record](../basics/optimisation/explorer-record.md), [Non-Linear Optimisation](../basics/optimisation/non-linear-optimisation.md), Section Optimiser and [Topology Optimisation](../basics/optimisation/topology-optimisation.md) | Not available | Available |
+| Every other component | Available | Available |
 
 A model over the limit, or one of those components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements, and read its results with the [Results](../basics/results/README.md) components.
 
