@@ -1,106 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Alpaca4d - Buy</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Marco Pellegrino">
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <link rel="stylesheet" href="./assets/css/prism.css">
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href="./assets/images/icons/logo_200_200.png">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buy · Alpaca4d</title>
+  <meta name="description" content="Buy Alpaca4d: free for small models, 30 € a year for students, 490 € a year for professionals. What each license can do, the terms, invoices, and payment by PayPal or bank transfer.">
+  <meta name="author" content="Marco Pellegrino">
+  <meta property="og:title" content="Buy · Alpaca4d">
+  <meta property="og:image" content="https://alpaca4d.github.io/assets/site/img/og.jpg">
+  <meta name="theme-color" content="#f4f4f4">
+  <link rel="icon" href="./assets/site/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/site/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
+  <link rel="stylesheet" href="./assets/site/site.css?v=2">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 
-<body>
+<body data-root="./" data-page="buy">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
 
-  <!-- nav bar -->
-  <div id="navbar"></div>
-  <script src="./assets/js/navbar.js"></script>
-
-  <div class="container">
-
-    <!-- Maintenance Terms Section -->
-    <div class="row" id="maintenance">
-      <div class="col s12">
-        <h4>1 Year Maintenance</h4>
-        <h6>Terms and Conditions</h6>
-        <ul class="browser-default" style="line-height: 180%;">
-          <li>Extends an existing license to allow indefinite use of all versions of Alpaca4d released within the maintenance period.</li>
-          <li>Support by email to <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> within the maintenance period. We promise a maximum 48&nbsp;hour response time unless prevented by deliverability problems. Notify us if you use a different email address from the one your product key is sent to.</li>
-          <li>The maintenance period is 1&nbsp;year from either date of supply or the end of the previous maintenance period, whichever is later.</li>
-          <li>You may need to provide your existing product key for identification.</li>
-          <li>We will email you a new product key within 48&nbsp;hours of receipt of payment and identification of your existing license.</li>
-        </ul>
+  <main id="main">
+    <section class="page-hero canvas-grid">
+      <div class="wrap">
+        <span class="eyebrow">Buy</span>
+        <h1 class="display">Get a license<span class="dot">.</span></h1>
+        <p class="lead">Try Alpaca4d free on small models. A license unlocks every component, at any size: 30&nbsp;€ a year for students, 490&nbsp;€ a year for professionals, plus VAT. We email you a product key, and you activate it in Grasshopper under <strong>Alpaca4d ▸ License ▸ Activate License</strong>.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="center-align" style="margin: 20px 0;">
-       <h5 class="blue-text"><strong>30 € + VAT</strong></h5>
-    </div>
+    <section class="section white" id="plans">
+      <div class="wrap">
+        <div class="plans">
+          <article class="plan reveal" style="--c: var(--blue)">
+            <span class="eyebrow">Free</span>
+            <div class="price"><b>0&nbsp;€</b></div>
+            <p class="plan-for">No license needed. Try it on small models.</p>
+            <ul>
+              <li>Every component that builds a model</li>
+              <li>Analyses of up to 50 elements</li>
+              <li>Results as numbers, with the Results components</li>
+            </ul>
+            <div class="plan-actions"><a class="btn" href="./download.html">Download</a></div>
+          </article>
 
-     <div class="row">
-         <div class="col s12 m6 center-align">
-           <a href="https://www.paypal.com/paypalme/marpelle/30EUR" target="_blank" class="btn green" style="border-radius: 10px;">Pay with PayPal</a>
-         </div>
-         <div class="col s12 m6 center-align">
-           <a href="#bank" class="btn blue" style="border-radius: 10px;">Bank Transfer Details</a>
-         </div>
-     </div>
+          <article class="plan reveal" style="--c: var(--orange); --d: .06s">
+            <span class="eyebrow">Student</span>
+            <div class="price"><b>30&nbsp;€</b><span>+ VAT a year</span></div>
+            <p class="plan-for">For study and research. Not for commercial work.</p>
+            <ul>
+              <li>Every component, any model size</li>
+              <li>One computer, for one year</li>
+              <li>A valid student ID is needed</li>
+            </ul>
+            <div class="plan-actions"><a class="btn" href="mailto:alpaca4d@gmail.com?subject=Student%20license">Send your student ID</a></div>
+            <p class="plan-note">We check it and reply with how to pay.</p>
+          </article>
 
-    <!-- Invoices Section -->
-    <div class="row" id="invoices">
-      <div class="col s12">
-        <h4>Invoices</h4>
-        <p>If you require a quotation, proforma invoice, or your company's details on your invoice, email <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> before paying. Otherwise you will receive an invoice showing your name and email address.</p>
+          <article class="plan plan-pro reveal" style="--c: var(--green); --d: .12s">
+            <span class="eyebrow">Professional</span>
+            <div class="price"><b>490&nbsp;€</b><span>+ VAT a year</span></div>
+            <p class="plan-for">For commercial work, at a firm or on your own.</p>
+            <ul>
+              <li>Every component, any model size</li>
+              <li>One computer, for one year</li>
+              <li>Email support, answered within 48 hours</li>
+            </ul>
+            <div class="plan-actions"><a class="btn btn-primary" href="https://www.paypal.com/paypalme/marpelle/490EUR" target="_blank" rel="noopener">Pay with PayPal</a></div>
+            <p class="plan-note">Or pay by <a href="#bank">bank transfer</a>.</p>
+          </article>
+        </div>
+        <div class="notice opensees-note reveal">
+          <span><strong>You pay for the Alpaca4d plug-in only, not for OpenSees.</strong> OpenSees, the engine that solves your model, is open-source software from <a href="https://opensees.berkeley.edu/" rel="noopener">UC Berkeley</a>. You download it yourself, from them, subject to <a href="https://opensees.berkeley.edu/OpenSees/copyright.php" rel="noopener">its own license</a>. Alpaca4d does not include, bundle or resell it.</span>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Bank Transfer Section -->
-    <div class="row" id="bank">
-      <div class="col s12">
-        <h4>Payment by Bank Transfer</h4>
-        <p>An alternative to credit card payment is international wire transfer or local bank transfer.</p>
-        <strong>Pay to:</strong>
-        <ul class="browser-default" style="line-height: 180%;">
-          <li>Account name: <strong>Marco Pellegrino</strong></li>
-          <li>Account number: <strong>IT65 A036 4601 6005 2623 7791 804</strong></li>
-          <li>Receiving Bank: <strong>N26 Bank</strong></li>
-          <li>SWIFT code: <strong>NTSBITM1XXX</strong></li>
-          <li>Include your name or company name with the transfer</li>
-          <li>Notify <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> after making the payment</li>
-        </ul>
+    <!-- What needs a license, from LicenseGate in Alpaca4d.Gh (0.12): analyses are free up to
+         License.FreeElementLimit elements; LicenseGate.Allows components need a license at any size.
+         Change it here, on the License page of the docs and in the index.html license band together. -->
+    <section class="section" id="compare">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Compare</span>
+          <h2 class="h2">What each one can do<span class="dot">.</span></h2>
+          <p class="lead">Student and Professional unlock the same components. Only who may use them, and for what, is different.</p>
+        </div>
+        <div class="compare-wrap reveal">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Free</th><th scope="col">Student</th><th scope="col"><span class="long">Professional</span><span class="short">Pro</span></th></tr>
+            </thead>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">Build the model</th></tr>
+              <tr><th scope="row">Materials, sections and elements: beams, trusses, shells, bricks and tetrahedra</th><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">Supports, loads and Assemble Model</th><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">Import from Karamba3D, export to FEM-Design</th><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">Analyse</th></tr>
+              <tr><th scope="row">OpenSees, the engine that solves the model</th><td class="txt all" colspan="3">Not sold here: downloaded by you from UC Berkeley, subject to its own license</td></tr>
+              <tr><th scope="row">Static analysis, vibration modes and linear buckling</th><td class="txt">Up to 50 elements</td><td class="txt">Any size</td><td class="txt">Any size</td></tr>
+              <tr><th scope="row">Results as numbers: displacements, forces and stresses</th><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">See the results</th></tr>
+              <tr><th scope="row">Model View</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">View Results: deformed shapes, contours and diagrams</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">Design sections</th></tr>
+              <tr><th scope="row">Moment Curvature and its diagram</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">Interaction domains: N-M, My-Mz, 3D and Domain Check</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">Optimise</th></tr>
+              <tr><th scope="row">Section Optimiser and Topology Optimisation</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">Non-Linear Optimisation</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row">Design Explorer: Explorer Inputs and Explorer Record</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th scope="rowgroup" colspan="4">Terms</th></tr>
+              <tr><th scope="row">Email support, answered within 48 hours</th><td class="n"><span class="visually-hidden">No</span></td><td class="y"><span class="visually-hidden">Yes</span></td><td class="y"><span class="visually-hidden">Yes</span></td></tr>
+              <tr class="price-row"><th scope="row">Price</th><td class="txt">0&nbsp;€</td><td class="txt">30&nbsp;€ <small>+ VAT a year</small></td><td class="txt">490&nbsp;€ <small>+ VAT a year</small></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </section>
 
-  </div>
+    <section class="section white" id="terms">
+      <div class="wrap two-col">
+        <div class="sticky-head reveal" style="display: grid; gap: 18px">
+          <span class="eyebrow">Terms</span>
+          <h2 class="h2">Terms and conditions<span class="dot">.</span></h2>
+          <p class="muted">What a license covers, and what it does not, OpenSees included, is set out on the <a href="https://alpaca4d.gitbook.io/docs/references/license">License</a> page of the docs.</p>
+        </div>
+        <div class="prose reveal" style="--d: .08s">
+          <ul>
+            <li>A license is for the Alpaca4d plug-in only. OpenSees is not part of the purchase: it is software from UC Berkeley, which you download from them, subject to <a href="https://opensees.berkeley.edu/OpenSees/copyright.php" rel="noopener">its own license</a>. Buying Alpaca4d gives you no rights in OpenSees and takes none away.</li>
+            <li>A license is for one computer. It runs for 1&nbsp;year from the date of supply, or from the end of your previous license if you renew before it ends.</li>
+            <li>When a license ends, Alpaca4d goes back to the free limits until you renew. Your Grasshopper files and models are not affected.</li>
+            <li>A Student license is for students, for study and research only, and not for commercial work. Send a valid student ID with your request. We use it only to check that you study, and delete it once checked.</li>
+            <li>A Professional license is for any work, commercial work included.</li>
+            <li>Support by email to <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> while your license runs. We promise a maximum 48&nbsp;hour response time unless prevented by deliverability problems. Notify us if you use a different email address from the one your product key is sent to.</li>
+            <li>We will email you a product key within 48&nbsp;hours of receipt of payment. To renew, you may need to give your current product key. Get in touch if you change computer.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <!-- footer -->
-  <div id="footer"></div>
-  <script src="./assets/js/footer.js"></script>
+    <section class="section">
+      <div class="wrap two-col">
+        <div class="prose reveal" id="invoices">
+          <h2 style="margin-top: 0">Invoices</h2>
+          <p>If you require a quotation, proforma invoice, or your company's details on your invoice, email <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> before paying. Otherwise you will receive an invoice showing your name and email address.</p>
+        </div>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <div class="panel reveal" id="bank" style="--d: .08s">
+          <h2 class="h3" style="margin-bottom: 8px">Payment by bank transfer</h2>
+          <p class="muted">An alternative to credit card payment is international wire transfer or local bank transfer.</p>
+          <dl class="kv" style="margin-top: 18px">
+            <dt>Account name</dt><dd>Marco Pellegrino</dd>
+            <dt>Account number</dt><dd>IT65 A036 4601 6005 2623 7791 804</dd>
+            <dt>Receiving bank</dt><dd>N26 Bank</dd>
+            <dt>SWIFT code</dt><dd>NTSBITM1XXX</dd>
+          </dl>
+          <div class="notice" style="margin-top: 20px">
+            <span>Include your name or company name with the transfer, and notify <a href="mailto:alpaca4d@gmail.com">alpaca4d@gmail.com</a> after making the payment.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-      
-      var collapsibles = document.querySelectorAll('.collapsible');
-      var collapsibleInstances = M.Collapsible.init(collapsibles);
-    });
-  </script>
-
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="./assets/site/site.js?v=2"></script>
 </body>
-
 </html>
