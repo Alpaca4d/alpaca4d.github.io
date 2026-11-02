@@ -96,8 +96,9 @@ Solves the eigenvalue problem of the model and returns its modes, eigenvalues, p
 frequencies.
 
 It needs no [Analysis Settings](analysis-settings.md) — an eigenvalue problem has nothing to
-converge. Connect the **assembled** model rather than an analysed one, then feed the solved
-model to [Nodal Displacements](../results/nodal-displacements.md) to read a mode shape. The
+converge. Connect the **assembled** model, or an analysed one for the modes of the model it was
+analysed from — Section Optimiser's last design, say — then feed the solved model to
+[Nodal Displacements](../results/nodal-displacements.md) to read a mode shape. The
 participating masses are in its [Modal Report](natural-vibration.md#modal-report) menu.
 
 ### [Linear Buckling](linear-buckling.md)
@@ -107,8 +108,8 @@ it buckles into. The first is the critical load factor α_cr, which EN 1993-1-1 
 to decide whether a frame needs a second-order analysis.
 
 Like Natural Vibration it needs no [Analysis Settings](analysis-settings.md). Connect the
-**assembled** model, and feed the buckled model to [View Results](../visualisation/view-results.md)
-to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
+**assembled** model, or an analysed one, as for Natural Vibration, and feed the buckled model to
+[View Results](../visualisation/view-results.md) to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
 its ends.
 
 ## What Alpaca4d can analyse

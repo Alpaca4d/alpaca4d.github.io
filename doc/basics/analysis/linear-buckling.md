@@ -17,7 +17,7 @@ Like [Natural Vibration](natural-vibration.md), it needs no
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), with the loads to buckle it under. Not one from [Run Analysis](run-analysis.md). |
+| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), with the loads to buckle it under, or an analysed one, from [Run Analysis](run-analysis.md), Section Optimiser or [Natural Vibration](natural-vibration.md). An analysed model is buckled as it was before it was analysed: from Section Optimiser, its last design, with no need to assemble its **Section** output again. Its loads are those it was assembled with; the forces the analysis found are not used. |
 | Buckling Modes | `Buckling Modes` | Integer | `1` | How many of the lowest buckling modes to find. |
 | Divisions | `Divisions` | Integer | `1` | How many elements every beam is split into for the analysis. `1` leaves them whole. See [Divisions](#divisions). |
 
@@ -110,7 +110,7 @@ accuracy.
 | *… beam transformations were made PDelta* | What was changed for the analysis. |
 | *OpenSees could not solve the model with no load* | The model is a mechanism, or a support is missing. |
 | *The model has … equations* | Too many for this OpenSees; see [Limits](#limits). |
-| *This AlpacaModel has already been analysed* | Connect the output of [Assemble](../assemble.md), not of Run Analysis. |
+| *This AlpacaModel has been analysed, and does not carry the model it was analysed from* | It was analysed by something other than Run Analysis, Natural Vibration, Linear Buckling or Section Optimiser. Connect the output of [Assemble](../assemble.md). |
 
 ## 📈 When to use it
 

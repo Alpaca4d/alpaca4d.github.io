@@ -19,7 +19,7 @@ to converge.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md). |
+| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or an analysed one, from [Run Analysis](run-analysis.md), Section Optimiser or [Linear Buckling](linear-buckling.md). See [After an analysis](#after-an-analysis). |
 | Vibration Modes | `Vibration Modes` | Integer | `1` | How many modes to extract. |
 | Solver | `Solver` | Text | `-genBandArpack` | Eigen solver: `-genBandArpack` or `-fullGenLapack`. Attach a **Value List** for the options. |
 
@@ -42,6 +42,19 @@ and [View Results](../visualisation/view-results.md) draws it at **Deformation s
 largest movement 8 % of the model's diagonal, whatever the model's size or mass. The slider
 runs from −2 to 2 there, so **Animate** swings the mode through its rest and out the other side.
 {% endhint %}
+
+### After an analysis
+
+An analysed model can be connected too. Its modes are those of the model it was analysed from:
+the analysis it went through keeps that model, and Natural Vibration solves it instead of the
+analysed one, whose script ends in `wipe`.
+
+- **From Section Optimiser**, they are the modes of its last design. There is no need to put beams
+  on its **Section** output and assemble them again.
+- **From Linear Buckling**, the beams are whole again, as they were assembled, whatever
+  **Divisions** split them into.
+- **From Run Analysis**, they are the modes of the model unloaded. The displacements and forces
+  the analysis found do not change them: there is no stiffening or softening under load.
 
 ### Modal Report
 
