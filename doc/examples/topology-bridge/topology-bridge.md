@@ -11,7 +11,8 @@ whatever the optimisation finds. With a fifth of the rest, the optimisation find
 support to support, rising into the deck at mid-span, with a column up to the deck near each end.
 
 {% hint style="info" %}
-Topology Optimisation needs a license.
+Without a license, Topology Optimisation runs on models of up to 500 elements. At 3 bricks per
+metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it runs without.
 {% endhint %}
 
 ## The model

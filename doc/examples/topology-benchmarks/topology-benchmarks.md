@@ -14,7 +14,8 @@ toggle. Beside it are panels giving the compliance that Alpaca4d's test bench an
 200 iterations, to compare with.
 
 {% hint style="info" %}
-Topology Optimisation needs a license.
+Without a license, Topology Optimisation runs on models of up to 500 elements, so these two, of
+4 800 and 9 600 bricks, need one.
 {% endhint %}
 
 ## The model

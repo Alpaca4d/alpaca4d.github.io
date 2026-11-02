@@ -128,7 +128,9 @@ weighs what it did. The component warns when the model has Gravity. Leave it out
 for the other loads.
 {% endhint %}
 
-Topology Optimisation needs a license.
+Without a license, Topology Optimisation runs on models of up to 500 elements, counting any
+beams, shells and links with the solids. A larger model needs one: see
+[License](../../references/license.md#without-a-license).
 
 ### How long it takes
 
