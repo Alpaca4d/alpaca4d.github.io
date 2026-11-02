@@ -13,7 +13,7 @@ them up.
 | [SSP Brick](brick.md) | `SSP Brick` | A stabilized single-point hexahedral solid from an 8-vertex mesh. |
 | [Ten Node Tetrahedron](ten-node-tetrahedron.md) | `Ten Node Tetrahedron` | A quadratic tetrahedral solid from a 4-vertex mesh, with a node added at the middle of each edge. Needs an OpenSees newer than 3.8.0. |
 | [Spring Link](spring-link.md) | `Spring Link` | A spring between two nodes that are apart, with its own stiffness in each local direction. |
-| [Support](support.md) | `Support` | A nodal restraint, from a point or from a plane for skewed supports. |
+| [Support](support.md) | `Support` | A nodal restraint, from a point or from a plane for skewed supports: Rigid, or through springs, Elastic or Compression Only. |
 | [Hinge Release](hinge-release.md) | `Hinge Release` | A release condition consumed by the `WithHinges` beam unit. |
 
 ## Choosing an element
