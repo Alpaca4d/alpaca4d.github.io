@@ -4,7 +4,7 @@ Traces streamlines that follow the **principal stress directions**: across a she
 inside of a solid. Where a contour shows how much, these show which way — the load paths through a
 plate, a block, a bone or a node.
 
-<figure><img src="principal-stress-lines/femur-slice.png" alt="Principal stress lines through a femur" width="700"><figcaption><p>The Standardised Femur under the hip's force, in ten node tetrahedra: compression (SL3, blue) runs from the head down the inner side of the shaft, tension (SL1, red) arches over the neck and down the outer side. The lines of a slice 1 cm thick through the middle of the bone.</p></figcaption></figure>
+<figure><img src="principal-stress-lines/femur-slice.png" alt="Principal stress lines through a femur" width="340"><figcaption><p>The Standardised Femur under the hip's force, in ten node tetrahedra: compression (SL3, blue) runs from the head down the inner side of the shaft, tension (SL1, orange) arches over the neck and down the outer side. The lines of a slice 1 cm thick through the middle of the bone.</p></figcaption></figure>
 
 ## 🔧 Grasshopper component
 
@@ -144,9 +144,13 @@ directions to within 0.1–0.6° on average, on Ten Node Tetrahedra and on SSP B
 held and loaded as it would be drawn, clamped or on its bottom edges, follows them as closely more
 than a depth away from its supports and loads.
 
-<figure><img src="principal-stress-lines/supported-beam.png" alt="Principal stress lines in a simply supported beam" width="700"><figcaption><p>A simply supported beam of Ten Node Tetrahedra under a uniform load, seen from the front: tension (SL1, red) sags along the bottom and rises to the supports, compression (SL3, blue) arches between them. In the top, where both stresses in the beam's plane are compressions, the largest principal stress is the one across the width, nought, and the second family of the familiar two-dimensional picture is SL2 (green).</p></figcaption></figure>
+<figure><img src="principal-stress-lines/supported-beam.png" alt="Principal stress lines in a simply supported beam" width="700"><figcaption><p>A simply supported beam of Ten Node Tetrahedra under a uniform load, seen from the front: tension (SL1, orange) sags along the bottom and rises to the supports, compression (SL3, blue) arches between them. In the top, where both stresses in the beam's plane are compressions, the largest principal stress is the one across the width, nought, and the second family of the familiar two-dimensional picture is SL2 (purple).</p></figcaption></figure>
 
-<figure><img src="principal-stress-lines/twisted-bar.png" alt="Principal stress lines in a twisted and pulled bar" width="500"><figcaption><p>A bar twisted and pulled, in Ten Node Tetrahedra: the tension (red) and compression (blue) lines are helices winding opposite ways round the axis; the middle principal stress (green) points straight out from it.</p></figcaption></figure>
+<figure><img src="principal-stress-lines/beam-bricks.png" alt="Principal stress lines in a simply supported beam of SSP Bricks" width="700"><figcaption><p>A simply supported beam of 1,280 SSP Bricks, 10 m long, 2 m deep and 1 m wide, under a uniform load on its top: one line of each family through points every 0.5 m along the neutral axis, at the back, the middle and the front of the width. Tension (SL1, orange) sags along the bottom and rises to the supports; compression (SL3, blue) arches between them and, below the neutral axis, runs straight down until the vertical stress fades to nothing.</p></figcaption></figure>
+
+<figure><img src="principal-stress-lines/twisted-bar.png" alt="Principal stress lines in a twisted and pulled bar" width="300"><figcaption><p>A bar twisted and pulled, in Ten Node Tetrahedra: the tension (orange) and compression (blue) lines are helices winding opposite ways round the axis; the middle principal stress (purple) points straight out from it.</p></figcaption></figure>
+
+<figure><img src="principal-stress-lines/femur-bricks.png" alt="Principal stress lines through a femur of SSP Bricks" width="340"><figcaption><p>The femur again, in 9,960 SSP Bricks of 3.5 mm: a field of lines grown from seeds in the bone's middle plane, through the whole bone and seen in perspective. Compression (SL3, blue) runs down the head and the inner side of the shaft, tension (SL1, orange) over the neck and down the outer side, as in the slice through the tetrahedra above. The steps of the outline are the bricks; lines shorter than 3 cm are left out.</p></figcaption></figure>
 
 ## 💡 Tuning it
 
