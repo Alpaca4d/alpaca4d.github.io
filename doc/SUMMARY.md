@@ -105,6 +105,8 @@
   * [Explorer Subset](basics/optimisation/explorer-subset.md)
   * [Non-Linear Optimisation](basics/optimisation/non-linear-optimisation.md)
   * [Topology Optimisation](basics/optimisation/topology-optimisation.md)
+  * [Multi-Material Topology](basics/optimisation/multi-material-topology.md)
+  * [BESO Topology](basics/optimisation/beso-topology.md)
 
 ## EXAMPLES
 

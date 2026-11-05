@@ -15,7 +15,9 @@ They do what Colibri with Design Explorer, and DoDo's NL-Opt, did. Both ship wit
 there is nothing else to install.
 
 A third works on the material itself rather than on sliders: [Topology Optimisation](topology-optimisation.md)
-finds which part of a block of bricks or tetrahedra a structure needs.
+finds which part of a block of bricks or tetrahedra a structure needs. [BESO Topology](beso-topology.md)
+finds it by carving the block down, solid or void all along, and [Multi-Material Topology](multi-material-topology.md)
+also chooses which of several materials goes where.
 
 Examples to start from:
 
@@ -39,6 +41,8 @@ Examples to start from:
 | [Explorer Subset](explorer-subset.md) | `Explorer Subset` | Runs part of a study, to try it out or split it between machines. |
 | [Non-Linear Optimisation](non-linear-optimisation.md) | `NL-Opt` | Minimises or maximises a number by moving sliders, with NLopt's algorithms. |
 | [Topology Optimisation](topology-optimisation.md) | `Topology` | Finds where a solid of bricks or tetrahedra needs its material. |
+| [Multi-Material Topology](multi-material-topology.md) | `MultiTopology` | Finds where each of several materials goes in a solid, and where none is needed. |
+| [BESO Topology](beso-topology.md) | `BESO` | Finds where a solid needs its material by carving it down, every element solid or void. |
 
 ## Which one
 

@@ -75,6 +75,20 @@ In the **Settings** menu:
 | AlpacaModel | Once the run has stopped, the design as a model of its own, ready for [Run Analysis](../analysis/run-analysis.md): **Solid** at full stiffness, the model's other elements, and the supports, point loads and masses that stand on them. |
 | History, log | In the Settings menu: each iteration's compliance, volume, change and timings; what OpenSees printed. |
 
+### Three ways
+
+Alpaca4d has three components that find where a solid needs its material. They take the same
+model and run the same way, with Run, Iterations and Step, and share their main outputs - Surface,
+Solid, Step, AlpacaModel. Multi-Material Topology also takes the materials and a volume for each,
+and gives a surface per material.
+
+| | Topology Optimisation | [BESO Topology](beso-topology.md) | [Multi-Material Topology](multi-material-topology.md) |
+| --- | --- | --- | --- |
+| Finds | Where one material goes | Where one material goes | Where each of several materials goes |
+| Each element | A density between 0 and 1; Threshold decides what counts as solid | Solid or void, all along | A density of every material, pushed to one material alone or void |
+| Update | Optimality criteria, as top3d | The elements that work hardest are kept, the rest let go | MMA, with a volume limit per material |
+| A run | One design for VolumeFraction, usually the quickest | From the whole block down to VolumeFraction: Step shows the design of every volume on the way | About 300 iterations, slower per iteration |
+
 ## ▶️ Running it
 
 1. Model the design domain in SSP Bricks - [Mesh Series to Brick](../utility/mesh-series-to-brick.md) turns a

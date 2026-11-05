@@ -49,7 +49,7 @@ You can try Alpaca4d without a license, within these limits:
 |  | Without a license | With a license |
 | --- | --- | --- |
 | [Run Analysis](../basics/analysis/run-analysis.md), [Natural Vibration](../basics/analysis/natural-vibration.md) and [Linear Buckling](../basics/analysis/linear-buckling.md) | Models of up to 50 elements | Any size |
-| [Topology Optimisation](../basics/optimisation/topology-optimisation.md) | Models of up to 500 elements | Any size |
+| [Topology Optimisation](../basics/optimisation/topology-optimisation.md), [Multi-Material Topology](../basics/optimisation/multi-material-topology.md) and [BESO Topology](../basics/optimisation/beso-topology.md) | Models of up to 500 elements | Any size |
 | [View Results](../basics/visualisation/view-results.md) and [Model View](../basics/visualisation/model-view.md) | Not available | Available |
 | [Moment Curvature](../basics/moment-curvature/moment-curvature.md), [Moment Curvature Diagram](../basics/moment-curvature/moment-curvature-diagram.md), [Interaction Domain](../basics/moment-curvature/interaction-domain.md), its [views](../basics/moment-curvature/domain-views.md) and [Domain Check](../basics/moment-curvature/domain-check.md) | Not available | Available |
 | [Explorer Inputs](../basics/optimisation/explorer-inputs.md), saving a study with [Explorer Record](../basics/optimisation/explorer-record.md), [Non-Linear Optimisation](../basics/optimisation/non-linear-optimisation.md) and Section Optimiser | Not available | Available |
