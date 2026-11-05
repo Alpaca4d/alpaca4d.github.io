@@ -50,6 +50,12 @@ Without a license, the three components run on models of up to 500 elements. At 
 3. Once a run has stopped, enable its **Run Analysis** and **Legend** in group 8 to see its design
    in Von Mises stress, where the model is. Lock them again before enabling another's.
 
+{% hint style="warning" %}
+**BESO at 1 brick per 10 cm.** At the coarsest fineness BESO Topology cuts a member through, in
+two steps, after iteration 108, and never mends it: it says so in a warning, and **Converged**
+stays `false`. Use 2 bricks per 10 cm, the default, or 3.
+{% endhint %}
+
 <figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/beam-column-joint/beam-column-joint-2.png" alt="Multi-Material Topology's joint in Von Mises stress"><figcaption></figcaption></figure>
 
 ## What it shows

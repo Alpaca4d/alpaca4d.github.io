@@ -97,8 +97,8 @@ soft-kill form of Huang and Xie (2009).
 
 As the volume comes down, members get thin. Now and then the update cuts one through, and the
 compliance jumps. Usually BESO mends it within a few iterations, bringing elements back, and the
-run goes on. When it does not - the compliance more than 10 times what it was and never back
-under 3 times - the design has broken apart, the "breakdown" of Xia et al.'s section 3.4. The run
+run goes on. When it does not - the compliance more than 10 times the lowest of the five iterations
+before, in one step or in two, and never back under 3 times that - the design has broken apart, the "breakdown" of Xia et al.'s section 3.4. The run
 then stops where it would have converged, **Converged** is `false`, and a warning gives the
 iteration: drag **Step** back to the last whole design, or start again with a smaller
 **FilterRadius** or **EvolutionRate**, or **Keep** more.
