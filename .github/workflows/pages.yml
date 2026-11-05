@@ -1,0 +1,60 @@
+# Publishes alpaca4d.github.io: the website as it is in the repository, and the docs at /docs/,
+# built by VitePress (docs-site/) from the Markdown pages in doc/. GitBook keeps reading doc/ as
+# before. Needs Settings > Pages > Source set to "GitHub Actions".
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One publish at a time; a newer push waits for the one running.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - name: Build the docs
+        working-directory: docs-site
+        run: |
+          npm ci
+          npm run build
+
+      # Everything the branch published before keeps its address, doc/.gitbook/assets included,
+      # except marketing/: no page links to it, and its pictures would soon pass the 1 GB a Pages
+      # site may have.
+      - name: Put the website and the docs together
+        run: |
+          rsync -a --exclude .git --exclude .github --exclude docs-site --exclude _site --exclude /marketing ./ _site/
+          cp -R docs-site/dist _site/docs
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
