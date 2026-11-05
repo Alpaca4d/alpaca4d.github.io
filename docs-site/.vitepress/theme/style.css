@@ -1,0 +1,248 @@
+/* The Alpaca4d website's look on VitePress's default theme: the plugin's palette
+   (Alpaca.Core/Utils/BrandColors.cs), Overpass, the rainbow bar, and GitBook's hint boxes,
+   figures and file cards. */
+
+:root {
+  --red: #fe0000;
+  --orange: #eb6c3f;
+  --purple: #9e35da;
+  --green: #afc930;
+  --blue: #4288f7;
+  --navy: #011efe;
+  --ink: #2a2d31;
+  --paper: #f4f4f4;
+  --rainbow: linear-gradient(90deg, var(--red), var(--orange), var(--purple), var(--green), var(--blue), var(--navy));
+
+  --vp-font-family-base: "Overpass", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --vp-font-family-mono: "Overpass Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --vp-c-text-1: #2a2d31;
+  --vp-c-text-2: #555a62;
+  --vp-c-text-3: #7a7f87;
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f4f4f4;
+  --vp-c-bg-soft: #f4f4f4;
+  --vp-c-divider: #e2e3e6;
+  --vp-c-gutter: #e2e3e6;
+
+  /* Links and the current page in Alpaca dark blue, which reads at 8 : 1 on white. */
+  --vp-c-brand-1: #011efe;
+  --vp-c-brand-2: #2440ff;
+  --vp-c-brand-3: #4288f7;
+  --vp-c-brand-soft: rgba(66, 136, 247, 0.14);
+
+  --vp-button-brand-bg: var(--green);
+  --vp-button-brand-text: var(--ink);
+  --vp-button-brand-border: var(--ink);
+  --vp-button-brand-hover-bg: #bfd84a;
+  --vp-button-brand-hover-text: var(--ink);
+  --vp-button-brand-hover-border: var(--ink);
+
+  --vp-code-color: var(--vp-c-text-1);
+  --vp-code-bg: rgba(42, 45, 49, 0.06);
+
+  --vp-nav-height: 68px;
+  --vp-layout-max-width: 1520px;
+
+  --hint-info: var(--blue);
+  --hint-tip: var(--green);
+  --hint-warning: var(--orange);
+  --hint-danger: var(--red);
+}
+
+.dark {
+  --vp-c-text-1: #eceef1;
+  --vp-c-text-2: #b6bac1;
+  --vp-c-text-3: #8d929a;
+  --vp-c-bg: #1d1f23;
+  --vp-c-bg-alt: #17191c;
+  --vp-c-bg-soft: #24272c;
+  --vp-c-divider: #33363c;
+  --vp-c-gutter: #111214;
+  --vp-c-brand-1: #8fb3ff;
+  --vp-c-brand-2: #a9c4ff;
+  --vp-c-brand-3: #4288f7;
+  --vp-c-brand-soft: rgba(66, 136, 247, 0.18);
+  --vp-code-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Header ---- */
+
+.VPNav::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--rainbow);
+  z-index: 40;
+}
+.VPNavBarTitle a.title { font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+.VPNavBarTitle a.title::after {
+  content: "DOCS";
+  margin-left: 8px;
+  padding: 3px 7px 1px;
+  border: 2px solid var(--vp-c-text-1);
+  border-radius: 6px;
+  font: 600 11px/1.2 var(--vp-font-family-mono);
+  letter-spacing: 0.12em;
+}
+.VPNavBar .logo { height: 30px; }
+.VPNavBarMenuLink { font-weight: 600; }
+/* The website's pages are part of the same site, not somewhere else: no arrow. */
+.VPNavBarMenuLink::after, .VPNavScreenMenuLink::after { display: none !important; }
+
+/* Download as the website's green button. */
+.VPNavBarMenuLink[href$="download.html"] {
+  margin-left: 10px;
+  padding: 0 16px;
+  line-height: 36px;
+  height: 38px;
+  align-self: center;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--ink) !important;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.VPNavBarMenuLink[href$="download.html"]:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--ink); }
+
+/* ---- Sidebar ---- */
+
+.VPSidebar { background: var(--vp-c-bg-alt); }
+.VPSidebarItem.level-0 > .item > .text,
+.VPSidebarItem.level-0 > .item > h2.text {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+.VPSidebarItem.level-0 > .item > .link > .text { font-family: var(--vp-font-family-base); font-size: 14.5px; letter-spacing: 0; text-transform: none; color: inherit; font-weight: 600; }
+.VPSidebarItem .text { font-size: 14.5px; }
+.VPSidebarItem.is-active > .item .link > .text { font-weight: 700; }
+.VPSidebarItem.is-active > .item > .indicator { background: var(--green); width: 3px; }
+
+/* ---- Page ---- */
+
+.vp-doc h1 { font-size: clamp(2.1rem, 3.4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; }
+.vp-doc h2 { font-weight: 800; letter-spacing: -0.02em; border-top: 0; margin-top: 48px; padding-top: 0; }
+.vp-doc h3 { font-weight: 800; letter-spacing: -0.01em; }
+.vp-doc p, .vp-doc li { line-height: 1.7; }
+.vp-doc a { text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+.vp-doc .page-lead {
+  margin: 14px 0 28px;
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+
+/* Pictures as GitBook frames them: centred, framed, the caption underneath. */
+.vp-doc figure { margin: 26px 0; text-align: center; }
+.vp-doc figure img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  background: #fff;
+}
+.vp-doc figcaption { margin-top: 10px; font-family: var(--vp-font-family-mono); font-size: 13px; color: var(--vp-c-text-3); }
+.vp-doc figcaption:empty { display: none; }
+
+.vp-doc table { display: table; width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--vp-c-divider); border-radius: 12px; overflow: hidden; font-size: 14.5px; }
+.vp-doc th { background: var(--vp-c-bg-alt); font-weight: 700; text-align: left; }
+.vp-doc tr { border-top: 0; }
+.vp-doc tr:nth-child(2n) { background: transparent; }
+.vp-doc th, .vp-doc td { border: 0; border-bottom: 1px solid var(--vp-c-divider); }
+.vp-doc tr:last-child td { border-bottom: 0; }
+/* On a phone a wide table scrolls sideways inside its frame instead of widening the page. */
+@media (max-width: 768px) { .vp-doc table { display: block; overflow-x: auto; } }
+
+.vp-doc :not(pre) > code { font-size: 0.86em; border-radius: 6px; }
+
+/* GitBook's hints: a coloured rule and icon, no heading. */
+.vp-doc .custom-block {
+  position: relative;
+  padding: 14px 18px 14px 52px;
+  border: 0;
+  border-left: 4px solid var(--hint);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--hint) 10%, var(--vp-c-bg));
+  color: var(--vp-c-text-1);
+}
+.vp-doc .custom-block.info { --hint: var(--hint-info); }
+.vp-doc .custom-block.tip { --hint: var(--hint-tip); }
+.vp-doc .custom-block.warning { --hint: var(--hint-warning); }
+.vp-doc .custom-block.danger { --hint: var(--hint-danger); }
+.vp-doc .custom-block .custom-block-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.vp-doc .custom-block::before {
+  position: absolute;
+  left: 16px;
+  top: 15px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--hint);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font: 800 13px/1 var(--vp-font-family-base);
+}
+.vp-doc .custom-block.info::before { content: "i"; }
+.vp-doc .custom-block.tip::before { content: "✓"; color: var(--ink); }
+.vp-doc .custom-block.warning::before { content: "!"; }
+.vp-doc .custom-block.danger::before { content: "!"; }
+.vp-doc .custom-block p { line-height: 1.65; }
+.vp-doc .custom-block a { color: var(--vp-c-brand-1); }
+.vp-doc .custom-block code { background: color-mix(in srgb, var(--hint) 16%, transparent); }
+
+/* GitBook's {% file %}: a card to download the Grasshopper file. */
+.vp-doc .file-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+  padding: 12px 18px 12px 12px;
+  max-width: 520px;
+  border: 2px solid var(--vp-c-text-1);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--vp-c-text-1);
+  box-shadow: 0 4px 0 var(--vp-c-text-1);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.vp-doc .file-card:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--vp-c-text-1); }
+.vp-doc .file-ext { flex: none; width: 48px; height: 48px; border-radius: 10px; display: grid; place-items: center; background: var(--green); color: var(--ink); border: 2px solid var(--ink); font: 700 13px/1 var(--vp-font-family-mono); }
+.vp-doc .file-name { display: grid; gap: 2px; min-width: 0; }
+.vp-doc .file-name strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vp-doc .file-name small { font-family: var(--vp-font-family-mono); font-size: 12px; color: var(--vp-c-text-3); }
+
+/* Cards on the welcome page. */
+.vp-doc .doc-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 28px 0; }
+.vp-doc .doc-card {
+  display: grid;
+  gap: 4px;
+  padding: 18px 20px;
+  border: 2px solid var(--vp-c-divider);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--vp-c-text-1);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.vp-doc .doc-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }
+.vp-doc .doc-card:hover { border-color: var(--vp-c-text-1); transform: translateY(-2px); }
+.vp-doc .doc-card strong { font-size: 17px; }
+.vp-doc .doc-card span { font-size: 14.5px; color: var(--vp-c-text-2); }
+@media (max-width: 640px) { .vp-doc .doc-cards { grid-template-columns: 1fr; } }
+
+/* ---- Outline, footer ---- */
+
+.VPDocAsideOutline .outline-title { font-family: var(--vp-font-family-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vp-c-text-3); }
+.VPDocAsideOutline .outline-marker { background-color: var(--green); }
+.VPDocFooter .pager-link { border-width: 2px; border-radius: 14px; }
+.VPDocFooter .pager-link:hover { border-color: var(--vp-c-text-1); }
+.VPDocFooter .title { font-weight: 800; }
