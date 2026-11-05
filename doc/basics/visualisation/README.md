@@ -8,26 +8,25 @@ read the answer.
 
 | Component | Nickname | Draws |
 | --- | --- | --- |
-| [Model View](model-view.md) | `ModelView` | The assembled model: elements, supports, loads, constraints, IDs, local axes. |
-| [View Results](view-results.md) | `View Results_WIP` | Any result on the model: displacements, beam force diagrams, shell forces and stresses, solid stresses, reactions. |
+| [Model View](model-view.md) | `ModelView` | The model — elements, supports, loads, IDs, local axes, end releases — and any result on it: displacements, beam force diagrams, beam stresses, shell forces and stresses, solid stresses, reactions. |
 | [Principal Stress Lines](principal-stress-lines.md) | `Principal Stress Lines` | Streamlines following the principal directions: over shells, or through solids. |
 | [Shell Section](shell-section.md) | `Shell Section` | A section drawn across shells: the diagram of the forces along it, and their totals. |
 | [Legend](legend.md) | `Legend` | A fixed on-screen colour scale. |
-| [Colors](colors.md) | `Colors` | 18 ready-made gradients to feed View Results and Legend. |
+| [Colors](colors.md) | `Colors` | 18 ready-made gradients to feed Model View and Legend. |
 
 ## A working habit
 
 1. **Model View** first, every time, before running anything. Turn on supports and loads and
    check they are where you drew them.
 2. Run the analysis.
-3. [View Results](view-results.md) next, on *Displacement* with **Deformed shape** ticked — a displaced shape
+3. Model View again, with *Displacement* ticked under **Results** with **Deformed shape** ticked — a displaced shape
    that looks wrong usually is wrong, and spots a missing restraint faster than any number will.
 4. Then switch it to the quantity you actually need, with a [Colors](colors.md) gradient and
    a [Legend](legend.md).
 
 ## Colours and ranges
 
-[View Results](view-results.md) has two inputs for this:
+[Model View](model-view.md) has two inputs for this:
 
 - **Colors** — a list of colours forming the gradient. Leave it empty for the default
   (*Turbo*), or feed it from [Colors](colors.md).

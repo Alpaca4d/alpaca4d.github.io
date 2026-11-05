@@ -69,7 +69,6 @@
   * [Modal Analysis Report](basics/results/modal-analysis-report.md)
 * [🕶️ Visualisation](basics/visualisation/README.md)
   * [Model View](basics/visualisation/model-view.md)
-  * [View Results](basics/visualisation/view-results.md)
   * [Principal Stress Lines](basics/visualisation/principal-stress-lines.md)
   * [Shell Section](basics/visualisation/shell-section.md)
   * [Legend](basics/visualisation/legend.md)
