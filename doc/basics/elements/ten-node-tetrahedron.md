@@ -72,7 +72,7 @@ mesher into Grasshopper, under their own weight, a point force and in vibration.
 ## 📊 Results
 
 [Brick Stresses](../results/brick-stresses.md) gives one value per element: the mean of its four
-integration points, which is the stress at its centre. [View Results](../visualisation/view-results.md)
+integration points, which is the stress at its centre. [Model View](../visualisation/model-view.md)
 draws how the stress varies across each element, from the four points read back to its nodes.
 
 Its own weight ([Gravity Load](../loads/gravity.md)) is shared among the nodes the way the
@@ -120,7 +120,7 @@ throughout geometry processing.
 | 3 - Pinned at every node on the ground | Every element's ten nodes from its **Points** output, in one list; those below 1 mm, once each, held in X, Y and Z by a [Support](support.md). |
 | 4 - Its own weight | [Gravity](../loads/gravity.md), in a [Load Pattern](../loads/load-pattern.md). |
 | 5 - Assemble Model | [Assemble](../assemble.md), and [Model View](../visualisation/model-view.md) to see the elements and the supports. |
-| 6 - Solve, and the vertical stress | [Run Analysis](../analysis/run-analysis.md), and [View Results](../visualisation/view-results.md) on Brick stresses, σ33, over a **Range** of -0.15 to 0.15 MPa, with its [Legend](../visualisation/legend.md). |
+| 6 - Solve, and the vertical stress | [Run Analysis](../analysis/run-analysis.md), and [Model View](../visualisation/model-view.md) on Brick stresses, σ33, over a **Range** of -0.15 to 0.15 MPa, with its [Legend](../visualisation/legend.md). |
 
 #### Tetrahedra from a mesher
 
@@ -163,7 +163,7 @@ the stress at a point support grows every time the mesh is refined. That is why 
 ±0.15 MPa: fitted to everything drawn, the scale would stretch from -1.4 to +0.3 MPa and leave the
 rest of the cow one colour. Clear Range to see all of it.
 
-Pick another result in View Results' **Result** menu: Von Mises, or Displacement, at most 0.02 mm.
+Tick another result in Model View's **Results** menu: Von Mises, or Displacement, at most 0.02 mm.
 
 Spot by Keenan Crane, from his [3D model repository](https://www.cs.cmu.edu/~kmcrane/Projects/ModelRepository/),
 dedicated to the public domain (CC0).
@@ -188,7 +188,7 @@ of nodes.
 | 3 - Held at the knee | Every element's ten nodes from its **Points** output; those in the bottom 2 cm, once each, held in X, Y and Z, as a bone potted in cement for a test. |
 | 4 - The hip's force | The highest node is the top of the head. The force is shared equally among the nodes within 15 mm of it: **List Length** counts them and **Division** gives each its share of the 2 kN, as [Point Loads](../loads/point-load.md). |
 | 5 - Assemble Model | [Assemble](../assemble.md), with a **Tolerance** of 0.0001 m (0.1 mm). The default, 1 cm, is larger than the tetrahedra and would weld their nodes together. [Model View](../visualisation/model-view.md) shows the supports and the loads. |
-| 6 - Solve, and the displacement | [Run Analysis](../analysis/run-analysis.md), and [View Results](../visualisation/view-results.md) on Displacement, drawn 20 times larger, with its [Legend](../visualisation/legend.md). |
+| 6 - Solve, and the displacement | [Run Analysis](../analysis/run-analysis.md), and [Model View](../visualisation/model-view.md) on Displacement, drawn 20 times larger, with its [Legend](../visualisation/legend.md). |
 
 #### The load
 
@@ -203,7 +203,7 @@ The head moves 3.4 mm, mostly sideways. The shaft bends over the knee, as it doe
 eccentric load of the neck. The reactions at the knee balance the 2 kN exactly.
 
 Next to the groups, a [Natural Vibration Analysis](../analysis/natural-vibration.md) and a second
-View Results show the bone's modes. Move the **Step** slider to go through them. The first two
+Model View shows the bone's modes. Move the **Step** slider to go through them. The first two
 are at 57 and 61 Hz.
 
 Treat the numbers as an illustration, not as biomechanics. The bone is solid cortical bone all
@@ -233,7 +233,7 @@ as a closed solid and meshed with tetrahedra.
 A concrete dragon 5.5 m tall, standing on its two feet, in 10 903 Ten Node Tetrahedra, and the ways
 it vibrates: it sways, wags its tail and flaps its wings. The example runs a
 [Natural Vibration](../analysis/natural-vibration.md) analysis on a solid and steps through its
-modes in View Results. Inigo is Keenan Crane's dragon, built from signed distance functions.
+modes in Model View. Inigo is Keenan Crane's dragon, built from signed distance functions.
 
 #### The model
 
@@ -243,7 +243,7 @@ modes in View Results. Inigo is Keenan Crane's dragon, built from signed distanc
 | 2 - Concrete, and Ten Node Tetrahedra | An [nD](../materials/ND.md) Elastic Isotropic material, C30/37, with a density of 2 500 kg/m³. |
 | 3 - Held at every node on the soles | Every element's ten nodes from its **Points** output; those below 1 mm, once each, held in X, Y and Z by a [Support](support.md). |
 | 4 - Assemble Model | [Assemble](../assemble.md), with no load at all. |
-| 5 - The first 12 modes | [Natural Vibration](../analysis/natural-vibration.md) with **Vibration Modes** set to 12, and a **Mode** slider into the **Step** of [View Results](../visualisation/view-results.md), which draws the mode deformed. **Frequencies** lists them, in Hz. |
+| 5 - The first 12 modes | [Natural Vibration](../analysis/natural-vibration.md) with **Vibration Modes** set to 12, and a **Mode** slider into the **Step** of [Model View](../visualisation/model-view.md), which draws the mode deformed. **Frequencies** lists them, in Hz. |
 
 #### No load, only mass
 
@@ -253,7 +253,7 @@ there is nothing to run first.
 
 #### The modes
 
-**Mode** picks the mode View Results draws, counting from 0 as **Step** does: 0 is the first mode.
+**Mode** picks the mode Model View draws, counting from 0 as **Step** does: 0 is the first mode.
 
 | Mode | Step | Frequency | Shape |
 | --- | --- | --- | --- |
@@ -263,7 +263,7 @@ there is nothing to run first.
 | 4 | 3 | 59.1 Hz | both wings flap together |
 | 5 | 4 | 60.1 Hz | the wings flap against each other, and the tail swings |
 
-The definition opens on mode 4. Tick **Animate** in View Results' **Display** menu to watch it
+The definition opens on mode 4. Tick **Animate** in Model View's **Results** menu to watch it
 move.
 
 {% hint style="warning" %}

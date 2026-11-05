@@ -29,7 +29,7 @@ tools.
 **Use it when**
 
 - You want to animate a transient result: feed **Counter** into the **Step** input of
-  [View Results](../visualisation/view-results.md) or any
+  [Model View](../visualisation/model-view.md) or any
   [Results](../results/README.md) component and watch the response play through.
 - You want to cycle through mode shapes from
   [Natural Vibration](../analysis/natural-vibration.md).

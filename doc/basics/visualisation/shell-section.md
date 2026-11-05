@@ -55,7 +55,7 @@ What to draw. The menu starts open.
 | Component | `mxx` | The component the diagram shows: pxx, pxy, vxz, mxx or mxy. | Always |
 | Unit | **kN/m**, **kN·m/m** | The unit the values are written in: N/m, kN/m, MN/m for the forces, N·m/m, kN·m/m, MN·m/m for the moments. | The one of the component |
 | Smooth across shells | on | Reads the forces from a field smoothed across the shells. See [Smoothing](#smoothing). | Always |
-| Diagram scale | `1`, from 0 to 20 | Stretches the diagram. At 1 the largest value stands off the cut 8 % of the model's diagonal, as View Results' beam diagrams do. One scale serves every curve. | Always |
+| Diagram scale | `1`, from 0 to 20 | Stretches the diagram. At 1 the largest value stands off the cut 8 % of the model's diagonal, as Model View's beam diagrams do. One scale serves every curve. | Always |
 | Section axes | on | Draws *x*, *y* and *z* at the centre of each cut, in red, green and blue. | Always |
 | Show values | off | Writes the largest and the smallest value of each stretch at the tip of the diagram. | Always |
 | Value text size | `0.5`, from 0.05 to 5 | The height of those values, in model units. | With **Show values** on |
@@ -149,5 +149,5 @@ where `Vz` matters.
 **Do not use it when**
 
 - You want the forces of every element → [Shell Forces](../results/shell-forces.md).
-- You want a contour over the shells → [View Results](view-results.md), with *Shell forces*
-  picked as the result.
+- You want a contour over the shells → [Model View](model-view.md), with *Shell forces*
+  ticked.

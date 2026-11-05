@@ -43,8 +43,8 @@ branch, the values are at the element's integration points, ordered from the I e
 
 **Do not use it when**
 
-- You want to see the diagram → [View Results](../visualisation/view-results.md), with *Beam forces* picked as the result,
-  draws any of the six in the viewport.
+- You want to see the diagram → [Model View](../visualisation/model-view.md), with *Beam forces* ticked,
+  draws any of the six in the viewport, as many at once as are ticked in its row.
 
 {% hint style="warning" %}
 **The resolution is the element discretisation.** Forces are sampled at the integration

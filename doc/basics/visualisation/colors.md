@@ -35,7 +35,7 @@ Eighteen ready-made colour gradients, for the contour components.
 ## 📈 When to use it
 
 **Use it when** you are feeding a gradient to
-[View Results](view-results.md) or [Legend](legend.md), and the default *Turbo* is not the right map for the
+[Model View](model-view.md) or [Legend](legend.md), and the default *Turbo* is not the right map for the
 data.
 
 **Do not use it when** the default is fine — leave **Colors** empty on those components and

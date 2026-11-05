@@ -90,9 +90,8 @@ says so.
 **Do not use it when**
 
 - You want a code check of steel members → [Utilisation](utilisation.md).
-- You want to see the stresses → [View Results](../visualisation/view-results.md), with *Beam
-  stresses* picked as the result, colours the beams along their length — and, with **Extruded
-  beams** on, paints the components that vary across the section point by point over it.
+- You want to see the stresses → [Model View](../visualisation/model-view.md), with *Beam
+  stresses* ticked, colours the beams along their length — and, with **Extruded** on, paints the components that vary across the section point by point over it.
 
 ## ✅ How it is checked
 

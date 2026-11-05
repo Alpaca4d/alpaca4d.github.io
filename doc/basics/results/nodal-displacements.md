@@ -46,7 +46,7 @@ for, still in tag order.
 **Do not use it when**
 
 - You only want to *look* at the deformed shape →
-  [View Results](../visualisation/view-results.md) draws it directly.
+  [Model View](../visualisation/model-view.md) draws it directly.
 
 {% hint style="info" %}
 On a model from [Natural Vibration](../analysis/natural-vibration.md), **Displacement** is

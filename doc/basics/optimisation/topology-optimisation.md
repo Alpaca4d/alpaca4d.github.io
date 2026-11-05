@@ -182,7 +182,7 @@ run is never much shorter than 260.
 ## 🔍 Analysing the design
 
 Once the run has stopped, **AlpacaModel** is the design as a model of its own: wire it to
-[Run Analysis](../analysis/run-analysis.md) and read it as any analysed model, with View Results,
+[Run Analysis](../analysis/run-analysis.md) and read it as any analysed model, with Model View,
 Nodal Displacements or the other result components. Three things happen on the way from the
 densities to a model:
 

@@ -25,7 +25,7 @@ metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it 
 | 4 - Pinned ends, and the deck load | The nodes along the bottom of both ends, held in X, Y and Z by a [Support](../../basics/elements/support.md) and free to rotate. The deck load, 10 kN/m² over 32 m², shared equally among the nodes of the deck's top as [Point Loads](../../basics/loads/point-load.md), in a [Load Pattern](../../basics/loads/load-pattern.md). |
 | 5 - Assemble Model | [Assemble](../../basics/assemble.md). [Model View](../../basics/visualisation/model-view.md) is disabled: enable it to see the domain, the supports and the loads. |
 | 6 - Topology Optimisation | **Keep** names the Deck. **VolumeFraction** 0.2, **Iterations** 100, **Run**, and **Step** to look back over the run. Panels show the compliance, whether the run converged, and its history. |
-| 7 - The design, analysed | [Run Analysis](../../basics/analysis/run-analysis.md) on the optimisation's **AlpacaModel**, the design as a model of its own, and [View Results](../../basics/visualisation/view-results.md) colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
+| 7 - The design, analysed | [Run Analysis](../../basics/analysis/run-analysis.md) on the optimisation's **AlpacaModel**, the design as a model of its own, and [Model View](../../basics/visualisation/model-view.md) colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
 
 ## Running it
 
@@ -36,7 +36,7 @@ metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it 
    Changing anything else, such as **VolumeFraction** or **Bricks per metre**, starts the run again.
 3. Drag **Step** back to watch the run design by design: every iteration is kept.
 4. Once the run has stopped, select **Run Analysis** and **Legend** and enable them. The design is
-   analysed as it would be built, solid and void, and View Results colours it by Von Mises stress.
+   analysed as it would be built, solid and void, and Model View colours it by Von Mises stress.
    Disable Run Analysis again before dragging **Step**, or every design shown is analysed.
 
 <figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/topology-bridge/topology-bridge-2.png" alt="The design analysed: the arch and the columns coloured by Von Mises stress, with a legend"><figcaption></figcaption></figure>

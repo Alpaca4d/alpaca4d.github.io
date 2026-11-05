@@ -5,7 +5,7 @@ in place of the set it picks for the analysis type. Untick what you do not need,
 analysis runs faster and writes a smaller file.
 
 The file is an MPCO (HDF5) file. The [Results](results/README.md) components and
-[View Results](visualisation/view-results.md) read it back, and STKO opens it too.
+[Model View](visualisation/model-view.md) read it back, and STKO opens it too.
 
 ## 🔧 Grasshopper component
 
@@ -29,12 +29,12 @@ adding the component changes nothing until you untick something.
 
 | Box | Read by |
 | --- | --- |
-| `displacement`, `rotation` | [Nodal Displacements](results/nodal-displacements.md), [View Results](visualisation/view-results.md), [Principal Stress Lines](visualisation/principal-stress-lines.md) |
+| `displacement`, `rotation` | [Nodal Displacements](results/nodal-displacements.md), [Model View](visualisation/model-view.md), [Principal Stress Lines](visualisation/principal-stress-lines.md) |
 | `velocity`, `angularVelocity`, `acceleration`, `angularAcceleration` | [Nodal Displacements](results/nodal-displacements.md), after a transient analysis |
-| `reactionForce`, `reactionMoment` | [Reaction Forces](results/reaction-forces.md), [View Results](visualisation/view-results.md) |
-| `stresses` | [Brick Stresses](results/brick-stresses.md), [View Results](visualisation/view-results.md) |
-| `section.force` | [Beam Forces](results/beam-forces.md), [Shell Forces](results/shell-forces.md), [View Results](visualisation/view-results.md), for every beam with or without hinges and every shell |
-| `section.fiber.stress` | Shell Stresses, [View Results](visualisation/view-results.md), for plate fibre and layered shell sections |
+| `reactionForce`, `reactionMoment` | [Reaction Forces](results/reaction-forces.md), [Model View](visualisation/model-view.md) |
+| `stresses` | [Brick Stresses](results/brick-stresses.md), [Model View](visualisation/model-view.md) |
+| `section.force` | [Beam Forces](results/beam-forces.md), [Shell Forces](results/shell-forces.md), [Model View](visualisation/model-view.md), for every beam with or without hinges and every shell |
+| `section.fiber.stress` | Shell Stresses, [Model View](visualisation/model-view.md), for plate fibre and layered shell sections |
 
 The first eight are in **Nodes**, the last three in **Elements**.
 

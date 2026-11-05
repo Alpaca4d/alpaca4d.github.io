@@ -109,7 +109,7 @@ to decide whether a frame needs a second-order analysis.
 
 Like Natural Vibration it needs no [Analysis Settings](analysis-settings.md). Connect the
 **assembled** model, or an analysed one, as for Natural Vibration, and feed the buckled model to
-[View Results](../visualisation/view-results.md) to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
+[Model View](../visualisation/model-view.md) to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
 its ends.
 
 ## What Alpaca4d can analyse

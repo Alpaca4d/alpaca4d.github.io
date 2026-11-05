@@ -83,7 +83,7 @@ one where the seed is off the shells or outside the solid, or the stress there g
 
 **Do not use it when**
 
-- You need a magnitude → [View Results](view-results.md), [Shell Forces](../results/shell-forces.md)
+- You need a magnitude → [Model View](model-view.md), [Shell Forces](../results/shell-forces.md)
   or [Brick Stresses](../results/brick-stresses.md).
 
 ## 🧮 How the lines are made
