@@ -87,7 +87,9 @@ and gives a surface per material.
 | Finds | Where one material goes | Where one material goes | Where each of several materials goes |
 | Each element | A density between 0 and 1; Threshold decides what counts as solid | Solid or void, all along | A density of every material, pushed to one material alone or void |
 | Update | Optimality criteria, as top3d | The elements that work hardest are kept, the rest let go | MMA, with a volume limit per material |
-| A run | One design for VolumeFraction, usually the quickest | From the whole block down to VolumeFraction: Step shows the design of every volume on the way | About 300 iterations, slower per iteration |
+| A run | One design for VolumeFraction; the quickest on small models | From the whole block down to VolumeFraction: Step shows the design of every volume on the way; about 100 iterations, the quickest on large models | About 260 iterations, each a quarter longer: four to seven times as long as the quicker of the other two |
+
+[How long it takes](#how-long-it-takes) compares them.
 
 ## ▶️ Running it
 
@@ -156,6 +158,26 @@ On an Apple M2 Pro, with Mumps:
 | 4 800 | 19 200 | 0.23 s | 23 s |
 | 9 600 | 38 100 | 0.46 s | 46 s |
 | 19 200 | 67 800 | 1.0 s | 100 s |
+
+The three topology components side by side, on the block of the
+[Topology Bridge](../../examples/topology-bridge/topology-bridge.md), one run at a time on the same
+machine, each keeping a fifth of the block below the deck - Multi-Material Topology 5% in steel and
+15% in concrete:
+
+| Bricks | Topology Optimisation | BESO Topology | Multi-Material Topology |
+| --- | --- | --- | --- |
+| 1 024 | 2.6 s, 44 iterations | 4.9 s, 92 iterations | 19 s, 267 iterations |
+| 3 456 | 13 s, 77 | 17 s, 102 | 59 s, 263 |
+| 8 192 | 49 s, 109 | 36 s, 90 | 2 min 21 s, 260 |
+| 16 000 | 1 min 48 s, 123 | 1 min 18 s, 95 | 4 min 53 s, 260 |
+
+An analysis takes as long whichever component asks for it, so the difference is in how many
+iterations each makes, and in the update: Multi-Material Topology's, MMA, takes about a quarter of
+its time, the other two's next to nothing. Topology Optimisation's compliance is within 1%
+of where it ends after about 30 iterations at every size; the rest of its run settles the
+densities. BESO Topology comes down 2% of the volume an iteration, so its design is there only near
+the end. Multi-Material Topology sharpens its projection every 50 iterations up to the 251st, so a
+run is never much shorter than 260.
 
 ## 🔍 Analysing the design
 

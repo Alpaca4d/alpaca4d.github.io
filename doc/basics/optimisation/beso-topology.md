@@ -111,8 +111,9 @@ and links with the solids, as Topology Optimisation does. A larger model needs o
 [License](../../references/license.md#without-a-license).
 
 {% hint style="info" %}
-**Which to use.** Topology Optimisation gives one design for one volume and is usually the
-quickest. BESO is solid or void from the start, which needs no threshold, and passes through every
+**Which to use.** Topology Optimisation gives one design for one volume and is the quickest on
+small models; on large ones BESO, needing fewer iterations, finishes first (see
+[How long it takes](topology-optimisation.md#how-long-it-takes)). BESO is solid or void from the start, which needs no threshold, and passes through every
 volume on its way down, so one run is a series of designs to choose from. On the same problem they
 find much the same structure.
 {% endhint %}
