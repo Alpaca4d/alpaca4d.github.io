@@ -126,6 +126,8 @@
 * [🌉 Footbridge Study](examples/footbridge-study/footbridge-study.md)
 * [⛰️ Non-Linear Optimisation](examples/non-linear-optimisation/non-linear-optimisation.md)
 * [🌈 Topology Bridge](examples/topology-bridge/topology-bridge.md)
+* [🧱 Multi-Material Bridge](examples/multi-material-bridge/multi-material-bridge.md)
+* [🪓 BESO Bridge](examples/beso-bridge/beso-bridge.md)
 * [🧪 Topology Benchmarks](examples/topology-benchmarks/topology-benchmarks.md)
 
 ## REFERENCES
