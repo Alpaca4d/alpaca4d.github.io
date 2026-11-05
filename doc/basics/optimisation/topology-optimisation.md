@@ -250,6 +250,11 @@ stiff enough to span most of the way itself, and the steel goes into two legs th
 span instead: what is best depends on what is already there. Its last group analyses the design
 from **AlpacaModel** once the run has stopped, as in the picture above.
 
+The [Truss Node](../../examples/truss-node/truss-node.md) and the
+[Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md) examples find a node where
+members meet in space - nine members of a space truss, a column and four beams - with all three
+topology optimisations side by side.
+
 ## 📚 References
 
 - M. P. Bendsøe (1989). Optimal shape design as a material distribution problem. *Structural

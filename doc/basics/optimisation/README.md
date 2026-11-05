@@ -30,6 +30,9 @@ Examples to start from:
 - the [Multi-Material Bridge](../../examples/multi-material-bridge/multi-material-bridge.md), the same
   block in steel and concrete;
 - the [BESO Bridge](../../examples/beso-bridge/beso-bridge.md), the same block carved out by BESO;
+- the [Truss Node](../../examples/truss-node/truss-node.md) and the
+  [Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md), nodes where members meet
+  in space, each found by all three topology optimisations side by side;
 - the [Topology Benchmarks](../../examples/topology-benchmarks/topology-benchmarks.md), two problems
   checked against top3d.
 

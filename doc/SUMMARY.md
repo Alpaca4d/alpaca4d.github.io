@@ -128,6 +128,8 @@
 * [🌈 Topology Bridge](examples/topology-bridge/topology-bridge.md)
 * [🧱 Multi-Material Bridge](examples/multi-material-bridge/multi-material-bridge.md)
 * [🪓 BESO Bridge](examples/beso-bridge/beso-bridge.md)
+* [🕸️ Truss Node](examples/truss-node/truss-node.md)
+* [🏗️ Beam-Column Joint](examples/beam-column-joint/beam-column-joint.md)
 * [🧪 Topology Benchmarks](examples/topology-benchmarks/topology-benchmarks.md)
 
 ## REFERENCES
