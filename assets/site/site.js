@@ -7,12 +7,8 @@
   const root = body.dataset.root || "./";
   const page = body.dataset.page || "";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // The docs are on GitBook. In the local preview the VitePress docs (docs-prototype branch) are
-  // served at /docs/, and every GitBook link goes there instead.
-  const docs = "https://alpaca4d.gitbook.io/docs";
-  const localDocs = ["localhost", "127.0.0.1"].includes(location.hostname);
-  const toLocalDocs = (href) =>
-    root + "docs/" + href.slice(docs.length).replace(/^\//, "").replace(/^examples\/([^/#]+)/, "examples/$1/$1");
+  // The docs, built from doc/ by VitePress (docs-site/) and published at /docs/.
+  const docs = root + "docs/";
 
   // Features and About us are links; Learn and Tools open a menu of pages. Each page's icon and
   // colour are the ones of its card on the home page.
@@ -132,10 +128,10 @@
             <h4>Learn</h4>
             <ul>
               <li><a href="${docs}">Documentation</a></li>
-              <li><a href="${docs}/examples/multi-storey-building">Examples</a></li>
+              <li><a href="${docs}examples/multi-storey-building/multi-storey-building.html">Examples</a></li>
               <li><a href="${root}workshop.html">Workshop</a></li>
-              <li><a href="${docs}/benchmark/intro">Benchmarks</a></li>
-              <li><a href="${docs}/references/publications">Publications</a></li>
+              <li><a href="${docs}benchmark/intro.html">Benchmarks</a></li>
+              <li><a href="${docs}references/publications.html">Publications</a></li>
             </ul>
           </div>
           <div>
@@ -150,8 +146,8 @@
           <div>
             <h4>Legal</h4>
             <ul>
-              <li><a href="${docs}/references/license">License</a></li>
-              <li><a href="${docs}/references/opensees">OpenSees terms</a></li>
+              <li><a href="${docs}references/license.html">License</a></li>
+              <li><a href="${docs}references/opensees.html">OpenSees terms</a></li>
             </ul>
           </div>
         </div>
@@ -161,8 +157,6 @@
         </div>
       </div>`;
   }
-
-  if (localDocs) document.querySelectorAll(`a[href^="${docs}"]`).forEach((a) => (a.href = toLocalDocs(a.getAttribute("href"))));
 
   // ---- Page colour: each shown section names its colour in data-bg. Around the edge between two
   // sections, over a band 60% of the screen high centred on the middle of the screen, the page is
