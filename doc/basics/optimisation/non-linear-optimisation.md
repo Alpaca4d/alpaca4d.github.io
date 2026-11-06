@@ -149,7 +149,7 @@ and the window reports how many were repeats.
 
 ## 💡 Notes
 
-- The [Non-Linear Optimisation example](../../examples/non-linear-optimisation/non-linear-optimisation.md)
+- The [Non-Linear Optimisation example](https://alpaca4d.github.io/examples/non-linear-optimisation/)
   has eight cases with known answers, one for every algorithm, each already linked.
 - A run takes one solution of the definition per evaluation. Time one before setting the
   number to stop after: at ten seconds a solution, 1000 evaluations take almost three hours.

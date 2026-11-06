@@ -15,8 +15,10 @@ A switcher component. The **Element Type** menu selects the unit:
 - **ForceBeamColumn** — a plain force-based beam, described here.
 - **WithHinges** — the same element with plastic hinge zones at the ends, described in
   [Beam With Hinges](beam-with-hinges.md).
+- **Truss** — a bar that carries axial force only: in tension and compression, or in one of the
+  two. Its inputs are below.
 
-### Inputs
+### Inputs — ForceBeamColumn
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -26,6 +28,22 @@ A switcher component. The **Element Type** menu selects the unit:
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
 | ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+
+### Inputs — Truss
+
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| Line | `Line` | Curve | — | One bar per line, in `m`. Its two ends become nodes. It must be straight: anything but a line is an error. |
+| Section | `Section` | Section | — | The bar's area and material: any beam section, a tube from Section Library included. Its shape only draws the bar. |
+| WorksIn | `WorksIn` | Text | `Both` | `Both`, `Tension` or `Compression`: which way the bar carries load. A tension-only bar goes slack when pushed, a compression-only one lets go when pulled. Connect a **Value List** to pick from them. |
+| Prestress | `Prestress` | Number | `0` | The axial force the bar starts with, in `kN`, tension positive. A cable needs it: straight and slack, it has no stiffness across its length. A tension-only bar takes zero or more, a compression-only one zero or less. |
+| ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis, squared off the bar. It only turns the section, for drawing and for the steel check; left empty it is horizontal, as on a beam. |
+| Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
+| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+
+A truss is always corotational, so it holds for large displacements too. A line load on it goes
+to its two end nodes, half each. A tension-only or compression-only bar needs a non-linear
+analysis to let go: the **Newton** algorithm, in several steps.
 
 ### Outputs
 

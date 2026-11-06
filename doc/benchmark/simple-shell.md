@@ -1,4 +1,4 @@
-# 🍐 Simple Shell
+# Simple Shell
 
 Two flat plates, solved by Alpaca4d and set against plate theory: a square plate under a uniform
 pressure, and a thin square cantilever left to vibrate. Both are standard verification tests — the

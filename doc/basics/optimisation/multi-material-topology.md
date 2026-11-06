@@ -133,7 +133,7 @@ Pro, so its 300 iterations took about a quarter of an hour.
 
 ## Example
 
-The [Multi-Material Bridge](../../examples/multi-material-bridge/multi-material-bridge.md) example is
+The [Multi-Material Bridge](https://alpaca4d.github.io/examples/multi-material-bridge/) example is
 the block of the Topology Bridge - 16 m long, 2 m wide and 4 m high, pinned along both ends of its
 bottom, its top layer a deck kept solid under 10 kN/m² - in steel and concrete, with at most 5% of
 the block below the deck in steel and 15% in concrete. The concrete goes into two broad legs from
@@ -141,8 +141,8 @@ the supports to the deck; the steel into an arch slung under the middle of the d
 265 iterations, under a minute. Its last group analyses the design from **AlpacaModel**, each brick
 of its material.
 
-The [Truss Node](../../examples/truss-node/truss-node.md) and the
-[Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md) examples find a node where
+The [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
+[Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/) examples find a node where
 members meet in space - nine members of a space truss, a column and four beams - with all three
 topology optimisations side by side.
 

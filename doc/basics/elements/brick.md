@@ -22,6 +22,7 @@ Constructs one brick element from one hexahedral mesh.
 | Mesh | `Mesh` | Mesh | — | Hexahedral mesh with **8 vertices**, in `m`. Passed through `CleanHexahedron` to put the corners in the order OpenSees expects. |
 | Material | `Material` | Material | — | An [nD material](../materials/ND.md). Uniaxial materials are not accepted. |
 | Colour | `Colour` | Colour | Alpaca4d brick colour | Display colour in the Rhino viewport. |
+| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty meshes labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 ### Outputs
 

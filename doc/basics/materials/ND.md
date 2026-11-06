@@ -1,4 +1,4 @@
-# 🧊 nD
+# nD
 
 An **nD material** (n-dimensional) describes the full 2D/3D stress–strain law at the Gauss
 point of a continuum element. Shells, bricks and tetrahedra all need one.

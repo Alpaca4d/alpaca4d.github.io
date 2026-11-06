@@ -1,4 +1,4 @@
-# 🍌 Simple Brick
+# Simple Brick
 
 Two solids, solved by Alpaca4d with SSP bricks: a cantilever bar under an end load, set against
 Timoshenko beam theory, and NAFEMS FV52, a thick plate left to vibrate. Every Alpaca4d value on

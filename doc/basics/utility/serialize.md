@@ -36,7 +36,8 @@ Turns the assembled model into an OpenSees `.tcl` deck, and optionally writes it
 **Do not use it when**
 
 - You just want to run the analysis → [Run Analysis](../analysis/run-analysis.md) writes its
-  own deck as `AlpacaModel.tcl` beside the Grasshopper file, which you can open afterwards.
+  own deck into the `AlpacaResults` folder beside the Grasshopper file, which you can open
+  afterwards.
 
 {% hint style="info" %}
 The deck Serialize produces is the **model** — nodes, elements, materials, sections, loads,

@@ -39,8 +39,10 @@ The input model is not modified — the component works on a copy.
   appear in [Model View](../visualisation/model-view.md).
 
 {% hint style="warning" %}
-**Your lines are appended, so ordering is on you.** They land after everything Alpaca4d
-generated but the tags are Alpaca4d's — a material or element tag you invent may collide with
+**Your lines are appended, so ordering is on you.** They land after the model Alpaca4d
+generated - its nodes, elements, supports and loads - and before the recorders and the analysis
+commands that [Run Analysis](../analysis/run-analysis.md) adds to it, unless it is set not to use
+its settings. The tags are Alpaca4d's — a material or element tag you invent may collide with
 one it assigned. Read the deck with [Serialize](serialize.md) first and pick tags well above
 the ones in use.
 

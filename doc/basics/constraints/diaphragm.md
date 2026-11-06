@@ -1,4 +1,4 @@
-# 🧱 Rigid Diaphragm
+# Rigid Diaphragm
 
 A **rigid diaphragm** makes a group of nodes move as if connected by an infinitely stiff
 in-plane plate. It is how you model a floor or roof slab that is far stiffer in its own plane

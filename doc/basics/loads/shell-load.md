@@ -1,4 +1,4 @@
-# 🧱 Shell
+# Shell
 
 A uniform **surface pressure** on shell elements.
 
@@ -48,6 +48,9 @@ ASD Shell and type that name into **Shell|Id**: every face of it is loaded, with
 Each item makes one load, so two names that match the same shell load it twice. A name that
 matches no shell loads nothing, and Assemble Model warns about it.
 {% endhint %}
+
+The [Barrel Vault](https://alpaca4d.github.io/examples/barrel-vault/) example puts wind on a curved shell: its arc cut into
+strips, each facing one way and named on ASD Shell, and one Mesh Load a strip along its normal.
 
 ## 🔗 Relation to OpenSees
 

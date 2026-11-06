@@ -21,19 +21,19 @@ also chooses which of several materials goes where.
 
 Examples to start from:
 
-- the [Footbridge Study](../../examples/footbridge-study/footbridge-study.md), a study of 108
+- the [Footbridge Study](https://alpaca4d.github.io/examples/footbridge-study/), a study of 108
   designs for the Explorer;
-- the [Non-Linear Optimisation cases](../../examples/non-linear-optimisation/non-linear-optimisation.md),
+- the [Non-Linear Optimisation cases](https://alpaca4d.github.io/examples/non-linear-optimisation/),
   eight problems with known answers;
-- the [Topology Bridge](../../examples/topology-bridge/topology-bridge.md), where a bridge needs its
+- the [Topology Bridge](https://alpaca4d.github.io/examples/topology-bridge/), where a bridge needs its
   steel;
-- the [Multi-Material Bridge](../../examples/multi-material-bridge/multi-material-bridge.md), the same
+- the [Multi-Material Bridge](https://alpaca4d.github.io/examples/multi-material-bridge/), the same
   block in steel and concrete;
-- the [BESO Bridge](../../examples/beso-bridge/beso-bridge.md), the same block carved out by BESO;
-- the [Truss Node](../../examples/truss-node/truss-node.md) and the
-  [Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md), nodes where members meet
+- the [BESO Bridge](https://alpaca4d.github.io/examples/beso-bridge/), the same block carved out by BESO;
+- the [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
+  [Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/), nodes where members meet
   in space, each found by all three topology optimisations side by side;
-- the [Topology Benchmarks](../../examples/topology-benchmarks/topology-benchmarks.md), two problems
+- the [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/), two problems
   checked against top3d.
 
 ## Components in this tab
@@ -46,6 +46,8 @@ Examples to start from:
 | [Explorer Image](explorer-image.md) | `Explorer Image` | Which views to take a picture of, and how big. |
 | [Explorer Subset](explorer-subset.md) | `Explorer Subset` | Runs part of a study, to try it out or split it between machines. |
 | [Non-Linear Optimisation](non-linear-optimisation.md) | `NL-Opt` | Minimises or maximises a number by moving sliders, with NLopt's algorithms. |
+| [Section Optimiser](section-optimiser.md) | `Section Optimiser` | Sizes steel beams from lists of sections, to EN 1993-1-1. |
+| [Design Group](design-group.md) | `Design Group` | Beams the Section Optimiser sizes from one list of sections. |
 | [Topology Optimisation](topology-optimisation.md) | `Topology` | Finds where a solid of bricks or tetrahedra needs its material. |
 | [Multi-Material Topology](multi-material-topology.md) | `MultiTopology` | Finds where each of several materials goes in a solid, and where none is needed. |
 | [BESO Topology](beso-topology.md) | `BESO` | Finds where a solid needs its material by carving it down, every element solid or void. |

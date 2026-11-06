@@ -160,7 +160,7 @@ On an Apple M2 Pro, with Mumps:
 | 19 200 | 67 800 | 1.0 s | 100 s |
 
 The three topology components side by side, on the block of the
-[Topology Bridge](../../examples/topology-bridge/topology-bridge.md), one run at a time on the same
+[Topology Bridge](https://alpaca4d.github.io/examples/topology-bridge/), one run at a time on the same
 machine, each keeping a fifth of the block below the deck - Multi-Material Topology 5% in steel and
 15% in concrete:
 
@@ -257,13 +257,13 @@ follow each other: the simply supported beam to 2e-8 all the way, and the cantil
 design. The checks and the reference are in `Alpaca4d.Test/TopologyOptimisation` in the Alpaca4d
 repository.
 
-To run both in Grasshopper, download the [Topology Benchmarks](../../examples/topology-benchmarks/topology-benchmarks.md)
+To run both in Grasshopper, download the [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/)
 example: each problem has its own **Run** toggle, and panels beside it give the compliance to
 expect after 200 iterations.
 
 ## Example
 
-The [Topology Bridge](../../examples/topology-bridge/topology-bridge.md) example is a steel block
+The [Topology Bridge](https://alpaca4d.github.io/examples/topology-bridge/) example is a steel block
 16 m long, 2 m wide and 4 m high, pinned along both ends of its bottom. Its top layer is a deck, kept solid through
 Keep, carrying 10 kN/m². With 20% of the rest, the optimisation finds an arch from support to
 support that rises into the deck at mid-span, with a column up to the deck near each end - 3 456
@@ -272,8 +272,8 @@ stiff enough to span most of the way itself, and the steel goes into two legs th
 span instead: what is best depends on what is already there. Its last group analyses the design
 from **AlpacaModel** once the run has stopped, as in the picture above.
 
-The [Truss Node](../../examples/truss-node/truss-node.md) and the
-[Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md) examples find a node where
+The [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
+[Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/) examples find a node where
 members meet in space - nine members of a space truss, a column and four beams - with all three
 topology optimisations side by side.
 

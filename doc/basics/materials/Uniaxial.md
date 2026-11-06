@@ -1,4 +1,4 @@
-# 🔗 Uniaxial
+# Uniaxial
 
 A **uniaxial material** describes a 1D stress–strain relationship. It is what a beam
 cross-section, a fibre or a hinge is made of — anywhere only one stress component matters.

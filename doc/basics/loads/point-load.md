@@ -1,4 +1,4 @@
-# 🎯 Point
+# Point
 
 A concentrated **force and moment** applied at a single point.
 

@@ -32,16 +32,26 @@ by name, and the **Do not use settings** choice is kept.
 
 ## 💡 Where the files go
 
-The deck and the results are written **next to the Grasshopper file**:
+The deck and the results go into a folder called **`AlpacaResults`, next to the Grasshopper
+file**, a set of files for each run:
 
 | File | Contents |
 | --- | --- |
-| `AlpacaModel.tcl` | The input deck. |
-| `recorder.mpco` | The MPCO result database, or the **FileName** an [MPCO Recorder](../mpco-recorder.md) gives it. |
+| `AlpacaModel_<id>_<run>.tcl` | The input deck. |
+| `recorder_<id>_<run>.mpco` | The MPCO result database. |
 
-If the Grasshopper document has never been saved, Run Analysis falls back to the current
-working directory. Save the file first — it makes the output findable, and it is required by
-[Natural Vibration](natural-vibration.md).
+`<id>` is the first 8 characters of the component's InstanceGuid, so two Run Analysis components
+in one document keep their results apart; `<run>` counts from 0, as a component given a tree of
+models solves once per branch. The names stay the same from one solution to the next, so the
+files are overwritten rather than piling up.
+
+A **FileName** that an [MPCO Recorder](../mpco-recorder.md) gives is taken from the Grasshopper
+file's folder instead, with `_<run>` before its extension when the component solves more than
+once.
+
+If the Grasshopper document has never been saved, the folder is `Alpaca4d/AlpacaResults` in the
+system's temporary folder. Save the file first — it makes the output findable, and it is required
+by [Natural Vibration](natural-vibration.md).
 
 The recorder that is attached depends on the analysis type: a static recorder for `Static`,
 a transient one for `Transient`. An [MPCO Recorder](../mpco-recorder.md) on the
@@ -71,5 +81,5 @@ sets up its own eigenvalue run and needs no settings.
 
 The component assembles and runs a complete deck: the model, then the recorder, then the
 analysis block from [Analysis Settings](analysis-settings.md), then `wipe`. To see exactly
-what was sent, use [Serialize](../utility/serialize.md), or open the `AlpacaModel.tcl` it
-leaves behind.
+what was sent, use [Serialize](../utility/serialize.md), or open the `AlpacaModel_<id>_<run>.tcl` it
+leaves in `AlpacaResults`.

@@ -17,7 +17,7 @@ a true free end.
 There is no separate component. Right-click the **ForceBeamColumn** component and set the
 **Element Type** menu to **WithHinges**.
 
-### Inputs
+### Inputs — WithHinges
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |

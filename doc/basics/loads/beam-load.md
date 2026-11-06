@@ -1,4 +1,4 @@
-# 📏 Beam
+# Beam
 
 A uniform **line load** along the length of a beam element.
 
@@ -48,6 +48,11 @@ follows the name instead of a wire.
 Each item makes one load, so two names that match the same beam (`Beam*` and `Beam_3`) load it
 twice. A name that matches no beam loads nothing, and Assemble Model warns about it.
 {% endhint %}
+
+The [Truss Roof Hall](https://alpaca4d.github.io/examples/truss-roof-hall/), [Roof Canopy](https://alpaca4d.github.io/examples/roof-canopy/) and the
+[Vertical](https://alpaca4d.github.io/examples/vertical-truss-facade/) and [Horizontal Truss Facade](https://alpaca4d.github.io/examples/horizontal-truss-facade/)
+examples put a roof's snow and a facade's wind on their members this way: the pressure, in
+`kN/m²`, times the width each member carries, one load a member from one Linear Load.
 
 ## 🔗 Relation to OpenSees
 

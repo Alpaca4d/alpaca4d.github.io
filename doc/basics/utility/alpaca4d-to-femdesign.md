@@ -7,7 +7,7 @@ FEM-Design's own, so FEM-Design can design with them.
 
 ## 🔧 Grasshopper component
 
-`Alpaca4DToFEM-Design` — **Alpaca4d ▸ 10_Utility**
+`Alpaca4DToFEM-Design` — **Alpaca4d ▸ 06_Assemble**
 
 <figure><img src="../../.gitbook/assets/components/alpaca4dtofem-design.png" alt="A4D_FD component" width="438"><figcaption></figcaption></figure>
 

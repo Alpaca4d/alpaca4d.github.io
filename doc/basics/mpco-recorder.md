@@ -35,8 +35,9 @@ adding the component changes nothing until you untick something.
 | `stresses` | [Brick Stresses](results/brick-stresses.md), [Model View](visualisation/model-view.md) |
 | `section.force` | [Beam Forces](results/beam-forces.md), [Shell Forces](results/shell-forces.md), [Model View](visualisation/model-view.md), for every beam with or without hinges and every shell |
 | `section.fiber.stress` | Shell Stresses, [Model View](visualisation/model-view.md), for plate fibre and layered shell sections |
+| `axialForce` | [Beam Forces](results/beam-forces.md) of trusses. Nothing else answers to it, so it costs nothing in a model without them. |
 
-The first eight are in **Nodes**, the last three in **Elements**.
+The first eight are in **Nodes**, the last four in **Elements**.
 
 ### Outputs
 
@@ -87,7 +88,7 @@ recorder mpco $fileName -N $nodalResult1 $nodalResult2 ... -E $elementResult1 $e
 What a static analysis records when nothing is connected:
 
 ```tcl
-recorder mpco recorder.mpco -N displacement rotation reactionForce reactionMoment -E stresses section.force section.fiber.stress
+recorder mpco recorder.mpco -N displacement rotation reactionForce reactionMoment -E stresses section.force section.fiber.stress axialForce
 ```
 
 The MPCO recorder was written by M. Petracca and G. Camata at

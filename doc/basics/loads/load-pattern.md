@@ -1,4 +1,4 @@
-# 🧩 Load Pattern
+# Load Pattern
 
 A **load pattern** groups loads and attaches a [time series](../time-history/README.md) that
 says how the group varies with time. It is the object the analysis actually applies — loose

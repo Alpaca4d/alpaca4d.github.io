@@ -1,4 +1,4 @@
-# 🍏 Simple Beam
+# Simple Beam
 
 Two textbook beams under a uniform load, and a cantilever left to vibrate, solved by Alpaca4d and
 set against the closed-form answers. Every Alpaca4d value on this page was produced by running the

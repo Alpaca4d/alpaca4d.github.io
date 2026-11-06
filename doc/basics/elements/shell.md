@@ -27,6 +27,7 @@ face becomes one element: 4 vertices → `ASDShellQ4`, 3 vertices → `ASDShellT
 | Colour | `Colour` | Colour | Alpaca4d shell colour | Display colour in the Rhino viewport. |
 | Local X Axis | `LocalX` | Vector | element default | Direction the element's local *x* axis is aligned to. Sets the axes that [Shell Forces](../results/shell-forces.md) are reported in. It is flattened onto each face, so it only has to point roughly the right way, but not along the shell's normal: within 1° of the normal of any face is an error that names those faces. Leave empty to let OpenSees pick per face. |
 | Is Corotational | `IsCorotational` | Boolean | `false` | Use the corotational formulation, for large displacements and rotations. |
+| ElementId | `ElementId` | Text | *(empty)* | Optional name for the elements, used to pull their results out later or to load them by name. Every face of the mesh takes it, so a whole slab is one group and asking for the name returns all of it. Free text, and yours to repeat. To name parts apart, give them as separate meshes with a list of names, one per mesh. |
 
 {% hint style="info" %}
 Set **Local X Axis** on any model where you intend to read `pxx`, `myy` and the rest. Without

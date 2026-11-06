@@ -117,8 +117,9 @@ model. For 10 modes on an Apple M2 Pro:
 The eigenvalues are the same with every one of them.
 
 {% hint style="warning" %}
-**Save the Grasshopper file first.** This component writes `AlpacaModel.tcl`,
-`recorder_eigen.mpco` and `ModalReport.txt` beside it, and throws *"Have you saved the
+**Save the Grasshopper file first.** This component writes its deck, `recorder_eigen` and
+`ModalReport` files into the `AlpacaResults` folder beside it, named as
+[Run Analysis](run-analysis.md#where-the-files-go) names its own, and throws *"Have you saved the
 Grasshopper script?"* if there is nowhere to put them.
 {% endhint %}
 
@@ -140,6 +141,9 @@ A model with no mass has no modes. Mass comes from the material density through 
 and from [Mass Point](../loads/mass-point.md). A [Gravity Load](../loads/gravity.md) does
 **not** create mass — it creates force.
 {% endhint %}
+
+The [Steel Tower](https://alpaca4d.github.io/examples/steel-tower/) example gives a lattice tower's first six modes beside
+its analysis under wind, and draws the first.
 
 ## 🔗 Relation to OpenSees
 

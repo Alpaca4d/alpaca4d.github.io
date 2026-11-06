@@ -1,4 +1,4 @@
-# 📚 Material Database
+# Material Database
 
 The **material database** turns a standard grade name into a consistent elastic material,
 so you do not have to type *E*, *G*, *ν* and *ρ* by hand and get them to agree.

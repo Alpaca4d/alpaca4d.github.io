@@ -120,14 +120,14 @@ find much the same structure.
 
 ## Example
 
-The [BESO Bridge](../../examples/beso-bridge/beso-bridge.md) example carves the block of the Topology
+The [BESO Bridge](https://alpaca4d.github.io/examples/beso-bridge/) example carves the block of the Topology
 Bridge - 16 m long, 2 m wide and 4 m high, pinned along both ends of its bottom, its top layer a deck
 kept solid under 10 kN/m² - down to a fifth of its volume below the deck: two inclined legs from the
 supports into the deck, with a column near each end. 3 456 bricks, 105 iterations, under 20 seconds.
 Drag **Step** to go through the designs of every volume on the way down.
 
-The [Truss Node](../../examples/truss-node/truss-node.md) and the
-[Beam-Column Joint](../../examples/beam-column-joint/beam-column-joint.md) examples find a node where
+The [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
+[Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/) examples find a node where
 members meet in space - nine members of a space truss, a column and four beams - with all three
 topology optimisations side by side.
 
