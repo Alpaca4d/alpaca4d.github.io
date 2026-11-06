@@ -49,7 +49,7 @@ LinkedIn shows posts with links in them to fewer people, so post the links as th
 
 ```text
 Download Alpaca4d (Rhino 7 and 8, Windows and macOS): https://alpaca4d.github.io/download.html
-The femur, with the .gh: https://alpaca4d.github.io/examples/femur/
+The femur, with the .gh: https://alpaca4d.github.io/docs/basics/elements/ten-node-tetrahedron.html#femur
 ```
 
 ## The numbers, if someone asks
