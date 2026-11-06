@@ -40,7 +40,7 @@
       <h1 class="h2">The island<span class="dot">.</span></h1>
       <p>Ten areas, one structure each. Build it with Alpaca4d's components, and the alpaca walks on to the next area.</p>
       <p class="pg-progress"><b>3</b> of 10 areas · <b>8</b> of 30 stars</p>
-      <p class="pg-note">The exercises come later. The progress shown is an example.</p>
+      <p class="pg-note">The first lesson is ready: area 1, the River. The progress shown is an example.</p>
     </section>
 
     <aside class="pg-card" data-card aria-live="polite" hidden>
@@ -64,9 +64,13 @@
     </div>
     <p class="pg-hint" data-hint>Drag to move · scroll to zoom · pick an area</p>
     <p class="pg-fallback">The island needs WebGL, which this browser does not offer.</p>
+
+    <!-- A lesson's panel: assets/site/playground/<area>.js fills it. -->
+    <section class="pg-lesson" data-lesson aria-label="Lesson" hidden></section>
   </main>
 
   <script src="./assets/site/site.js?v=2"></script>
+  <script src="./assets/site/gh-canvas.js"></script>
   <script type="module" src="./assets/site/playground.js"></script>
 </body>
 </html>

@@ -49,7 +49,7 @@ const distToLine = (u, v, pts) => {
 const LEVELS = [
   { name: "River", u: -30, v: -36, h: 1.4, kind: "river",
     build: "A simply supported plank, with the alpaca on it",
-    skill: "Material, Section, Beam, Support, Load, Assemble, Run Analysis, View Results",
+    skill: "Material, Section, Beam, Support, Load, Assemble, Run Analysis, Model View",
     idea: "Pin and roller supports, and how far a plank bends" },
   { name: "Cliff", u: 6, v: -30, h: 4.8, kind: "cliff", face: [1, -1],
     build: "A cantilever balcony over the drop",
@@ -271,8 +271,10 @@ function cylinder(g, look, r, h, x, y, z, seg = 8, rx = 0) {
 // Local axes: x along the path (or towards "face"), y up, ground at y = 0.
 const KINDS = {
   river(g, look, deco, a) {
-    for (const s of [-1, 1]) box(g, deco("#b9b2a2"), 2, 1.4, 3.4, s * (a.span / 2 - 0.6), 0.1, 0);
-    box(g, look, a.span + 1.6, 0.45, 2.4, 0, 1.0, 0);
+    // A block on each bank for the plank to rest on: the lesson builds its own plank on them.
+    a.bearing = { x: a.span / 2 - 0.6, y: 0.8 };
+    for (const s of [-1, 1]) box(g, deco("#b9b2a2"), 2, 1.4, 3.4, s * a.bearing.x, 0.1, 0);
+    box(g, look, a.span + 1.6, 0.45, 2.4, 0, 1.0, 0).name = "plank";
   },
   cliff(g, look, deco) {
     box(g, deco("#b9b2a2"), 2.4, 0.9, 3.6, -0.8, 0.45, 0);
@@ -544,9 +546,12 @@ function init(root) {
     const w = toWorld(dir[0], dir[1]).normalize();
     g.rotation.y = Math.atan2(-w.z, w.x);
     g.position.copy(toWorld(a.u, a.v, a.h));
-    const look = st === "done" ? builtLook(BUILT[i]) : ghostLook(st === "current" ? nextEdge : ghostEdge);
+    const made = st === "done" ? builtLook(BUILT[i]) : ghostLook(st === "current" ? nextEdge : ghostEdge);
+    // The structure's parts are marked, for a lesson to hide while it builds its own.
+    const look = (geo) => { const m = made(geo); m.userData.structure = true; return m; };
     KINDS[a.kind](g, look, builtLook, a);
     scene.add(g);
+    a.group = g;
 
     const ring = new THREE.Mesh(new THREE.RingGeometry(a.r * 0.62, a.r * 0.62 + 0.45, 6, 1).rotateX(-Math.PI / 2).rotateY(Math.PI / 6),
       new THREE.MeshBasicMaterial({ color: st === "done" ? "#ffffff" : st === "current" ? "#eb6c3f" : "#d3d5d8", transparent: true, opacity: st === "locked" ? 0.55 : 0.9 }));
@@ -554,6 +559,7 @@ function init(root) {
     ring.userData.base = ring.material.opacity;
     scene.add(ring);
     rings.push(ring);
+    a.ring = ring;
 
     const hit = new THREE.Mesh(new THREE.CircleGeometry(a.r * 0.75, 12).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
     hit.position.copy(toWorld(a.u, a.v, a.h + 0.3));
@@ -649,21 +655,23 @@ function init(root) {
     Object.assign(camera, { left: (-FH * aspect) / 2, right: (FH * aspect) / 2, top: FH / 2, bottom: -FH / 2 });
     camera.updateProjectionMatrix();
   };
+  const homeView = () => {
+    const aspect = stage.clientWidth / Math.max(1, stage.clientHeight);
+    // A phone: start close, on the open area.
+    if (aspect < 0.9) return { zoom: 0.85, at: toWorld(LEVELS[CURRENT].u, LEVELS[CURRENT].v, LEVELS[CURRENT].h) };
+    return { zoom: THREE.MathUtils.clamp(Math.min(1.05, (FH * aspect) / 150), ZMIN, ZMAX), at: toWorld(4, 6, 4) };
+  };
   const home = () => {
     resize();
-    const aspect = stage.clientWidth / Math.max(1, stage.clientHeight);
-    if (aspect < 0.9) {
-      // A phone: start close, on the open area.
-      camera.zoom = 0.85;
-      target.copy(toWorld(LEVELS[CURRENT].u, LEVELS[CURRENT].v, LEVELS[CURRENT].h));
-    } else {
-      camera.zoom = THREE.MathUtils.clamp(Math.min(1.05, (FH * aspect) / 150), ZMIN, ZMAX);
-      target.copy(toWorld(4, 6, 4));
-    }
+    const view = homeView();
+    camera.zoom = view.zoom;
+    target.copy(view.at);
     camera.updateProjectionMatrix();
     placeCamera();
   };
   home();
+  // Gliding the camera: to a point on the ground (glide), its height (glideY) and a zoom (zoomTo).
+  let glideY = null, zoomTo = null;
 
   const raycaster = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
@@ -714,7 +722,8 @@ function init(root) {
     card.querySelector("[data-skill]").textContent = a.skill;
     card.querySelector("[data-idea]").textContent = a.idea;
     const start = card.querySelector("[data-start]");
-    start.textContent = st === "locked" ? `Finish area ${CURRENT + 1} to open it` : st === "done" ? "Play again · coming soon" : "Start · coming soon";
+    start.textContent = LESSONS[i] ? LESSONS[i].label : st === "locked" ? `Finish area ${CURRENT + 1} to open it` : st === "done" ? "Play again · coming soon" : "Start · coming soon";
+    start.disabled = !LESSONS[i];
     card.hidden = false;
     hideHint();
     if (st !== "locked") walkTo = a.at;
@@ -726,6 +735,67 @@ function init(root) {
     markers.forEach((m) => m.el.classList.remove("selected"));
     selected = -1;
   });
+  card.querySelector("[data-start]").addEventListener("click", () => { if (LESSONS[selected]) startLesson(selected); });
+
+  // ---- Lessons ----
+  // A lesson takes over the alpaca and the camera, and builds its structure in its area: one per
+  // area, each of which opens straight away at its hash (playground.html#river), or at a round of
+  // it (#river-3).
+  const LESSONS = {};
+  ["river", "cliff", "roof", "barn", "valley", "market", "tower", "footbridge", "wall", "summit"]
+    .forEach((id, i) => { LESSONS[i] = { label: "Play the lesson", module: `./playground/${id}.js`, hash: id }; });
+  const lessonBox = root.querySelector("[data-lesson]");
+  let lesson = null;
+  const world = {
+    stage, root, camera, alpaca, height, reduceMotion, viewHeight: FH,
+    // Look at a point from a zoom, with it moved by (dx, dy) pixels from the middle of the screen.
+    focus(p, zoom, dx = 0, dy = 0) {
+      const k = FH / zoom / Math.max(1, stage.clientHeight);
+      glide = p.clone().addScaledVector(R, -dx * k).addScaledVector(F, (dy * k) / Math.sin(EL));
+      glideY = p.y;
+      zoomTo = zoom;
+      if (reduceMotion) {
+        target.set(glide.x, glideY, glide.z);
+        camera.zoom = zoom;
+        camera.updateProjectionMatrix();
+        placeCamera();
+        glide = glideY = zoomTo = null;
+      }
+    },
+  };
+  async function startLesson(i) {
+    if (lesson) return;
+    card.hidden = true;
+    markers.forEach((m) => m.el.classList.remove("selected"));
+    hideHint();
+    root.classList.add("in-lesson");
+    lesson = "starting";
+    try {
+      const { start } = await import(LESSONS[i].module);
+      lesson = await start({ ...world, area: LEVELS[i] }, lessonBox, endLesson);
+      if (!location.hash.startsWith("#" + LESSONS[i].hash)) history.replaceState(null, "", "#" + LESSONS[i].hash);
+    } catch (e) {
+      console.error(e);
+      lesson = null;
+      root.classList.remove("in-lesson");
+    }
+  }
+  function endLesson() {
+    if (!lesson || lesson === "starting") return;
+    lesson.stop();
+    lesson = null;
+    root.classList.remove("in-lesson");
+    history.replaceState(null, "", location.pathname + location.search);
+    // The alpaca goes on from where the lesson left it, and the camera back to the whole island.
+    const p = alpaca.position;
+    walkAt = walkTo = sampleNear((p.x - p.z) * S, (-p.x - p.z) * S);
+    side = 0;
+    Object.assign(rest, { home: walkAt, mode: "look", start: time, until: time + 1 });
+    const view = homeView();
+    glide = view.at.clone();
+    glideY = view.at.y;
+    zoomTo = view.zoom;
+  }
   root.querySelector("[data-zoom-in]").addEventListener("click", () => { const r = stage.getBoundingClientRect(); zoomAt(1.3, r.left + r.width / 2, r.top + r.height / 2); });
   root.querySelector("[data-zoom-out]").addEventListener("click", () => { const r = stage.getBoundingClientRect(); zoomAt(1 / 1.3, r.left + r.width / 2, r.top + r.height / 2); });
   root.querySelector("[data-home]").addEventListener("click", () => { glide = null; home(); });
@@ -737,6 +807,7 @@ function init(root) {
   let moved = 0, pinch = 0;
   const hideHint = () => hint && hint.classList.add("gone");
   stage.addEventListener("pointerdown", (e) => {
+    if (lesson) return;
     stage.setPointerCapture(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     moved = 0;
@@ -744,7 +815,7 @@ function init(root) {
   });
   stage.addEventListener("pointermove", (e) => {
     const p = pointers.get(e.pointerId);
-    if (!p) { hover(e); return; }
+    if (!p) { if (!lesson) hover(e); return; }
     const dx = e.clientX - p.x, dy = e.clientY - p.y;
     p.x = e.clientX; p.y = e.clientY;
     if (pointers.size === 1) {
@@ -773,6 +844,7 @@ function init(root) {
   stage.addEventListener("pointercancel", up);
   stage.addEventListener("wheel", (e) => {
     e.preventDefault();
+    if (lesson) return;
     glide = null;
     zoomAt(Math.exp(-e.deltaY * 0.0016), e.clientX, e.clientY);
     hideHint();
@@ -793,7 +865,8 @@ function init(root) {
     markers.forEach((m, k) => m.el.classList.toggle("hover", k === i));
   };
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !card.hidden) card.querySelector("[data-close]").click();
+    if (e.key === "Escape" && lesson) endLesson();
+    else if (e.key === "Escape" && !card.hidden) card.querySelector("[data-close]").click();
   });
 
   // ---- Loop ----
@@ -869,42 +942,56 @@ function init(root) {
       rings.forEach((r, i) => { if (stateOf(i) === "current") r.material.opacity = 0.45 + 0.5 * pulse; });
     }
     // The alpaca walks the path to a picked area, the camera following: at least 18 m a second,
-    // and never more than about three seconds from one area to another. Then it rests there.
-    const before = alpacaAt(walkAt, side);
-    const walking = Math.abs(walkTo - walkAt) > 0.5;
-    if (walking) {
-      if (!walkSpeed) walkSpeed = Math.max(70, Math.abs(walkTo - walkAt) / 3);
-      walkAt += Math.sign(walkTo - walkAt) * Math.min(Math.abs(walkTo - walkAt), dt * walkSpeed);
-      side *= Math.exp(-dt * 6);
-      stride += dt * 11;
-      Object.assign(rest, { home: walkTo, mode: "look", start: time, until: time + 1.2 });
-    } else {
-      walkSpeed = 0;
-      if (!reduceMotion) idle(dt);
+    // and never more than about three seconds from one area to another. Then it rests there. In a
+    // lesson, the lesson moves it.
+    let walking = false;
+    if (lesson && lesson !== "starting") lesson.frame(dt);
+    else {
+      const before = alpacaAt(walkAt, side);
+      walking = Math.abs(walkTo - walkAt) > 0.5;
+      if (walking) {
+        if (!walkSpeed) walkSpeed = Math.max(70, Math.abs(walkTo - walkAt) / 3);
+        walkAt += Math.sign(walkTo - walkAt) * Math.min(Math.abs(walkTo - walkAt), dt * walkSpeed);
+        side *= Math.exp(-dt * 6);
+        stride += dt * 11;
+        Object.assign(rest, { home: walkTo, mode: "look", start: time, until: time + 1.2 });
+      } else {
+        walkSpeed = 0;
+        if (!reduceMotion) idle(dt);
+      }
+      const p = alpacaAt(walkAt, side);
+      if (walking) glide = p.clone();
+      const d = p.clone().sub(before).setY(0);
+      if (d.lengthSq() > 1e-6) heading.lerp(d.normalize(), walking ? 0.25 : 0.12).normalize();
+      const strolling = !walking && rest.mode === "stroll";
+      let lift = 0, pitch = 0, look = 0;
+      if (walking || strolling) {
+        lift = Math.abs(Math.sin(stride)) * (walking ? 0.5 : 0.28);
+        pitch = Math.sin(stride) * 0.05;
+      } else if (!reduceMotion) {
+        const k = Math.max(0, ease(rest.start, rest.until));
+        if (rest.mode === "graze") pitch = -k * (0.24 + 0.03 * Math.sin(time * 6));
+        if (rest.mode === "look") look = k * 0.5 * Math.sin((time - rest.start) * 1.4);
+        if (rest.mode === "hop") { lift = Math.sin(Math.PI * Math.min(1, (time - rest.start) / 0.6)) * 1.2; pitch = 0.08 * Math.sin((2 * Math.PI * (time - rest.start)) / 0.6); }
+      }
+      alpaca.position.set(p.x, p.y + lift, p.z);
+      alpaca.rotation.set(0, Math.atan2(-heading.z, heading.x) + look, pitch);
+      // It breathes when it stands still.
+      alpaca.scale.y = walking || strolling || reduceMotion ? 1 : 1 + 0.018 * Math.sin(time * 2.6);
     }
-    const p = alpacaAt(walkAt, side);
-    if (walking) glide = p.clone();
-    const d = p.clone().sub(before).setY(0);
-    if (d.lengthSq() > 1e-6) heading.lerp(d.normalize(), walking ? 0.25 : 0.12).normalize();
-    const strolling = !walking && rest.mode === "stroll";
-    let lift = 0, pitch = 0, look = 0;
-    if (walking || strolling) {
-      lift = Math.abs(Math.sin(stride)) * (walking ? 0.5 : 0.28);
-      pitch = Math.sin(stride) * 0.05;
-    } else if (!reduceMotion) {
-      const k = Math.max(0, ease(rest.start, rest.until));
-      if (rest.mode === "graze") pitch = -k * (0.24 + 0.03 * Math.sin(time * 6));
-      if (rest.mode === "look") look = k * 0.5 * Math.sin((time - rest.start) * 1.4);
-      if (rest.mode === "hop") { lift = Math.sin(Math.PI * Math.min(1, (time - rest.start) / 0.6)) * 1.2; pitch = 0.08 * Math.sin((2 * Math.PI * (time - rest.start)) / 0.6); }
-    }
-    alpaca.position.set(p.x, p.y + lift, p.z);
-    alpaca.rotation.set(0, Math.atan2(-heading.z, heading.x) + look, pitch);
-    // It breathes when it stands still.
-    alpaca.scale.y = walking || strolling || reduceMotion ? 1 : 1 + 0.018 * Math.sin(time * 2.6);
-    if (glide) {
-      target.lerp(V(glide.x, target.y, glide.z), 1 - Math.exp(-dt * (walking ? 6 : 3.5)));
+    if (glide || glideY != null || zoomTo != null) {
+      const f = 1 - Math.exp(-dt * (walking ? 6 : 3.5));
+      if (glide) {
+        target.lerp(V(glide.x, target.y, glide.z), f);
+        if (!walking && Math.hypot(target.x - glide.x, target.z - glide.z) < 0.05) glide = null;
+      }
+      if (glideY != null) { target.y += (glideY - target.y) * f; if (Math.abs(glideY - target.y) < 0.01) glideY = null; }
+      if (zoomTo != null) {
+        camera.zoom += (zoomTo - camera.zoom) * f;
+        camera.updateProjectionMatrix();
+        if (Math.abs(zoomTo - camera.zoom) < 0.002) zoomTo = null;
+      }
       placeCamera();
-      if (!walking && Math.hypot(target.x - glide.x, target.z - glide.z) < 0.05) glide = null;
     }
     renderer.render(scene, camera);
     placeMarkers();
@@ -917,4 +1004,5 @@ function init(root) {
   else window.addEventListener("resize", () => { resize(); placeCamera(); });
   requestAnimationFrame(frame);
   root.classList.add("ready");
+  for (const i in LESSONS) if (location.hash.startsWith("#" + LESSONS[i].hash)) startLesson(+i);
 }
