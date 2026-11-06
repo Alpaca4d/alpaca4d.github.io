@@ -1,6 +1,7 @@
 # Made by `npm run sync` from ../doc, and by the build.
 src/
 dist/
+dist-examples/
 .vitepress/cache/
 .vitepress/sidebar.generated.mjs
 node_modules/

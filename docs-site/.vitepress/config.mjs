@@ -24,6 +24,11 @@ export default defineConfig({
 
   markdown: {
     container: { infoLabel: "Note", tipLabel: "Good to know", warningLabel: "Warning", dangerLabel: "Careful" },
+    // The formulas GitBook writes as $$...$$, with MathJax.
+    math: true,
+    // Headings' anchors as GitBook makes them, without their emoji: "## 💡 Where the files go"
+    // is #where-the-files-go, which is what the pages link to.
+    anchor: { slugify: (s) => s.normalize("NFKD").toLowerCase().replace(/[^\p{L}\p{N}\s-]/gu, "").trim().replace(/\s+/g, "-").replace(/-+/g, "-") },
   },
 
   themeConfig: {
@@ -31,8 +36,8 @@ export default defineConfig({
     siteTitle: "Alpaca4d",
 
     nav: [
-      { text: "Docs", link: "/", activeMatch: "^/(?!examples/)" },
-      { text: "Examples", link: "/examples/multi-storey-building/multi-storey-building", activeMatch: "^/examples/" },
+      { text: "Docs", link: "/" },
+      { text: "Examples", link: `${site}/examples/` },
       { text: "Explorer", link: `${site}/explorer/` },
       { text: "Website", link: `${site}/` },
       { text: "Buy", link: `${site}/buy.html` },

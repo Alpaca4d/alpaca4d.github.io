@@ -1,6 +1,7 @@
-# Publishes alpaca4d.github.io: the website as it is in the repository, and the docs at /docs/,
-# built by VitePress (docs-site/) from the Markdown pages in doc/. GitBook keeps reading doc/ as
-# before. Needs Settings > Pages > Source set to "GitHub Actions".
+# Publishes alpaca4d.github.io: the website as it is in the repository, the docs at /docs/,
+# built by VitePress (docs-site/) from the Markdown pages in doc/, and the examples' gallery and
+# pages at /examples/, built from examples/ by docs-site/scripts/examples.mjs. GitBook keeps
+# reading doc/ as before. Needs Settings > Pages > Source set to "GitHub Actions".
 name: Pages
 
 on:
@@ -30,7 +31,7 @@ jobs:
           cache: npm
           cache-dependency-path: docs-site/package-lock.json
 
-      - name: Build the docs
+      - name: Build the docs and the examples
         working-directory: docs-site
         run: |
           npm ci
@@ -43,6 +44,7 @@ jobs:
         run: |
           rsync -a --exclude .git --exclude .github --exclude docs-site --exclude _site --exclude /marketing ./ _site/
           cp -R docs-site/dist _site/docs
+          cp -R docs-site/dist-examples/. _site/examples/
 
       - uses: actions/upload-pages-artifact@v5
         with:

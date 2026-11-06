@@ -1,18 +1,24 @@
+---
+order: 1
+summary: "A 4 m steel cantilever checked to EN 1993-1-1, and why an IPE 300 fails where an HEA 200 of the same weight passes."
+tags: ["Beams & frames", "Design checks"]
+---
+
 # 🔩 Steel Cantilever
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/steel-cantilever/steel-cantilever.png" alt="A 4 m steel cantilever and its utilisations: an HEA 200 passes at 0.89, an IPE 300 of the same weight fails lateral-torsional buckling at 1.11"><figcaption></figcaption></figure>
+<figure><img src="steel-cantilever.png" alt="A 4 m steel cantilever and its utilisations: an HEA 200 passes at 0.89, an IPE 300 of the same weight fails lateral-torsional buckling at 1.11"><figcaption></figcaption></figure>
 
-[steel-cantilever](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/steel-cantilever/steel-cantilever.gh)
+[steel-cantilever](steel-cantilever.gh)
 
 A 4 m steel cantilever, built in at its root, carrying its own weight and 15 kN at its tip, checked
-to EN 1993-1-1 with [Utilisation](../../basics/results/utilisation.md). It shows how to set up a
+to EN 1993-1-1 with [Utilisation](../../docs/basics/results/utilisation.md). It shows how to set up a
 member so that Utilisation can check it, what a cantilever needs that a beam held at both ends does
 not, and how to read the result.
 
-{% hint style="info" %}
+::: info
 The example needs a version of Alpaca4d whose Utilisation has the **LengthLT** input, for
 lateral-torsional buckling.
-{% endhint %}
+:::
 
 ## The model
 
@@ -20,9 +26,9 @@ lateral-torsional buckling.
 | --- | --- |
 | 1 - The cantilever | **Length**, **Tip load**, **Section** and **Grade**: the four things to try. |
 | 2 - Geometry | A line along X, from the root at the origin to the tip. |
-| 3 - Member | [Material Library Elastic](../../basics/materials/MaterialDatabase.md) makes S355, and stamps the grade on the material: that is how Utilisation knows the beam is steel, and its fy. [Steel Section Library](../../basics/sections/library.md) gives the HEA 200. The [Force Beam Column](../../basics/elements/force-beam-column.md) has no ZAxis, so its local y points up: the depth of the I is vertical, and the tip load bends it about its major axis. |
-| 4 - Support and loads | Built in at the root, all six restrained. A [Point Load](../../basics/loads/point-load.md) at the tip and [Gravity](../../basics/loads/gravity.md), in one [Load Pattern](../../basics/loads/load-pattern.md). |
-| 5 - Analysis | [Run Analysis](../../basics/analysis/run-analysis.md) with the default settings: one step, to the full load. |
+| 3 - Member | [Material Library Elastic](../../docs/basics/materials/MaterialDatabase.md) makes S355, and stamps the grade on the material: that is how Utilisation knows the beam is steel, and its fy. [Steel Section Library](../../docs/basics/sections/library.md) gives the HEA 200. The [Force Beam Column](../../docs/basics/elements/force-beam-column.md) has no ZAxis, so its local y points up: the depth of the I is vertical, and the tip load bends it about its major axis. |
+| 4 - Support and loads | Built in at the root, all six restrained. A [Point Load](../../docs/basics/loads/point-load.md) at the tip and [Gravity](../../docs/basics/loads/gravity.md), in one [Load Pattern](../../docs/basics/loads/load-pattern.md). |
+| 5 - Analysis | [Run Analysis](../../docs/basics/analysis/run-analysis.md) with the default settings: one step, to the full load. |
 | 6 - Utilisation | The check, and panels for what it gives. |
 
 ## Using Utilisation
@@ -40,11 +46,11 @@ lateral-torsional buckling.
 4. **Max** is the largest of the checks, and **Governing** says which one gives it. **Report**
    has every number on the way, to follow the check by hand.
 
-{% hint style="warning" %}
+::: warning
 **The lengths are yours to give.** Utilisation cannot know how a member is held. A cantilever, a
 sway column or a member drawn as several beams needs its lengths given; see the
-[Utilisation](../../basics/results/utilisation.md) page.
-{% endhint %}
+[Utilisation](../../docs/basics/results/utilisation.md) page.
+:::
 
 ## What it shows
 

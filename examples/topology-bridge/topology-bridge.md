@@ -1,31 +1,37 @@
+---
+order: 14
+summary: "Where a bridge needs its steel, found by Topology Optimisation."
+tags: ["Topology"]
+---
+
 # 🌈 Topology Bridge
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/topology-bridge/topology-bridge.png" alt="An arch with a column near each end, found inside a 16 x 2 x 4 m block of steel bricks under a solid deck"><figcaption></figcaption></figure>
+<figure><img src="topology-bridge.png" alt="An arch with a column near each end, found inside a 16 x 2 x 4 m block of steel bricks under a solid deck"><figcaption></figcaption></figure>
 
-[topology-bridge](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/topology-bridge/topology-bridge.gh)
+[topology-bridge](topology-bridge.gh)
 
-Where a bridge needs its steel, found by [Topology Optimisation](../../basics/optimisation/topology-optimisation.md)
+Where a bridge needs its steel, found by [Topology Optimisation](../../docs/basics/optimisation/topology-optimisation.md)
 in a block of bricks. The design domain is a steel block 16 m long, 2 m wide and 4 m high, pinned
 along both ends of its bottom. Its top layer is the deck: it carries 10 kN/m² and stays solid,
 whatever the optimisation finds. With a fifth of the rest, the optimisation finds an arch from
 support to support, rising into the deck at mid-span, with a column up to the deck near each end.
 
-{% hint style="info" %}
+::: info
 Without a license, Topology Optimisation runs on models of up to 500 elements. At 3 bricks per
 metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it runs without.
-{% endhint %}
+:::
 
 ## The model
 
 | Group | What it does |
 | --- | --- |
 | 1 - How fine | **Bricks per metre**, the same every way. The Expressions turn it into the bricks along and across, the height of a layer and the number of levels. |
-| 2 - The design domain and the deck | The plan, a 16 x 2 m rectangle, meshed once with **Mesh Plane**, copied up level by level and made into bricks between each pair of levels by [Mesh Series to Brick](../../basics/utility/mesh-series-to-brick.md). The domain runs from the bottom to the deck's underside; the deck is the one layer above. |
-| 3 - Steel, and the bricks | An [nD](../../basics/materials/ND.md) material, steel with E = 210 GPa and ν = 0.3. Two sets of [SSP Bricks](../../basics/elements/brick.md), named **Domain** and **Deck** through their ElementId. |
-| 4 - Pinned ends, and the deck load | The nodes along the bottom of both ends, held in X, Y and Z by a [Support](../../basics/elements/support.md) and free to rotate. The deck load, 10 kN/m² over 32 m², shared equally among the nodes of the deck's top as [Point Loads](../../basics/loads/point-load.md), in a [Load Pattern](../../basics/loads/load-pattern.md). |
-| 5 - Assemble Model | [Assemble](../../basics/assemble.md). [Model View](../../basics/visualisation/model-view.md) is disabled: enable it to see the domain, the supports and the loads. |
+| 2 - The design domain and the deck | The plan, a 16 x 2 m rectangle, meshed once with **Mesh Plane**, copied up level by level and made into bricks between each pair of levels by [Mesh Series to Brick](../../docs/basics/utility/mesh-series-to-brick.md). The domain runs from the bottom to the deck's underside; the deck is the one layer above. |
+| 3 - Steel, and the bricks | An [nD](../../docs/basics/materials/ND.md) material, steel with E = 210 GPa and ν = 0.3. Two sets of [SSP Bricks](../../docs/basics/elements/brick.md), named **Domain** and **Deck** through their ElementId. |
+| 4 - Pinned ends, and the deck load | The nodes along the bottom of both ends, held in X, Y and Z by a [Support](../../docs/basics/elements/support.md) and free to rotate. The deck load, 10 kN/m² over 32 m², shared equally among the nodes of the deck's top as [Point Loads](../../docs/basics/loads/point-load.md), in a [Load Pattern](../../docs/basics/loads/load-pattern.md). |
+| 5 - Assemble Model | [Assemble](../../docs/basics/assemble.md). [Model View](../../docs/basics/visualisation/model-view.md) is disabled: enable it to see the domain, the supports and the loads. |
 | 6 - Topology Optimisation | **Keep** names the Deck. **VolumeFraction** 0.2, **Iterations** 100, **Run**, and **Step** to look back over the run. Panels show the compliance, whether the run converged, and its history. |
-| 7 - The design, analysed | [Run Analysis](../../basics/analysis/run-analysis.md) on the optimisation's **AlpacaModel**, the design as a model of its own, and [Model View](../../basics/visualisation/model-view.md) colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
+| 7 - The design, analysed | [Run Analysis](../../docs/basics/analysis/run-analysis.md) on the optimisation's **AlpacaModel**, the design as a model of its own, and [Model View](../../docs/basics/visualisation/model-view.md) colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
 
 ## Running it
 
@@ -39,7 +45,7 @@ metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it 
    analysed as it would be built, solid and void, and Model View colours it by Von Mises stress.
    Disable Run Analysis again before dragging **Step**, or every design shown is analysed.
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/topology-bridge/topology-bridge-2.png" alt="The design analysed: the arch and the columns coloured by Von Mises stress, with a legend"><figcaption></figcaption></figure>
+<figure><img src="topology-bridge-2.png" alt="The design analysed: the arch and the columns coloured by Von Mises stress, with a legend"><figcaption></figcaption></figure>
 
 ## What it shows
 

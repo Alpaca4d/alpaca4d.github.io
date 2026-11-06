@@ -7,10 +7,14 @@
 //   picture shows as a broken image instead of failing the build.
 // - A page's front-matter description is shown under its title, as GitBook does.
 // - SUMMARY.md becomes the sidebar, in .vitepress/sidebar.generated.mjs.
+// - A component's picture and its Inputs and Outputs tables become one card (cards.mjs).
+// - GitBook's inline formulas, $$x$$ within a line, become MathJax's $x$; a formula on lines of
+//   its own stays $$...$$, shown on its own.
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { initCards, componentCards } from "./cards.mjs";
 
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DOC = path.resolve(site, "../doc");
@@ -27,7 +31,8 @@ const toUrl = (rel, withBase) =>
 
 const isRemote = (url) => /^([a-z][a-z0-9+.-]*:|\/\/|#|\/)/i.test(url);
 const extOf = (url) => path.posix.extname(url.split(/[?#]/)[0]).toLowerCase();
-const isAsset = (url) => !isRemote(url) && extOf(url) !== "" && extOf(url) !== ".md";
+// A page link the cards have already rendered ends in .html: it is not a file to copy.
+const isAsset = (url) => !isRemote(url) && ![".md", ".html", ""].includes(extOf(url));
 const isPage = (url) => !isRemote(url) && extOf(url) === ".md";
 
 const missing = [];
@@ -49,6 +54,16 @@ function fileCard(href, name) {
 
 const hintKind = { info: "info", success: "tip", warning: "warning", danger: "danger" };
 
+function inlineMath(body) {
+  let fence = false;
+  return body.split("\n").map((line) => {
+    if (/^\s*(```|~~~)/.test(line)) fence = !fence;
+    if (fence || !line.includes("$$") || /^\s*\$\$.*\$\$\s*$|^\s*\$\$\s*$/.test(line)) return line;
+    // Outside code spans only.
+    return line.split(/(`[^`]*`)/).map((part) => (part.startsWith("`") ? part : part.replace(/\$\$([^$]+?)\$\$/g, (_, m) => `$${m.trim()}$`))).join("");
+  }).join("\n");
+}
+
 function convert(text, rel) {
   const dir = path.posix.dirname(rel.split(path.sep).join("/"));
   let front = "";
@@ -62,13 +77,18 @@ function convert(text, rel) {
     if (d) description = d[1].trim().replace(/^(['"])(.*)\1$/, "$2");
   }
 
-  body = body
+  body = componentCards(inlineMath(body), rel)
     .replace(/\{%\s*hint\s+style="(\w+)"\s*%\}/g, (_, s) => `\n::: ${hintKind[s] || "info"}\n`)
     .replace(/\{%\s*endhint\s*%\}/g, "\n:::\n")
     .replace(/\{%\s*file\s+src="([^"]+)"\s*%\}(?:[\s\S]*?\{%\s*endfile\s*%\})?/g, (_, src) => fileCard(assetUrl(dir, src, true), src))
     // An example's Grasshopper file, linked alone on its line, gets the same download card.
     .replace(/^\[[^\]]*\]\((https?:\/\/[^)\s]+\.gh)\)\s*$/gm, (_, url) => fileCard(url, decodeURIComponent(url.split("/").pop())))
-    .replace(/\b(src|href)="([^"]+)"/g, (all, attr, url) => (isAsset(url) ? `${attr}="${assetUrl(dir, url, attr === "href")}"` : all))
+    .replace(/\b(src|href)="([^"]+)"/g, (all, attr, url) => {
+      if (isAsset(url)) return `${attr}="${assetUrl(dir, url, attr === "href")}"`;
+      // A page linked from HTML in a page: VitePress leaves its .md as it is.
+      if (attr === "href" && isPage(url)) return `href="${url.replace(/(^|\/)README\.md(?=$|#)/, "$1index.md").replace(/\.md(?=$|#)/, ".html")}"`;
+      return all;
+    })
     .replace(/(!?)\[([^\]]*)\]\(([^)\s]+)((?:\s+"[^"]*")?)\)/g, (all, bang, label, url, title) => {
       if (isAsset(url)) {
         return bang
@@ -84,15 +104,25 @@ function convert(text, rel) {
   return front + body;
 }
 
-// Where to go first, on the welcome page.
+// Where to go first, on the welcome page: installing, then the four kinds of page - lessons to
+// learn by doing, how-to guides for one task, the reference, and the concepts behind it.
 const welcomeCards = `
 <div class="doc-cards">
   <a class="doc-card" style="--c: var(--green)" href="${BASE}installation.html"><strong>🧠 Install</strong><span>From Rhino's Package Manager, on Rhino 7 and 8.</span></a>
   <a class="doc-card" style="--c: var(--blue)" href="${BASE}setup.html"><strong>⚙️ Set up OpenSees</strong><span>Point Alpaca4d at the solver, once.</span></a>
-  <a class="doc-card" style="--c: var(--orange)" href="${BASE}basics/materials/index.html"><strong>💐 Learn the basics</strong><span>Every component, from materials to optimisation.</span></a>
-  <a class="doc-card" style="--c: var(--purple)" href="${BASE}examples/multi-storey-building/multi-storey-building.html"><strong>🏢 Open an example</strong><span>Grasshopper files to run and take apart.</span></a>
 </div>
+<div class="doc-cards four">
+  <a class="doc-card" style="--c: var(--orange)" href="${BASE}learn/index.html"><strong>🏝️ Learn</strong><span>Lessons that build a structure each, from a plank to a bridge. Start here if you are new.</span></a>
+  <a class="doc-card" style="--c: var(--purple)" href="${BASE}how-to/index.html"><strong>🧭 How-to</strong><span>One task each: a skewed support, a steel check, the results you need.</span></a>
+  <a class="doc-card" style="--c: var(--blue)" href="${BASE}basics/materials/index.html"><strong>📖 Reference</strong><span>Every component, its inputs and outputs, tab by tab, from materials to optimisation.</span></a>
+  <a class="doc-card" style="--c: var(--green)" href="${BASE}concepts/index.html"><strong>💡 Concepts</strong><span>The ideas behind them: how a model is built, axes and units, which element.</span></a>
+</div>
+
+Learn by example? The [examples](https://alpaca4d.github.io/examples/) are on the website: Grasshopper files to open, run and take apart.
 `;
+
+// The sidebar groups that start folded.
+const FOLDED = /^(basics|reference|references|about|benchmarks?)$/i;
 
 // SUMMARY.md: "## Group" starts a sidebar group, "* [Title](page.md)" an item, nested by indent.
 function sidebarFrom(summary) {
@@ -115,12 +145,16 @@ function sidebarFrom(summary) {
     stack.at(-1).items.push(item);
     stack.push({ indent, items: item.items });
   }
+  // A page with pages under it folds them away, until a click or one of them being read opens it.
   const tidy = (items) => items.map((i) => (i.items.length ? { ...i, collapsed: true, items: tidy(i.items) } : { text: i.text, link: i.link }));
-  return groups.filter((g) => g.items.length).map((g) => ({ ...(g.text ? { text: g.text } : {}), items: tidy(g.items) }));
+  // Every group with a title folds away with a click on it; the long ones start folded, and
+  // VitePress opens the one holding the page being read.
+  return groups.filter((g) => g.items.length).map((g) => ({ ...(g.text ? { text: g.text, collapsed: FOLDED.test(g.text) } : {}), items: tidy(g.items) }));
 }
 
 // ---- Run ----
 fs.rmSync(OUT, { recursive: true, force: true });
+await initCards(OUT, BASE, DOC);
 let pages = 0;
 let files = 0;
 const walk = (dir) => {

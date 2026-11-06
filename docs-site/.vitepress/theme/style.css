@@ -246,3 +246,178 @@
 .VPDocFooter .pager-link { border-width: 2px; border-radius: 14px; }
 .VPDocFooter .pager-link:hover { border-color: var(--vp-c-text-1); }
 .VPDocFooter .title { font-weight: 800; }
+
+/* ---- Component cards (scripts/cards.mjs) ----
+   The component's picture beside its ports: one row per port with its type and default and
+   the first sentence of its description; a click opens the rest. */
+
+/* A little more room for the text column than VitePress's 688 px, where the screen has it. */
+@media (min-width: 1440px) { .VPDoc.has-aside .content-container { max-width: 780px; } }
+
+.vp-doc .gh-card {
+  container-type: inline-size;
+  margin: 22px 0 34px;
+  border: 2px solid var(--vp-c-text-1);
+  border-radius: 18px;
+  box-shadow: 0 5px 0 var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  overflow: clip;
+}
+.vp-doc .gh-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 14px;
+  padding: 11px 18px 9px;
+  background: var(--ink);
+  color: #fff;
+}
+.vp-doc .gh-card-name { font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+.vp-doc .gh-card-tab { font: 600 12px/1.4 var(--vp-font-family-mono); letter-spacing: 0.06em; color: #b9bdc4; }
+
+.vp-doc .gh-card-body { display: grid; grid-template-columns: min(var(--pic, 300px), 46%) minmax(0, 1fr); }
+.vp-doc .gh-card-pic {
+  padding: 18px 14px;
+  background: #fff;
+  border-right: 1px solid var(--vp-c-divider);
+}
+.vp-doc .gh-card-pic > * { position: sticky; top: calc(var(--vp-nav-height) + 18px); }
+.vp-doc .gh-card-pic img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.vp-doc .gh-card-pic img:not(.is-active) { display: none; }
+.vp-doc .gh-pic-set:not(.is-active) { display: none; }
+.vp-doc .gh-switch { display: flex; justify-content: center; gap: 4px; margin: 0 auto 12px; position: static; }
+
+.vp-doc .gh-switch button,
+.vp-doc .gh-tabs button {
+  padding: 3px 11px 2px;
+  border: 1.5px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: transparent;
+  font: 600 12.5px/1.5 var(--vp-font-family-base);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.vp-doc .gh-switch button { color: #555a62; border-color: #e2e3e6; }
+.vp-doc .gh-switch button:hover,
+.vp-doc .gh-tabs button:hover { border-color: var(--vp-c-text-1); color: var(--vp-c-text-1); }
+.vp-doc .gh-switch button:hover { border-color: var(--ink); color: var(--ink); }
+.vp-doc .gh-switch button.is-active,
+.vp-doc .gh-tabs button.is-active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.dark .vp-doc .gh-tabs button.is-active { background: var(--vp-c-text-1); border-color: var(--vp-c-text-1); color: var(--vp-c-bg); }
+
+.vp-doc .gh-card-ports { min-width: 0; padding-bottom: 8px; }
+.vp-doc .gh-group + .gh-group { border-top: 1px solid var(--vp-c-divider); }
+.vp-doc .gh-group-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 14px 18px 6px; }
+.vp-doc .gh-group-title { font: 600 12px/1 var(--vp-font-family-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--vp-c-text-3); }
+.vp-doc .gh-tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.vp-doc .gh-group:has(.gh-tabs) .gh-panel:not(.is-active) { display: none; }
+
+.vp-doc .gh-port + .gh-port { border-top: 1px solid color-mix(in srgb, var(--vp-c-divider) 70%, transparent); }
+.vp-doc .gh-port-line {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1px 8px;
+  margin: 0;
+  padding: 7px 34px 7px 38px;
+  list-style: none;
+}
+.vp-doc summary.gh-port-line { cursor: pointer; }
+.vp-doc summary.gh-port-line::-webkit-details-marker { display: none; }
+.vp-doc summary.gh-port-line:hover { background: var(--vp-c-brand-soft); }
+.vp-doc details.gh-port[open] { background: var(--vp-c-bg-alt); }
+/* The port, as Grasshopper draws it. */
+.vp-doc .gh-port-line::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 13px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--vp-c-text-1);
+  border-radius: 50%;
+  background: var(--vp-c-bg);
+}
+.vp-doc summary.gh-port-line::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 13px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--vp-c-text-3);
+  border-bottom: 2px solid var(--vp-c-text-3);
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+.vp-doc details.gh-port[open] > summary.gh-port-line::after { transform: translateY(3px) rotate(225deg); }
+
+.vp-doc .gh-nick { font: 600 14.5px/1.5 var(--vp-font-family-mono); color: var(--vp-c-text-1); }
+.vp-doc .gh-name { font-size: 13px; color: var(--vp-c-text-3); }
+.vp-doc .gh-meta { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 5px; margin-left: auto; }
+.vp-doc .gh-type,
+.vp-doc .gh-access,
+.vp-doc .gh-def { font: 600 11.5px/1.5 var(--vp-font-family-mono); white-space: nowrap; }
+.vp-doc .gh-type { padding: 0 7px; border-radius: 6px; background: color-mix(in srgb, var(--tc) 16%, var(--vp-c-bg)); color: var(--vp-c-text-1); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--tc) 55%, transparent); }
+.vp-doc .gh-type[data-family="alpaca"] { --tc: var(--blue); }
+.vp-doc .gh-type[data-family="geometry"] { --tc: var(--green); }
+.vp-doc .gh-type[data-family="value"] { --tc: #9a9ea6; }
+.vp-doc .gh-access { color: var(--purple); }
+.vp-doc .gh-access::before { content: "["; }
+.vp-doc .gh-access::after { content: "]"; }
+.vp-doc .gh-def { color: var(--vp-c-text-2); white-space: normal; }
+.vp-doc .gh-def::before { content: "= "; color: var(--vp-c-text-3); }
+.vp-doc .gh-def code, .vp-doc .gh-type code { padding: 0; background: none; font: inherit; color: inherit; }
+.vp-doc .gh-sum { flex-basis: 100%; font-size: 14px; line-height: 1.5; color: var(--vp-c-text-2); }
+.vp-doc .gh-more { padding: 0 34px 11px 38px; font-size: 14px; line-height: 1.6; color: var(--vp-c-text-2); }
+.vp-doc .gh-notes { margin: 6px 18px 4px; padding: 2px 0 0 20px; font-size: 14px; color: var(--vp-c-text-2); border-left: 3px solid var(--vp-c-divider); }
+.vp-doc .gh-notes > :first-child { margin-top: 6px; }
+.vp-doc .gh-notes p { line-height: 1.6; margin: 8px 0; }
+.vp-doc .gh-notes .custom-block { margin: 10px 0; font-size: 14px; }
+
+/* On a narrow card the picture goes on top, at its own size. */
+@container (max-width: 600px) {
+  .vp-doc .gh-card-body { grid-template-columns: minmax(0, 1fr); }
+  .vp-doc .gh-card-pic { border-right: 0; border-bottom: 1px solid var(--vp-c-divider); }
+  .vp-doc .gh-card-pic img { max-width: min(var(--pic, 300px), 100%); }
+  .vp-doc .gh-card-pic > * { position: static; }
+}
+
+/* "Relation to OpenSees", folded away. */
+.vp-doc .custom-block.details { margin-top: 40px; padding: 14px 18px; border-left: 0; border: 1.5px solid var(--vp-c-divider); background: var(--vp-c-bg-alt); }
+.vp-doc .custom-block.details::before { display: none; }
+.vp-doc .custom-block.details summary { font-weight: 800; cursor: pointer; }
+.vp-doc .gh-lead { margin: 0 18px 6px 38px; font-size: 14px; color: var(--vp-c-text-2); }
+.vp-doc .gh-lead p { line-height: 1.6; margin: 4px 0 8px; }
+
+/* The lessons of Learn, one card each, numbered as the island's areas. */
+.vp-doc .lesson-cards { display: grid; gap: 10px; margin: 26px 0; }
+.vp-doc .lesson-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px 14px 14px;
+  border: 2px solid var(--vp-c-divider);
+  border-radius: 16px;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.vp-doc .lesson-card:hover { border-color: var(--vp-c-text-1); transform: translateY(-1px); }
+.vp-doc .lesson-num { display: grid; place-items: center; width: 42px; height: 42px; border: 2px solid var(--ink); border-radius: 12px; background: var(--green); color: var(--ink); font: 800 18px/1 var(--vp-font-family-base); }
+.vp-doc .lesson-card:nth-child(3n + 2) .lesson-num { background: var(--blue); color: #fff; }
+.vp-doc .lesson-card:nth-child(3n) .lesson-num { background: var(--orange); color: #fff; }
+.vp-doc .lesson-body { display: grid; gap: 2px; min-width: 0; }
+.vp-doc .lesson-body strong { font-size: 16.5px; }
+.vp-doc .lesson-body > span { font-size: 14.5px; line-height: 1.45; color: var(--vp-c-text-2); }
+.vp-doc .lesson-body small { font: 600 11.5px/1.5 var(--vp-font-family-mono); color: var(--vp-c-text-3); }
+.vp-doc .lesson-card em { font: 600 11px/1 var(--vp-font-family-mono); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 8px 4px; border-radius: 999px; background: var(--vp-c-bg-alt); color: var(--vp-c-text-3); }
+@media (max-width: 560px) { .vp-doc .lesson-card em { display: none; } .vp-doc .lesson-card { grid-template-columns: auto minmax(0, 1fr); } }
+
+/* A group's title folds it: the whole title row is the button. */
+.VPSidebarItem.level-0.collapsible > .item { cursor: pointer; }
+.VPSidebarItem.level-0.collapsible > .item:hover > .text { color: var(--vp-c-text-1); }

@@ -16,7 +16,7 @@
     { id: "features", label: "Features", href: root + "index.html#features" },
     { id: "learn", label: "Learn", items: [
       { id: "docs", label: "Docs", note: "Every component, with its inputs and outputs", href: docs, icon: "legend", c: "blue" },
-      { id: "examples", label: "Examples", note: "Grasshopper files to open and take apart", href: root + "index.html#examples", icon: "shell", c: "green" },
+      { id: "examples", label: "Examples", note: "Grasshopper files to open and take apart", href: root + "examples/", icon: "shell", c: "green" },
       { id: "workshop", label: "Workshop", note: "A day online with the developer", href: root + "workshop.html", icon: "supporter", c: "orange" },
     ] },
     { id: "tools", label: "Tools", items: [
@@ -128,7 +128,7 @@
             <h4>Learn</h4>
             <ul>
               <li><a href="${docs}">Documentation</a></li>
-              <li><a href="${docs}examples/multi-storey-building/multi-storey-building.html">Examples</a></li>
+              <li><a href="${root}examples/">Examples</a></li>
               <li><a href="${root}workshop.html">Workshop</a></li>
               <li><a href="${docs}benchmark/intro.html">Benchmarks</a></li>
               <li><a href="${docs}references/publications.html">Publications</a></li>

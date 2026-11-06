@@ -1,10 +1,16 @@
+---
+order: 13
+summary: "Eight cases for the Non-Linear Optimisation component."
+tags: ["Optimisation"]
+---
+
 # ⛰️ Non-Linear Optimisation
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/examples/non-linear-optimisation/non-linear-optimisation.png" alt="Six optimisation cases over their sliders' ranges, each with where the sliders start and the answer it should end at"><figcaption></figcaption></figure>
+<figure><img src="non-linear-optimisation.png" alt="Six optimisation cases over their sliders' ranges, each with where the sliders start and the answer it should end at"><figcaption></figcaption></figure>
 
-[non-linear-optimisation](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/examples/non-linear-optimisation/non-linear-optimisation.gh)
+[non-linear-optimisation](non-linear-optimisation.gh)
 
-Eight cases for [Non-Linear Optimisation](../../basics/optimisation/non-linear-optimisation.md),
+Eight cases for [Non-Linear Optimisation](../../docs/basics/optimisation/non-linear-optimisation.md),
 each with a known answer. Every case has its sliders, its objective - and constraints, where it
 has them - as Expression components, an optimiser already linked to them and set to the algorithm
 the case is for, and a panel saying what to expect.
@@ -29,4 +35,4 @@ on purpose, to show what the optimiser says when it cannot run.
 
 Each case is a function of two numbers, small enough to solve in moments. To optimise a structure,
 link the sliders of the design instead, and an output of the analysis - the mass, say - as the
-objective; see [Searching for the best design](../../basics/optimisation/README.md#searching-for-the-best-design).
+objective; see [Searching for the best design](../../docs/basics/optimisation/README.md#searching-for-the-best-design).

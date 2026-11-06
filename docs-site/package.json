@@ -4,11 +4,15 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync.mjs",
+    "examples": "node scripts/examples.mjs",
     "dev": "npm run sync && vitepress dev",
-    "build": "npm run sync && vitepress build",
+    "build": "npm run sync && vitepress build && npm run examples",
     "preview": "vitepress preview"
   },
   "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "sharp": "^0.33.5",
+    "tslib": "^2.8.1",
     "vitepress": "1.6.4"
   }
 }
