@@ -65,7 +65,7 @@ With no result ticked, the model is drawn alone, every element in the colour **C
 | Displacement | Magnitude, Ux, Uy, Uz |
 | Beam forces | N, Vy, Vz, Torsion, My, Mz |
 | Beam stresses | σN, σMy, σMz, σx, σmax, σmin, τV, τT, VonMises |
-| Shell forces | fxx, fyy, fxy, mxx, myy, mxy, vxz, vyz |
+| Shell forces | pxx, pyy, pxy, mxx, myy, mxy, vxz, vyz, named as in [Shell Forces](../results/shell-forces.md) |
 | Shell stresses | σ11, σ22, σ12, σ23, σ31, VonMises |
 | Brick stresses | σ11, σ22, σ33, σ12, σ23, σ13, VonMises |
 | Reactions | Force, Fx, Fy, Fz, Moment, Mx, My, Mz |
@@ -80,7 +80,7 @@ a legend fed from **Values** reads in it too, and a **Range** is typed in it.
 | N, Vy, Vz of *Beam forces*; Force, Fx, Fy, Fz of *Reactions* | N, **kN**, MN |
 | Torsion, My, Mz of *Beam forces*; Moment, Mx, My, Mz of *Reactions* | N·mm, N·m, kN·cm, **kN·m**, MN·m |
 | Every stress — *Beam*, *Shell* and *Brick stresses* | kPa (= kN/m²), **MPa** (= N/mm²), kN/cm² |
-| fxx, fyy, fxy, vxz, vyz of *Shell forces* | N/m, **kN/m** (= N/mm), MN/m |
+| pxx, pyy, pxy, vxz, vyz of *Shell forces* | N/m, **kN/m** (= N/mm), MN/m |
 | mxx, myy, mxy of *Shell forces* | N·m/m, **kN·m/m**, MN·m/m |
 
 Each result keeps a unit of its own for each kind of quantity it has: switch *Beam forces* from N
@@ -104,18 +104,44 @@ elements **ElementId** kept.
 | End Releases | on | Each released end of a beam: a circle for a released rotation, in the plane the end turns in, and two short lines for a released translation, along the free direction — red, green and blue for local *x*, *y* and *z*. A truss gets three circles at each end, a ball joint. Nothing where nothing is released. |
 | Release size | `1`, from 0.1 to 5 | How big the release symbols are drawn. Shown while **End Releases** is on. |
 | Colour by | `Element` | What the elements are drawn in: `Element`, `Section` or `Material` — see [Colouring by section or material](#colouring-by-section-or-material). Shown with no result ticked. |
-| Text size | `0.5`, from 0.05 to 5 | The height of everything written on the model — values, ids, section names, load values — in model units. Shown while any of them is on. |
+| Text size | `0.5`, from 0.05 to 5 | The height of the capitals of everything written on the model — values, ids, section names, load values — in model units. Each is written on a white plate, so it reads on Rhino's grey background, on a shell and on a result's colours alike, and over the model; one less than a few pixels high is left out. Shown while any of them is on. |
 
 The ids, names, axes and releases are drawn where the model was built, also over a deformed shape.
+The loads ride on it: with **Deformed shape** ticked, each arrow moves with the node, the point along
+a beam or the shell it acts on, so that the loads stay on the structure as it deforms and as it
+animates.
+With both **Element IDs** and **Section Names** on, a beam's id is written above its section name.
 
 ### Loads menu
 
 | Control | Effect |
 | --- | --- |
 | LoadPattern | The **LoadPattern** input, drawn in the menu: one pattern's loads only. |
-| Show Loads | Draws point, line and surface loads as arrows and patches. |
-| Show Values | Writes what each load is worth at the tail of its arrow, in the load's colour: `kN` for a point load (and `kN·m` for its moment, when it has one), `kN/m` once per beam for a line load, `kN/m²` once per shell for a surface load. Works with or without **Show Loads**; its size is **Text size**, under **Elements**. |
-| Load Scale | Slider, 0.1 – 10. Arrow size. |
+| Show Loads | Draws every load of the model, each kind to fit it — see [How the loads are drawn](#how-the-loads-are-drawn). |
+| Show Values | Writes what each load is worth just beyond the tail of its arrow, in the load's colour: `kN` for a point load and `kN·m` beside its moment, `kN/m` once along each run of beams with the same line load, `kN/m²` once over each patch of shells with the same surface load, for the self-weight `kN/m` once a run of beams and `kN` on each node, and `kg` under a mass. Works with or without **Show Loads**; its size is **Text size**, under **Elements**. |
+| Load Scale | `1`, from 0.1 to 10. How long the arrows are, as a share of the length they are fitted to: at `1` the largest point load's arrow is 15% of the model's size. |
+
+#### How the loads are drawn
+
+Each kind of load is drawn to fit the model, whatever it is worth. At **Load Scale** `1` the
+largest point load gets an arrow 15% of the model's size, the largest line load 60% of that and
+the largest surface load 40%, the self-weight half of the point and line loads', shorter as a drawing has them, so that a point load in a span and
+the line load along it are not written in one place. The others of each kind are drawn in
+proportion, down to a tenth of the largest, so that a small load beside a large one still shows.
+A frame 8 m across and a bridge 80 m long both get arrows that can be read.
+
+<figure><img src="model-view/loads.png" alt="Model View drawing a point load, a moment, line loads, a surface load, the self-weight and a mass on a steel frame with a slab" width="468"><figcaption><p>Every kind of load on one frame, with <strong>Show Loads</strong>, <strong>Show Values</strong> and <strong>Show Supports</strong> on</p></figcaption></figure>
+
+| Load | Drawn as |
+| --- | --- |
+| [Point Load](../loads/point-load.md) | An arrow ending on the node. A moment is three quarters of a circle round its axis, turning the way the moment does by the right-hand rule, with its head at the end. |
+| [Linear Load](../loads/beam-load.md) | Arrows spread evenly along the beams it is on, ending on them, and a line joining their tails. Beams given one by one with the same load, as a list into **Beam\|Id** gives them, are one run where they meet, and written once. |
+| [Mesh Load](../loads/shell-load.md) | A see-through sheet over the shells, on the side the load comes from, and arrows from it onto them. Shells given one by one with the same load are one patch, written once. |
+| [Gravity Load](../loads/gravity.md) | The loads OpenSees is given for it, times the factor, in a colour of its own. Along each beam, its weight per metre, drawn as a Linear Load is. On the nodes of a shell, a solid or a truss, an arrow down on each node with the weight of every element meeting there. Its arrows are half as long as the largest point and line loads', so that a load on the same node or beam stands out of them. |
+| [Mass Point](../loads/mass-point.md) | A dot on the node, with its mass under it. Drawn whatever **LoadPattern** says: a mass belongs to no pattern. |
+
+A definition saved before the loads were drawn to fit opens with **Load Scale** at `1`: it was
+metres of arrow per kN then, and an old value would now shrink or stretch the fit.
 
 ### Supports menu
 
@@ -152,7 +178,7 @@ or built again, and nothing downstream is solved again.
 | Is the section oriented the way I meant? | **Extruded** |
 | Which way is local *y* on this beam? | **Local Axes** — this is what `My` and `Mz` in [Beam Forces](../results/beam-forces.md) refer to. |
 | Are the supports right? | **Show Supports**, then compare the glyphs against [the preset table](../elements/support.md#the-seven-presets). |
-| Did that load land where I put it? | **Show Loads**, and raise **Load Scale**. |
+| Did that load land where I put it? | **Show Loads**; **Load Scale** makes the arrows longer or shorter. |
 | Is it as big as I meant? | **Show Values**, in the **Loads** menu. |
 | Did every member get the section I meant? | No result ticked, **Colour by** `Section`, with **Section Names** on. |
 | Is the support taking what I think? | *Reactions*, with **Show Supports** on. |
@@ -323,7 +349,7 @@ settings and wires:
 
 | You used | It becomes |
 | --- | --- |
-| Model View, before it drew results | No result ticked, with every toggle, size and **Colour by** as they were. **LP** goes to **LoadPattern** and **ElemIds** to **ElementId**, which takes an element tag as before — but the elements it leaves out are now greyed rather than hidden. **Show Constraints**, which drew nothing, is gone. |
+| Model View, before it drew results | No result ticked, with every toggle, size and **Colour by** as they were, but **Load Scale**, which was metres of arrow per kN and starts again at `1`. **LP** goes to **LoadPattern** and **ElemIds** to **ElementId**, which takes an element tag as before — but the elements it leaves out are now greyed rather than hidden. **Show Constraints**, which drew nothing, is gone. |
 | View Results_WIP | The result it drew, ticked alone, with the component, unit, layer and display settings it had; its diagram scale sizes both the diagrams and the arrows. **End Releases** is off. Its five inputs are the new one's first five, and **Info**, **Values** and **Colors** keep their wires. |
 
 The separate view components before those are hidden too:
@@ -343,7 +369,10 @@ or turn them off again once you have looked.
 {% endhint %}
 
 {% hint style="info" %}
-The colours of the ids, section names, loads and result values are set once for every
-definition, in **Alpaca4d → Settings → Display...** in the Grasshopper menu bar. They apply as
-soon as they are picked, and are kept for the next session.
+The colours of the ids, section names, loads, gravity, masses and result values are set once for
+every definition, in **Alpaca4d → Settings → Display...** in the Grasshopper menu bar. They apply
+as soon as they are picked, and are kept for the next session. They are dark by default, to read
+on Rhino's light grey viewport and on the white plate behind every label. Until 0.12 the ids
+were white, yellow and cyan, which could hardly be seen there: a settings file from then gives
+up those old defaults for the new ones, and keeps any colour picked by hand.
 {% endhint %}

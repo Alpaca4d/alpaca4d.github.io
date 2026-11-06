@@ -1,4 +1,4 @@
-# ⚖️ Mass Point
+# Mass Point
 
 Adds **mass at a node** without adding a force. It is how you represent something that has
 weight in a dynamic analysis but is not modelled as an element: a tank of water, plant on a
@@ -23,6 +23,9 @@ roof, a façade, the participating fraction of an imposed load.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | Load | `Load` | Load | Mass load. Connect it **directly** to Assemble's `LoadPatterns` input — it does not need a [Load Pattern](load-pattern.md). |
+
+[Model View](../visualisation/model-view.md#how-the-loads-are-drawn), with **Show Loads** on, draws
+each mass as a dot on its node, with its mass under it when **Show Values** is on.
 
 {% hint style="info" %}
 The input is in **kg**, and is converted to the solver's mass unit when the deck is written —
@@ -60,3 +63,7 @@ mass $nodeTag $mx $my $mz                   ;# 3 DOF node
 
 The rotational terms are dropped on a 3 DOF node — a node belonging only to bricks or
 tetrahedra.
+
+`mass` sets a node's mass rather than adding to it, so Assemble writes one line per node, with
+all the Mass Points on that node added up. Before 0.12 each Mass Point had its own line, and of
+two on one node only the last counted.
