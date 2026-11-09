@@ -11,11 +11,11 @@ legend (`beam-grid-displacement.png`).
 - **The post:** `beam-grid-sections.png`, the grid from above at an angle, a colour for each
   section.
 - **A carousel instead:** `beam-grid-sections.png`, then `beam-grid-in-grasshopper.png`.
-- **Do not attach** `beam-grid-displacement.png`: it is a legend alone, and it reads up to
-  15 221 mm, which cannot be right.
-- **Alt text:** A square grid of steel beams sized element by element by the Section Optimiser, a
-  colour for each section, the deep beams gathered in the middle and round four points, the rest
-  slender.
+- **Do not attach** `beam-grid-displacement.png`: the sized grid sags about 1.2 m, as the optimiser
+  checks strength only, not deflection.
+- **Alt text:** A square grid of steel tubes sized element by element by the Section Optimiser, a
+  colour for each section: the heavier ones along the edges and round a ring a bay inside them, the
+  middle slender.
 
 ## The post
 
@@ -61,10 +61,10 @@ Download Alpaca4d (Rhino 7 and 8, Windows and macOS): https://alpaca4d.github.io
 | --- | --- |
 | Grid | 20 m square, ten bays each way, the beams cut at every crossing |
 | Supports | four, pinned, on the diagonals, walked from the corners to the centre |
-| Loads | a point load at every node, 20 kN as the definition opens, and the self-weight |
-| Starting section | HEA300 in S355 |
-| Sizing | every element on its own, within the family it starts in |
+| Loads | a point load at every node, 7.5 kN as the definition opens, and the self-weight |
+| Starting section | RHS 300x200x10 in S355: closed, as the rigidly joined beams twist, and an open section cannot take the torsion |
+| Sizing | every element on its own, within the family it starts in, up to 40 iterations |
 
-- **The mass:** the Section Optimiser's Mass output says which support position is the lighter.
-  The pages give no figure, so do not quote one.
+- **The mass:** 15.0 t with the supports at the corners, as the definition opens; 5.2 t with them
+  4 m in, the lightest (see `../beam-grid-moving-supports/`).
 - **Licence, if asked:** the Section Optimiser needs a licence; without one, Run Analysis takes models of up to 50 elements and the Results components read them as numbers (https://alpaca4d.github.io/docs/references/license.html).
