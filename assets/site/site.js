@@ -21,7 +21,7 @@
     ] },
     { id: "tools", label: "Tools", items: [
       { id: "explorer", label: "Explorer", note: "Compare design studies in your browser", href: root + "explorer/", icon: "explorer", c: "purple" },
-      { id: "playground", label: "Playground", note: "Coming soon", href: root + "playground.html", c: "white" },
+      { id: "playground", label: "Playground", note: "Ten lessons on an island, a structure in each", href: root + "playground.html", c: "white" },
     ] },
     { id: "about", label: "About us", href: root + "about/" },
   ];

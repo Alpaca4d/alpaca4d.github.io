@@ -518,6 +518,6 @@ export async function start(world, host, onExit) {
         el("p", "pg-calc", `By hand: the piers are 5.5 − 1.5 = 4${NB}m long and 0.2${NB}m thick, so σ = 600${NB}kN / (4 × 0.2${NB}m²) = 750${NB}kN/m² = ${PIER.toFixed(2)}${NB}MPa; far from the window, 600 / (5.5 × 0.2) = ${FAR.toFixed(2)}${NB}MPa. OpenSees gives the same mean across the piers.`),
       ];
     },
-    done: { title: "The Wall with a window is done.", body: "You built a shell model the way every Alpaca4d shell model is built: a surface, a mesh with a node wherever a support or a load goes, a section and shells, supports, loads, Assemble Model, then an analysis, with stress lines to read how the forces flow. The file is the definition you put together, ready to open in Grasshopper with Alpaca4d." },
+    done: { title: "The Wall with a window is done.", body: "You built a shell model the way every Alpaca4d shell model is built: a surface, a mesh with a node wherever a support or a load goes, a section and shells, supports, loads, Assemble Model, then an analysis, with stress lines to read how the forces flow. The file is the definition you put together, ready to open in Grasshopper with Alpaca4d. Its wall is about 300 shells, past the 50 elements Alpaca4d analyses without a license, so solving it in Rhino needs one." },
   });
 }

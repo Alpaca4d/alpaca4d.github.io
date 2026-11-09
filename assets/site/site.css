@@ -1089,7 +1089,6 @@ body.scroll-colours,
 .pg-marker:hover .pg-pin, .pg-marker.hover .pg-pin, .pg-marker.selected .pg-pin, .pg-marker:focus-visible .pg-pin { transform: scale(1.14); }
 .pg-marker:focus-visible { outline: none; }
 .pg-marker:focus-visible .pg-pin { outline: 3px solid var(--white); outline-offset: 3px; }
-.pg-stars { font-size: 13px; line-height: 1; letter-spacing: 1px; color: #ffd84a; -webkit-text-stroke: 0.6px var(--ink); text-shadow: 0 1px 0 var(--ink); }
 .pg-name {
   position: absolute;
   left: calc(50% + 28px);
@@ -1133,6 +1132,8 @@ body.scroll-colours,
 .pg-card dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); padding-top: 2px; }
 .pg-card dd { margin: 0; color: var(--ink); }
 .pg-card .btn { justify-self: start; margin-top: 4px; }
+.pg-ahead { margin: 0; font-size: 14px; line-height: 1.4; color: var(--ink-3); }
+.pg-ahead[hidden] { display: none; }
 .pg-card .btn[disabled] { opacity: 0.6; cursor: default; }
 .pg-controls { position: absolute; right: var(--gutter); bottom: 24px; display: grid; gap: 10px; }
 .pg-controls button { width: 46px; height: 46px; border-radius: 14px; font-size: 22px; font-weight: 800; line-height: 1; cursor: pointer; color: var(--ink); }

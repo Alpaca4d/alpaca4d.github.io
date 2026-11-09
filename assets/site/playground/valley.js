@@ -161,7 +161,7 @@ const ROUNDS = [
         [(has) => has("LoadPatterns", "Load Pattern"), "LoadPatterns: the load pattern"],
       ],
       first: "Start with the bars: drag a wire from Truss's output, the circle on its right, to Assemble Model's Elements.",
-      done: { title: "That's the bridge.", body: "Assemble Model joins the 23 bars at their 13 joints, and lands the supports and the alpaca's load on joints within its Tolerance, 1 cm. What comes out of AlpacaModel is the truss, ready to solve." },
+      done: { title: "That's the bridge.", body: "Assemble Model joins the 23 bars at their 13 joints, and lands the supports and the alpaca's load on joints within its Tolerance, 1 cm. What comes out of AlpacaModel is the truss, ready to solve. In Grasshopper, flatten Elements and Supports too (right-click, Flatten): the top chord's bars come out of Explode one branch deeper than the rest, and Assemble Model makes a model of each branch it is given." },
     },
   },
   {

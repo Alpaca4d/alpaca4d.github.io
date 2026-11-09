@@ -1,6 +1,7 @@
 // The Playground's island: ten areas on a winding path, each with the structure its level
-// teaches, seen from above at a fixed angle like a strategy game. A sketch of the map only: there
-// are no exercises yet, and the progress shown is an example.
+// teaches, seen from above at a fixed angle like a strategy game. Each area opens a lesson
+// (playground/<id>.js); the areas finished, and so where the alpaca waits, are the player's own,
+// kept in this browser by the lessons.
 
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
@@ -57,7 +58,7 @@ const LEVELS = [
     idea: "The same span and load bend a cantilever 16 times as much" },
   { name: "Snowy roof", u: 34, v: -16, h: 4.2, kind: "cabin", face: [-1, -1], snow: true,
     build: "A rafter under snow, and how deep it must be",
-    skill: "Beam load, Gravity, Load Pattern, a slider on the section",
+    skill: "Linear Load, Gravity Load, Load Pattern, a slider on the section",
     idea: "Twice as deep is 8 times as stiff; the L/250 limit" },
   { name: "Barn", u: 8, v: -6, h: 3.8, kind: "barn",
     build: "A portal frame in the wind",
@@ -81,7 +82,7 @@ const LEVELS = [
     idea: "Frequency rises with stiffness and falls with mass" },
   { name: "Wall with a window", u: 30, v: 34, h: 7.2, kind: "wall", face: [-1, -1],
     build: "A window cut into a wall",
-    skill: "Shell, Shell load, Shell Forces, Principal Stress Lines",
+    skill: "Mesh Brep, ASD Shell, Model View, Principal Stress Lines",
     idea: "How forces flow around an opening" },
   { name: "Summit bridge", u: 2, v: 40, h: 9, kind: "chasm",
     build: "The lightest bridge across the chasm",
@@ -93,10 +94,27 @@ LEVELS.forEach((a) => {
   if (a.face) { const d = Math.hypot(a.face[0], a.face[1]); a.face = [a.face[0] / d, a.face[1] / d]; }
 });
 
-// The sketch's example progress: three areas done, with their stars, and the fourth open.
-const STARS = [3, 2, 3];
-const CURRENT = 3;
-const stateOf = (i) => (i < CURRENT ? "done" : i === CURRENT ? "current" : "locked");
+// ---- Progress ----
+// Each lesson keeps how far the player got, in this browser (lesson.js, "alpaca4d.playground.<id>"):
+// an area is done once its lesson has been finished, and stays done when it is played again. The next
+// to do is the first area not done, and the ones after it are locked - though they can still be played.
+const IDS = ["river", "cliff", "roof", "barn", "valley", "market", "tower", "footbridge", "wall", "summit"];
+const finished = (id) => {
+  try { const p = JSON.parse(localStorage.getItem(`alpaca4d.playground.${id}`) || "{}"); return !!(p.finished || p.done); } catch (e) { return false; }
+};
+let DONE = IDS.map(finished);
+// The next area to do, or -1 once every area is done.
+let CURRENT = DONE.indexOf(false);
+const stateOf = (i) => (DONE[i] ? "done" : i === CURRENT ? "current" : "locked");
+// Where the alpaca waits: at the next area, or on the summit once all are done.
+const homeArea = () => (CURRENT < 0 ? LEVELS.length - 1 : CURRENT);
+// Reads the progress again, after a lesson: true when an area was finished (or started over) since.
+function readProgress() {
+  const was = DONE;
+  DONE = IDS.map(finished);
+  CURRENT = DONE.indexOf(false);
+  return DONE.some((d, i) => d !== was[i]);
+}
 
 // The path, from the pier on the beach to the flag on the summit, through every area.
 // The pier, on the west beach above the river's mouth: the alpaca lands there, and the river is
@@ -433,7 +451,16 @@ function init(root) {
   sun.shadow.normalBias = 0.4;
   scene.add(sun);
 
-  scene.add(buildGround());
+  // Painted by the progress - the areas still locked are faded - so painted again when it changes.
+  let groundMesh = buildGround();
+  scene.add(groundMesh);
+  const repaintGround = () => {
+    scene.remove(groundMesh);
+    groundMesh.geometry.dispose();
+    groundMesh.material.dispose();
+    groundMesh = buildGround();
+    scene.add(groundMesh);
+  };
 
   // The sea, with slow low-poly waves.
   const seaGeo = new THREE.PlaneGeometry(560, 560, 64, 64).toNonIndexed();
@@ -486,13 +513,18 @@ function init(root) {
   }
   const stoneMesh = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.42, 0.46, 0.2, 7), solid("#ffffff"), stones.length);
   const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
-  stones.forEach((s, k) => {
-    const ahead = s.i > LEVELS[CURRENT].at;
-    sc.setScalar(ahead ? 0.75 : 1);
-    m4.compose(toWorld(s.u, s.v, s.h + 0.08), q, sc);
-    stoneMesh.setMatrixAt(k, m4);
-    stoneMesh.setColorAt(k, C(ahead ? "#c5c7c4" : "#ffffff"));
-  });
+  const placeStones = () => {
+    stones.forEach((s, k) => {
+      const ahead = CURRENT >= 0 && s.i > LEVELS[CURRENT].at;
+      sc.setScalar(ahead ? 0.75 : 1);
+      m4.compose(toWorld(s.u, s.v, s.h + 0.08), q, sc);
+      stoneMesh.setMatrixAt(k, m4);
+      stoneMesh.setColorAt(k, C(ahead ? "#c5c7c4" : "#ffffff"));
+    });
+    stoneMesh.instanceMatrix.needsUpdate = true;
+    if (stoneMesh.instanceColor) stoneMesh.instanceColor.needsUpdate = true;
+  };
+  placeStones();
   stoneMesh.receiveShadow = true;
   scene.add(stoneMesh);
 
@@ -539,27 +571,39 @@ function init(root) {
   const BUILT = ["#eb6c3f", "#4288f7", "#9e35da", "#afc930", "#eb6c3f", "#4288f7", "#9e35da", "#afc930", "#4288f7", "#eb6c3f"];
   const rings = [];
   const hits = [];
+  // An area's structure: solid in its colour once done, outlined in orange when next, in white when
+  // locked. Built again when the progress changes, once no lesson is using the area.
+  function buildStructure(i) {
+    const a = LEVELS[i], g = a.group, st = stateOf(i);
+    g.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+    g.clear();
+    const made = st === "done" ? builtLook(BUILT[i]) : ghostLook(st === "current" ? nextEdge : ghostEdge);
+    // The structure's parts are marked, for a lesson to hide while it builds its own.
+    const look = (geo) => { const m = made(geo); m.userData.structure = true; return m; };
+    KINDS[a.kind](g, look, builtLook, a);
+  }
+  function paintRing(i) {
+    const st = stateOf(i), ring = rings[i];
+    ring.material.color.set(st === "done" ? "#ffffff" : st === "current" ? "#eb6c3f" : "#d3d5d8");
+    ring.material.opacity = ring.userData.base = st === "locked" ? 0.55 : 0.9;
+  }
   LEVELS.forEach((a, i) => {
-    const st = stateOf(i);
     const g = new THREE.Group();
     const dir = a.face || a.t;
     const w = toWorld(dir[0], dir[1]).normalize();
     g.rotation.y = Math.atan2(-w.z, w.x);
     g.position.copy(toWorld(a.u, a.v, a.h));
-    const made = st === "done" ? builtLook(BUILT[i]) : ghostLook(st === "current" ? nextEdge : ghostEdge);
-    // The structure's parts are marked, for a lesson to hide while it builds its own.
-    const look = (geo) => { const m = made(geo); m.userData.structure = true; return m; };
-    KINDS[a.kind](g, look, builtLook, a);
     scene.add(g);
     a.group = g;
+    buildStructure(i);
 
     const ring = new THREE.Mesh(new THREE.RingGeometry(a.r * 0.62, a.r * 0.62 + 0.45, 6, 1).rotateX(-Math.PI / 2).rotateY(Math.PI / 6),
-      new THREE.MeshBasicMaterial({ color: st === "done" ? "#ffffff" : st === "current" ? "#eb6c3f" : "#d3d5d8", transparent: true, opacity: st === "locked" ? 0.55 : 0.9 }));
+      new THREE.MeshBasicMaterial({ transparent: true }));
     ring.position.copy(toWorld(a.u, a.v, a.h + 0.07));
-    ring.userData.base = ring.material.opacity;
     scene.add(ring);
     rings.push(ring);
     a.ring = ring;
+    paintRing(i);
 
     const hit = new THREE.Mesh(new THREE.CircleGeometry(a.r * 0.75, 12).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
     hit.position.copy(toWorld(a.u, a.v, a.h + 0.3));
@@ -606,10 +650,10 @@ function init(root) {
   scene.add(alpaca);
   alpaca.rotation.order = "YXZ";
   // Where it is: a place along the path (in samples) and a step to the side of it.
-  let walkAt = LEVELS[CURRENT].at;
+  let walkAt = LEVELS[homeArea()].at;
   let walkTo = walkAt;
   let side = 0;
-  let heading = toWorld(LEVELS[CURRENT].t[0], LEVELS[CURRENT].t[1]).normalize();
+  let heading = toWorld(LEVELS[homeArea()].t[0], LEVELS[homeArea()].t[1]).normalize();
   new GLTFLoader().load(root.dataset.model, (gltf) => {
     let src = null;
     gltf.scene.traverse((o) => { if (o.isMesh && !src) src = o; });
@@ -658,7 +702,7 @@ function init(root) {
   const homeView = () => {
     const aspect = stage.clientWidth / Math.max(1, stage.clientHeight);
     // A phone: start close, on the open area.
-    if (aspect < 0.9) return { zoom: 0.85, at: toWorld(LEVELS[CURRENT].u, LEVELS[CURRENT].v, LEVELS[CURRENT].h) };
+    if (aspect < 0.9) { const a = LEVELS[homeArea()]; return { zoom: 0.85, at: toWorld(a.u, a.v, a.h) }; }
     return { zoom: THREE.MathUtils.clamp(Math.min(1.05, (FH * aspect) / 150), ZMIN, ZMAX), at: toWorld(4, 6, 4) };
   };
   const home = () => {
@@ -698,32 +742,48 @@ function init(root) {
 
   // ---- Markers and the level card ----
   const markers = LEVELS.map((a, i) => {
-    const st = stateOf(i);
     const b = document.createElement("button");
     b.type = "button";
-    b.className = `pg-marker ${st}`;
-    const stars = st === "done" ? `<span class="pg-stars" aria-hidden="true">${"★".repeat(STARS[i])}${"☆".repeat(3 - STARS[i])}</span>` : "";
-    b.innerHTML = `<span class="pg-pin"><span class="pg-num">${i + 1}</span></span>${stars}<span class="pg-name">${a.name}</span>`;
-    b.setAttribute("aria-label", `Area ${i + 1}, ${a.name}: ${st === "done" ? `done, ${STARS[i]} stars of 3` : st === "current" ? "open, the next to do" : "locked"}`);
+    b.innerHTML = `<span class="pg-pin"><span class="pg-num">${i + 1}</span></span><span class="pg-name">${a.name}</span>`;
     b.addEventListener("click", () => select(i));
     markersBox.appendChild(b);
     return { el: b, anchor: toWorld(a.u, a.v, a.h + (a.kind === "tower" ? 13 : 6.5)) };
   });
   const STATE_TEXT = { done: "Done", current: "Next", locked: "Locked" };
+  function paintMarker(i) {
+    const st = stateOf(i), b = markers[i].el;
+    b.classList.remove("done", "current", "locked");
+    b.classList.add("pg-marker", st);
+    b.setAttribute("aria-label", `Area ${i + 1}, ${LEVELS[i].name}: ${st === "done" ? "done" : st === "current" ? "open, the next to do" : "locked"}`);
+  }
+  // How many areas are done, under the title.
+  const progressLine = root.querySelector("[data-progress]");
+  function showCount() {
+    if (!progressLine) return;
+    const n = DONE.filter(Boolean).length;
+    progressLine.innerHTML = n === 0 ? "10 areas · start at the <b>River</b>"
+      : n === LEVELS.length ? "<b>All 10</b> areas done" : `<b>${n}</b> of 10 areas done`;
+  }
+  LEVELS.forEach((a, i) => paintMarker(i));
+  showCount();
   let selected = -1;
   function select(i) {
     selected = i;
     const a = LEVELS[i], st = stateOf(i);
     markers.forEach((m, k) => m.el.classList.toggle("selected", k === i));
-    card.querySelector("[data-chip]").textContent = `Area ${i + 1} · ${STATE_TEXT[st]}${st === "done" ? ` · ${"★".repeat(STARS[i])}${"☆".repeat(3 - STARS[i])}` : ""}`;
+    card.querySelector("[data-chip]").textContent = `Area ${i + 1} · ${STATE_TEXT[st]}`;
     card.querySelector("[data-chip]").className = `pg-chip ${st}`;
     card.querySelector("[data-title]").textContent = a.name;
     card.querySelector("[data-build]").textContent = a.build;
     card.querySelector("[data-skill]").textContent = a.skill;
     card.querySelector("[data-idea]").textContent = a.idea;
     const start = card.querySelector("[data-start]");
-    start.textContent = LESSONS[i] ? LESSONS[i].label : st === "locked" ? `Finish area ${CURRENT + 1} to open it` : st === "done" ? "Play again · coming soon" : "Start · coming soon";
-    start.disabled = !LESSONS[i];
+    start.textContent = st === "done" ? "Play it again" : st === "current" ? "Play the lesson" : "Play it anyway";
+    start.disabled = false;
+    // A locked area can be played all the same; the card says which one comes first.
+    const ahead = card.querySelector("[data-ahead]");
+    ahead.hidden = st !== "locked";
+    if (st === "locked") ahead.textContent = `Area ${CURRENT + 1}, ${LEVELS[CURRENT].name}, comes first: it opens this one.`;
     card.hidden = false;
     hideHint();
     if (st !== "locked") walkTo = a.at;
@@ -742,8 +802,7 @@ function init(root) {
   // area, each of which opens straight away at its hash (playground.html#river), or at a round of
   // it (#river-3).
   const LESSONS = {};
-  ["river", "cliff", "roof", "barn", "valley", "market", "tower", "footbridge", "wall", "summit"]
-    .forEach((id, i) => { LESSONS[i] = { label: "Play the lesson", module: `./playground/${id}.js`, hash: id }; });
+  IDS.forEach((id, i) => { LESSONS[i] = { module: `./playground/${id}.js`, hash: id }; });
   const lessonBox = root.querySelector("[data-lesson]");
   let lesson = null;
   const world = {
@@ -795,7 +854,24 @@ function init(root) {
     glide = view.at.clone();
     glideY = view.at.y;
     zoomTo = view.zoom;
+    // A lesson just finished: the island shows it, and the alpaca walks on to the next area, whose
+    // card opens.
+    const was = CURRENT;
+    if (readProgress()) {
+      showProgress();
+      if (CURRENT >= 0 && CURRENT !== was) select(CURRENT);
+    }
   }
+  function showProgress() {
+    repaintGround();
+    LEVELS.forEach((a, i) => { buildStructure(i); paintRing(i); paintMarker(i); });
+    placeStones();
+    showCount();
+  }
+  // Progress made in another tab shows when this one is looked at again.
+  window.addEventListener("storage", (e) => {
+    if (!lesson && e.key && e.key.startsWith("alpaca4d.playground.") && readProgress()) showProgress();
+  });
   root.querySelector("[data-zoom-in]").addEventListener("click", () => { const r = stage.getBoundingClientRect(); zoomAt(1.3, r.left + r.width / 2, r.top + r.height / 2); });
   root.querySelector("[data-zoom-out]").addEventListener("click", () => { const r = stage.getBoundingClientRect(); zoomAt(1 / 1.3, r.left + r.width / 2, r.top + r.height / 2); });
   root.querySelector("[data-home]").addEventListener("click", () => { glide = null; home(); });

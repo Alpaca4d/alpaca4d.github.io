@@ -482,11 +482,12 @@ export async function runLesson(world, host, onExit, spec) {
     done.append(
       el("b", "", spec.done.title),
       el("p", "", spec.done.body),
-      buttons([[`Download ${spec.gh.name}`, "btn-primary", null, spec.gh.url], ["Play the lesson again", "", () => { remember({ reached: 0 }); reached = 0; progress.done = false; goTo(0); }], ["Back to the island", "", () => onExit()]]),
+      buttons([[`Download ${spec.gh.name}`, "btn-primary", null, spec.gh.url], ["Play the lesson again", "", () => { remember({ reached: 0, finished: true }); reached = 0; progress.done = false; goTo(0); }], ["Back to the island", "", () => onExit()]]),
     );
     feedback.appendChild(done);
     progress.done = true;
-    remember({ reached: ROUNDS.length - 1, done: true });
+    // finished stays when the lesson is played again: the island counts the area as done for good.
+    remember({ reached: ROUNDS.length - 1, done: true, finished: true });
     drawRail();
   }
 

@@ -466,6 +466,6 @@ export async function start(world, host, onExit) {
         el("p", "pg-calc", `By hand: a brick is 0.4 × 1.2 × 0.4 = 0.192${NB}m³, 0.48${NB}t; the deck 30 × 0.48 = 14.4${NB}t, and 0.25 × 270 × 0.48 = 32.4${NB}t. The arch pushes each wall out with H = wL²/8f = 6 × 12² / (8 × 3.8) = 28.4${NB}kN; OpenSees gives ${runs.stress.H.toFixed(1)}${NB}kN on the design.`),
       ];
     },
-    done: { title: "The Summit bridge is done.", body: "Topology Optimisation found where the concrete has to be, and the colours show how hard it works there: material only where the forces flow. The file is your definition; its last group colours the design by Von Mises stress in Rhino, which past 50 elements needs a license." },
+    done: { title: "The Summit bridge is done.", body: "Topology Optimisation found where the concrete has to be, and the colours show how hard it works there: material only where the forces flow. The file is your definition; its last group analyses the design once the run has stopped, and colours it by Von Mises stress in Rhino. A design Topology Optimisation found is analysed without a license up to the 500 elements the optimisation took." },
   });
 }
