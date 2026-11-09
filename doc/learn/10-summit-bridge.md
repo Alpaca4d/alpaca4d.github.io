@@ -76,8 +76,10 @@ f = 3.8 m from the foot of the rock to the middle of the deck, pushes each wall 
 $$H = \frac{w L^2}{8 f} = \frac{6 \times 12^2}{8 \times 3.8} = 28.4\ \text{kN}$$
 
 OpenSees gives 26.8 kN on the design: the deck carries some of the walkway itself. Group 8 of
-summit.gh analyses the design and colours it by Von Mises stress; past 50 elements, Run Analysis
-needs a license.
+summit.gh analyses the design once the run has stopped, and colours it by Von Mises stress. Its
+90 bricks are past the 50 elements Run Analysis and Model View take without a license, but a design
+that came out of Topology Optimisation is analysed and drawn free up to the 500 the optimisation
+took.
 
 ## Try
 

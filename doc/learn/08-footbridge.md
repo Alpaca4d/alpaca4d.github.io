@@ -111,4 +111,4 @@ frequency goes with 1/L²: four times as quick, 7.76 Hz by hand and 7.75 Hz in O
 
 - [Find natural frequencies and mode shapes](../how-to/analysis/natural-frequencies.md)
 - [Which analysis](../concepts/which-analysis.md)
-- [Natural Vibration](https://alpaca4d.github.io/examples/natural-vibration/), an example in the gallery
+- [Natural Vibration](https://alpaca4d.github.io/examples/natural-vibration/), an example in the gallery: a concrete tank's first hundred modes, side by side

@@ -59,7 +59,11 @@ deck in the middle. Alpaca4d works in metres and kilonewtons ([Units](../concept
    Factor of −0.6 the force. Wire them into a [Point Load](../basics/loads/point-load.md), and that
    into a [Load Pattern](../basics/loads/load-pattern.md).
 6. **Assemble.** Into [Assemble Model](../basics/assemble.md): the Truss into Elements, the three
-   supports into Supports, the Load Pattern into LoadPatterns.
+   supports into Supports, the Load Pattern into LoadPatterns. Then right-click Elements and pick
+   **Flatten**, and the same on Supports. Explode puts the top chord's bars one branch deeper than
+   the rest, and the side supports' joints come from two components, so the bars and the supports
+   reach Assemble Model on two branches each; it makes a model of each branch, unless they are
+   flattened into one list.
 7. **Run.** [Analysis Settings](../basics/analysis/analysis-settings.md) as it comes into
    [Run Analysis](../basics/analysis/run-analysis.md), and its AlpacaModel into
    [Model View](../basics/visualisation/model-view.md), with Beam forces ticked under Results, N
@@ -103,6 +107,7 @@ diagonals are pushed and the down diagonals pulled; past the middle it is the ot
 | The bridge hangs straight down from Bank A, and no error | Bank B's Tz is free too. The corotational Truss bars follow the bridge as it swings, and OpenSees finds where it comes to rest. | The roller holds Tz: only Tx goes free. |
 | The deck's end bars pushed | Both banks hold X, so the deck cannot stretch: the banks take 0.45 kN of its pull. | Free in the roller's Tx. |
 | *Point load at location '6,0,2' is not part of the model!* | Curve Middle of the top chord: its middle is halfway along a top bar. | Curve Middle of the deck line, on the joint at 6 m. |
+| *Point load at location '6,0,0' is not part of the model!*, then *Analysis Failed* | Elements and Supports not flattened: Assemble Model made one model of the top chord alone, and one of the rest without the joint the alpaca stands on. | Flatten both inputs. |
 | *Data conversion failed from Point to Number* | Divide Curve's points P into Shatter's t. | Its parameters t. |
 | *Beam forces need an analysed model* | Model View is fed from Assemble Model. | Feed it Run Analysis's AlpacaModel. |
 

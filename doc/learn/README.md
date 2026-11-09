@@ -10,8 +10,9 @@ lesson starts with a picture of what you will build and the Grasshopper file, st
 then a few steps, a check against a hand calculation, and something to try.
 
 {% hint style="info" %}
-The lessons are being written. Until a lesson is out, its page says what it will cover and links
-to the pages that cover the same ground.
+Every lesson runs without a license but one: the wall of lesson 9 is about 300 shells, past the 50
+elements Alpaca4d analyses for free ([License](../references/license.md#without-a-license)). In the
+Playground, all ten run in your browser.
 {% endhint %}
 
 <div class="lesson-cards">

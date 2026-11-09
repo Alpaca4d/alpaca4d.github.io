@@ -15,7 +15,9 @@ it and a floor bearing on its top. How do the floor's forces get round the windo
 
 Start from **wall-start**: the wall with its window, meshed and made of shells, and the steps below
 add the rest. **wall** is the finished definition. Both need Rhino to solve, because Mesh Brep meshes
-with Rhino's QuadRemesh. The same wall is the ninth area of the
+with Rhino's QuadRemesh. The wall is about 300 shells, past the 50 elements Run Analysis and Model
+View take without a license, so solving it needs one ([License](../references/license.md#without-a-license));
+the Playground shows its result without one. The same wall is the ninth area of the
 [Playground](https://alpaca4d.github.io/playground.html#wall), where you build it a piece at a time by
 picking the right Grasshopper snippet, and see what each wrong one would build.
 
@@ -79,8 +81,10 @@ $$\sigma = \frac{F}{(L - w)\,t} = \frac{600}{4 \times 0.2} = 750\ \text{kN/m}^2 
 
 OpenSees gives the same mean across the piers at the window's mid-height, as it must: the forces in
 them add up to the 600 kN above. It is not even across them, though: 0.56 MPa at the wall's ends,
-1.0 MPa right beside the window, and about 1.5 MPa at the window's top corners, where the forces
-coming round it gather. That is where walls crack first, and why a lintel or a rounded corner helps.
+1.0 MPa right beside the window, and about 1.5 MPa near the window's top corners, where the forces
+coming round it gather - Model View shows up to 2 MPa at the corner nodes themselves, and at a sharp
+corner the stress keeps rising as the mesh gets finer. That is where walls crack first, and why a
+lintel or a rounded corner helps.
 
 ## Try
 
