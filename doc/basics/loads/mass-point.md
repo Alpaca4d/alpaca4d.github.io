@@ -15,7 +15,7 @@ roof, a façade, the participating fraction of an imposed load.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | Point | `Point` | Point | — | Where the mass sits. Matched to the nearest node within the [Assemble](../assemble.md) tolerance. |
-| TransMass | `TransMass` | Vector | — | Translational mass, one component per global axis. |
+| TransMass | `TransMass` | Vector | — | Translational mass in kg, one component per global axis. |
 | RotationalMass | `RotationalMass` | Vector | `0, 0, 0` | Rotational mass (mass moment of inertia) about each global axis. Only written when the node has 6 DOF. |
 
 ### Outputs
@@ -53,6 +53,12 @@ model calibrated against that behaviour, its periods will now drop.
   action.
 - The self-weight of the modelled elements is what you are after → that comes from the
   material density, applied by [Gravity Load](gravity.md).
+
+**TransMass** is in kg: a 4 t mass is `4000`. The
+[Response Spectrum from Sticks](https://alpaca4d.github.io/examples/response-spectrum/) example puts
+one on top of each of thirty cantilevers, each its own model, to make single-degree-of-freedom
+oscillators.
+The towers of a hundred storeys and more shaken by El Centro - the [Bundled Tube](https://alpaca4d.github.io/examples/bundled-tube-earthquake/), [Braced Tube](https://alpaca4d.github.io/examples/braced-tube-earthquake/), [Buttressed Core](https://alpaca4d.github.io/examples/buttressed-core-earthquake/), [Outriggers and a Damper](https://alpaca4d.github.io/examples/outrigger-tower-earthquake/) and [Diagrid](https://alpaca4d.github.io/examples/diagrid-tower-earthquake/) examples - share each floor's mass, in kg/m² of its area, between the floor's nodes, a Mass Point a node; the Outriggers one also hangs a 660 t damper from a [Link](../elements/spring-link.md).
 
 ## 🔗 Relation to OpenSees
 

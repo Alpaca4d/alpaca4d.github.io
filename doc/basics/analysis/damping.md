@@ -44,6 +44,10 @@ Get the frequencies from [Natural Vibration](natural-vibration.md) first — usu
 mode and whichever higher mode still carries meaningful mass. Between the two the damping
 ratio dips slightly below $$\xi$$; outside them it rises, steeply at the high end.
 
+With both frequencies the same, $$\alpha_M = \xi\omega$$ and $$\beta_K = \xi/\omega$$ give exactly
+$$\xi$$ at $$\omega$$. The [Response Spectrum from Sticks](https://alpaca4d.github.io/examples/response-spectrum/)
+example does that for thirty models, one a branch, each damped 5% at its own frequency.
+
 Which stiffness matrix to use:
 
 | Term | Behaviour |

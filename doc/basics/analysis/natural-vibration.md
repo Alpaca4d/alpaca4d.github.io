@@ -143,7 +143,11 @@ and from [Mass Point](../loads/mass-point.md). A [Gravity Load](../loads/gravity
 {% endhint %}
 
 The [Steel Tower](https://alpaca4d.github.io/examples/steel-tower/) example gives a lattice tower's first six modes beside
-its analysis under wind, and draws the first.
+its analysis under wind, and draws the first. The [Natural Vibration](https://alpaca4d.github.io/examples/natural-vibration/)
+example finds a concrete tank's first hundred modes and draws them all at once, a Series of steps into
+Model View, each mode on its own copy of the tank on a grid; and
+[Response Spectrum from Sticks](https://alpaca4d.github.io/examples/response-spectrum/) takes the period of each of thirty
+models, one a branch, to damp each at its own frequency.
 
 ## 🔗 Relation to OpenSees
 

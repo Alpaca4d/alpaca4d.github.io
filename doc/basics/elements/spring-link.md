@@ -72,6 +72,8 @@ node only `1` to `3` exist, because a solid node has no rotations.
 - **Links do not survive a round trip through Tcl.** [Deserialise](../utility/deserialise.md)
   does not read `twoNodeLink` back, and says so in its warnings.
 
+A tuned mass damper is one: the [Outriggers and a Damper](https://alpaca4d.github.io/examples/outrigger-tower-earthquake/) example hangs 660 t from a rod, a [Truss](force-beam-column.md), and swings it across on a Link along the same rod, with an elastic [Uniaxial](../materials/Uniaxial.md) material across it each way, its **E** the spring's stiffness and its **Eta** the dashpot. The rod makes the node the damper's [Mass Point](../loads/mass-point.md) sits on: a Link only joins nodes the model already has.
+
 ## 🔗 Relation to OpenSees
 
 ```tcl

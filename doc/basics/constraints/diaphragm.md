@@ -48,6 +48,8 @@ than the columns and walls around it.
 - Diaphragms dominate the global lateral behaviour. Check the direction before reading any
   storey drift.
 
+Every floor of a tall building is one. The towers of a hundred storeys and more shaken by El Centro - the [Bundled Tube](https://alpaca4d.github.io/examples/bundled-tube-earthquake/), [Braced Tube](https://alpaca4d.github.io/examples/braced-tube-earthquake/), [Buttressed Core](https://alpaca4d.github.io/examples/buttressed-core-earthquake/), [Outriggers and a Damper](https://alpaca4d.github.io/examples/outrigger-tower-earthquake/) and [Diagrid](https://alpaca4d.github.io/examples/diagrid-tower-earthquake/) examples - give **SlavePoints** a tree, each floor's nodes on a branch of its own, and **MasterPoint** one of each floor's nodes on the same branches: one Rigid Diaphragm makes a diaphragm a floor. Their floors' mass is given as [Mass Point](../loads/mass-point.md)s at the floors' nodes, which the diaphragms then carry together.
+
 ## 🔗 Relation to OpenSees
 
 ```tcl
