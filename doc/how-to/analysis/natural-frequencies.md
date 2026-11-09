@@ -4,7 +4,7 @@ Natural Vibration finds the modes of a structure, with their periods and frequen
 shows each mode move. Run it first on a new model: a first period far from what you expect means the
 mass or the stiffness is wrong.
 
-<figure><img src="../../basics/elements/ten-node-tetrahedron/inigo-the-dragon/inigo-the-dragon-2.png" alt="Three natural modes of a concrete dragon, each with its frequency"><figcaption><p>Three of a dragon's modes, each coloured by how far it moves.</p></figcaption></figure>
+<figure><img src="natural-frequencies.png" alt="A footbridge in its first natural mode, bouncing at mid-span, coloured by how far it moves"><figcaption><p>A footbridge's first mode, 2.03 Hz, coloured by how far it moves.</p></figcaption></figure>
 
 ## You need
 
@@ -50,5 +50,6 @@ mass or the stiffness is wrong.
 - [Natural Vibration](../../basics/analysis/natural-vibration.md) — the inputs, the Modal Report and the solvers
 - [Model View](../../basics/visualisation/model-view.md#results-menu) — Deformed shape, Deformation scale and Animate
 - [Nodal Displacements](../../basics/results/nodal-displacements.md) — a mode shape as numbers
-- [Natural Vibration example](https://alpaca4d.github.io/examples/natural-vibration/) — the main modes of a structure
-- [Inigo the Dragon](../../basics/elements/ten-node-tetrahedron.md#inigo-the-dragon) — twelve modes of a solid, stepped through in Model View
+- [Natural Vibration example](https://alpaca4d.github.io/examples/natural-vibration/) — a concrete tank's first hundred modes, all drawn at once
+- [The Rebellious Slave](../../basics/elements/ten-node-tetrahedron.md#the-rebellious-slave) — the modes of a marble statue in tetrahedra
+- [Response Spectrum from Sticks](https://alpaca4d.github.io/examples/response-spectrum/) — a period from Natural Vibration for each of thirty models

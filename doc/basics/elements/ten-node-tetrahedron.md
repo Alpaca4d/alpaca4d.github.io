@@ -66,8 +66,8 @@ between two supported corners with no support of its own.
 - The body is thin → use [Shell](shell.md).
 
 **Examples:** [Spot the Cow](#spot-the-cow), [Femur](#femur) and
-[Inigo the Dragon](#inigo-the-dragon), at the end of this page, bring tetrahedral meshes from a
-mesher into Grasshopper, under their own weight, a point force and in vibration.
+[The Rebellious Slave](#the-rebellious-slave), at the end of this page, bring tetrahedral meshes
+from a mesher into Grasshopper, under their own weight, a point force and in vibration.
 
 ## 📊 Results
 
@@ -222,67 +222,61 @@ University of Sheffield, licensed under [CC BY 4.0](https://creativecommons.org/
 see Viceconti et al., *Journal of Biomechanics* 29 (1996), 1241. Here its outer surface was rebuilt
 as a closed solid and meshed with tetrahedra.
 
-### Inigo the Dragon
+### The Rebellious Slave
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/inigo-the-dragon/inigo-the-dragon.png" alt="Inigo the dragon in ten node tetrahedra, its fourth mode: both wings flapping together at 59 Hz"><figcaption></figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/rebellious-slave/rebellious-slave.png" alt="Michelangelo's Rebellious Slave in ten node tetrahedra, their edges drawn, coloured by its vertical stress under its own weight in iso-surfaces"><figcaption></figcaption></figure>
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/inigo-the-dragon/inigo-the-dragon-2.png" alt="Three more modes of the dragon: swaying forward and back at 7.7 Hz, wagging its tail at 41.5 Hz, the wings flapping against each other at 60.1 Hz"><figcaption></figcaption></figure>
+[rebellious-slave](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/basics/elements/ten-node-tetrahedron/rebellious-slave/rebellious-slave.gh)
 
-[inigo-the-dragon](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/basics/elements/ten-node-tetrahedron/inigo-the-dragon/inigo-the-dragon.gh)
+Michelangelo's Rebellious Slave, 2.13 m of marble on its plinth, in 28 119 Ten Node Tetrahedra:
+how its own weight comes down through it, and the ways it sways. Michelangelo carved it about 1513
+for the tomb of Pope Julius II; it is in the Louvre. The example runs a static analysis under its own
+weight and a [Natural Vibration](../analysis/natural-vibration.md) analysis on the same solid.
 
-A concrete dragon 5.5 m tall, standing on its two feet, in 10 903 Ten Node Tetrahedra, and the ways
-it vibrates: it sways, wags its tail and flaps its wings. The example runs a
-[Natural Vibration](../analysis/natural-vibration.md) analysis on a solid and steps through its
-modes in Model View. Inigo is Keenan Crane's dragon, built from signed distance functions.
+<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/rebellious-slave/rebellious-slave-mode-1.gif" alt="The statue swaying in its first mode"><figcaption><p>Its first mode, 49.8 Hz: forward and back, seen from its left.</p></figcaption></figure>
 
 #### The model
 
 | Group | What it does |
 | --- | --- |
-| 1 - Inigo the dragon in tetrahedra | The tetrahedra as a mesher writes them: **Nodes**, the 3 511 corner points, and **Tetrahedra**, four node numbers per tetrahedron, one branch each. **List Item** and **Construct Mesh** make each into a four vertex mesh. See [Tetrahedra from a mesher](#tetrahedra-from-a-mesher). |
-| 2 - Concrete, and Ten Node Tetrahedra | An [nD](../materials/ND.md) Elastic Isotropic material, C30/37, with a density of 2 500 kg/m³. |
-| 3 - Held at every node on the soles | Every element's ten nodes from its **Points** output; those below 1 mm, once each, held in X, Y and Z by a [Support](support.md). |
-| 4 - Assemble Model | [Assemble](../assemble.md), with no load at all. |
-| 5 - The first 12 modes | [Natural Vibration](../analysis/natural-vibration.md) with **Vibration Modes** set to 12, and a **Mode** slider into the **Step** of [Model View](../visualisation/model-view.md), which draws the mode deformed. **Frequencies** lists them, in Hz. |
+| 1 - The Rebellious Slave in tetrahedra | The tetrahedra as a mesher writes them: **Nodes**, the 8 406 corner points, and **Tetrahedra**, four node numbers per tetrahedron, one branch each. **List Item** and **Construct Mesh** make each into a four vertex mesh. See [Tetrahedra from a mesher](#tetrahedra-from-a-mesher). |
+| 2 - Marble, and Ten Node Tetrahedra | An [nD](../materials/ND.md) Elastic Isotropic material: Carrara marble, E 50 GPa, ν 0.25, 2 700 kg/m³. |
+| 3 - Held at every node under the plinth | Every element's ten nodes from its **Points** output; those below 1 mm, once each, held in X, Y and Z by a [Support](support.md). |
+| 4 - Its own weight | [Gravity Load](../loads/gravity.md) in a [Load Pattern](../loads/load-pattern.md). |
+| 5 - Assemble, solve, and the vertical stress | [Assemble](../assemble.md), with **Tolerance** 0.1 mm, and [Run Analysis](../analysis/run-analysis.md); [Model View](../visualisation/model-view.md) draws σ33, the vertical stress, in iso-surfaces over -0.4 to 0 MPa, with the edges of the tetrahedra on the statue's surface. |
+| 6 - Its first six modes | [Natural Vibration](../analysis/natural-vibration.md) with **Vibration Modes** set to 6, and a **Mode** slider into the **Step** of a second Model View, which draws the mode deformed. **Frequencies** lists them, in Hz. Show its preview, and hide the stress's, to see it. |
 
-#### No load, only mass
+{% hint style="warning" %}
+**Assemble's Tolerance is 0.1 mm here.** Nodes closer than Tolerance are welded into one. The 1 cm
+default is half an element on this mesh, about 2.5 cm in the legs: it would weld the node in the
+middle of an edge to its corners, and OpenSees would warn of a non-positive Jacobian.
+{% endhint %}
 
-A natural vibration analysis needs mass, not load. It takes the mass from the material's density:
-11.4 m³ of concrete, 28.5 t. Natural Vibration connects to Assemble Model, not to Run Analysis:
-there is nothing to run first.
+#### Its weight
+
+875 kg of marble, 0.32 m³. Above the hips its own weight hardly squeezes it. Below, it comes down
+through both legs and the rough stone the figure is carved against, into the plinth: a compression of
+0.1 to 0.3 MPa in the legs, and 0.35 to 0.4 MPa at the ankles, where they are thinnest. Even there it
+is a few hundredths of what marble takes in compression, about 100 MPa.
 
 #### The modes
 
-**Mode** picks the mode Model View draws, counting from 0 as **Step** does: 0 is the first mode.
-
 | Mode | Step | Frequency | Shape |
 | --- | --- | --- | --- |
-| 1 | 0 | 7.7 Hz | sways forward and back |
-| 2 | 1 | 21.8 Hz | sways side to side |
-| 3 | 2 | 41.5 Hz | wags its tail, and the wings rock |
-| 4 | 3 | 59.1 Hz | both wings flap together |
-| 5 | 4 | 60.1 Hz | the wings flap against each other, and the tail swings |
+| 1 | 0 | 49.8 Hz | sways forward and back, over the plinth |
+| 2 | 1 | 59.3 Hz | sways side to side |
 
-The definition opens on mode 4. Tick **Animate** in Model View's **Results** menu to watch it
-move.
+A statue this stiff swings fifty times a second: far above the 1 to 10 Hz an earthquake's ground
+motion is strongest in, so it moves with its plinth rather than amplifying the shaking.
 
-{% hint style="warning" %}
-**A mode has no size of its own.** Each mode is read with its largest translation 1, and View
-Results draws it at **Deformation scale** 1 with its largest movement 8 % of the model's diagonal:
-0.68 m on the dragon. The numbers on the legend show where the dragon moves most, not by how much.
-Here 0.4 moves the wing tip by a quarter of a metre, and **Animate** sweeps the scale from 0 to 0.8
-and back.
-{% endhint %}
+<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/rebellious-slave/rebellious-slave-mode-2.gif" alt="The statue swaying in its second mode"><figcaption><p>Its second mode, 59.3 Hz: side to side, seen from in front.</p></figcaption></figure>
 
 #### The geometry
 
-Inigo's wings are membranes a few centimetres thick, and its fingers and smile leave gaps narrower
-than an element. Meshed as they are, they give a surface that passes through itself. So
-`Tools/Examples/InigoTheDragonMesh.py`, in the Alpaca4d repository, rebuilds the dragon on a grid
-before meshing it with [gmsh](https://gmsh.info): grown by 4.5 cm all over, which makes the wings
-9 cm thicker, with every gap narrower than 18 cm filled and the soles cut flat. The scales, the
-teeth and the finer details are gone; the dragon is all there.
+`Tools/Examples/RebelliousSlaveMesh.py`, in the Alpaca4d repository, downloads the scan, turns it
+to face -Y, remeshes its surface to about 3 cm, finer below the knees, keeps the plinth's underside
+flat, and fills it with tetrahedra with [gmsh](https://gmsh.info). Nothing is thickened or closed:
+the fingers, the band round the chest and the hair are meshed as scanned.
 
-Inigo the Dragon by Keenan Crane, 2026, from his
-[3D model repository](https://www.cs.cmu.edu/~kmcrane/Projects/ModelRepository/), dedicated to the
-public domain (CC0).
+Michelangelo, *Rebellious Slave*, about 1513, Musée du Louvre. 3D scan of the plaster cast KAS86,
+[SMK - Statens Museum for Kunst](https://open.smk.dk/artwork/image/KAS86), in the public domain.
