@@ -61,10 +61,27 @@ For the analysis, and only for it (the model connected is not changed):
   it out, and ShellNLDKGQ / ShellNLDKGT keep only the part out of their plane, so the web of a
   box column, swaying in its own plane, would never soften.
 - Beams are split as **Divisions** asks.
+- Solids, [SSP Brick](../elements/brick.md) and
+  [Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md), run as they are, and Alpaca4d adds
+  their geometric stiffness from the stresses OpenSees finds in them under the loads,
+  $$\int \nabla N_a \cdot \boldsymbol{\sigma} \cdot \nabla N_b \, dV$$ for each pair of nodes. No
+  solid of OpenSees has one: they are small-strain elements. It is taken where the element takes
+  its own stiffness: at the centre of an SSP Brick, which is stiffened against hourglassing
+  rather than integrated at eight points, and at the four points of a ten node tetrahedron. A
+  column of bricks buckles within 0.3 % of Euler's load, and under its own weight within 0.3 %
+  of Greenhill's.
+- A joint band - a thin band of solids standing in for springs spread over a horizontal joint,
+  its material an Elastic Orthotropic marked as a surface connection, as the printed cylinder
+  example's joints are - gets the geometric stiffness of a joint, not of a band. A band *t* thick
+  under a pressure $$\sigma$$ would also soften against slip by $$\sigma / t$$, which springs of
+  no thickness never do, and buckle in shear at $$\sigma = k_s t$$; so the slip across it is left
+  out, and a stack of layers on slipping joints buckles at Haringx's load, as a laminated rubber
+  bearing does.
 
-Solid elements, [Brick](../elements/brick.md) and
-[Ten Node Tetrahedron](../elements/ten-node-tetrahedron.md), have no geometric stiffness in
-OpenSees: they stiffen the model, but never soften under load.
+Two solid examples, fresh concrete stiffening with age, checked for buckling as it is printed: the
+[3D printed cylinder](https://alpaca4d.github.io/examples/printed-cylinder/) and a
+[3D printed structure](https://alpaca4d.github.io/examples/3d-printed-structure/), a branching shell
+printed along its own sections.
 
 ## ✂️ Divisions
 
@@ -96,7 +113,8 @@ accuracy.
   can carry.
 - **Model size.** OpenSees 3.8.0 can only hand the stiffness matrices over as full tables, which
   limits the model to 4000 equations, about 650 beam or shell nodes. A build of OpenSees newer than 3.8.0 hands
-  them over sparse, with no such limit: a plate of 39 000 equations takes a little over a minute. Choose
+  them over sparse, with no such limit: a plate of 39 000 equations takes a little over a minute, a
+  printed cylinder of 15 000 equations in bricks about 15 seconds. Choose
   the OpenSees that runs in **Alpaca4d → Settings → Set OpenSees Executable...** (see
   [Setup](../../setup.md)).
 
@@ -134,7 +152,7 @@ accuracy.
 
 {% hint style="info" %}
 The licence works as for [Run Analysis](run-analysis.md): models up to 50 elements run without
-one.
+one, and the design a topology optimisation finds up to 500.
 {% endhint %}
 
 ## 🔗 Relation to OpenSees
@@ -143,9 +161,9 @@ The component writes one deck and runs it in OpenSees. The model comes first, wi
 made PDelta and its shells linear, then:
 
 ```tcl
-system FullGeneral          ;# SparseGeneral on an OpenSees newer than 3.8.0
+system FullGeneral          ;# OpenSees 3.8.0; a newer one prints sparse, see below
 constraints Transformation
-numberer Plain
+numberer AMD
 test FixedNumIter 1 0
 algorithm Newton
 integrator LoadControl 0.0
@@ -158,6 +176,39 @@ analyze 1                   ;# the loads, at factor 1
 printA ...                  ;# K - K_G of the beams
 eleResponse $shell stresses ;# the membrane forces of each shell
 wipe
+```
+
+An OpenSees newer than 3.8.0 prints the matrices sparse. It solves the two steps with Mumps, on
+every core, when it has it (see [Setup](../../setup.md#solving-on-several-cores)), and with
+SuperLU when it has not, or when Mumps fails. Mumps keeps its matrix to itself, so for each
+`printA` the deck puts SuperLU's system in its place, which only assembles the matrix, and Mumps
+back after:
+
+```tcl
+if {[catch {system Mumps -matrixType 1 -numThreads 0}]} { system SparseGeneral }
+...
+system SparseGeneral; initialize       ;# when Mumps solves
+printA -file K.mtx -sparse 1 -precision 16
+system Mumps -matrixType 1 -numThreads 0
+```
+
+`numberer AMD` numbers the equations to keep the factor small. SuperLU factorises them in the
+order they are numbered, so with `numberer Plain` the time depended on the order of the nodes: an
+arch of bricks of 20 000 equations took 3 minutes numbered along its length, 10 numbered at
+random, and half a second with AMD.
+
+A model with no beams or trusses, of solids and shells alone, needs one print. OpenSees gives
+neither a geometric stiffness, so `K - K_G` under the loads would be `K` again: the deck prints
+`K` before the loads, without a step, as `printA` forms it itself, and solves only the step to
+the loads, for the stresses.
+
+```tcl
+initialize                  ;# no step: printA forms K
+printA ...                  ;# K
+pattern Plain ...           ;# the model's load patterns
+integrator LoadControl 1.0
+analyze 1                   ;# the loads, at factor 1
+eleResponse $solid stresses ;# the stresses of each solid
 ```
 
 Alpaca4d adds the geometric stiffness of the shells, built from their membrane forces, and

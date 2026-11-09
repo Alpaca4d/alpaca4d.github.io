@@ -66,8 +66,8 @@ member for a design check.
 It is linear: elastic, about the undeformed shape, with no imperfections. So $$\alpha_{cr}$$ is
 the elastic critical load factor, not the load the structure can carry: for that, a non-linear
 static analysis with the imperfections modelled is the tool. Beams buckle in bending only, so
-lateral-torsional buckling is left to [Utilisation](../basics/results/utilisation.md), and solids
-never soften under load. A member that can buckle on its own, between its ends, has to be
+lateral-torsional buckling is left to [Utilisation](../basics/results/utilisation.md). Shells and
+solids buckle too. A member that can buckle on its own, between its ends, has to be
 split with **Divisions**.
 
 ## Time history

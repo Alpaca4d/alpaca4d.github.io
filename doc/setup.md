@@ -58,4 +58,5 @@ OpenSees Executable...**.
 Every analysis then solves on all the cores. To use fewer, right-click
 [Analysis Settings](basics/analysis/analysis-settings.md#right-click-menu) and pick a number under
 **Cores for Mumps**. [Natural Vibration](basics/analysis/natural-vibration.md) always uses every
-core.
+core, and so does [Linear Buckling](basics/analysis/linear-buckling.md) on an OpenSees newer than
+3.8.0.

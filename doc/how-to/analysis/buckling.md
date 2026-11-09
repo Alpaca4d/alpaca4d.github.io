@@ -11,7 +11,7 @@ member's buckling length.
 
 - An assembled model from [Assemble](../../basics/assemble.md), with the loads to buckle it under in
   its [load patterns](../../basics/loads/load-pattern.md).
-- Beams or shells. Solids stiffen the model, but never soften under load.
+- Beams, shells or solids. Solids buckle too: Alpaca4d adds their geometric stiffness.
 
 ## Steps
 
