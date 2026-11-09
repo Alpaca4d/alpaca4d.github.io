@@ -45,7 +45,7 @@ under each result, its own controls, while it is ticked.
 | --- | --- | --- | --- |
 | Deformed shape | off | Draws the model, or the results, on the deformed shape. Needs an analysed model, with no result too. | Always |
 | Deformation scale | `1`, from 0 to 200; from −2 to 2 on a natural vibration or buckling model | How much the deformation is magnified. A natural vibration or buckling mode has no size of its own, so at 1 it is drawn with its largest movement 8 % of the model's diagonal, as far off the model as the force diagrams; any other displacement at true size. A mode goes either way, so a natural vibration or buckling model switches the slider to −2 to 2, and another model switches it back. A range of your own, set by double-clicking the slider, is kept whatever the model. | With **Deformed shape** on |
-| Animate | off | Sweeps the deformation scale from the slider's least value to its greatest and back, moving the slider with it. It reads *Stop animation* while it runs. | With **Deformed shape** on |
+| Animate | off | Sweeps the deformation scale from the slider's least value to its greatest and back, moving the slider with it. It reads *Stop animation* while it runs. While it runs, a result's colours on the elements grow with the deformation: at rest the model is all the colour of zero, and at the slider's end furthest from zero it shows the result's own colours. A mode swung the other way turns a signed result, such as Uz or σx, round with it; a size such as \|U\| or Von Mises stays the same either way. The Legend, the values written and the reaction arrows and force diagrams stay as they are, and stopping draws the full colours again. | With **Deformed shape** on |
 | Displacement, Beam forces, Beam stresses, Shell forces, Shell stresses, Brick stresses, Reactions | off | A checkbox each: draws that result. A result needs an analysed model; ticked on one from Assemble, the model is drawn as it is, with a warning. | Always |
 | Component | the first | Which component of the result to draw, below. Under *Beam forces*, a row of checkboxes instead — N, Vy, Vz, T, My, Mz — and every one ticked is drawn, a diagram each; N to start with. | Under each result ticked |
 | Unit | in bold, below | The unit of the component picked — for *Beam forces*, one for the forces and one for the moments, each shown while one of its kind is ticked. | Under each result ticked |
@@ -95,7 +95,7 @@ elements **ElementId** kept.
 | Control | Default | Does |
 | --- | --- | --- |
 | Extruded | on | Draws each beam as its cross-section, and each shell as thick as its section with no result. A beam whose section has no shape to draw stays a line. Beam stresses that differ across the section are painted point by point over it — see [Beam stresses over the section](#beam-stresses-over-the-section). |
-| Element edges | on | Draws the edges of the shell, solid and extruded beam elements. |
+| Element edges | on | Draws the edges of the shell, solid and extruded beam elements, black unless **Alpaca4d → Settings → Display...** gives them another colour: a grey keeps a model of thousands of thin members, a tower, from turning black under its edges. On a solid it draws only the elements' own edges on its outside: the faces two elements share are inside it. |
 | Node IDs | off | The tag of every node. |
 | Element IDs | off | The tag of every element. |
 | Section Names | off | The section name on each beam. |
@@ -169,6 +169,12 @@ or built again, and nothing downstream is solved again.
 
 - You want numbers to work with → the components in [Numerical Output](../results/README.md)
   hand them out as lists.
+
+{% hint style="info" %}
+The licence works as for [Run Analysis](../analysis/run-analysis.md): without one, Model View draws
+models of up to 50 elements, and the design a topology optimisation finds up to 500. See
+[License](../../references/license.md#without-a-license).
+{% endhint %}
 
 ## 💡 What to check, and how
 

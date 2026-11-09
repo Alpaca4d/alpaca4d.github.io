@@ -121,8 +121,8 @@ everything.
 {% endhint %}
 
 Without a license, Multi-Material Topology runs on models of up to 500 elements, counting any
-beams, shells and links with the solids, as Topology Optimisation does. A larger model needs one:
-see [License](../../references/license.md#without-a-license).
+beams, shells and links with the solids, as Topology Optimisation does, and the design it finds is
+analysed and drawn free up to the same 500. A larger model needs one: see [License](../../references/license.md#without-a-license).
 
 ### How long it takes
 

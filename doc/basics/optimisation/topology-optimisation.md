@@ -145,8 +145,9 @@ for the other loads.
 {% endhint %}
 
 Without a license, Topology Optimisation runs on models of up to 500 elements, counting any
-beams, shells and links with the solids. A larger model needs one: see
-[License](../../references/license.md#without-a-license).
+beams, shells and links with the solids. The design it finds, its AlpacaModel output,
+is analysed, and drawn by Model View, without a license up to the same 500, although other models
+stop at 50. A larger model needs one: see [License](../../references/license.md#without-a-license).
 
 ### How long it takes
 

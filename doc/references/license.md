@@ -48,14 +48,14 @@ You can try Alpaca4d without a license, within these limits:
 
 |  | Without a license | With a license |
 | --- | --- | --- |
-| [Run Analysis](../basics/analysis/run-analysis.md), [Natural Vibration](../basics/analysis/natural-vibration.md) and [Linear Buckling](../basics/analysis/linear-buckling.md) | Models of up to 50 elements | Any size |
+| [Run Analysis](../basics/analysis/run-analysis.md), [Natural Vibration](../basics/analysis/natural-vibration.md) and [Linear Buckling](../basics/analysis/linear-buckling.md) | Models of up to 50 elements; up to 500 for the design a topology optimisation finds (its AlpacaModel output) | Any size |
 | [Topology Optimisation](../basics/optimisation/topology-optimisation.md), [Multi-Material Topology](../basics/optimisation/multi-material-topology.md) and [BESO Topology](../basics/optimisation/beso-topology.md) | Models of up to 500 elements | Any size |
-| [Model View](../basics/visualisation/model-view.md) | Not available | Available |
+| [Model View](../basics/visualisation/model-view.md) | Models of up to 50 elements, or 500 for a topology design, as for the analyses | Any size |
 | [Moment Curvature](../basics/moment-curvature/moment-curvature.md), [Moment Curvature Diagram](../basics/moment-curvature/moment-curvature-diagram.md), [Interaction Domain](../basics/moment-curvature/interaction-domain.md), its [views](../basics/moment-curvature/domain-views.md) and [Domain Check](../basics/moment-curvature/domain-check.md) | Not available | Available |
 | [Explorer Inputs](../basics/optimisation/explorer-inputs.md), saving a study with [Explorer Record](../basics/optimisation/explorer-record.md), [Non-Linear Optimisation](../basics/optimisation/non-linear-optimisation.md) and Section Optimiser | Not available | Available |
 | Every other component | Available | Available |
 
-A model over the limit, or one of those components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements or a topology optimisation of up to 500, and read its results with the [Results](../basics/results/README.md) components.
+A model over the limit, or one of those components, stops with an error that says why, and the License window opens so you can add a license. It opens no more than once every five minutes. Everything else works as normal: you can build a model, run an analysis of up to 50 elements and see it in Model View, run a topology optimisation of up to 500 and analyse the design it finds, and read the results with the [Results](../basics/results/README.md) components.
 
 ## Independence and warranty
 

@@ -107,8 +107,8 @@ It comes mostly from too wide a filter. On the Topology Bridge block, at 2 brick
 default radius, 1 m, converges; 2 m, half the block's height, breaks after 62 iterations.
 
 Without a license, BESO Topology runs on models of up to 500 elements, counting any beams, shells
-and links with the solids, as Topology Optimisation does. A larger model needs one: see
-[License](../../references/license.md#without-a-license).
+and links with the solids, as Topology Optimisation does, and the design it finds is analysed and
+drawn free up to the same 500. A larger model needs one: see [License](../../references/license.md#without-a-license).
 
 {% hint style="info" %}
 **Which to use.** Topology Optimisation gives one design for one volume and is the quickest on
