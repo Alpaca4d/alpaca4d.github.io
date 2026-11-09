@@ -30,7 +30,8 @@ $$
 **Use it when**
 
 - You want a ramp from zero to a target over a given number of steps — the normal choice for
-  a **pushover** or any load-controlled non-linear static run.
+  any load-controlled non-linear static run. ([Pushover Analysis](../analysis/pushover.md) puts
+  its lateral loads on one of its own.)
 - A sudden application of load would stop a non-linear analysis from converging.
 
 **Do not use it when**

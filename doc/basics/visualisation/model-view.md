@@ -56,6 +56,8 @@ under each result, its own controls, while it is ticked.
 | Arrow scale | `1`, from 0 to 20 | Stretches the reaction arrows. At 1, the largest arrow stands as far off the model as the largest diagram. | Under *Reactions* |
 | Iso-surfaces | off | Colours in bands — one flat colour per range of values — instead of a smooth gradient. See [Iso-surfaces](#iso-surfaces). | With any result but *Beam forces* ticked |
 | Show values | off | Writes values on the model, in the unit picked, to four significant figures: each beam's largest, at the tip of its diagram for beam forces; each shell or solid element's at its centre; each reaction at its arrow. | With any result ticked |
+| Plastic hinges | off | On beams with a [Fiber Section](../moment-curvature/fiber-section.md): a ball at every integration point that has yielded at the step drawn, orange where a bar or steel fibre is past its yield strain, purple where concrete has crushed or a bar reached its ultimate strain. With any result or none, over the model. See [Plastic hinges](#plastic-hinges). | Always |
+| Hinge size | `1`, from 0.1 to 5 | How big the balls are: at 1, a little under half the section's larger side. | With **Plastic hinges** on |
 
 With no result ticked, the model is drawn alone, every element in the colour **Colour by** in the
 **Elements** menu gives it, and no analysis is needed.
@@ -323,6 +325,27 @@ below zero.
 [Generic Section](../sections/parametric-cross-section.md) has no shape to work the stress out
 over, so its beams are coloured by σN only — one colour round the section when extruded — and
 drawn plain grey for every other component.
+
+### Plastic hinges
+
+Ticked, **Plastic hinges** draws where beams on a [Fiber Section](../moment-curvature/fiber-section.md)
+have yielded, at the step drawn: a ball at each of the five integration points along a beam — its
+two ends among them — whose fibres are past their yield strain. Orange is yielded: a Steel01 or
+ReinforcingSteel fibre past fy / E. Purple is failed: Concrete01 past its crushing strain, or a
+ReinforcingSteel bar past its strain at fu, or a MinMax limit. A ball at a beam's end is drawn a
+little way in along it, so that the hinges of a column's top and a beam's end at one joint stand
+apart. Drawn over the model, as the release symbols are, on the deformed shape when that is ticked.
+
+They are read from the section deformations the analysis recorded — the strain at each section's
+centroid and its two curvatures — and the strain anywhere on the section follows from them, a fibre
+section staying plane. It is checked at a patch's mesh vertices and at each bar, where
+[Interaction Domain](../moment-curvature/interaction-domain.md) checks it.
+[Pushover Analysis](../analysis/pushover.md) records them; [Run Analysis](../analysis/run-analysis.md)
+does too for a model with a fibre section, and with your own recorder tick `section.deformation`
+in [MPCO Recorder](../mpco-recorder.md).
+
+Step through a pushover's **Step** output to watch them form, and read its **Hinges** for the order
+they did.
 
 ### Iso-surfaces
 

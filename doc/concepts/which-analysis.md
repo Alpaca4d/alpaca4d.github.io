@@ -14,6 +14,7 @@ analysis by the question.
 | The same, where supports lift, bars go slack or displacements are large | Non-linear static | Run Analysis, the Newton algorithm, several steps |
 | Periods, frequencies, mode shapes, participating masses | Natural vibration | [Natural Vibration](../basics/analysis/natural-vibration.md), no settings |
 | Whether and when the structure buckles, α_cr | Linear buckling | [Linear Buckling](../basics/analysis/linear-buckling.md), no settings |
+| Strength and ductility under lateral load, a capacity curve | Pushover | [Pushover Analysis](../basics/analysis/pushover.md), fibre sections on the beams, no settings |
 | The response to a ground motion, an impact, a machine | Time history | Run Analysis, **AnalysisType** `Transient` |
 | How a cross-section cracks, yields and fails | Moment–curvature | [Moment Curvature](../basics/moment-curvature/moment-curvature.md), a section on its own |
 
@@ -70,6 +71,17 @@ lateral-torsional buckling is left to [Utilisation](../basics/results/utilisatio
 solids buckle too. A member that can buckle on its own, between its ends, has to be
 split with **Divisions**.
 
+## Pushover
+
+The structure pushed sideways until it gives way. Its own loads are applied and held, then a
+lateral load pattern is scaled up until a control point has moved a set distance: out comes the
+capacity curve, base shear against that displacement, with the peak, where the structure yields
+and how far it goes before it softens. Displacement control lets the push go on past the peak.
+
+It is non-linear in its materials, so the beams need [fibre sections](../basics/moment-curvature/fiber-section.md),
+whose fibres yield and crack; with P-Delta on, in its geometry too. Where Linear Buckling gives
+the elastic critical load factor, a pushover gives the load the structure carries.
+
 ## Time history
 
 When inertia matters, time is real: a ground motion, an impact, a machine. Run Analysis then runs
@@ -102,8 +114,8 @@ and an effective cracked stiffness, all from the material laws.
 [Interaction Domain](../basics/moment-curvature/interaction-domain.md) gives instead what the
 section carries at the ultimate limit state, for every combination of N, My and Mz.
 
-A fibre section cannot yet be assigned to a beam of the model, whose sections are elastic. The tab
-is marked βeta.
+The same fibre section is also the section of a beam of the model, on a ForceBeamColumn: that is
+how a [pushover](#pushover) sees the members yield. The tab is marked βeta.
 
 ## See also
 

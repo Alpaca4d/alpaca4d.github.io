@@ -94,8 +94,9 @@ which a held **Axial** does.
 
 **Do not use it when**
 
-- You want member behaviour. This is a section-level analysis; the section cannot yet be
-  assigned to a [ForceBeamColumn](../elements/force-beam-column.md).
+- You want member behaviour. This is a section-level analysis: for a member, give the section to
+  a [ForceBeamColumn](../elements/force-beam-column.md) and push the model with
+  [Pushover Analysis](../analysis/pushover.md).
 
 ## 💡 Getting a good curve
 

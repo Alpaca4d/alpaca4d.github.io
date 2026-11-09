@@ -28,7 +28,8 @@ A concentrated **force and moment** applied at a single point.
 
 - The area of application is small compared with the structure — a column reaction on a
   transfer beam, a machine base, a cable anchorage.
-- You are applying a control force for a pushover.
+- You are giving the shape of a push: one Point Load per floor in the **Lateral Loads** of
+  [Pushover Analysis](../analysis/pushover.md).
 
 **Do not use it when**
 

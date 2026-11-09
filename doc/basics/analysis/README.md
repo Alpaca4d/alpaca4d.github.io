@@ -113,12 +113,21 @@ Like Natural Vibration it needs no [Analysis Settings](analysis-settings.md). Co
 [Model View](../visualisation/model-view.md) to see a mode. Split the beams with **Divisions** when a member can buckle on its own, between
 its ends.
 
+### [Pushover](pushover.md)
+
+Pushes the model sideways until it gives way: its own loads held, a lateral load pattern scaled
+until a control point has moved **Target**. Out comes the capacity curve, base shear against that
+displacement, and a model with every step recorded. It needs no Analysis Settings. For the beams
+to yield, give them a [Fiber Section](../moment-curvature/fiber-section.md). Example:
+[Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/).
+
 ## What Alpaca4d can analyse
 
 | Analysis | How to set it up |
 | --- | --- |
 | **Linear static** | Analysis Type `Static`, Integrator `LoadControl`, Algorithm `Linear`. |
-| **Non-linear static / pushover** | Analysis Type `Static`, Integrator `LoadControl`, Algorithm `ModifiedNewton` or `KrylovNewton`, and a [Linear](../time-history/linear.md) time series to ramp the load. |
+| **Non-linear static** | Analysis Type `Static`, Integrator `LoadControl`, Algorithm `Newton`, `ModifiedNewton` or `KrylovNewton`, several steps, and a [Linear](../time-history/linear.md) time series to ramp the load. |
+| **Pushover** | [Pushover Analysis](pushover.md) — no settings needed; fibre sections on the beams. |
 | **Eigenvalue / modal** | [Natural Vibration](natural-vibration.md) — no settings needed. |
 | **Linear buckling** | [Linear Buckling](linear-buckling.md) — no settings needed. |
 | **Linear or non-linear transient** | Analysis Type `Transient`, Integrator `Newmark` or `CentralDifference`, plus [Damping](damping.md) and a [Path](../time-history/path.md) time series. |

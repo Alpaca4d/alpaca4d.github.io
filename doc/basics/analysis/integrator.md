@@ -60,7 +60,8 @@ small step is wanted anyway.
 | Analysis | Integrator |
 | --- | --- |
 | Linear static | **LoadControl**, `Lambda = 1`, one step |
-| Pushover / non-linear static | **LoadControl** with a small `Lambda` and many steps |
+| Non-linear static | **LoadControl** with a small `Lambda` and many steps |
+| Pushover | none: [Pushover Analysis](pushover.md) controls the displacement itself, and goes on past the peak |
 | Seismic or general dynamic | **Newmark** |
 | Impact, blast, wave propagation | **CentralDifference**, with a small `Dt` |
 

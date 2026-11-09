@@ -38,8 +38,9 @@ its own eigenvalue problem and takes no steps.
 **Static, linear.** `NumIncr = 1` and nothing else. One step applies the whole load.
 
 **Static, non-linear.** Raise `NumIncr` and lower the [Integrator](integrator.md)'s `Lambda`
-so their product reaches the load factor you want. Twenty to a hundred steps is normal for a
-pushover; more steps mean a smoother capacity curve and a better chance of converging.
+so their product reaches the load factor you want. Twenty to a hundred steps is normal; more
+steps mean a smoother curve and a better chance of converging. A pushover has its own
+component, [Pushover Analysis](pushover.md), with a **Steps** of its own.
 
 **Transient.** `NumIncr × Dt` is the duration of the analysis. `Dt` must resolve both the
 excitation and the response:

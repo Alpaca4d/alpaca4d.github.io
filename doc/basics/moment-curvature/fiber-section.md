@@ -21,7 +21,7 @@ Collects fibre points, layers and patches into one section.
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| FiberSection | `FiberSection` | FiberSection | For [Moment Curvature](moment-curvature.md). |
+| FiberSection | `FiberSection` | FiberSection | For [Moment Curvature](moment-curvature.md) and [Interaction Domain](interaction-domain.md), and the **Section** of a [ForceBeamColumn](../elements/force-beam-column.md): a beam that yields where its fibres do, for a [Pushover Analysis](../analysis/pushover.md). |
 
 ### Local axes
 
@@ -55,19 +55,54 @@ Mz along Y, as the arrows here lie.
 The preview also shows every fibre the section contains, so a patch whose mesh is too coarse
 or a layer pointing the wrong way is visible before anything is run.
 
+## On a beam
+
+Connect the section to the **Section** input of a
+[ForceBeamColumn](../elements/force-beam-column.md), and the beam integrates its fibres' materials
+along its length: it cracks, yields and softens where they do. That is the beam a
+[Pushover Analysis](../analysis/pushover.md) pushes: see the
+[Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/) example.
+
+- **The axes are the beam's.** The section's *y* and *z*, the green and the blue arrows, are the
+  beam's local *y* and *z*. A vertical column gets local *y* along world X, so a column section
+  drawn in the Top view sits on the column the way it is drawn. A horizontal beam gets local *y*
+  as near straight up as it allows: draw its depth along world X, or give the beam a **ZAxis**.
+  [Model View](../visualisation/model-view.md) draws the section's outline where the fibres are,
+  so a section on its side shows.
+- **The beam's axis runs through the area centroid**, where the arrows are drawn. A section drawn
+  anywhere in Rhino makes a beam on its centroid, and its moments are the ones Interaction Domain
+  and [Domain Check](domain-check.md) take.
+- **Its weight.** The fibre materials have no density of their own here: concrete weighs
+  2 500 kg/m³, Steel01 and ReinforcingSteel 7 850 kg/m³, for the mass and for
+  [Gravity Load](../loads/gravity.md).
+- **What else reads a beam's section** — the stiffness an elastic support is scaled to, the
+  colour by material — reads the fibres at their initial stiffness, counted in the material with
+  the most area: the bars of a concrete section count Es / Ec times their area.
+  [Beam Stresses](../results/beam-stresses.md) knows no shape for it and gives N / A only.
+- **Not on WithHinges or Truss.** Both refuse a fibre section: WithHinges makes elastic hinge
+  sections from the one it is given, and a truss takes one material over its area.
+- **Give steel some hardening.** A force-based beam inverts its sections' stiffness, and a
+  section whose fibres have all yielded with `b = 0` has none. Keep [Steel01](steel01.md)'s `b`
+  at `0.001` to `0.01`.
+
 ## 📈 When to use it
 
-**Use it when** you want a section whose non-linear behaviour comes out of its materials.
+**Use it when**
 
-**Do not use it when** the element is a beam — fibre sections cannot yet be assigned to a
-[ForceBeamColumn](../elements/force-beam-column.md), which takes an
-[elastic section](../sections/README.md). Today this is a section-level tool.
+- You want a section whose non-linear behaviour comes out of its materials: for
+  [Moment Curvature](moment-curvature.md) and [Interaction Domain](interaction-domain.md), or on
+  a beam for a [Pushover Analysis](../analysis/pushover.md).
+
+**Do not use it when**
+
+- The beam stays elastic → an [elastic section](../sections/README.md) is quicker to solve and
+  gives Beam Stresses its shape.
 
 {% hint style="info" %}
 **GJ is a fixed elastic number.** A fibre section integrates axial and bending response from
 its fibres but has no torsional stiffness of its own, so it has to be given one. The default
-`1e8 kN·m²` is deliberately large: with the section under pure bending, torsion never
-engages, and the value only matters if the section is ever used somewhere that torsion does.
+`1e8 kN·m²` is deliberately large: under pure bending torsion never engages. On a beam of a
+frame that twists, give the section's own G J.
 {% endhint %}
 
 ## 🔗 Relation to OpenSees
@@ -80,5 +115,5 @@ section Fiber $secTag -GJ $GJ {
 }
 ```
 
-Patches and layers are expanded into individual `fiber` lines. Use
-[Serialize](../utility/serialize.md) to see the result.
+Patches and layers are expanded into individual `fiber` lines. On a beam each fibre's *y* and *z*
+are written from the area centroid. Use [Serialize](../utility/serialize.md) to see the result.

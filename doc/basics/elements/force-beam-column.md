@@ -23,7 +23,7 @@ A switcher component. The **Element Type** menu selects the unit:
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | Line | `Line` | Curve | — | Centreline of the element, in `m`. |
-| Section | `Section` | Section | — | Cross-section, from any of the [Sections](../sections/README.md) components. Carries the material, and with it the mass density. |
+| Section | `Section` | Section | — | Cross-section, from any of the [Sections](../sections/README.md) components, or a [Fiber Section](../moment-curvature/fiber-section.md) for a beam that yields where its fibres do. Carries the material, and with it the mass density. |
 | GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
@@ -57,7 +57,10 @@ analysis to let go: the **Newton** algorithm, in several steps.
 
 - You are modelling any line-like member: beams, columns, braces, truss bars.
 - You want the spread of yielding along the member length to be captured.
-- You need realistic curvature and rotation demands for pushover or seismic work.
+- You need realistic curvature and rotation demands for pushover or seismic work: give it a
+  [Fiber Section](../moment-curvature/fiber-section.md) (see [On a beam](../moment-curvature/fiber-section.md#on-a-beam))
+  and push it with [Pushover Analysis](../analysis/pushover.md). WithHinges and Truss do not take
+  one.
 
 **Do not use it when**
 

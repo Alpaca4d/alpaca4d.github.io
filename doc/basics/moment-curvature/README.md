@@ -10,10 +10,10 @@ force and returns the full curve, to its ultimate state; **Interaction Domain** 
 section carries at the ultimate limit state, for every combination of N, My and Mz.
 
 {% hint style="info" %}
-This tab is marked **βeta** in Grasshopper (`MomentCurvature_βeta`). It works as a
-section-level tool. Fibre sections cannot yet be assigned to a
-[ForceBeamColumn](../elements/force-beam-column.md), which takes an
-[elastic section](../sections/README.md).
+This tab is marked **βeta** in Grasshopper (`MomentCurvature_βeta`). A
+[Fiber Section](fiber-section.md) is also the **Section** of a
+[ForceBeamColumn](../elements/force-beam-column.md): a beam that yields where its fibres do, for
+a [Pushover Analysis](../analysis/pushover.md). See [On a beam](fiber-section.md#on-a-beam).
 {% endhint %}
 
 ## Components in this tab
