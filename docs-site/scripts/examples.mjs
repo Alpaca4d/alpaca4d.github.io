@@ -15,8 +15,9 @@
 //   summary: "…"               one sentence, on the card and under the title
 //   tags: ["Shells", …]        the gallery's filters
 //   draft: true                kept out of the gallery and given no page, until it is ready
-// then "# Title", the picture and the "[name](name.gh)" link, and the page. An example that
-// lives on a component's page in the docs gives title, link, picture and gh instead of a page.
+// then "# Title", the picture and the "[name](name.gh)" link, and the page. Another .gh of the folder,
+// linked alone on its line further down the page, is attached the same way where it stands. An example
+// that lives on a component's page in the docs gives title, link, picture and gh instead of a page.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -103,7 +104,14 @@ async function readExamples(md) {
         // A folder's page in the docs is its README, built as index.html.
         .render(body.trim().replace(/README\.md(?=[#)])/g, "index.md"), env)
         // Another example: its folder. (The renderer has made ../x/x.md into ./../x/x.html.)
-        .replace(/href="(?:\.\/)?\.\.\/([a-z0-9-]+)\/\1\.html(#[^"]*)?"/g, 'href="../$1/$2"');
+        .replace(/href="(?:\.\/)?\.\.\/([a-z0-9-]+)\/\1\.html(#[^"]*)?"/g, 'href="../$1/$2"')
+        // Another .gh of the folder, linked alone on its line further down - a second definition, as the
+        // printed structure's other shapes are: attached as the first one is. (The renderer has made
+        // x.gh into ./x.gh.html.)
+        .replace(/<p><a href="(?:\.\/)?([^"\/]+\.gh)\.html">[^<]*<\/a><\/p>/g, (line, file) => {
+          const onDiskFile = path.join(SRC, slug, file);
+          return fs.existsSync(onDiskFile) ? attachment({ gh: file, ghFile: onDiskFile }, file) : line;
+        });
     }
     if (ex.ghFile && !fs.existsSync(ex.ghFile)) { console.log(`examples: ${slug}: no ${ex.gh}`); ex.gh = null; }
     if (ex.pictureFile && !fs.existsSync(ex.pictureFile)) { console.log(`examples: ${slug}: no ${ex.picture}`); ex.picture = null; }
