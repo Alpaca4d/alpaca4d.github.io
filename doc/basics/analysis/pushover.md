@@ -186,12 +186,17 @@ step: the control node's displacement, the sum of the reactions after `reactions
 `getLoadFactor`. Use [Serialize](../utility/serialize.md) on the pushed model to see the whole
 deck.
 
-## Example
+## Examples
 
 [Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/): a small
 concrete building on fibre sections — an L in plan, a tall ground storey, a top storey set back — its
 own weight and its floors held, pushed to 3% drift. Its plastic hinges show the ground storey giving
 way, a soft storey, and the L twisting.
+
+[Reciprocal Vault Pushover](https://alpaca4d.github.io/examples/reciprocal-vault-pushover/): a
+barrel vault of plywood planks, each resting on the next and bolted where they cross, pressed down
+(Direction Z) until it gives way at its open ends. Its beams are Corotational, through a small
+Python component, because the vault moves too far for P-Delta.
 
 ## See also
 

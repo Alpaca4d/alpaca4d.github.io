@@ -119,7 +119,8 @@ Pushes the model sideways until it gives way: its own loads held, a lateral load
 until a control point has moved **Target**. Out comes the capacity curve, base shear against that
 displacement, and a model with every step recorded. It needs no Analysis Settings. For the beams
 to yield, give them a [Fiber Section](../moment-curvature/fiber-section.md). Example:
-[Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/).
+[Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/),
+[Reciprocal Vault Pushover](https://alpaca4d.github.io/examples/reciprocal-vault-pushover/).
 
 ## What Alpaca4d can analyse
 
