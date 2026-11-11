@@ -13,7 +13,7 @@ Draws a fixed on-screen colour scale — the key that makes a contour readable.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | Title | `Title` | Text (list) | *(empty)* | Heading above the scale. Put the quantity and its unit here — `mxx [kN·m/m]`. With a branch of **Values** per legend, a title per legend, in the order of the branches. |
-| Values | `Values` | Number (list) | *(empty)* | Numbers the labels run from the smallest to the largest of — the **Values** output of [Model View](model-view.md). To label a range of your own, give its two ends. One value more than there are colours labels the edges between the swatches instead of the swatches. Each branch is a legend of its own, drawn beside the one before. |
+| Values | `Values` | Number (list) | *(empty)* | Numbers the labels run from the smallest to the largest of — the **Values** output of [Model View](model-view.md). To label a range of your own, give its two ends. One value more than there are colours labels the edges between the swatches instead of the swatches. A value for each colour, or each edge, rising, is written as it is, so bands that are not evenly spaced keep their numbers: Model View's [plastic hinges](model-view.md#plastic-hinges) from 1, 2, 4 and 8. Each branch is a legend of its own, drawn beside the one before. |
 | Colors | `Colors` | Colour (list) | *Turbo* | The gradient, from the low end to the high — the **Colors** output of Model View. |
 | Position | `Pos` | Integer | `0` | `0` left, `1` right, `2` bottom centre. |
 | Scale | `Scale` | Number | `1.5` | Size multiplier. Values at or below zero fall back to `1.5`. The legend shrinks below it where it would not fit the viewport. |

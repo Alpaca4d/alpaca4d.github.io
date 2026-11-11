@@ -35,10 +35,11 @@ it sets up and runs its own analysis.
 | Base Shear | `Base Shear` | Number (list) | The base shear at each point of the curve, in `kN`: the reactions along **Direction**, added up and turned to resist the push. |
 | Load Factor | `Load Factor` | Number (list) | The factor on the **Lateral Loads** at each point of the curve. |
 | Step | `Step` | Integer (list) | The recorded step of each point of the curve. The first is the model under its own loads, before the push. |
-| Hinges | `Hinges` | Text (list) | Every point of a beam on a fibre section that yields during the push, in the order it does: which beam, where along it, the point of the curve it yields at — roof displacement and base shear — and when its concrete crushes or a bar reaches its ultimate strain. See [Plastic hinges](#plastic-hinges). |
+| Hinges | `Hinges` | Text (list) | Every point of a beam on a fibre section that yields during the push, in the order it does: which beam, where along it, the point of the curve it yields at — roof displacement and base shear — the ductility it reaches by the end, and when its concrete crushes or a bar reaches its ultimate strain. See [Plastic hinges](#plastic-hinges). |
 | Hinge Points | `Hinge Points` | Point (list) | Where each of the **Hinges** is, on the model as it was built, in `m`. |
 | Yields At | `Yields At` | Integer (list) | The point of the curve each of the **Hinges** yields at: its place in **Displacement**, **Base Shear** and **Step**. |
 | log | `log` | Text | What OpenSees printed, a line repeated written once with its count. Read it when the push stops short. |
+| Ductility | `Ductility` | Number (tree) | The ductility each of the **Hinges** has reached at each point of the curve: its most strained fibre's largest strain so far over its yield strain. A branch a hinge, in the order of **Hinges**, a value a point of the curve, 0 before it yields. It never comes down. See [Plastic hinges](#plastic-hinges). |
 
 Plot **Base Shear** against **Displacement** for the capacity curve. To see one point of it, pick
 its **Step** with a **List Item** and feed it to Model View, Beam Forces or Reaction Forces with
@@ -72,9 +73,19 @@ centroid and its two curvatures, at each of the five integration points along it
 stays plane, so they give the strain of every fibre, and that against its material's yield strain
 says where the beam has yielded. **Hinges** lists every point that does, in the order it does, with
 the point of the curve it yields at; **Yields At** gives that point alone, to mark the curve with.
-[Model View](../visualisation/model-view.md) draws them at any step with **Plastic hinges** ticked
-in its Results menu: orange where the bars have yielded, purple where the concrete has crushed. Step
-through **Step** to watch them form.
+
+How far a hinge has gone is its **ductility**: the largest strain its most strained fibre has
+reached so far, over that fibre's yield strain. It is 1 when the point first yields and only grows,
+for a fibre that has yielded keeps the strain it took, even when it unloads. **Hinges** gives the
+ductility each reaches by the end; **Ductility** gives it at every point of the curve.
+
+[Model View](../visualisation/model-view.md) draws the hinges at any step with **Plastic hinges**
+ticked in its Results menu. A ball comes at a point once it yields and stays, coloured by the
+ductility reached: yellow from 1, orange from 2, red from 4, dark red from 8, purple once concrete
+has crushed or a bar reached its ultimate strain. It is solid while the point is past its yield
+strain at that step and faded once it has unloaded. Step through **Step** to watch them form and
+grow. Like SeismoStruct's performance criteria, these are strains, read from the fibres, rather
+than a hinge's rotation against the tables of ASCE 41.
 
 The fibres' stresses are not recorded: for a frame of 28 beams pushed in 200 steps they came to
 23 MB of a 24 MB file. A model with shells still records them, which Shell Stresses reads.
