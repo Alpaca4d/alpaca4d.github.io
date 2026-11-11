@@ -13,7 +13,10 @@ standard grades of steel, concrete, timber and plastic so you do not have to typ
 *ν* and *ρ* by hand.
 
 For the non-linear materials used by fibre sections — `Concrete01`, `Steel01`,
-`ReinforcingSteel` — see [Moment Curvature](../moment-curvature/README.md).
+`ReinforcingSteel` — see [Moment Curvature](../moment-curvature/README.md). For steel that yields
+in shells and solids, the nD component's **J2Plasticity** unit: five examples push steel past first
+yield with it, from a [beam with holes](https://alpaca4d.github.io/examples/beam-with-holes/) to a
+[pipe T-joint](https://alpaca4d.github.io/examples/pipe-t-joint/) - the [nD](ND.md) page lists them.
 
 ## Which goes where
 
