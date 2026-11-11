@@ -28,6 +28,7 @@ converge.
 | [Run Analysis](run-analysis.md) | `Run Analysis` | Runs it. |
 | [Natural Vibration](natural-vibration.md) | `Natural Vibration` | Modes, periods and frequencies. |
 | [Linear Buckling](linear-buckling.md) | `Linear Buckling` | The load factors the model buckles at, and its buckled shapes. |
+| [Footfall Analysis](footfall.md) | `Footfall` | How much a floor or a stair shakes under a person walking, after SCI P354. |
 
 ### [Analysis Settings](analysis-settings.md)
 
@@ -122,6 +123,16 @@ to yield, give them a [Fiber Section](../moment-curvature/fiber-section.md). Exa
 [Irregular Building Pushover](https://alpaca4d.github.io/examples/irregular-building-pushover/),
 [Reciprocal Vault Pushover](https://alpaca4d.github.io/examples/reciprocal-vault-pushover/).
 
+### [Footfall](footfall.md)
+
+How much a floor or a stair shakes when someone walks on it, after SCI P354: a response factor R at
+every node, the steady-state and transient responses of a walker at that node, worked out from the
+modes of [Natural Vibration](natural-vibration.md). Walking on floors uses P354 Table 3.1, stairs
+Table 3.2. Examples:
+[Footfall on a Double Landing Stair](https://alpaca4d.github.io/examples/footfall-stair/),
+[Footfall on a Helical Stair of Shells](https://alpaca4d.github.io/examples/footfall-helical-stair/) and
+[Footfall on a Long Straight Stair](https://alpaca4d.github.io/examples/footfall-straight-stair/).
+
 ## What Alpaca4d can analyse
 
 | Analysis | How to set it up |
@@ -131,6 +142,7 @@ to yield, give them a [Fiber Section](../moment-curvature/fiber-section.md). Exa
 | **Pushover** | [Pushover Analysis](pushover.md) — no settings needed; fibre sections on the beams. |
 | **Eigenvalue / modal** | [Natural Vibration](natural-vibration.md) — no settings needed. |
 | **Linear buckling** | [Linear Buckling](linear-buckling.md) — no settings needed. |
+| **Footfall vibration** | [Footfall Analysis](footfall.md) on the modes of [Natural Vibration](natural-vibration.md). |
 | **Linear or non-linear transient** | Analysis Type `Transient`, Integrator `Newmark` or `CentralDifference`, plus [Damping](damping.md) and a [Path](../time-history/path.md) time series. |
 | **Seismic time history** | As transient, with a [UniformExcitation](../loads/load-pattern.md) pattern. |
 

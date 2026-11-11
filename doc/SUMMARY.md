@@ -109,6 +109,7 @@
   * [Natural Vibration](basics/analysis/natural-vibration.md)
   * [Linear Buckling](basics/analysis/linear-buckling.md)
   * [Pushover Analysis](basics/analysis/pushover.md)
+  * [Footfall Analysis](basics/analysis/footfall.md)
 * [🎲 Results](basics/results/README.md)
   * [Nodal Displacements](basics/results/nodal-displacements.md)
   * [Reaction Forces](basics/results/reaction-forces.md)

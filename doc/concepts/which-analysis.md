@@ -14,6 +14,7 @@ analysis by the question.
 | The same, where supports lift, bars go slack or displacements are large | Non-linear static | Run Analysis, the Newton algorithm, several steps |
 | Periods, frequencies, mode shapes, participating masses | Natural vibration | [Natural Vibration](../basics/analysis/natural-vibration.md), no settings |
 | Whether and when the structure buckles, α_cr | Linear buckling | [Linear Buckling](../basics/analysis/linear-buckling.md), no settings |
+| How much a floor or a stair shakes when people walk on it | Footfall | [Footfall Analysis](../basics/analysis/footfall.md) on the modes of Natural Vibration |
 | Strength and ductility under lateral load, a capacity curve | Pushover | [Pushover Analysis](../basics/analysis/pushover.md), fibre sections on the beams, no settings |
 | The response to a ground motion, an impact, a machine | Time history | Run Analysis, **AnalysisType** `Transient` |
 | How a cross-section cracks, yields and fails | Moment–curvature | [Moment Curvature](../basics/moment-curvature/moment-curvature.md), a section on its own |
@@ -56,6 +57,10 @@ It needs mass, which comes from the material densities and from
 not mass. A mode has no size of its own, so each is read with its largest translation 1. The
 modal report gives the participating masses, and the frequencies are what
 [Damping](../basics/analysis/damping.md) is tuned to.
+
+[Footfall Analysis](../basics/analysis/footfall.md) builds on the modes: after SCI P354, it works
+out how much a floor or a stair shakes under a person walking, as a response factor where people
+walk - or, with full excitation, wherever it is felt from a walker anywhere.
 
 ## Linear Buckling
 

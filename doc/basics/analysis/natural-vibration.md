@@ -116,6 +116,11 @@ model. For 10 modes on an Apple M2 Pro:
 
 The eigenvalues are the same with every one of them.
 
+`-genBandArpack` can give up on a model with many modes at nearly the same frequency, such as the
+two dozen identical treads of a stair. It says *"Maximum number of iteration reached"* and hands
+back 0 for every mode it did not converge on. The component then warns that some modes came back at
+0 Hz. Ask for fewer modes, or use `-fullGenLapack` on a model of a few thousand degrees of freedom.
+
 {% hint style="warning" %}
 **Save the Grasshopper file first.** This component writes its deck, `recorder_eigen` and
 `ModalReport` files into the `AlpacaResults` folder beside it, named as
@@ -132,6 +137,8 @@ Grasshopper script?"* if there is nowhere to put them.
 - You need frequencies to calibrate [Damping](damping.md).
 - You need modal masses and participation factors for a response-spectrum check → open the
   [Modal Report](#modal-report) menu.
+- You want to know how much a floor or a stair shakes under people walking → feed the solved model
+  to [Footfall Analysis](footfall.md).
 
 **Do not use it when** you want displacements or forces under load → those need
 [Run Analysis](run-analysis.md).
