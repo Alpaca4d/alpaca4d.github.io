@@ -3,8 +3,6 @@
 Write an Alpaca4d model to a `.struxml` file that StruSoft's FEM-Design opens, to design it
 there: its bars, plates and walls, supports, load cases and masses.
 
-<figure><img src="../../.gitbook/assets/components/alpaca4dtofem-design.png" alt="Alpaca4DToFEM-Design component" width="438"><figcaption></figcaption></figure>
-
 ## You need
 
 - An assembled model from [Assemble](../../basics/assemble.md), or an analysed one from
