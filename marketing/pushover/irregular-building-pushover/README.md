@@ -14,7 +14,8 @@ that beside the canvas (`-in-grasshopper.png`) and the canvas.
 - **A carousel instead:** `irregular-building-pushover-2.png`, `irregular-building-pushover-in-grasshopper.png`,
   `grasshopper-definition.png`.
 - **Alt text:** A small L-shaped concrete building with a set-back top floor, pushed sideways until it
-  leans. Orange and purple balls appear at the ends of its beams and columns where it yields, most of
+  leans. Balls appear at the ends of its beams and columns where it yields, yellow, then darker red as
+  the steel stretches further, purple where the concrete crushes, most of
   them on the ground floor, with a chart under it of the force against how far the top has moved.
 
 ## The post
@@ -26,7 +27,7 @@ Where does a building give way when you push it?
 
 I pushed this small concrete building sideways, a little at a time.
 
-Each ball is a plastic hinge. Orange: the steel bars yield. Purple: the concrete crushes.
+Each ball is a plastic hinge. Yellow: the steel bars start to yield. Dark red: they have stretched far. Purple: the concrete crushes.
 
 The first hinges appear in the beams. Then the ground floor columns go, top and bottom.
 
