@@ -6,7 +6,7 @@ tags: ["Beams & frames", "Sections"]
 
 # 📈 Irregular Building Pushover
 
-<figure><img src="irregular-building-pushover.png" alt="A small L-shaped concrete building with a set-back top storey, pushed sideways to 3% drift, orange and purple balls marking its plastic hinges"><figcaption></figcaption></figure>
+<figure><img src="irregular-building-pushover.png" alt="A small L-shaped concrete building with a set-back top storey, pushed sideways to 3% drift, balls marking its plastic hinges, dark red where its bars have stretched furthest and purple where its concrete has crushed"><figcaption></figcaption></figure>
 
 [irregular-building-pushover](irregular-building-pushover.gh)
 
@@ -19,7 +19,7 @@ then [Pushover Analysis](../../docs/basics/analysis/pushover.md) pushes it sidew
 of the building has moved 3% of its height, and
 [Model View](../../docs/basics/visualisation/model-view.md) draws its plastic hinges as they form.
 
-<figure><video src="irregular-building-pushover-pushing.mp4" autoplay loop muted playsinline></video><figcaption><p>The push, a frame every third point of the curve, the sway drawn twice as large as it is. A ball marks each plastic hinge: orange where the bars have yielded, purple where the concrete has crushed. Under it, the capacity curve so far, a ring where each hinge formed.</p></figcaption></figure>
+<figure><video src="irregular-building-pushover-pushing.mp4" autoplay loop muted playsinline></video><figcaption><p>The push, a frame every third point of the curve, the sway drawn twice as large as it is. A ball marks each plastic hinge, and stays: yellow when its bars first yield, then orange, red and dark red as they stretch to 2, 4 and 8 times their yield strain, and purple once its concrete has crushed. Under it, the capacity curve so far, a ring where each hinge formed, in the colour it has reached.</p></figcaption></figure>
 
 ## The model
 
