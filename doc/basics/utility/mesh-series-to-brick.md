@@ -52,3 +52,6 @@ transform or morph one mesh repeatedly rather than meshing each layer separately
 The number of bricks is `(layers − 1) × faces`, and closed series give one more layer. It
 grows fast; check the count before assembling.
 {% endhint %}
+
+The [Mesh Loft - Mesh Series to Bricks](https://alpaca4d.github.io/examples/meshloft-meshbrick/)
+example makes a concrete vault of 1 440 bricks, five layers through its thickness, from six lofted meshes.

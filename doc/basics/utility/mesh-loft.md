@@ -44,3 +44,7 @@ Polylines ──► Mesh Loft ──► ASD Shell            (a shell surface)
 
 For a solid, loft the inner and outer surfaces separately and pass both to
 [Mesh Series to Brick](mesh-series-to-brick.md).
+
+The [Mesh Loft - Mesh Series to Bricks](https://alpaca4d.github.io/examples/meshloft-meshbrick/)
+example lofts six surfaces of a concrete vault, each a branch of polylines, and makes five layers
+of bricks between them.
