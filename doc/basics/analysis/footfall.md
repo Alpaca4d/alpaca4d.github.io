@@ -77,6 +77,7 @@ is kept. The other inputs are Self excitation's.
 | Transient Factor | `Transient Factor` | Number (list) | The response factor of the transient response alone, at its worst pace: each footfall setting the modes ringing. Not worked out on stairs. In the **Steady state and transient** menu. |
 | Steady-State Acceleration | `Steady-State Acceleration` | Number (list) | The weighted rms acceleration of the steady-state response at each Walk point, in `m/s²`. 0.005 m/s² is R = 1. In the **Steady state and transient** menu. |
 | Transient Acceleration | `Transient Acceleration` | Number (list) | The weighted rms acceleration of the transient response over one pace at each Walk point, in `m/s²`. In the **Steady state and transient** menu. |
+| AlpacaModel | `AlpacaModel` | Generic | The model it was given, with what was found at each node on it — R, the steady-state and transient factors and accelerations, the critical frequency: for the **AlpacaModel** input of the [Report](../report/report.md), whose [Report View](../report/report-view.md) Footfall topic draws the model coloured by any of them and whose [Report Result Table](../report/report-result-table.md) lists the worst. |
 
 ### Outputs — Full excitation
 
@@ -91,6 +92,7 @@ is kept. The other inputs are Self excitation's.
 | Transient Factor | `Transient Factor` | Number (list) | The response factor of the transient response alone, at its worst pace and walker. In the **Steady state and transient** menu. |
 | Steady-State Acceleration | `Steady-State Acceleration` | Number (list) | The weighted rms acceleration of the steady-state response at each Feel point, in `m/s²`. In the **Steady state and transient** menu. |
 | Transient Acceleration | `Transient Acceleration` | Number (list) | The weighted rms acceleration of the transient response over one pace at each Feel point, in `m/s²`. In the **Steady state and transient** menu. |
+| AlpacaModel | `AlpacaModel` | Generic | The model it was given, with what was found at each node on it — R, the steady-state and transient factors and accelerations, the critical frequency: for the **AlpacaModel** input of the [Report](../report/report.md), whose [Report View](../report/report-view.md) Footfall topic draws the model coloured by any of them and whose [Report Result Table](../report/report-result-table.md) lists the worst. |
 
 The outputs follow the points given, one value each, in their order - the **Walk** points, or the
 **Feel** points in full excitation - or with none given the nodes walked on. So **Response Factor**
