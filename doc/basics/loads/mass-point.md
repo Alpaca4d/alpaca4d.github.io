@@ -53,6 +53,8 @@ model calibrated against that behaviour, its periods will now drop.
   action.
 - The self-weight of the modelled elements is what you are after → that comes from the
   material density, applied by [Gravity Load](gravity.md).
+- The mass is that of loads already in the model — finishes, partitions, a share of the imposed
+  load → [Mass from Loads](mass-from-loads.md) spreads it over the nodes the loads land on.
 
 **TransMass** is in kg: a 4 t mass is `4000`. The
 [Response Spectrum from Sticks](https://alpaca4d.github.io/examples/response-spectrum/) example puts

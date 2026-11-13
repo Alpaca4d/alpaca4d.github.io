@@ -9,9 +9,10 @@ mass or the stiffness is wrong.
 ## You need
 
 - An assembled model from [Assemble](../../basics/assemble.md), with its supports.
-- Mass: from the material's density, through the section, or from
-  [Mass Point](../../basics/loads/mass-point.md). A [Gravity Load](../../basics/loads/gravity.md) gives
-  force, not mass.
+- Mass: from the material's density, through the section, from
+  [Mass Point](../../basics/loads/mass-point.md), or from loads through
+  [Mass from Loads](../../basics/loads/mass-from-loads.md). A [Gravity Load](../../basics/loads/gravity.md)
+  gives force, not mass.
 - The Grasshopper file saved: the component writes its files beside it.
 
 ## Steps

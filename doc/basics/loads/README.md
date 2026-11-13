@@ -21,6 +21,7 @@ Load ──┘        ▲
 | [Beam](beam-load.md) | `LinearLoad` | A uniform line load along beam elements. |
 | [Shell](shell-load.md) | `MeshLoad` | A uniform surface pressure on shell elements. |
 | [Mass Point](mass-point.md) | `Mass Point` | Added nodal mass, for dynamic analysis. |
+| [Mass from Loads](mass-from-loads.md) | `Mass from Loads` | The weight of loads as mass, with a factor: finishes, and part of the imposed load. |
 | [Load Pattern](load-pattern.md) | `Load Pattern` | Groups loads and gives them a time series. |
 
 ## Notes that apply to all of them
@@ -30,6 +31,6 @@ Load ──┘        ▲
 - **Loads find their target by position.** A point load is attached to the nearest node
   within the [Assemble](../assemble.md) **Tolerance**. If a load appears to do nothing, check
   that a node actually exists where you put it.
-- **[Mass Point](mass-point.md) is not really a load.** It contributes mass, not force, and
-  goes straight into Assemble's `LoadPatterns` input alongside the patterns — it does not
-  need one of its own.
+- **[Mass Point](mass-point.md) and [Mass from Loads](mass-from-loads.md) are not really
+  loads.** They contribute mass, not force, and go straight into Assemble's `LoadPatterns` input
+  alongside the patterns — they do not need one of their own.

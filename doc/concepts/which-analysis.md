@@ -52,9 +52,10 @@ There is nothing to converge, so it needs no settings. It is the first analysis 
 a new model, because a first period far from what you expect means the mass or the stiffness is
 wrong.
 
-It needs mass, which comes from the material densities and from
-[Mass Points](../basics/loads/mass-point.md). [Gravity Load](../basics/loads/gravity.md) adds force,
-not mass. A mode has no size of its own, so each is read with its largest translation 1. The
+It needs mass, which comes from the material densities, from
+[Mass Points](../basics/loads/mass-point.md) and from loads through
+[Mass from Loads](../basics/loads/mass-from-loads.md). [Gravity Load](../basics/loads/gravity.md) adds
+force, not mass. A mode has no size of its own, so each is read with its largest translation 1. The
 modal report gives the participating masses, and the frequencies are what
 [Damping](../basics/analysis/damping.md) is tuned to.
 

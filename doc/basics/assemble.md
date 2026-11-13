@@ -21,7 +21,7 @@ resolved **geometrically**.
 | --- | --- | --- | --- | --- |
 | Elements | `Elements` | Element (list) | — | Every element in the model: beams, shells, bricks, tetrahedra, [spring links](elements/spring-link.md). |
 | Supports | `Supports` | Support (list) | — | Every [Support](elements/support.md). |
-| LoadPatterns | `LoadPatterns` | LoadPattern / Load (list) | *(empty)* | [Load patterns](loads/load-pattern.md) **and** [mass points](loads/mass-point.md); the two may be mixed freely on this input. Anything else is an error. |
+| LoadPatterns | `LoadPatterns` | LoadPattern / Load (list) | *(empty)* | [Load patterns](loads/load-pattern.md), [Mass Points](loads/mass-point.md) and [Mass from Loads](loads/mass-from-loads.md), mixed freely on this input. Masses that land on one node are added together. Anything else is an error. |
 | Constraints | `Constraints` | Constraint (list) | *(empty)* | [Rigid diaphragms](constraints/diaphragm.md), [rigid links](constraints/rigid-link.md) and [Equal DOFs](constraints/equal-dof.md). |
 | Recorders | `Recorders` | Recorder (list) | *(empty)* | From the [MPCO Recorder](mpco-recorder.md): which results [Run Analysis](analysis/run-analysis.md) writes. Left empty, Run Analysis picks a set to suit the analysis type. |
 | Tolerance | `Tolerance` | Number | `0.01` | Distance below which two positions are treated as **the same node**, in `m`. |
@@ -31,7 +31,7 @@ resolved **geometrically**.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | The assembled model — feed it to [Model View](visualisation/model-view.md), [Run Analysis](analysis/run-analysis.md) or [Natural Vibration](analysis/natural-vibration.md). |
-| Mass | `Mass` | Number | Total mass of the structure, in `kg`. Element mass is `area × ρ × length` and so on; a [Mass Point](loads/mass-point.md) contributes only the **Z** component of its `TransMass`. |
+| Mass | `Mass` | Number | Total mass of the structure, in `kg`. Element mass is `area × ρ × length` and so on; a [Mass Point](loads/mass-point.md) contributes only the **Z** component of its `TransMass`, and [Mass from Loads](loads/mass-from-loads.md) its loads' weight over g, times its factor. |
 
 ## 📈 When to use it
 

@@ -145,8 +145,9 @@ Grasshopper script?"* if there is nowhere to put them.
 
 {% hint style="info" %}
 A model with no mass has no modes. Mass comes from the material density through the section,
-and from [Mass Point](../loads/mass-point.md). A [Gravity Load](../loads/gravity.md) does
-**not** create mass — it creates force.
+from [Mass Point](../loads/mass-point.md), and from [Mass from Loads](../loads/mass-from-loads.md),
+which makes the weight of loads into mass. A [Gravity Load](../loads/gravity.md) does
+**not** create mass — it creates force — and neither does any other load on its own.
 {% endhint %}
 
 The [Steel Tower](https://alpaca4d.github.io/examples/steel-tower/) example gives a lattice tower's first six modes beside

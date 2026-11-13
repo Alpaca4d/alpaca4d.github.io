@@ -37,8 +37,9 @@ beam does not know which other beam it meets. Each element can be given an optio
 **Supports, loads and constraints.** A [Support](../basics/elements/support.md) holds a node
 still. A [constraint](../basics/constraints/README.md) ties nodes to each other. Loads do not go
 into Assemble on their own: they are grouped into a [Load Pattern](../basics/loads/load-pattern.md),
-which gives them a [time series](../basics/time-history/README.md) and a factor. The one
-exception is [Mass Point](../basics/loads/mass-point.md), which adds mass rather than force and goes
+which gives them a [time series](../basics/time-history/README.md) and a factor. The
+exceptions are [Mass Point](../basics/loads/mass-point.md) and
+[Mass from Loads](../basics/loads/mass-from-loads.md), which add mass rather than force and go
 straight into Assemble. An [MPCO Recorder](../basics/mpco-recorder.md), if there is one, says
 which results to record.
 
