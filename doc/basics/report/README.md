@@ -16,6 +16,7 @@ content Alpaca4d makes of the models.
 | | [Report Title Block](report-title-block.md) | `TitleBlock` | Your title block, drawn on every page: lines, filled areas, texts with the page number, a logo. |
 | Your content | [Report Text](report-text.md) | `ReportText` | The title, a heading, a paragraph or a note, with numbers of the models filled in. |
 | | [Report Table](report-table.md) | `ReportTable` | A table of your own: a caption, a header and a unit per column, and the values, a column per input. |
+| | [Report Image](report-image.md) | `ReportImage` | A picture from a file or a bitmap: a photo, a drawing, a scan. |
 | | [Report Page Break](report-page-break.md) | `PageBreak` | A new page. |
 | From the models | [Report Result Table](report-result-table.md) | `ResultTable` | A table Alpaca4d makes of a model: its sections and supports, the displacements, the reactions, the frequencies, the buckling factors, the footfall response. |
 | | [Report View](report-view.md) | `ReportView` | A picture, by topic — the model, a static analysis, natural vibration, stability, a pushover, footfall — each with what it needs: how many modes, which result, the colours, the view — and the tables of what it draws, after it or before it. |

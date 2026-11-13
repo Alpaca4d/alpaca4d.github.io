@@ -13,10 +13,6 @@ first: the model, the run, Keep, Step and AlpacaModel work the same way here.
 
 `BESO Topology (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
-<figure><img src="../../.gitbook/assets/components/beso-topology.png" alt="BESO component" width="513"><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/components/beso-topology-open.png" alt="BESO component with every menu open" width="513"><figcaption><p>With every menu open</p></figcaption></figure>
-
 **Every element is solid or void, all along.** Where Topology Optimisation moves densities between
 0 and 1 and settles on one design, BESO switches whole elements on and off, and the volume comes
 down from the whole block to **VolumeFraction**. So every iteration is a design of its own, of the

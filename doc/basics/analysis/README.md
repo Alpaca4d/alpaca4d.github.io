@@ -24,15 +24,15 @@ eigenvalue analyses, what is worked out from the modes, and the settings of Run 
 | Group | Component | Nickname | Answers |
 | --- | --- | --- | --- |
 | Step by step | [Run Analysis](run-analysis.md) | `Run Analysis` | Runs it, static or transient, with the settings below. |
+| Modes | [Linear Buckling](linear-buckling.md) | `Linear Buckling` | The load factors the model buckles at, and its buckled shapes. |
 | | [Pushover](pushover.md) | `Pushover` | Pushes the model sideways until it gives way: the capacity curve. |
-| Modes | [Natural Vibration](natural-vibration.md) | `Natural Vibration` | Modes, periods and frequencies. |
-| | [Linear Buckling](linear-buckling.md) | `Linear Buckling` | The load factors the model buckles at, and its buckled shapes. |
-| From the modes | [Footfall Analysis](footfall.md) | `Footfall` | How much a floor or a stair shakes under a person walking, after SCI P354. |
+| From the modes | [Natural Vibration](natural-vibration.md) | `Natural Vibration` | Modes, periods and frequencies. |
+| | [Footfall Analysis](footfall.md) | `Footfall` | How much a floor or a stair shakes under a person walking, after SCI P354. |
 | Settings | [Analysis Settings](analysis-settings.md) | `Analysis Settings` | The whole recipe — handler, numberer, system, algorithm, type. |
 | | [Analysis Step](analysis-step.md) | `Analysis Step` | How many steps, and how long each one is. |
-| | [Damping](damping.md) | `Damping` | Rayleigh damping coefficients. |
 | | [Integrator](integrator.md) | `Integrator` | How the step advances: `LoadControl`, `Newmark`, `CentralDifference`. |
 | | [Test](test.md) | `Test` | When an iteration has converged. |
+| Damping | [Damping](damping.md) | `Damping` | Rayleigh damping coefficients. |
 
 ### [Analysis Settings](analysis-settings.md)
 

@@ -22,9 +22,9 @@ a [Pushover Analysis](../analysis/pushover.md). See [On a beam](fiber-section.md
 
 | Component | Nickname | Models |
 | --- | --- | --- |
-| [Concrete01](concrete01.md) | `Concrete` | Concrete with zero tensile strength. |
-| [Steel01](steel01.md) | `Steel01` | Bilinear steel with kinematic hardening. |
-| [ReinforcingSteel](reinforcing-steel.md) | `ReinforcingSteel` | Reinforcing bar, with a strain-hardening branch. |
+| [Concrete](concrete.md) | `Concrete` | Concrete01, Concrete02 or Concrete04, from the Law menu. |
+| [Steel](steel.md) | `Steel` | Steel01, Steel02 or ReinforcingSteel, from the Law menu. |
+| [Other Laws](other-laws.md) | `OtherLaws` | ElasticPP or Hysteretic, from the Law menu. |
 
 **Fibres** — the pieces a section is made of.
 

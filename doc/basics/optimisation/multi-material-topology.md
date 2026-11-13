@@ -13,10 +13,6 @@ first: the model, the run, Keep, Step and AlpacaModel work the same way here.
 
 `Multi-Material Topology (Alpaca4d)` — **Alpaca4d ▸ 12_Optimisation**
 
-<figure><img src="../../.gitbook/assets/components/multi-material-topology.png" alt="MultiTopology component" width="528"><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/components/multi-material-topology-open.png" alt="MultiTopology component with every menu open" width="528"><figcaption><p>With every menu open</p></figcaption></figure>
-
 It takes the assembled model and works on its solids, as Topology Optimisation does. Every solid
 gets a density of every material, and its stiffness mixes the materials' Young's moduli so that an
 element of one material alone pays least. Each iteration analyses the model and moves every
