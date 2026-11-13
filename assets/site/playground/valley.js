@@ -5,7 +5,7 @@
 // only one of them right, and the scene shows what each would build; in the sixth the player draws
 // the wires.
 //
-// The definition is valley.gh, written by Alpaca4d's Tools/Examples/PlaygroundValley.py: a Warren
+// The definition is valley.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundValley.py: a Warren
 // truss 12 m long in six panels of 2 m, 2 m deep, of steel tubes 100 x 5 mm as Truss bars. Every
 // number here is OpenSees's, run on the deck Alpaca4d writes: 0.9 kN in the middle of the top chord,
 // 0.75 kN in the bottom chord under it, 0.335 kN in every diagonal; each wrong option's outcome too.

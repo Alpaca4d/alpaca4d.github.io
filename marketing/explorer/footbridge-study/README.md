@@ -4,7 +4,7 @@ The Alpaca4d Explorer, the web page that opens a design study made with the Expl
 Grasshopper, used on its sample: 108 steel truss footbridges over their span, depth, panels and
 chords. In the video, three axes are filtered one after the other (utilisation up to 0.9, deflection up
 to 80 mm, frequency from 3 Hz), 59 designs are left, the gallery is sorted by mass and the lightest is
-opened and turned round in 3D. Made by `Tools/Marketing/explorer.py`, which drives the live page in a
+opened and turned round in 3D. Made by `Tools/Marketing/Social/explorer.py`, which drives the live page in a
 headless Chrome. Here: the video (`explorer-study.mp4`) and a still from it (`explorer-study-poster.png`).
 
 ## What to attach

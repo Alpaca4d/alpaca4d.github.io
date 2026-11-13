@@ -4,7 +4,7 @@
 // Each round but one shows snippets to pick from, only one of them right, and the scene shows what
 // each would build; a wrong one can be tried again. In the sixth the player draws the wires.
 //
-// The definition is river.gh, written by Alpaca4d's Tools/Examples/PlaygroundRiver.py. The numbers
+// The definition is river.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundRiver.py. The numbers
 // are Alpaca4d's: metres and kN, C24 from its timber database (E = 10 500 MPa), and 24.4 mm at
 // mid-span, which OpenSees gives too. The panel, the rounds and the alpaca are lesson.js's.
 

@@ -1,7 +1,7 @@
 # Alpaca4d posters: LinkedIn carousel
 
 Twelve posters in the teaser's look, 4:5 (2160 x 2700), for one LinkedIn post: a cover, a poster
-for each of the ten things the teaser shows, and an end card. Made by `Tools/Marketing/posters.py`
+for each of the ten things the teaser shows, and an end card. Made by `Tools/Marketing/Social/posters.py`
 in the Alpaca4d repository from the stills in `marketing/`; run it again when they change. Here: the
 twelve PNGs, and the same twelve as one PDF (alpaca4d-carousel.pdf) for a document post.
 

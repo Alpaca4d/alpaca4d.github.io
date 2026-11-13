@@ -3,7 +3,7 @@
 // sizes it: the snow along it, its own weight, the two in one Load Pattern, how deep it must be to
 // sag no more than L/250, and the analysis. The third round is wired by hand.
 //
-// The definition is roof.gh, written by Alpaca4d's Tools/Examples/PlaygroundRoof.py. The numbers
+// The definition is roof.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundRoof.py. The numbers
 // are Alpaca4d's: metres and kN, C24 from its timber database (E = 10 500 MPa, 410 kg/m3), and
 // OpenSees' sag at mid-span as Alpaca4d writes the model, which 5wL^4/384EI gives too. The panel, the
 // rounds and the alpaca are lesson.js's.

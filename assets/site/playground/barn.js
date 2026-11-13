@@ -4,7 +4,7 @@
 // The posts are set in concrete footings and the beam is bolted across their tops, so the knees are
 // hinges: the lesson is about what a joint holds, and how far the frame sways for it.
 //
-// The definition is barn.gh, written by Alpaca4d's Tools/Examples/PlaygroundBarn.py. The numbers
+// The definition is barn.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundBarn.py. The numbers
 // are Alpaca4d's and OpenSees's: metres and kN, C24 timber 200 x 300 mm (E = 10 500 MPa), 3 kN of
 // wind at the top of a post 4 m tall, and 6.8 mm of sway, which each post's cantilever gives by
 // hand too. The panel, the rounds and the alpaca are lesson.js's.

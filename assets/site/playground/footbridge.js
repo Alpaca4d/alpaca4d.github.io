@@ -5,7 +5,7 @@
 // the fifth shows snippets to pick from, only one of them right, and the scene shows what each
 // would build; in the fifth the player draws the wires.
 //
-// The definition is footbridge.gh, written by Alpaca4d's Tools/Examples/PlaygroundFootbridge.py.
+// The definition is footbridge.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundFootbridge.py.
 // The numbers are Alpaca4d's and OpenSees's, solved the way Alpaca4d writes the deck: C24 timber
 // (E = 10 500 MPa, 410 kg/m³), 1.2 m by 120 mm over 10 m in ten elements, 60 kg on every node.
 // It bounces at 1.94 Hz, as f = π/(2L²)·√(EI/m) gives by hand; the pier makes it 7.75 Hz. The

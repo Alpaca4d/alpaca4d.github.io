@@ -4,7 +4,7 @@
 // Model, and the analysis read with Nodal Displacements - and finds it bends 16 times as much as
 // the same plank on two supports.
 //
-// The definition is cliff.gh, written by Alpaca4d's Tools/Examples/PlaygroundCliff.py. The numbers
+// The definition is cliff.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundCliff.py. The numbers
 // are Alpaca4d's: metres and kN, C24 (E = 10 500 MPa), and 390 mm at the tip, which OpenSees gives
 // too (390.15, the beam's shear adding 0.05). The panel, the rounds and the alpaca are lesson.js's.
 

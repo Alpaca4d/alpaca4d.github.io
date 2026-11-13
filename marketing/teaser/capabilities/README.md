@@ -2,7 +2,7 @@
 
 A 44-second teaser of everything Alpaca4d does, made from the example videos in `marketing/`: the
 title, ten chapters (24 shots from 40 clips) and the end card, cut to a 120 BPM beat. Made by
-`Tools/Marketing/teaser.py` in the Alpaca4d repository; run it again when the clips change. Here: the
+`Tools/Marketing/Social/teaser.py` in the Alpaca4d repository; run it again when the clips change. Here: the
 video (`alpaca4d-teaser.mp4`) and a still from it (`alpaca4d-teaser-poster.png`).
 
 **Wait before posting:** the video shows Pushover Analysis, J2 Plasticity and Footfall Analysis, which

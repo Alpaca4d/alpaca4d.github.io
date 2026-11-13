@@ -4,7 +4,7 @@
 // they carry, reads the reactions from the model, finds the output that holds the bending, and
 // says how big the largest moment is and where.
 //
-// The definition is market.gh, written by Alpaca4d's Tools/Examples/PlaygroundMarket.py. The
+// The definition is market.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundMarket.py. The
 // numbers are OpenSees's, and equilibrium's by hand: trestle A 0.3 kN, trestle B 1.3 kN; Mz
 // +0.45 kNm under the crate, sagging, and -0.6 kNm over trestle B, hogging. The panel, the rounds
 // and the alpaca are lesson.js's.

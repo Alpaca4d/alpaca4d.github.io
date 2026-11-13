@@ -132,7 +132,7 @@ edge. The four mesh faces do not matter: any four that close the mesh will do.
 The same two lists come out of any tetrahedral mesher: a TetGen `.node` and `.ele`, the nodes and
 the tetrahedra of a gmsh `.msh`. Paste or read yours into **Nodes** and **Tetrahedra**, and the rest
 of the definition runs as it is. This cow was meshed with [gmsh](https://gmsh.info), by
-`Tools/Examples/SpotTheCowMesh.py` in the Alpaca4d repository.
+`Tools/Examples/Solids/SpotTheCowMesh.py` in the Alpaca4d repository.
 
 #### Holding a solid
 
@@ -213,7 +213,7 @@ a real one. Change **E** and the load in groups 2 and 4 to try your own.
 #### The geometry
 
 The Standardised Femur comes as IGES surfaces that do not close into a solid: its faces stand up
-to a millimetre apart, and CAD will not sew them. `Tools/Examples/FemurMesh.py`, in the Alpaca4d
+to a millimetre apart, and CAD will not sew them. `Tools/Examples/Solids/FemurMesh.py`, in the Alpaca4d
 repository, rebuilds a closed surface from the outer faces with a signed distance and marching
 cubes. It then fills that surface with tetrahedra with [gmsh](https://gmsh.info).
 
@@ -273,7 +273,7 @@ motion is strongest in, so it moves with its plinth rather than amplifying the s
 
 #### The geometry
 
-`Tools/Examples/RebelliousSlaveMesh.py`, in the Alpaca4d repository, downloads the scan, turns it
+`Tools/Examples/Solids/RebelliousSlaveMesh.py`, in the Alpaca4d repository, downloads the scan, turns it
 to face -Y, remeshes its surface to about 3 cm, finer below the knees, keeps the plinth's underside
 flat, and fills it with tetrahedra with [gmsh](https://gmsh.info). Nothing is thickened or closed:
 the fingers, the band round the chest and the hair are meshed as scanned.

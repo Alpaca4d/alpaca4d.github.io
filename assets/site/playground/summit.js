@@ -2,7 +2,7 @@
 // block of concrete bricks across the chasm, pins it to the rock, loads its deck with a walkway, and
 // wires Topology Optimisation to carve the bridge out of it: material only where the forces flow.
 //
-// The definition is summit.gh, written by Alpaca4d's Tools/Examples/PlaygroundSummit.py. What each
+// The definition is summit.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundSummit.py. What each
 // option would build is real: summit-runs.json holds every iteration's densities of the lesson's
 // model and of each mistake, found by Alpaca4d's own TopologyOptimiser with OpenSees - 30 x 10 bricks
 // of 0.4 x 1.2 x 0.4 m, C30/37 - and the Von Mises stress of the design, from OpenSees too. The

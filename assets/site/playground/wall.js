@@ -4,7 +4,7 @@
 // analysis with its principal stress lines. Each round but one shows snippets to pick from, only
 // one of them right, and the scene shows what each would build; a wrong one can be tried again.
 //
-// The definition is wall.gh, written by Alpaca4d's Tools/Examples/PlaygroundWall.py. The numbers
+// The definition is wall.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundWall.py. The numbers
 // are OpenSees's, for the wall as Alpaca4d writes it - ASDShellQ4 on a PlateFiber section of
 // ElasticIsotropic concrete, kN and m, on quads 0.25 m across - and wall-stress.json holds what it
 // gave: the larger principal stress at each node and the principal stress lines traced through it,

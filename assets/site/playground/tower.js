@@ -4,7 +4,7 @@
 // foot, the bracing at mid-height and the platform at the head - the platform's load, the wires
 // into Assemble Model, and the Linear Buckling Analysis.
 //
-// The definition is tower.gh, written by Alpaca4d's Tools/Examples/PlaygroundTower.py. The numbers
+// The definition is tower.gh, written by Alpaca4d's Tools/Examples/Playground/PlaygroundTower.py. The numbers
 // are Alpaca4d's, checked by running the leg through Buckling.Analyse with OpenSees as Linear
 // Buckling does: CHS 60.3 x 3.2, S235 (E = 210 000 MPa), 8 kN on the head; braced at mid-height
 // the load factor is 6.83 with Divisions 8, Euler's 6.76 by hand. The panel, the rounds and the
