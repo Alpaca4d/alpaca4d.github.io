@@ -42,3 +42,7 @@ Deconstruct is the answer to most *"how do I get at…"* questions. Plug in a se
 will find `Area`, `Izz`, `Iyy` and `J` already computed; plug in an assembled model and you
 can walk its elements, nodes and supports.
 {% endhint %}
+
+The [Deconstruct Anything](https://alpaca4d.github.io/examples/deconstruct-anything/) example
+opens a cantilever piece by piece: the beam, its section and material, the load, the assembled
+model and its nodes.

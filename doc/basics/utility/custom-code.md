@@ -49,3 +49,7 @@ the ones in use.
 Nothing here is validated. A mistake surfaces as an OpenSees error in the
 [Run Analysis](../analysis/run-analysis.md) **log**, not as a red component.
 {% endhint %}
+
+The [Custom Script](https://alpaca4d.github.io/examples/custom-script/) example runs a whole
+OpenSees script this way: a steel portal frame typed into a panel, Custom Code with no model,
+Run Analysis set not to use its settings, and what the script prints read back from the log.
