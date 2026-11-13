@@ -157,7 +157,7 @@ out are as a new Model View has them.
 | `layer`, `axes`, `reactionStyle` | Model View's menus for shell stresses, brick stresses and reactions. |
 | `elements` | Only these elements, the rest greyed: what Model View's **ElementId** takes. |
 | `colours`, `range` | The gradient, as `#RRGGBB` colours from the low end to the high, and the `[min, max]` it spans. |
-| `loadPattern` | Only this load pattern's loads. |
+| `loadPattern` | Only this load pattern's loads: its name as text (`"Dead"`) or its Id as a number (`2`). |
 | `view` | Where from: `iso` (south-east), `southwest`, `northeast`, `northwest`, `top`, `bottom`, `front`, `back`, `left`, `right`, or a view saved in Rhino as `named:Name`. |
 | `eye`, `projection`, `zoom` | A direction to look from, `[x, y, z]`; `perspective` or `parallel` (top, front and the other flat views are parallel); a zoom factor. |
 | `camera` | A camera given whole — `location`, `target`, `up`, `lens`, `parallel` — as [Report View](report-view.md) takes it from the Rhino view. |

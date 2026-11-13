@@ -22,6 +22,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | TimeSeries | `TimeSeries` | TimeSeries | [Constant](../time-history/constant.md), factor 1 | How the pattern factor evolves with analysis time. |
 | Loads | `Loads` | Load (list) | — | The loads in this pattern: point, line, surface, gravity. |
 | Factor | `Factor` | Number | `1` | Constant scale applied to the whole pattern, on top of the time series. |
+| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) names a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
 
 ### Inputs — UniformExcitation
 
@@ -31,6 +32,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | TimeSeries | `TimeSeries` | TimeSeries | — | The ground motion, normally **acceleration** against time. |
 | Velocity | `Velocity` | Number | `0` | Initial ground velocity, in `m/s`. |
 | Factor | `Factor` | Number | `1` | Constant scale on the excitation — where a record in *g* gets its 9.81. |
+| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) names a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
 
 ### Outputs
 
@@ -58,6 +60,12 @@ multiple-support excitation, which Alpaca4d does not expose.
 
 Keeping loads and patterns separate is what lets the same physical load appear in several
 cases at different factors.
+
+**Name each pattern** after its load case. [Mass from Loads](mass-from-loads.md) then names
+the patterns whose loads are to be mass, with a factor for each, as a mass source does in other
+programs: "Finishes" at 1, "Imposed" at 0.1. [Model View](../visualisation/model-view.md) draws
+the loads of one pattern when its **LoadPattern** input is given the name. The name is matched
+whatever its case, and two patterns may share one. A file saved before patterns had a name opens with Name empty.
 
 ## 🔗 Relation to OpenSees
 

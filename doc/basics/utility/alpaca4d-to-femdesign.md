@@ -105,7 +105,7 @@ go on.
 
 | Alpaca4d | FEM-Design |
 | --- | --- |
-| [Load Pattern](../loads/load-pattern.md) | A static load case with the pattern's name, or `LP1`, `LP2`... for a pattern without one |
+| [Load Pattern](../loads/load-pattern.md) | A static load case named as the pattern's **Name** input has it, or `LP1`, `LP2`... for a pattern without one |
 | [Gravity](../loads/gravity.md) | The dead-load case `Self-weight`, in which FEM-Design works out the self-weight from its materials |
 | [Point load](../loads/point-load.md) | Point loads, for the force and for the moment |
 | [Beam load](../loads/beam-load.md) | A uniform line load along the bar |

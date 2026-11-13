@@ -22,7 +22,7 @@ over either, so a model and its results are checked from one component.
 | ElementId | `ElementId` | Text (list) | *(empty)* | Draw only some elements: an ElementId (`MyBeam_3`), a wildcard over them (`MyBeam*`, `Col_?`), an element tag (`47`) or a regular expression (`regex:^Col`), mixed freely. What is left out is greyed rather than hidden, so what you are looking at stays in the model around it. Empty draws them all. |
 | Colors | `Colors` | Colour (list) | Turbo | The gradient to colour the results with, from the low end to the high. Connect [Colors](colors.md) for a ready-made one. With **Iso-surfaces** on, each colour is one band of values. Beam force diagrams ignore it and use the colour that belongs to the force. |
 | Range | `Range` | Domain (list) | *(empty)* | The range each gradient is stretched over, in the unit picked for its result: one per result ticked, in the order of the **Results** menu, *Beam forces* left out as it has no gradient. A result given none fits what is drawn, which makes two steps impossible to compare: set it to compare them. |
-| LoadPattern | `LP` | Integer | *all* | Draw the loads of one pattern only, by Id. Leave empty to draw all of them. It sits in the **Loads** menu. |
+| LoadPattern | `LP` | Text / Integer / LoadPattern | *all* | Draw the loads of one pattern only: its **Name** (`Dead`), its Id, or the [Load Pattern](../loads/load-pattern.md) itself. Leave empty to draw all of them. A name is matched whatever its case, and before an Id, so a pattern named `2` is found by its name; patterns that share a name are drawn together. A name or Id that no pattern has draws no loads, with a warning listing the patterns there are. It sits in the **Loads** menu. |
 
 ### Outputs
 
@@ -119,7 +119,7 @@ With both **Element IDs** and **Section Names** on, a beam's id is written above
 
 | Control | Effect |
 | --- | --- |
-| LoadPattern | The **LoadPattern** input, drawn in the menu: one pattern's loads only. |
+| LoadPattern | The **LoadPattern** input, drawn in the menu: one pattern's loads only, by its name or Id. |
 | Show Loads | Draws every load of the model, each kind to fit it — see [How the loads are drawn](#how-the-loads-are-drawn). |
 | Show Values | Writes what each load is worth just beyond the tail of its arrow, in the load's colour: `kN` for a point load and `kN·m` beside its moment, `kN/m` once along each run of beams with the same line load, `kN/m²` once over each patch of shells with the same surface load, for the self-weight `kN/m` once a run of beams and `kN` on each node, and `kg` under a mass. Works with or without **Show Loads**; its size is **Text size**, under **Elements**. |
 | Load Scale | `1`, from 0.1 to 10. How long the arrows are, as a share of the length they are fitted to: at `1` the largest point load's arrow is 15% of the model's size. |
