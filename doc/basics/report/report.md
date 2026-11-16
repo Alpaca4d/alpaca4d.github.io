@@ -30,9 +30,35 @@ drawn by [Model View](../visualisation/model-view.md) without a Model View on th
 | Log | `Log` | Text (list) | What could not be made, and why. It is marked in the report too, where it would have gone. |
 | Template | `Template` | Text | The report as a template in JSON: to read what goes in it, or to copy and change. |
 
+### Templates
+
+The upper bar under the component: click it for ready-made reports, and choose one to put it on the
+canvas as components, left of the Report and wired into **Content**. They are ordinary components,
+yours to change: each text is a panel to type over, wired into a [Report Text](report-text.md) in its
+style, and each picture a [Report View](report-view.md) with its tables ticked. Each chapter is a group
+of its own, its parts through a **Merge**. Nothing holds a model, so a template works with whatever
+models are wired into **AlpacaModel**.
+
+| Template | What it puts on the canvas |
+| --- | --- |
+| **For the models given** | Title page, the model, then a chapter for each analysis wired into **AlpacaModel** — the static one with the forces of the elements the model has — and conclusions. Offered once the models are wired. |
+| **Static** | Title page, the model, the displacement and the reactions, the member forces, conclusions. |
+| **Static and dynamic** | As Static, with natural vibration and stability before the conclusions. |
+| A chapter | One at a time: Title page, The model, Static analysis, Member forces, Shell forces, Solid stresses, Natural vibration, Stability, Footfall, Pushover, Conclusions. Member forces, Shell forces and Solid stresses are sections of Static analysis. The model ticks the table of beam sections only when the models given have beams. |
+
+What is wired into **Content** already keeps its place: the template comes after it — into the last
+input of the Merge that feeds **Content**, when one does. On the canvas it goes left of the Report, or
+below what is there already, components and groups, when that is taken. One **Undo** takes a template away. The
+right-click menu of the Report holds the same list, under **Add a template**.
+
+The texts take placeholders, as any Report Text does: the template's paragraphs say
+`{static.maxDisplacement:F1}` or `{vibration.frequency[1]:F2}`, and the report writes the numbers.
+Write over the panels with your own words, add a part by wiring it into the chapter's Merge where it
+goes, or leave a chapter out by taking its wire off.
+
 ### Open report
 
-The bar under the component, drawn as a menu's header is: click it to open the PDF in the program your
+The lower bar under the component, drawn as a menu's header is: click it to open the PDF in the program your
 computer opens PDFs with. It is faded until there is a report to open — the one just written, or one
 written before where **File** points — and the pointer resting on it shows where the PDF is.
 
@@ -47,6 +73,9 @@ written before where **File** points — and the pointer resting on it shows whe
 It is free on models up to 50 elements, like [Model View](../visualisation/model-view.md).
 
 ## 🧩 A report from components
+
+The quickest start is a [template](#templates): click **Templates** under the Report and choose one.
+To build one yourself:
 
 1. [Report Page](report-page.md): the paper and the margins, and a [Report Title Block](report-title-block.md)
    drawn on every page.

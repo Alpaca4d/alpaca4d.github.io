@@ -11,7 +11,7 @@ content Alpaca4d makes of the models.
 
 | Group | Component | Nickname | Gives the report |
 | --- | --- | --- | --- |
-| The report | [Report](report.md) | `Report` | Writes the PDF: the page, then the content in order, the pictures drawn by Model View without a Model View on the canvas. It also takes a template written in JSON. |
+| The report | [Report](report.md) | `Report` | Writes the PDF: the page, then the content in order, the pictures drawn by Model View without a Model View on the canvas. It also takes a template written in JSON, and puts ready-made reports on the canvas as components from its **Templates** bar. |
 | | [Report Page](report-page.md) | `ReportPage` | The paper — A4 to A0, Letter, Legal or your own — which way round, the margins and the title block. |
 | | [Report Title Block](report-title-block.md) | `TitleBlock` | Your title block, drawn on every page: lines, filled areas, texts with the page number, a logo. |
 | Your content | [Report Text](report-text.md) | `ReportText` | The title, a heading, a paragraph or a note, with numbers of the models filled in. |
