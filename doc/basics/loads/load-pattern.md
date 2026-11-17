@@ -22,7 +22,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | TimeSeries | `TimeSeries` | TimeSeries | [Constant](../time-history/constant.md), factor 1 | How the pattern factor evolves with analysis time. |
 | Loads | `Loads` | Load (list) | — | The loads in this pattern: point, line, surface, gravity. |
 | Factor | `Factor` | Number | `1` | Constant scale applied to the whole pattern, on top of the time series. |
-| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) names a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
+| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) and [Load Combination](load-combination.md) name a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
 
 ### Inputs — UniformExcitation
 
@@ -32,7 +32,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | TimeSeries | `TimeSeries` | TimeSeries | — | The ground motion, normally **acceleration** against time. |
 | Velocity | `Velocity` | Number | `0` | Initial ground velocity, in `m/s`. |
 | Factor | `Factor` | Number | `1` | Constant scale on the excitation — where a record in *g* gets its 9.81. |
-| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) names a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
+| Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) and [Load Combination](load-combination.md) name a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
 
 ### Outputs
 

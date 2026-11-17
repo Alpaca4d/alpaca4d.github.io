@@ -16,6 +16,7 @@ component's own page for its inputs. New to Alpaca4d? Start with [Learn](../lear
 
 - [Load elements by name](loading/load-by-name.md)
 - [Put wind on a building](loading/wind.md)
+- [Combine loads for ULS and SLS](loading/combine-loads.md)
 
 ## [🧊 Geometry](geometry/README.md)
 

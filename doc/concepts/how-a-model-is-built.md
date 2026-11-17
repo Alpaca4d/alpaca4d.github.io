@@ -70,7 +70,9 @@ reference pages show it under *Relation to OpenSees*.
 
 **Each piece is reused.** One material goes into many sections, one section onto many elements.
 Because loads and patterns are separate, the same load can appear in several load cases at
-different factors.
+different factors, and [Load Combination](../basics/loads/load-combination.md) adds combinations of
+patterns, each at its factor, to the model: Run Analysis solves each, and the model it hands on
+holds them all.
 
 **Connection is decided once, by geometry.** Nothing before Assemble knows about anything else,
 and two members are joined when, and only when, their geometry meets within the **Tolerance**.

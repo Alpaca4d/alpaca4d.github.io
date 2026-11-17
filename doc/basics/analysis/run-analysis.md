@@ -13,14 +13,14 @@ model with the results attached.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md). |
+| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or from [Load Combination](../loads/load-combination.md) with its combinations. |
 | Settings | `Settings` | Settings | — | From [Analysis Settings](analysis-settings.md). |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | The same model, now carrying results. Feed it to the [Results](../results/README.md) and [Visualisation](../visualisation/README.md) components. `null` if the analysis failed. |
+| AlpacaModel | `AlpacaModel` | Model | The same model, now carrying results. Feed it to the [Results](../results/README.md) and [Visualisation](../visualisation/README.md) components. With load combinations, one model that holds the results of each. `null` if the analysis failed. |
 | log | `log` | Text | Everything OpenSees printed — the console output and any error stream. **Read this first when something goes wrong.** |
 
 {% hint style="info" %}
@@ -29,6 +29,20 @@ with the previous Run Analysis component, which still works. Grasshopper's **Sol
 Components** swaps it for the current one and keeps every wire — each output's wires follow it
 by name, and the **Do not use settings** choice is kept.
 {% endhint %}
+
+## 💡 Load combinations
+
+A model that has [load combinations](../loads/load-combination.md) is solved once per combination:
+an OpenSees run each, with only the patterns the combination names, each times its factor. What
+comes out is **one model that holds every combination's results**. It reads as the first
+combination that solved; [Model View](../visualisation/model-view.md),
+[Linear Buckling](linear-buckling.md) and [Pushover](pushover.md) pick another by its name or its
+place in their **Combination** input, and the [Report](../report/report.md) reads them all.
+
+- Combinations are static: Analysis Settings must say Static.
+- A combination that does not converge has no results, and a warning names it. The others keep
+  theirs. Only when none solves is the output empty.
+- The **log** holds each run's output, one after another, under the combination's name.
 
 ## 💡 Where the files go
 
@@ -39,11 +53,12 @@ file**, a set of files for each run:
 | --- | --- |
 | `AlpacaModel_<id>_<run>.tcl` | The input deck. |
 | `recorder_<id>_<run>.mpco` | The MPCO result database. |
+| `AlpacaModel_<combination>_<id>_<run>.tcl`, `recorder_<combination>_<id>_<run>.mpco` | The same, one each per [load combination](../loads/load-combination.md), named after it: `recorder_ULS_1_…`. |
 
 `<id>` is the first 8 characters of the component's InstanceGuid, so two Run Analysis components
 in one document keep their results apart; `<run>` counts from 0, as a component given a tree of
-models solves once per branch. The names stay the same from one solution to the next, so the
-files are overwritten rather than piling up.
+models solves once per branch. The names stay the same from one solution to the next, so the files are
+overwritten rather than piling up.
 
 A **FileName** that an [MPCO Recorder](../mpco-recorder.md) gives is taken from the Grasshopper
 file's folder instead, with `_<run>` before its extension when the component solves more than
@@ -66,6 +81,8 @@ a transient one for `Transient`. An [MPCO Recorder](../mpco-recorder.md) on the
 | *"This OpenSees does not know the Ten Node Tetrahedron"* | The model has [Ten Node Tetrahedra](../elements/ten-node-tetrahedron.md) and the OpenSees is 3.8.0 or older, whose element is six times too soft. Use an OpenSees built from master since 16 October 2026. |
 | *"Analysis Failed: OpenSees 'analyze' did not converge"* | The deck was valid but the solution did not converge. Loosen the [Test](test.md) tolerance, raise its iteration count, take smaller steps in [Analysis Step](analysis-step.md), or change the algorithm. |
 | *"Warning! Double check the log!"* | OpenSees printed a warning and carried on. The results exist but deserve a look. |
+| *"ULS 3: it did not converge - no results for it"* | One [load combination](../loads/load-combination.md) did not solve; the others did, and the model holds their results. |
+| *"The model has load combinations, which are solved as static analyses"* | Pick Static in [Analysis Settings](analysis-settings.md), or analyse the model Assemble hands on for a time history. |
 
 On any failure the `AlpacaModel` output is `null`, so the downstream result components go
 quiet rather than showing stale numbers.

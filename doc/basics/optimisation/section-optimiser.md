@@ -72,6 +72,9 @@ is static, in one step. Press **Escape** to stop after the iteration under way.
 - The members are not steel: the check, and so the sizing, is steel only.
 - You want to compare a few designs side by side: [Explorer Inputs](explorer-inputs.md) steps
   through them and records each.
+- You need it to size for several [load combinations](../loads/load-combination.md) at once: it does
+  not solve them yet. It sizes under every load pattern at once, at its full size, and warns when the
+  model has combinations. Factor the patterns for the combination to size for.
 
 The [Two-Span Beam](https://alpaca4d.github.io/examples/two-span-beam/) example sizes a curved beam
 over two spans from a list of HEAs, element by element and as one section.

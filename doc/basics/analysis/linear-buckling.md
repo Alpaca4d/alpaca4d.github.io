@@ -20,6 +20,7 @@ Like [Natural Vibration](natural-vibration.md), it needs no
 | AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), with the loads to buckle it under, or an analysed one, from [Run Analysis](run-analysis.md), Section Optimiser or [Natural Vibration](natural-vibration.md). An analysed model is buckled as it was before it was analysed: from Section Optimiser, its last design, with no need to assemble its **Section** output again. Its loads are those it was assembled with; the forces the analysis found are not used. |
 | Buckling Modes | `Buckling Modes` | Integer | `1` | How many of the lowest buckling modes to find. |
 | Divisions | `Divisions` | Integer | `1` | How many elements every beam is split into for the analysis. `1` leaves them whole. See [Divisions](#divisions). |
+| Combination | `Combination` | Text | — | The [load combination](../loads/load-combination.md) to buckle the model under, for a model that has them: its name, `ULS 2`, or its place from 0. A model with combinations needs one named here: left empty, it is an error that lists them. A model without combinations is buckled under all its load patterns together, each at its own Factor, and the load factors multiply their sum; a remark names the patterns when there is more than one. A list of names buckles the model once for each. |
 
 ### Outputs
 

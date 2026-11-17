@@ -23,6 +23,7 @@ Load ──┘        ▲
 | [Mass Point](mass-point.md) | `Mass Point` | Added nodal mass, for dynamic analysis. |
 | [Mass from Loads](mass-from-loads.md) | `Mass from Loads` | The weight of loads as mass, with a factor: finishes, and part of the imposed load. |
 | [Load Pattern](load-pattern.md) | `Load Pattern` | Groups loads and gives them a time series. |
+| [Load Combination](load-combination.md) | `Combination` | Adds load combinations to the model: patterns acting together, each times a factor, 1.35 G + 1.5 Q. Run Analysis solves each, and hands on one model that holds them all. |
 
 ## Notes that apply to all of them
 
