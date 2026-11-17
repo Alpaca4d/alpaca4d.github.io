@@ -225,7 +225,9 @@ rest in with [Mass from Loads](../loads/mass-from-loads.md) before Assemble: put
 dead loads and the imposed load in [Load Patterns](../loads/load-pattern.md) named, say, "Finishes"
 and "Imposed", and name them in two Mass from Loads, "Finishes" at Factor 1 and "Imposed" at 0.1.
 The [footfall stair examples](https://alpaca4d.github.io/examples/footfall-stair/) do just that. A [Gravity Load](../loads/gravity.md) does not create
-mass, and neither do the load patterns: Natural Vibration solves the modes without them.
+mass, and neither do the load patterns or the [load combinations](../loads/load-combination.md):
+Natural Vibration solves the modes without them. Without Mass from Loads or Mass Points, Footfall
+says in a remark that the modes come from the self-weight alone.
 
 **Give it the stiffness the floor has in use.** P354 uses a dynamic modulus of 38 kN/mm² for
 normal-weight concrete and 22 kN/mm² for lightweight, and treats composite beams as fully
