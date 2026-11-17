@@ -1,7 +1,7 @@
 # Report Text
 
-Text for the report: the title, a heading, a paragraph or a note. Headings are numbered by the report
-as they come: 1, 1.1, 1.1.1.
+Text for the report: the title, a heading, a paragraph, a note, or the table of contents. Headings
+are numbered by the report as they come: 1, 1.1, 1.1.1.
 
 ## 🔧 Grasshopper component
 
@@ -19,12 +19,13 @@ The **Style** menu sets how the text is set:
 | `Sub-subheading` | A part of the section: 1.2.1, 1.2.2. |
 | `Paragraph` | Running text: each text a paragraph of its own. |
 | `Note` | Small grey type. |
+| `Contents` | The table of contents: each heading and subheading with its number and the page it starts on, under the text as its title, `Contents` when there is none. Put it after the title, before a [page break](report-page-break.md). In a Word report it is Word's own table of contents, which Word fills in as it opens the file. |
 
 ### Inputs
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| Text | `Text` | Text (list) | — | The text: a paragraph each, or for a **Title** the title and then the subtitle. |
+| Text | `Text` | Text (list) | — | The text: a paragraph each, or for a **Title** the title and then the subtitle. For **Contents**, its title: `Contents` when left empty. |
 
 ### Outputs
 

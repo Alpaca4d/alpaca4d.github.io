@@ -169,6 +169,7 @@
   * [Report Page](basics/report/report-page.md)
   * [Report Title Block](basics/report/report-title-block.md)
   * [Report Text](basics/report/report-text.md)
+  * [Report Revisions](basics/report/report-revisions.md)
   * [Report Table](basics/report/report-table.md)
   * [Report Image](basics/report/report-image.md)
   * [Report Page Break](basics/report/report-page-break.md)

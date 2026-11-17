@@ -1,9 +1,10 @@
 # Report
 
-Writes a PDF report: its page from [Report Page](report-page.md), and what goes in it, in order —
-the parts [Report Text](report-text.md), [Report Table](report-table.md),
-[Report Result Table](report-result-table.md), [Report View](report-view.md) and
-[Report Page Break](report-page-break.md) hand out, or a template written in JSON. The pictures are
+Writes a report as a PDF, or as a Word document: its page from [Report Page](report-page.md), and
+what goes in it, in order — the parts [Report Text](report-text.md), [Report Table](report-table.md),
+[Report Result Table](report-result-table.md), [Report View](report-view.md),
+[Report Revisions](report-revisions.md) and [Report Page Break](report-page-break.md) hand out, or a
+template written in JSON. The pictures are
 drawn by [Model View](../visualisation/model-view.md) without a Model View on the canvas.
 
 ## 🔧 Grasshopper component
@@ -19,14 +20,14 @@ drawn by [Model View](../visualisation/model-view.md) without a Model View on th
 | AlpacaModel | `AlpacaModel` | Generic (list) | *(empty)* | The models the report is of: from [Assemble](../assemble.md), [Run Analysis](../analysis/run-analysis.md), [Natural Vibration](../analysis/natural-vibration.md), [Linear Buckling](../analysis/linear-buckling.md), [Pushover Analysis](../analysis/pushover.md) and [Footfall Analysis](../analysis/footfall.md). [Report View](report-view.md) and [Report Result Table](report-result-table.md) hold none: each is drawn or made of the model here of its topic — the model as built, the static analysis, the natural vibration, the stability, the pushover, the footfall. A template written in JSON names them so too — `model`, `static`, `vibration`, `buckling`, `pushover`, `footfall` — or by their place here, from 0. |
 | Page | `Page` | Generic | *A4* | The paper, the margins and the title block, from [Report Page](report-page.md). Left empty, A4 with a plain header and footer. |
 | Content | `Content` | Generic (list) | *(empty)* | What goes in the report, in order: the outputs of the report components — wire them through a **Merge** to keep their order — or a template in JSON, or the path of a `.json` file, from the Grasshopper file's folder unless it is a full one. A panel's lines are joined into one text. Flattened. Left empty, a report of each model given to **AlpacaModel**. |
-| File | `File` | Text | *(beside the .gh)* | Where to write the PDF. Left empty, beside the Grasshopper file, named after it: `<file> report.pdf`. A folder, in it. The pictures go in a folder beside the PDF. |
+| File | `File` | Text | *(beside the .gh)* | Where to write the report: a `.pdf`, or a `.docx` for [Word](#word). Left empty, a PDF beside the Grasshopper file, named after it: `<file> report.pdf`. A folder, in it. The pictures go in a folder beside the report. |
 | Run | `Run` | Boolean | `False` | True writes the report. Wire a **Toggle**, which writes it again whenever the models change, or a **Button**. Then click **Open report** to read it. |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| File | `File` | Text | The PDF written. **Open report** opens it. |
+| File | `File` | Text | The PDF or Word document written. **Open report** opens it. |
 | Log | `Log` | Text (list) | What could not be made, and why. It is marked in the report too, where it would have gone. |
 | Template | `Template` | Text | The report as a template in JSON: to read what goes in it, or to copy and change. |
 
@@ -41,10 +42,23 @@ models are wired into **AlpacaModel**.
 
 | Template | What it puts on the canvas |
 | --- | --- |
-| **For the models given** | Title page, the model, then a chapter for each analysis wired into **AlpacaModel** — the static one with the forces of the elements the model has — and conclusions. Offered once the models are wired. |
-| **Static** | Title page, the model, the displacement and the reactions, the member forces, conclusions. |
+| **For the models given** | Title page, the model, the loads, then a chapter for each analysis wired into **AlpacaModel** — the static one with the forces of the elements the model has, and the steel check when it has steel beams — conclusions, and what the calculation was made with. Offered once the models are wired. |
+| **Static** | Title page, the model, the loads, the displacement and the reactions, the member forces, conclusions, and what it was made with. |
 | **Static and dynamic** | As Static, with natural vibration and stability before the conclusions. |
-| A chapter | One at a time: Title page, The model, Static analysis, Member forces, Shell forces, Solid stresses, Natural vibration, Stability, Footfall, Pushover, Conclusions. Member forces, Shell forces and Solid stresses are sections of Static analysis. The model ticks the table of beam sections only when the models given have beams. |
+| A chapter | One at a time: Title page, The model, Loads, Static analysis, Member forces, Shell forces, Solid stresses, Design checks, Natural vibration, Stability, Footfall, Pushover, Conclusions, About this calculation. Member forces, Shell forces, Solid stresses and Design checks are sections of Static analysis. |
+
+The chapters:
+
+- **Title page**: the title and subtitle, what the report is for, the [revisions](report-revisions.md)
+  with the first issue filled in, then the table of contents on a page of its own.
+- **The model** ticks the table of beam sections only when the models given have beams.
+- **Loads**: the table of [load patterns](../loads/load-pattern.md), each with the force it adds up
+  to, and the table of [load combinations](../loads/load-combination.md) when combinations are given.
+- **Static analysis** starts with the results of each combination when there are more than one.
+- **Design checks**: the steel members checked to EN 1993-1-1 over the ultimate combinations, each
+  section's worst member with its governing check. See [the steel check](report-result-table.md#the-steel-check).
+- **About this calculation**: the Alpaca4d and OpenSees versions, the units, when it was written, and
+  each model with how OpenSees solved it.
 
 What is wired into **Content** already keeps its place: the template comes after it — into the last
 input of the Merge that feeds **Content**, when one does. On the canvas it goes left of the Report, or
@@ -58,9 +72,32 @@ goes, or leave a chapter out by taking its wire off.
 
 ### Open report
 
-The lower bar under the component, drawn as a menu's header is: click it to open the PDF in the program your
-computer opens PDFs with. It is faded until there is a report to open — the one just written, or one
+The lower bar under the component, drawn as a menu's header is: click it to open the report in the program your
+computer opens PDFs, or Word documents, with. It is faded until there is a report to open — the one just written, or one
 written before where **File** points — and the pointer resting on it shows where the PDF is.
+
+### Word
+
+With **File** ending in `.docx`, the Report writes a Word document instead of a PDF: the same
+content, to paste into a report of your own or change.
+
+- The headings are in Word's own Heading styles, numbered as the report numbers them, so Word's
+  navigation pane and table of contents find them.
+- The tables are Word tables, with the header row repeated on each page.
+- The pictures are the ones drawn for the PDF, with their colour scales and captions.
+- The header and footer are plain: the title, the date and the page number. A
+  [title block](report-title-block.md) is drawn on the PDF's pages only.
+- A table of contents is Word's own field. Word asks to update the fields as it opens the file:
+  say yes, and it fills in the page numbers.
+
+Word lays out the pages itself, so the Report says how many pictures it wrote, not how many pages.
+
+### A picture of results the model does not have
+
+A picture of shell forces on a frame, or of beam forces on a solid, has nothing to draw. The Report
+leaves such a picture out, with its table, and says so in **Log**. A picture that draws other
+results besides draws those alone. A template's chapter on shell forces or solid stresses can stay
+in a template used for all kinds of models.
 
 ## 📈 When to use it
 
@@ -147,7 +184,7 @@ This writes the table of natural frequencies, and under it the first six mode sh
 | `{ "heading": "..." }` | A chapter heading. `{ "subheading": "..." }` for a section in it, `{ "subsubheading": "..." }` for a part of that, or `"level": 2` or `3`. Numbered as they come — 1, 1.1, 1.1.1 — unless it says `"numbered": false`. |
 | `{ "text": "..." }` | A paragraph. A list of texts makes a paragraph of each. Placeholders are filled in. |
 | `{ "note": "..." }` | A note in small grey type. |
-| `{ "table": { "caption": "...", "header": [...], "units": [...], "rows": [[...], ...] } }` | A table of your own: a unit is written after its header in brackets, and a column of numbers is lined up on the right unless `"align"` says otherwise. |
+| `{ "table": { "caption": "...", "header": [...], "units": [...], "rows": [[...], ...] } }` | A table of your own: a unit is written after its header in brackets, and a column of numbers is lined up on the right unless `"align"` says otherwise. `"numbered": false` leaves it out of the tables' count and sets it under its caption alone, as the [revisions](report-revisions.md) are. |
 | `{ "table": "vibration.modes" }` | A table from the list below. `"caption"` and `"note"` replace its own; `"modes"` picks the modes of a table of modes; `"of"` picks the model; `"columns"` lists what it shows, out of what [Report Result Table](report-result-table.md)'s **Columns** menu offers — everything when it is left out; `"by"` sorts `footfall.response` by one of the quantities `quantity` names below, that column first. |
 | `{ "figure": { ... } }` | A picture of a model, drawn by Model View with the settings below. |
 | `{ "figures": [ { ... }, { ... } ], "columns": 2 }` | Pictures side by side. |
@@ -156,6 +193,7 @@ This writes the table of natural frequencies, and under it the first six mode sh
 | `{ "repeat": "mode", "of": "vibration", "modes": "all", "columns": 2, "content": [ ... ] }` | Its content once for each mode of the model `of` names, `{mode}` the mode it is on. `modes` is `all`, a range `1-4`, a list `1,3,5` or `[1, 3, 5]`, or a number n for the first n. With `columns`, the pictures it makes go that many to a row. |
 | `{ "group": [ ... ] }` | The entries in it, in their order: what [Report View](report-view.md) hands on for a picture with its tables. |
 | `{ "pagebreak": true }` | What follows starts on a new page. |
+| `{ "contents": "Contents", "depth": 2 }` | The table of contents: the headings down to `depth` (1 the chapters, 2 their sections too, 3 every heading), each with its number and page, under its title. `"contents": true` titles it Contents. |
 
 ### Figure settings
 
@@ -183,7 +221,7 @@ out are as a new Model View has them.
 | `extremes` | Off to start with; on in what Report View hands out. `true` writes the largest and the smallest value of each result where they are, with a dot: `max 26.59`, `min -28.67`. |
 | `nodeIds`, `elementIds`, `sectionNames`, `localAxes` | Off to start with. |
 | `textSize`, `loadScale`, `supportScale`, `diagramScale`, `arrowScale`, `axesSize`, `releaseSize`, `hingeSize` | Model View's sliders. |
-| `layer`, `axes`, `reactionStyle` | Model View's menus for shell stresses, brick stresses and reactions. |
+| `layer`, `axes`, `reactionShape`, `reactionStyle` | Model View's menus for shell stresses, brick stresses and reactions: `reactionShape` is `Dots`, to start with, or `Arrows`, and `reactionStyle` what the arrows show. |
 | `elements` | Only these elements, the rest greyed: what Model View's **ElementId** takes. |
 | `colours`, `range` | The gradient, as `#RRGGBB` colours from the low end to the high, and the `[min, max]` it spans. |
 | `loadPattern` | Only this load pattern's loads: its name as text (`"Dead"`) or its Id as a number (`2`). |
@@ -212,8 +250,18 @@ does not go unnoticed.
 | `vibration.massRatios` | Each mode's participating mass along X, Y and Z, as a percentage, and the running total. |
 | `buckling.factors` | Each buckling mode's load factor. |
 | `footfall.response` | The nodes that respond most to footfall, worst first: their response factor R, its steady-state and transient parts, their accelerations and the pace that gives R. |
+| `loads.patterns` | Each load pattern: its factor, its loads, and the force they add up to along X, Y and Z, with the total. |
+| `loads.combinations` | Each [load combination](../loads/load-combination.md) of the models given: its type, and its patterns with their factors. |
+| `static.combinations` | Each combination analysed, or each static model given: its largest displacement and node, and the sum of its reactions. |
+| `design.utilisation` | The steel members checked to EN 1993-1-1 over the ultimate combinations: each section's worst member. `"gammaM0"`, `"gammaM1"` and `"fabrication"` set the check. |
+| `design.members` | The same, every steel member, worst first. |
+| `report.about` | The Alpaca4d and OpenSees versions, the units, how many models, when it was written. |
+| `report.analyses` | Each model given and how OpenSees solved it. |
 
-The static tables read the last step the analysis recorded.
+The static tables read the last step the analysis recorded. The tables of combinations, steel checks
+and the calculation read all the models given at once, so `"of"` does not apply to them. A model
+from Run Analysis that holds [load combinations](../loads/load-combination.md) counts as the
+results of each: give the Report that one model, and every table finds the combinations in it.
 
 ### Placeholders
 

@@ -1,6 +1,6 @@
 # 📄 Report
 
-The report component writes a PDF of your model and what the analyses found: tables, text and
+The report component writes a PDF, or a Word document, of your model and what the analyses found: tables, text and
 pictures of the model and its results, one after the other, as a template lists them. The same
 template writes the same report for another model, or for this one after a change.
 
@@ -11,14 +11,15 @@ content Alpaca4d makes of the models.
 
 | Group | Component | Nickname | Gives the report |
 | --- | --- | --- | --- |
-| The report | [Report](report.md) | `Report` | Writes the PDF: the page, then the content in order, the pictures drawn by Model View without a Model View on the canvas. It also takes a template written in JSON, and puts ready-made reports on the canvas as components from its **Templates** bar. |
+| The report | [Report](report.md) | `Report` | Writes the PDF, or the Word document: the page, then the content in order, the pictures drawn by Model View without a Model View on the canvas. It also takes a template written in JSON, and puts ready-made reports on the canvas as components from its **Templates** bar. |
 | | [Report Page](report-page.md) | `ReportPage` | The paper — A4 to A0, Letter, Legal or your own — which way round, the margins and the title block. |
 | | [Report Title Block](report-title-block.md) | `TitleBlock` | Your title block, drawn on every page: lines, filled areas, texts with the page number, a logo. |
-| Your content | [Report Text](report-text.md) | `ReportText` | The title, a heading, a paragraph or a note, with numbers of the models filled in. |
+| Your content | [Report Text](report-text.md) | `ReportText` | The title, a heading, a paragraph, a note, or the table of contents, with numbers of the models filled in. |
+| | [Report Revisions](report-revisions.md) | `Revisions` | The report's revisions: each issue's letter, date, what changed, and who wrote, checked and approved it. |
 | | [Report Table](report-table.md) | `ReportTable` | A table of your own: a caption, a header and a unit per column, and the values, a column per input. |
 | | [Report Image](report-image.md) | `ReportImage` | A picture from a file or a bitmap: a photo, a drawing, a scan. |
 | | [Report Page Break](report-page-break.md) | `PageBreak` | A new page. |
-| From the models | [Report Result Table](report-result-table.md) | `ResultTable` | A table Alpaca4d makes of a model: its sections and supports, the displacements, the reactions, the frequencies, the buckling factors, the footfall response. |
+| From the models | [Report Result Table](report-result-table.md) | `ResultTable` | A table Alpaca4d makes of a model: its sections and supports, the loads and combinations, the displacements, the reactions, the steel check, the frequencies, the buckling factors, the footfall response, and what the calculation was made with. |
 | | [Report View](report-view.md) | `ReportView` | A picture, by topic — the model, a static analysis, natural vibration, stability, a pushover, footfall — each with what it needs: how many modes, which result, the colours, the view — and the tables of what it draws, after it or before it. |
 
 ## A report in Grasshopper
