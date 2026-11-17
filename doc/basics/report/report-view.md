@@ -60,8 +60,8 @@ with it:
   you tick;
 - **Unit**, for each kind of quantity drawn: a force unit and a moment unit for N beside My;
 - what the result alone has: the **Diagram scale** of beam forces, the **Layer through the thickness**
-  of shell stresses, the axes brick stresses are **Read in**, how reactions are **Drawn as** and their
-  **Arrow scale**;
+  of shell stresses, the axes brick stresses are **Read in**, how reactions are **Drawn as** - dots,
+  to start with, or arrows, and what the arrows show - and the **Dot and arrow scale**;
 - **Table**.
 
 **One picture for each component ticked**, in the menu's order: N and Mz of the beam forces and the

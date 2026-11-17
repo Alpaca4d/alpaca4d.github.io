@@ -30,7 +30,7 @@ over either, so a model and its results are checked from one component.
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | The model, passed through so the component can sit inline. |
-| Geometry | `Geometry` | Geometry (list) | What is drawn, as geometry: the elements and the results on them as coloured meshes, beams drawn as lines as lines, and force diagrams and reaction arrows. See [A copy beside the model](#a-copy-beside-the-model). |
+| Geometry | `Geometry` | Geometry (list) | What is drawn, as geometry: the elements and the results on them as coloured meshes, beams drawn as lines as lines, force diagrams, and reaction dots, as balls, or arrows. See [A copy beside the model](#a-copy-beside-the-model). |
 | Info | `Info` | Text (list) | What is drawn, a line per result, with the unit it is in and the range it spans — `Displacement - Uz [mm], step 0, min -12.3, max 0` — or `Model - coloured by Section` with no result ticked. |
 | Values | `Values` | Number (tree) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked for the result. A branch per result ticked, in the order of the **Results** menu, *Beam forces* left out. With **Iso-surfaces** on, the edges of the bands instead, one more than there are colours. Feed it to the **Values** input of [Legend](legend.md). Empty with no result. |
 | Colors | `Colors` | Colour (tree) | The gradient used, a branch for each branch of **Values**. Feed it to the **Colors** input of Legend, so the legends and the model agree. |
@@ -53,11 +53,12 @@ under each result, its own controls, while it is ticked.
 | Diagram scale | `1`, from 0 to 20 | Stretches the beam force diagrams. | Under *Beam forces* |
 | Layer through the thickness | Top | Top, Middle or Bottom. | Under *Shell stresses* |
 | Read in which axes | Global | Global, or Local — the element's own axes, from its node numbering. | Under *Brick stresses* |
-| Reactions drawn as | Selected component | Selected component, Resultant or All three. | Under *Reactions* |
-| Arrow scale | `1`, from 0 to 20 | Stretches the reaction arrows. At 1, the largest arrow stands as far off the model as the largest diagram. | Under *Reactions* |
+| Reactions drawn as | Dots | **Dots**, as GSA draws them: a dot at each support, coloured by the legend and as big as its reaction - its area grows with the reaction, so twice the reaction looks twice as big - drawn over everything else. Or **Arrows** from each support. See [Reactions as dots](#reactions-as-dots). | Under *Reactions* |
+| Arrows show | Selected component | Selected component, Resultant or All three. | Under *Reactions*, drawn as Arrows |
+| Dot and arrow scale | `1`, from 0 to 20 | Sizes the reaction dots or stretches the arrows. At 1, the largest arrow stands as far off the model as the largest diagram, and the largest dot is 0.6 of that across. | Under *Reactions* |
 | Iso-surfaces | off | Colours in bands — one flat colour per range of values — instead of a smooth gradient. See [Iso-surfaces](#iso-surfaces). | With any result but *Beam forces* ticked |
-| Show values | off | Writes values on the model, in the unit picked, to four significant figures: each beam's largest, at the tip of its diagram for beam forces; each shell or solid element's at its centre; each reaction at its arrow. | With any result ticked |
-| Max and min | off | A dot where each result is largest and where it is smallest, with `max` and `min` and the value written over it, in the unit picked: on the model, at the tip of a beam force diagram, at the head of a reaction arrow. The numbers the legend's gradient only spans, read off the whole of what is drawn - every station of every beam, every corner of every face - not only each element's largest. | With any result ticked |
+| Show values | off | Writes values on the model, in the unit picked, to four significant figures: each beam's largest, at the tip of its diagram for beam forces; each shell or solid element's at its centre; each reaction over its dot, or at its arrow. | With any result ticked |
+| Max and min | off | A dot where each result is largest and where it is smallest, with `max` and `min` and the value written over it, in the unit picked: on the model, at the tip of a beam force diagram, over a reaction dot or at the head of its arrow. The numbers the legend's gradient only spans, read off the whole of what is drawn - every station of every beam, every corner of every face - not only each element's largest. | With any result ticked |
 | Plastic hinges | off | On beams with a [Fiber Section](../moment-curvature/fiber-section.md): a ball at every integration point that has yielded by the step drawn, coloured by the ductility it has reached - yellow from 1, orange from 2, red from 4, dark red from 8 - and purple where concrete has crushed or a bar reached its ultimate strain; faded once it has unloaded. With any result or none, over the model. See [Plastic hinges](#plastic-hinges). | Always |
 | Hinge size | `1`, from 0.1 to 5 | How big the balls are: at 1, a little under half the section's larger side. | With **Plastic hinges** on |
 
@@ -280,7 +281,7 @@ their stress, with the reactions at the supports, from one component.
   show their stress, the beams how far they moved. An element no result ticked has a value for is
   drawn plain grey.
 - *Shell forces* and *Shell stresses* both colour the shells, so ticking one unticks the other.
-- *Beam forces* and *Reactions* colour no element: their diagrams and arrows are drawn over
+- *Beam forces* and *Reactions* colour no element: their diagrams, dots and arrows are drawn over
   whatever does.
 - Each result has a gradient of its own, fitted to the elements it colours, in its own unit.
 - **Info** has a line per result, in the order of the menu, and one per force ticked under *Beam forces*.
@@ -365,6 +366,22 @@ Step through a pushover's **Step** output to watch them form and grow, and read 
 the order they did and its **Ductility** for how far each went. The whole analysis is read once, when
 the model comes in, so stepping through it is quick.
 
+### Reactions as dots
+
+Ticked, *Reactions* draws a dot at each support, as GSA does: coloured by the legend, and as big as
+the reaction. The value is the component picked under *Reactions*: Force and Moment are the size of
+the resultant; Fx, Fy, Fz and the moments about each axis keep their sign, so an uplift shows in its
+own colour at the other end of the legend.
+
+- **The dot's area grows with the reaction**, not its radius: a reaction twice another covers twice
+  as much, as the eye reads a dot. The smallest is kept a tenth of the largest across, so that a
+  support carrying next to nothing still shows where it is.
+- **Drawn over everything**, the ghost of the model included, so a beam in front does not wash a dot
+  out. **Show values** and **Max and min** write over each dot, whichever way the view turns.
+- **Dot and arrow scale** sizes them: at 1, the largest is 0.6 of an arrow's reach across.
+- **Arrows** are still there, under **Reactions drawn as**: from each support, along the reaction,
+  with **Arrows show** picking the component, the resultant or all three.
+
 ### Iso-surfaces
 
 With **Iso-surfaces** ticked, the range is cut into as many equal bands as there are colours in
@@ -379,7 +396,7 @@ glance.
 - **Range** sets the bands as it sets the gradient: give it `0 to 10` with ten colours and each
   band is one unit wide.
 - Anything below the range is in the first band, and anything above it in the last.
-- Shells, solids, beams — lines or extruded — and reaction arrows are all banded. *Beam forces*
+- Shells, solids, beams — lines or extruded — and reaction dots and arrows are all banded. *Beam forces*
   is not: its diagrams take the colour of the force, not the gradient.
 - **Element edges** still draws the elements' own edges, not the cuts between bands.
 
