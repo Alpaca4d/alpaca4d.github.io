@@ -11,14 +11,15 @@ tags: ["Topology"]
 [multi-material-bridge](multi-material-bridge.gh)
 
 Where a bridge needs its steel, and where concrete will do, found by
-[Multi-Material Topology](../../docs/basics/optimisation/multi-material-topology.md) in a block of bricks.
+[Topology Optimisation](../../docs/basics/optimisation/topology-optimisation.md) on its
+[Multi-Material](../../docs/basics/optimisation/multi-material-topology.md) method in a block of bricks.
 It is the block of the [Topology Bridge](../topology-bridge/topology-bridge.md): 16 m long, 2 m wide
 and 4 m high, pinned along both ends of its bottom, its top layer a steel deck kept solid under
 10 kN/m². Brick by brick, the optimisation chooses between steel (E = 210 GPa) and concrete
 (E = 33 GPa), with at most 5% of the block below the deck in steel and 15% in concrete.
 
 ::: info
-Without a license, Multi-Material Topology runs on models of up to 500 elements. At 3 bricks per
+Without a license, Topology Optimisation runs on models of up to 500 elements. At 3 bricks per
 metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it runs without.
 :::
 
@@ -31,8 +32,8 @@ metre this one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it 
 | 3 - Steel and concrete, and the bricks | Two [nD](../../docs/basics/materials/ND.md) materials: steel, E = 210 GPa and ν = 0.3, and concrete C30/37, E = 33 GPa and ν = 0.2. The bricks, named **Domain** and **Deck** through their ElementId, are modelled in steel. |
 | 4 - Pinned ends, and the deck load | The nodes along the bottom of both ends, held in X, Y and Z by a [Support](../../docs/basics/elements/support.md). The deck load, 10 kN/m² over 32 m², shared among the nodes of the deck's top as [Point Loads](../../docs/basics/loads/point-load.md), in a [Load Pattern](../../docs/basics/loads/load-pattern.md). |
 | 5 - Assemble Model | [Assemble](../../docs/basics/assemble.md). [Model View](../../docs/basics/visualisation/model-view.md) is disabled: enable it to see the domain, the supports and the loads. |
-| 6 - Multi-Material Topology | **Keep** names the Deck. **Materials** are the steel and the concrete; **VolumeFractions** are the **Steel share**, 0.05, and the **Concrete share**, 0.15. **Iterations** 300, **Run**, and **Step** to look back over the run. Panels show the compliance, whether the run converged, and its history. The component draws each material in its colour: steel blue, concrete orange. |
-| 7 - The design, analysed | [Run Analysis](../../docs/basics/analysis/run-analysis.md) on **AlpacaModel**, the design as a model of its own with each brick of its material, and View Results colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
+| 6 - Topology Optimisation, Multi-Material | Topology Optimisation with its method set to Multi-Material. **Keep** names the Deck. **Materials** are the steel and the concrete; **VolumeFractions** are the **Steel share**, 0.05, and the **Concrete share**, 0.15. **Iterations** 300, **Run**, and **Step** to look back over the run. Panels show the compliance, whether the run converged, and its history. The component draws each material in its colour: steel blue, concrete orange. |
+| 7 - The design, analysed | [Run Analysis](../../docs/basics/analysis/run-analysis.md) on **AlpacaModel**, the design as a model of its own with each brick of its material, and a Model View colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
 
 ## Running it
 

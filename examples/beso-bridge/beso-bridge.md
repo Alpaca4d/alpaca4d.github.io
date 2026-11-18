@@ -11,14 +11,15 @@ tags: ["Topology"]
 [beso-bridge](beso-bridge.gh)
 
 The bridge of the [Topology Bridge](../topology-bridge/topology-bridge.md), carved out of its block
-by [BESO Topology](../../docs/basics/optimisation/beso-topology.md). The block is steel, 16 m long, 2 m
+by [Topology Optimisation](../../docs/basics/optimisation/topology-optimisation.md) on its
+[BESO](../../docs/basics/optimisation/beso-topology.md) method. The block is steel, 16 m long, 2 m
 wide and 4 m high, pinned along both ends of its bottom, its top layer a deck kept solid under
 10 kN/m². BESO starts from the whole block and takes 2% of what is left away each iteration -
 the bricks that work least go, and some come back - until a fifth of the block below the deck is
 left. Every brick is solid or void all along, so every iteration is a design of its own.
 
 ::: info
-Without a license, BESO Topology runs on models of up to 500 elements. At 3 bricks per metre this
+Without a license, Topology Optimisation runs on models of up to 500 elements. At 3 bricks per metre this
 one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it runs without.
 :::
 
@@ -31,8 +32,8 @@ one has 3 456, so it needs one; at 1 brick per metre, 128 bricks, it runs withou
 | 3 - Steel, and the bricks | An [nD](../../docs/basics/materials/ND.md) material, steel with E = 210 GPa and ν = 0.3. Two sets of [SSP Bricks](../../docs/basics/elements/brick.md), named **Domain** and **Deck** through their ElementId. |
 | 4 - Pinned ends, and the deck load | The nodes along the bottom of both ends, held in X, Y and Z by a [Support](../../docs/basics/elements/support.md). The deck load, 10 kN/m² over 32 m², shared among the nodes of the deck's top as [Point Loads](../../docs/basics/loads/point-load.md), in a [Load Pattern](../../docs/basics/loads/load-pattern.md). |
 | 5 - Assemble Model | [Assemble](../../docs/basics/assemble.md). [Model View](../../docs/basics/visualisation/model-view.md) is disabled: enable it to see the domain, the supports and the loads. |
-| 6 - BESO Topology | **Keep** names the Deck. **VolumeFraction** 0.2, **Iterations** 200, **Run**, and **Step** to go through the designs. Panels show the compliance, the volume of each iteration, whether the run converged, and its history. |
-| 7 - The design, analysed | [Run Analysis](../../docs/basics/analysis/run-analysis.md) on **AlpacaModel**, the design shown as a model of its own, and View Results colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
+| 6 - Topology Optimisation, BESO | Topology Optimisation with its method set to BESO. **Keep** names the Deck. **VolumeFraction** 0.2, **Iterations** 200, **Run**, and **Step** to go through the designs. Panels show the compliance, the volume of each iteration, whether the run converged, and its history. |
+| 7 - The design, analysed | [Run Analysis](../../docs/basics/analysis/run-analysis.md) on **AlpacaModel**, the design shown as a model of its own, and a Model View colouring it by Von Mises stress, with a Legend. Run Analysis and Legend are disabled: enable them once the run has stopped. |
 
 ## Running it
 
