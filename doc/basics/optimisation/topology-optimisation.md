@@ -326,6 +326,10 @@ The [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
 members meet in space - nine members of a space truss, a column and four beams - with all three
 topology optimisations side by side.
 
+The [Cantilever, Penalty 1 to 5](https://alpaca4d.github.io/examples/cantilever-penalties/) and the
+[L-Bracket](https://alpaca4d.github.io/examples/l-bracket/) examples run two classic problems of the
+papers the three ways, the cantilever by SIMP at every penalty from 1 to 5 as papers compare them.
+
 ## 📚 References
 
 - M. P. Bendsøe (1989). Optimal shape design as a material distribution problem. *Structural

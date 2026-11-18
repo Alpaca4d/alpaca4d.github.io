@@ -33,6 +33,9 @@ Examples to start from:
 - the [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
   [Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/), nodes where members meet
   in space, each found by all three topology optimisations side by side;
+- the [Cantilever, Penalty 1 to 5](https://alpaca4d.github.io/examples/cantilever-penalties/) and the
+  [L-Bracket](https://alpaca4d.github.io/examples/l-bracket/), two classic problems of the papers, each
+  run the three ways;
 - the [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/), two problems
   checked against top3d.
 
