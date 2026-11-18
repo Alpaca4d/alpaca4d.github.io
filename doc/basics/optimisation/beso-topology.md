@@ -61,7 +61,7 @@ There is no Threshold: every element is 1 or 0.001, so any threshold between fin
 | Solid | The solids kept that make the design, as new copies of the model's: without pieces nothing holds, and with the elements that join a member's steps, as in [Topology Optimisation](topology-optimisation.md#analysing-the-design). |
 | Density | Each solid's density, in the order of Element: 1 solid, MinStiffness^(1/Penalty) - 0.001 - void. |
 | Element | The solids. |
-| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. It rises as the volume comes down, then settles. |
+| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. It rises as the volume comes down, then settles. With [load combinations](topology-optimisation.md#load-combinations), the sum of theirs. |
 | Volume | Each iteration's share of the designed solids' volume: from 1 down to VolumeFraction. |
 | Converged | `true` when the run ended at VolumeFraction with the compliance settled within Tolerance. |
 | Step | The iteration whose design the outputs show. |

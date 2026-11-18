@@ -100,6 +100,10 @@ pattern's own.
   input: the name of the one to buckle under, or to hold before the push, `ULS 1` or `Seismic`, say.
   A model with combinations needs it: left empty, they stop with an error listing the names. None
   is picked for you.
+- **The topology optimisations take every combination.** Topology Optimisation, BESO Topology and
+  Multi-Material Topology solve each design for each combination and make the sum of the
+  compliances least. Multi-Material Topology can make the worst one least instead. See
+  [Load combinations](../optimisation/topology-optimisation.md#load-combinations).
 - **Section Optimiser does not use them yet.** It sizes the members under every pattern at once,
   and warns when the model has combinations.
 

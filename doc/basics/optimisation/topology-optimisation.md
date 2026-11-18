@@ -68,7 +68,7 @@ In the **Settings** menu:
 | Solid | The solids that make the design, as new copies of the model's: those at or above Threshold, without pieces nothing holds, and with the elements that join a member's steps. See [Analysing the design](#analysing-the-design). |
 | Density | Each solid's density, 0 to 1, in the order of Element. |
 | Element | The solids. |
-| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. |
+| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. With [load combinations](#load-combinations), the sum of theirs. |
 | Volume | Each iteration's share of the designed solids' volume. |
 | Converged | `true` when the run ended because the densities stopped moving. |
 | Step | The iteration whose design Surface, Solid, Density and AlpacaModel show. |
@@ -90,6 +90,30 @@ and gives a surface per material.
 | A run | One design for VolumeFraction; the quickest on small models | From the whole block down to VolumeFraction: Step shows the design of every volume on the way; about 100 iterations, the quickest on large models | About 260 iterations, each a quarter longer: four to seven times as long as the quicker of the other two |
 
 [How long it takes](#how-long-it-takes) compares them.
+
+### Load combinations
+
+A model with no combinations is optimised for all its load patterns at once, as Run Analysis
+solves it. Give it combinations with [Load Combination](../loads/load-combination.md), between
+Assemble and the optimisation, and it is optimised for each of them: every iteration solves the
+design once per combination, with only the patterns it names, each scaled by its factor, and
+**Compliance** is the sum of theirs. All three components do this.
+
+This matters when loads can act one way or the other. A `Wind +X` and a `Wind -X` in one model
+cancel, so a design for all patterns at once has no wind in it. With `1.35 G + 1.5 W+` and
+`1.35 G + 1.5 W-` as two combinations, the design carries both. The sum is what the 99 and 88 line
+codes do with several load cases. [Two load cases](#two-load-cases) below shows the difference.
+
+- **One combination** is optimised for its patterns times their factors. One combination of a
+  single pattern, at factor 1, gives the same run as the pattern on its own, to the last digit.
+- **A pattern in no combination is left out**, as Run Analysis leaves it out. The component says
+  which.
+- **Multi-Material Topology can take the worst case instead:** right-click it, then **Load
+  combinations ▸ Worst case**. It then makes the largest of the compliances least, not their sum.
+  See [Multi-Material Topology](multi-material-topology.md#load-combinations).
+- **A run takes one analysis per combination** in each iteration, so three combinations take
+  about three times as long.
+- **AlpacaModel keeps the combinations**, so Run Analysis solves the design for the same ones.
 
 ## ▶️ Running it
 
@@ -258,6 +282,30 @@ follow each other: the simply supported beam to 2e-8 all the way, and the cantil
 design. The checks and the reference are in `Alpaca4d.Test/TopologyOptimisation` in the Alpaca4d
 repository.
 
+### Two load cases
+
+The 88 line code's example of several load cases (Andreassen et al. 2011, section 5.2), in three
+dimensions: a square 30 x 30 bricks, 2 deep, clamped along its left side. One load pulls the top
+corner of the free end up, the other pulls the bottom corner down, each of 1 at every node of its
+edge. The paper runs it on a square of 150 with a sensitivity filter; here it uses top3d's density
+filter of 1.5 elements and 40% of the volume. The reference is top3d in numpy with the paper's
+change made to it: a load vector per case, and the compliance and its sensitivity summed over them.
+
+<figure><img src="../../.gitbook/assets/topology-optimisation/two-loads.png" alt="Three designs of a square clamped on its left side and pulled up at the top right corner and down at the bottom right: with two load cases, SIMP and BESO run diagonals from both corners to the clamped side; with both loads in one case, SIMP keeps material only near the loads, not joined to the support"><figcaption><p>The density through the depth. Both loads in one case pull the free end apart and balance each other, so the design never reaches the support.</p></figcaption></figure>
+
+| | SIMP, two cases | SIMP, both in one case | BESO, two cases |
+| --- | --- | --- | --- |
+| Iterations | 59 | 45 | 55 |
+| Compliance at the end, Alpaca4d / reference | 311.000998 / 311.000998 | 82.441012 / 82.441012 | 336.52726 / 336.52726 |
+| Largest gap over the run | 8.5e-13 | 2.9e-14 | 7.9e-13 |
+| Final design | densities 2.4e-11 apart at most | densities 1.5e-11 apart at most | the same 1 800 elements solid |
+| The design under each load alone | 155.5 and 155.5 | 2.0e10 and 2.0e10 | 168.2 and 168.2 |
+
+The runs follow the references to round-off. The design for both loads at once looks stiffer -
+82 against 311 - but only for the two together: under either load alone it hangs off nothing,
+at a billionth of the stiffness, and is 100 million times softer than the design for two cases.
+The BESO reference is esoL in numpy with the same change, in `Alpaca4d.Test/TopologyMethods`.
+
 To run both in Grasshopper, download the [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/)
 example: each problem has its own **Run** toggle, and panels beside it give the compliance to
 expect after 200 iterations.
@@ -294,6 +342,8 @@ topology optimisations side by side.
 - E. Andreassen, A. Clausen, M. Schevenels, B. S. Lazarov, O. Sigmund (2011). Efficient topology
   optimization in MATLAB using 88 lines of code. *Structural and Multidisciplinary Optimization*
   43:1–16. — the stiffness of a void element, Emin, and the update as coded.
+- K. Svanberg (2007). MMA and GCMMA - two methods for nonlinear optimization. KTH, Stockholm. —
+  the min-max form behind Multi-Material Topology's worst case.
 - K. Liu, A. Tovar (2014). An efficient 3D topology optimization code written in Matlab.
   *Structural and Multidisciplinary Optimization* 50:1175–1196. — top3d, which Topology
   Optimisation follows step for step.

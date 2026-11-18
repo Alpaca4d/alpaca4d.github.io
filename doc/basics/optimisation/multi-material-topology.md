@@ -74,7 +74,7 @@ In the **Settings** menu:
 | Material | Each solid's material as its index in Materials, in the order of Element; `-1` where it is void or left out. |
 | Density | Each solid's density of each material, 0 to 1: a branch per material, in the order of Element. |
 | Element | The solids. |
-| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. |
+| Compliance | The work of the loads, F·u, of each iteration's design: the lower, the stiffer. With [load combinations](#load-combinations), the sum of theirs, or the largest with **Worst case**. |
 | Volume | Each iteration's share of the designed solids' volume filled by each material: a branch per material. |
 | Converged | `true` when the run ended at the sharpest projection with the compliance settled within Tolerance. |
 | Step | The iteration whose design the outputs show. |
@@ -119,6 +119,26 @@ everything.
 Without a license, Multi-Material Topology runs on models of up to 500 elements, counting any
 beams, shells and links with the solids, as Topology Optimisation does, and the design it finds is
 analysed and drawn free up to the same 500. A larger model needs one: see [License](../../references/license.md#without-a-license).
+
+### Load combinations
+
+A model with [load combinations](../loads/load-combination.md) is optimised for each of them, as
+in [Topology Optimisation](topology-optimisation.md#load-combinations): every iteration solves the
+design once per combination. The right-click menu's **Load combinations** says what is made least:
+
+- **Sum of their compliances**, the default: the design stiffest on average over the
+  combinations.
+- **Worst case**: the design whose softest combination is as stiff as it can be. MMA does this in
+  its min-max form (Svanberg 2007): it makes a bound z least, with each combination's compliance a
+  constraint of its own, at most z, beside the volume of each material. **Compliance** is then the
+  largest of the combinations'.
+
+The two differ when the combinations differ. A square clamped on one side, pulled up at the top
+corner of its free end in one combination and down at the bottom corner, twice as hard, in the
+other (16 x 16 bricks, two materials of 20% each, 120 iterations): the sum ends at 249 up and 759
+down, the worst case at 645 and 645. Its softer combination is stiffer, and the two come out
+equal, as a worst case design should. With a single combination, or none, **Worst case** changes
+nothing: the run is the one it always was.
 
 ### How long it takes
 

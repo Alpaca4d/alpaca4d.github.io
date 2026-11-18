@@ -40,6 +40,9 @@ the loads need: the stiffest structure for the share of the volume you allow.
 - Set **Run** to `false` to pause; `true` goes on from there. Changing the model, **Keep**,
   **VolumeFraction** or a setting starts again from the beginning.
 - **FilterRadius**, in the settings, is about the thinnest member the result can have.
+- For loads that can act either way, wind from the left and from the right, add a
+  [Load Combination](../../basics/loads/load-combination.md) for each before the optimisation: it is
+  then optimised for each of them, not for the patterns at once, where they would cancel.
 - Beams, trusses, shells and links in the model are analysed with the solids but take no part,
   and the component warns that they are there.
 - [BESO Topology](../../basics/optimisation/beso-topology.md) carves the block down, every element
