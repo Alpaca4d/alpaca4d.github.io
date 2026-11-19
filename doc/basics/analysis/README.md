@@ -147,7 +147,7 @@ Table 3.2. Examples:
 | **Eigenvalue / modal** | [Natural Vibration](natural-vibration.md) — no settings needed. |
 | **Linear buckling** | [Linear Buckling](linear-buckling.md) — no settings needed. |
 | **Footfall vibration** | [Footfall Analysis](footfall.md) on the modes of [Natural Vibration](natural-vibration.md). |
-| **Linear or non-linear transient** | Analysis Type `Transient`, Integrator `Newmark` or `CentralDifference`, plus [Damping](damping.md) and a [Path](../time-history/path.md) time series. |
+| **Linear or non-linear transient** | Analysis Type `Transient`, Integrator `Newmark` or `CentralDifference`, plus [Damping](damping.md) and a [Path](../time-history/path.md) time series. Example: [Silo: a Dust Explosion and a Tractor's Impact](https://alpaca4d.github.io/examples/silo-explosion-impact/). |
 | **Seismic time history** | As transient, with a [UniformExcitation](../loads/load-pattern.md) pattern. |
 
 ## A first static analysis

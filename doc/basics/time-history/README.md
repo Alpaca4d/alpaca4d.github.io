@@ -33,3 +33,7 @@ real time and the series carries the actual signal.
 
 Every component also outputs a **Graph** — plug it into a Grasshopper *Quick Graph* or a
 chart to see the signal before running anything.
+
+Examples: the earthquakes, such as the [Girder Bridge in an Earthquake](https://alpaca4d.github.io/examples/girder-bridge-earthquake/),
+a recorded ground motion as a Path; and the [Silo: a Dust Explosion and a Tractor's Impact](https://alpaca4d.github.io/examples/silo-explosion-impact/),
+two pulses of load as Paths, each followed by a transient analysis.

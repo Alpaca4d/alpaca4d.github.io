@@ -51,6 +51,10 @@ matches no shell loads nothing, and Assemble Model warns about it.
 
 The [Barrel Vault](https://alpaca4d.github.io/examples/barrel-vault/) example puts wind on a curved shell: its arc cut into
 strips, each facing one way and named on ASD Shell, and one Mesh Load a strip along its normal.
+The [Silo: a Dust Explosion and a Tractor's Impact](https://alpaca4d.github.io/examples/silo-explosion-impact/) puts a
+pressure inside a silo, along every face's own normal: ASD Shell's elements, in the order of the
+mesh's faces, into **Shell|Id**, and each face's normal times the pressure into **Force** - one
+Mesh Load a face.
 
 ## 🔗 Relation to OpenSees
 

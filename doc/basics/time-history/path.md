@@ -41,6 +41,10 @@ measured forces, anything you can express as numbers.
 - The loading is purely harmonic → [Trigonometric](trigonometric.md) is one number instead
   of a list.
 
+A short pulse is a Path too. The [Silo: a Dust Explosion and a Tractor's Impact](https://alpaca4d.github.io/examples/silo-explosion-impact/)
+example makes two: an explosion's pressure, a triangle of three points, and a tractor's force on a
+leg, half a sine. Each ends at zero, so that the load stops there.
+
 ## 🔗 Relation to OpenSees
 
 ```tcl
