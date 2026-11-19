@@ -37,6 +37,19 @@ If the path is not configured, the component will show a red error:
 
 > *OpenSees executable path is not configured. Use Alpaca4d → Settings → Set OpenSees Executable in the Grasshopper menu.*
 
+## Meshing with gmsh
+
+[Mesh Solid](basics/utility/mesh-solid.md) and [Mesh Surface](basics/utility/mesh-surface.md) mesh with [gmsh](https://gmsh.info), a free mesher by Christophe Geuzaine and Jean-François Remacle. Like OpenSees, you install it yourself: Alpaca4d does not include it.
+
+- **Mac:** in Terminal, `brew install gmsh` ([Homebrew](https://brew.sh)), or download it from [gmsh.info](https://gmsh.info/#Download) and drag Gmsh into Applications.
+- **Windows:** download it from [gmsh.info](https://gmsh.info/#Download) and unzip it, into Program Files or anywhere else.
+
+Alpaca4d looks for gmsh where Homebrew and the downloads put it, and on the PATH. If it is somewhere else, point Alpaca4d at it with **Alpaca4d → Settings → Set gmsh Executable...**: on a Mac, pick Gmsh.app or the `gmsh` program inside it. **Clear gmsh Path** goes back to looking for it. **Download gmsh...** opens its download page. Alpaca4d needs gmsh 4.11 or later.
+
+{% hint style="info" %}
+If macOS stops gmsh from running, the component says so, with the command that clears it: `xattr -dr com.apple.quarantine` on the folder gmsh is in.
+{% endhint %}
+
 ## Resetting the Path
 
 To clear a previously saved path, go to **Alpaca4d → Settings → Clear OpenSees Path**. You can then set a new one with "Set OpenSees Executable...".

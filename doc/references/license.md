@@ -18,12 +18,15 @@ OpenSees is the analysis engine — the program that actually solves your model.
 
 You download OpenSees yourself, from the official UC Berkeley page, and point Alpaca4d at it once — [Setup](../setup.md) walks you through it. From then on, Alpaca4d simply writes a file that OpenSees understands and launches the program you installed.
 
+The same goes for [gmsh](https://gmsh.info), the mesher [Mesh Solid](../basics/utility/mesh-solid.md) and [Mesh Surface](../basics/utility/mesh-surface.md) run: free software by Christophe Geuzaine and Jean-François Remacle, under the GNU GPL. Alpaca4d does not include it, link to it or resell it. It writes a script gmsh reads, runs the gmsh you installed, and reads back the mesh gmsh writes.
+
 So your use of OpenSees runs under UC Berkeley's own terms, which you accept directly with them when you download it. Paying for Alpaca4d changes nothing in either direction: it buys you no rights in OpenSees, and it takes none away. Those terms are short — read them on the [OpenSees](opensees.md) page, where they are reproduced in full.
 
 |                                                                              | Where it comes from                             | Terms that apply                                          |
 | ---------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------- |
 | **Alpaca4d** — Grasshopper components, `.tcl` writer, result readers, views   | Purchased from us                               | This page                                                 |
 | **OpenSees** — the analysis engine                                            | Downloaded by you, from UC Berkeley             | [The Regents' license](opensees.md#copyright-and-license) |
+| **gmsh** — the mesher behind Mesh Solid and Mesh Surface                      | Downloaded by you, from gmsh.info               | [GNU GPL](https://gmsh.info/LICENSE.txt)                  |
 
 ## Your models stay yours
 
@@ -59,7 +62,7 @@ A model over the limit, or one of those components, stops with an error that say
 
 ## Independence and warranty
 
-Alpaca4d is an independent project. It is not affiliated with, endorsed by, or sponsored by the University of California, Berkeley, the OpenSees developers, or the Pacific Earthquake Engineering Research Center. "OpenSees" is named here descriptively, to identify the software Alpaca4d writes input for.
+Alpaca4d is an independent project. It is not affiliated with, endorsed by, or sponsored by the University of California, Berkeley, the OpenSees developers, or the Pacific Earthquake Engineering Research Center, nor with the authors of gmsh. "OpenSees" is named here descriptively, to identify the software Alpaca4d writes input for.
 
 Alpaca4d is provided "as is", without warranty of any kind. As noted on the [Welcome](../README.md) page, results should always be validated against another finite element package.
 
