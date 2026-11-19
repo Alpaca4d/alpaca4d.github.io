@@ -3,35 +3,14 @@
 Bilinear steel with **kinematic hardening**: elastic to yield, then a straight
 strain-hardening branch.
 
-## 🔧 Grasshopper component
+## 🔧 In Grasshopper
 
-`Steel01 (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
-
-### Inputs
-
-Defaults are **S355**.
-
-| Name | Nick | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| Material Name | `MatName` | Text | `S355` | Label for the material. |
-| fy | `fy` | Number | `355000` | Yield strength, in `kN/m²`. |
-| E0 | `E0` | Number | `210000000` | Initial elastic modulus, in `kN/m²`. |
-| b | `b` | Number | `0.01` | Strain-hardening ratio: the post-yield tangent divided by `E0`. |
-| a1 | `a1` | Number | *(none)* | Isotropic hardening in compression. |
-| a2 | `a2` | Number | *(none)* | Compression hardening limit. |
-| a3 | `a3` | Number | *(none)* | Isotropic hardening in tension. |
-| a4 | `a4` | Number | *(none)* | Tension hardening limit. |
+A law of the [Steel](steel.md) component: pick **Steel01** in its **Law** menu. Its inputs and defaults are under [Inputs — Steel01](steel.md#inputs-steel01).
 
 {% hint style="warning" %}
 `a1` to `a4` are **one optional group of four**. Give all four or leave all four empty — a
 partly filled set is an error, not a silent default.
 {% endhint %}
-
-### Outputs
-
-| Name | Nick | Type | Description |
-| --- | --- | --- | --- |
-| Material | `Material` | Material | Uniaxial material, for a [Patch](patch.md), [Layer](layer.md) or [Fiber Point](fiber-point.md). |
 
 ## 📈 When to use it
 
@@ -46,7 +25,7 @@ partly filled set is an error, not a silent default.
 - The fibre is a reinforcing bar → [ReinforcingSteel](reinforcing-steel.md) models the yield
   plateau and the curved hardening branch that bars actually have.
 - You need the rounded Bauschinger transition of a cyclic response — `Steel01` has a sharp
-  corner. `Steel02` would, but is not exposed.
+  corner. **Steel02**, in the same [Steel](steel.md) component's Law menu, has it.
 
 ## 🔗 Relation to OpenSees
 

@@ -3,28 +3,9 @@
 Concrete with **zero tensile strength**: a parabolic rise to the peak, a linear descent to a
 crushing plateau, and nothing at all in tension.
 
-## 🔧 Grasshopper component
+## 🔧 In Grasshopper
 
-`Concrete01 (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**, nickname `Concrete`
-
-### Inputs
-
-Defaults are **C25/30**.
-
-| Name | Nick | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| Material Name | `MatName` | Text | `C25/30` | Label for the material. |
-| fco | `fco` | Number | `-25000` | Compressive strength, in `kN/m²`. **Negative.** |
-| fcu | `fcu` | Number | `-20000` | Crushing strength at `EpsilonCu` — what is left past the peak. Negative, and no larger in magnitude than `fco`. |
-| EpsilonCo | `EpsilonCo` | Number | `-0.002` | Strain at `fco`. Negative, dimensionless. |
-| EpsilonCu | `EpsilonCu` | Number | `-0.0035` | Strain at `fcu`. Negative, dimensionless. |
-| MinMax | `MinMax` | Boolean | `false` | Wrap the material so a fibre **fails** once its strain leaves the range between `EpsilonCu` and zero. |
-
-### Outputs
-
-| Name | Nick | Type | Description |
-| --- | --- | --- | --- |
-| Material | `Material` | Material | Uniaxial material, for a [Patch](patch.md), [Layer](layer.md) or [Fiber Point](fiber-point.md). |
+A law of the [Concrete](concrete.md) component: pick **Concrete01** in its **Law** menu. Its inputs and defaults are under [Inputs — Concrete01](concrete.md#inputs-concrete01).
 
 {% hint style="warning" %}
 **Every stress and strain here is negative.** Compression negative is the OpenSees convention
@@ -42,7 +23,8 @@ backwards without any error.
 **Do not use it when**
 
 - You need tensile strength — `Concrete01` has none, which is conservative for flexure but
-  wrong for anything relying on tension stiffening.
+  wrong for anything relying on tension stiffening. **Concrete02** and **Concrete04**, in the
+  same [Concrete](concrete.md) component's Law menu, have it.
 - You need confinement modelled explicitly. You can approximate it by giving the core patch
   a higher `fcu` and a larger `EpsilonCu` than the cover.
 

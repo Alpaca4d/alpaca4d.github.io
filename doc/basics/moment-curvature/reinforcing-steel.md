@@ -3,33 +3,12 @@
 A reinforcing bar material: elastic to yield, a yield plateau, then a curved strain-hardening
 branch up to the ultimate strength.
 
-## 🔧 Grasshopper component
+## 🔧 In Grasshopper
 
-`ReinforcingSteel (Alpaca4d)` — **Alpaca4d ▸ MomentCurvature_βeta**
+A law of the [Steel](steel.md) component: pick **ReinforcingSteel** in its **Law** menu. Its inputs and defaults are under [Inputs — ReinforcingSteel](steel.md#inputs-reinforcingsteel).
 
-This is the **default material** for [Fiber Point](fiber-point.md) and
-[Layer Fiber](layer.md) — leave their **Material** input empty and they use B450C.
-
-### Inputs
-
-Defaults are **B450C**.
-
-| Name | Nick | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| Material Name | `MatName` | Text | `B450C` | Label for the material. |
-| fy | `fy` | Number | `450000` | Yield strength, in `kN/m²`. |
-| fu | `fu` | Number | `540000` | Ultimate strength, in `kN/m²`. |
-| Es | `Es` | Number | `200000000` | Initial elastic modulus, in `kN/m²`. |
-| Esh | `Esh` | Number | `2000000` | Tangent modulus at the onset of strain hardening, in `kN/m²`. Must be greater than zero. |
-| esh | `esh` | Number | `0.008` | Strain at the onset of strain hardening. Must be past the yield strain `fy/Es`. |
-| eult | `eult` | Number | `0.075` | Strain at `fu`. |
-| MinMax | `MinMax` | Boolean | `false` | Wrap the material so a bar **fails** once its strain passes `eult` in either direction. |
-
-### Outputs
-
-| Name | Nick | Type | Description |
-| --- | --- | --- | --- |
-| Material | `Material` | Material | Uniaxial material, for a [Layer](layer.md), [Fiber Point](fiber-point.md) or [Patch](patch.md). |
+It is the **default material** of [Fiber Point](fiber-point.md) and [Layer Fiber](layer.md):
+leave their **Material** input empty and they use B450C.
 
 ## 📈 When to use it
 
