@@ -32,11 +32,15 @@ function pictureSets(figures, labels, pageDir) {
   const dir = path.join(docRoot, pageDir, path.dirname(decodeURIComponent(base)));
   const name = path.basename(decodeURIComponent(stem));
   const drawn = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.startsWith(name + "--") && f.endsWith(".png") && !f.endsWith("-open.png")).map((f) => f.slice(name.length + 2, -4)) : [];
+  const bare = (t) => t.replace(/-/g, "");
+  const wants = labels.map((l) => bare(slug(l)));
   const typeOf = (label) => {
     // The tab's type, or one whose name begins the tab's or is begun by it: a drop-down may
-    // shorten a name, "CentralDiff" for CentralDifference.
-    const want = slug(label).replace(/-/g, "");
-    const type = want && (drawn.find((t) => t.replace(/-/g, "") === want) || drawn.find((t) => want.startsWith(t.replace(/-/g, "")) || t.replace(/-/g, "").startsWith(want)));
+    // shorten a name, "CentralDiff" for CentralDifference. Not a type another tab is named
+    // exactly, though: ElasticPP is not Elastic.
+    const want = bare(slug(label));
+    const free = (t) => !wants.some((w) => w !== want && w === bare(t));
+    const type = want && (drawn.find((t) => bare(t) === want) || drawn.find((t) => free(t) && (want.startsWith(bare(t)) || bare(t).startsWith(want))));
     if (!type) return null;
     const closed = `${stem}--${type}.png`;
     const file = path.join(docRoot, pageDir, decodeURIComponent(closed));
