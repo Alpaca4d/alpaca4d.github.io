@@ -91,7 +91,7 @@ The static tables read the last step the analysis recorded.
 
 **Steel check by section** and **by member** check each steel beam to EN 1993-1-1, as
 [Utilisation](../results/utilisation.md) does with its inputs left as they are: γM0 = γM1 = 1.0,
-rolled sections, each member held at its ends, its buckling lengths node to node, its loads at the
+rolled sections, its buckling lengths worked out from the model, its loads at the
 shear centre, no sway. The note under the table says so. Each member is checked at its worst over the
 ultimate combinations given, ULS, accidental and seismic, from [Load Combination](../loads/load-combination.md),
 or, with no combination given, over every static model. A beam whose material has no steel grade

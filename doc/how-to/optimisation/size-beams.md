@@ -25,9 +25,9 @@ model again as the sections change.
    **Uniform** on, the whole group takes one section: give each member drawn as several beams a
    group of its own, so that it is built as one.
 4. Set **MaxUtilisation**: `1` is at the limit, `0.8` keeps a fifth in hand.
-5. In the **Design** menu, give the buckling lengths a member needs: **LengthY**, **LengthZ** and
-   **LengthLT**. Left empty, each is the beam's own length, held at both ends: not safe for a
-   cantilever.
+5. In the **Design** menu, give the buckling lengths you want to set yourself: **LengthY**,
+   **LengthZ** and **LengthLT**. Left empty, they are worked out from the model, once, from where
+   supports, bracing and the beams each member sits on hold it.
 6. Read **Section**, **Utilisation** and **Mass**; wire **AlpacaModel**, the last design analysed,
    into [Model View](../../basics/visualisation/model-view.md) or the result components.
 
