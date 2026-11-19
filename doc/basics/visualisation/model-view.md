@@ -31,8 +31,8 @@ over either, so a model and its results are checked from one component.
 | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | The model, passed through so the component can sit inline. |
 | Geometry | `Geometry` | Geometry (list) | What is drawn, as geometry: the elements and the results on them as coloured meshes, beams drawn as lines as lines, force diagrams, and reaction dots, as balls, or arrows. See [A copy beside the model](#a-copy-beside-the-model). |
-| Info | `Info` | Text (list) | What is drawn, a line per result, with the unit it is in and the range it spans — `Displacement - Uz [mm], step 0, min -12.3, max 0` — or `Model - coloured by Section` with no result ticked. |
-| Values | `Values` | Number (tree) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked for the result. A branch per result ticked, in the order of the **Results** menu, *Beam forces* left out. With **Iso-surfaces** on, the edges of the bands instead, one more than there are colours. Feed it to the **Values** input of [Legend](legend.md). Empty with no result. |
+| Info | `Info` | Text (list) | What is drawn, a line per result, with the unit it is in and the range it spans — `Displacement - Uz [mm], step 0, min -12.3, max 0` — or `Model - coloured by Section` with no result ticked, or the buckling length drawn. |
+| Values | `Values` | Number (tree) | The value each colour stands for, one per colour of **Colors**, from the low end to the high — over **Range** when it is set — in the unit picked for the result. A branch per result ticked, in the order of the **Results** menu, *Beam forces* left out. With **Iso-surfaces** on, the edges of the bands instead, one more than there are colours. Feed it to the **Values** input of [Legend](legend.md). Empty with no result, unless the buckling lengths colour the model. |
 | Colors | `Colors` | Colour (tree) | The gradient used, a branch for each branch of **Values**. Feed it to the **Colors** input of Legend, so the legends and the model agree. |
 
 ### Results menu
@@ -155,6 +155,16 @@ metres of arrow per kN then, and an old value would now shrink or stretch the fi
 | Show Supports | Draws support symbols — [the seven presets](../elements/support.md#the-seven-presets) get their own glyph, anything else a text tag. |
 | Support Scale | Slider, 0.1 – 10. Symbol size. |
 
+### Buckling menu
+
+The buckling lengths [Utilisation](../results/utilisation.md#buckling-lengths-from-the-model) works
+out from the model where you give none, drawn on it. They need no analysis.
+
+| Control | Effect |
+| --- | --- |
+| Buckling lengths | Off by default. Colours each beam by its length on the **Colors** gradient, with **Values** and **Colors** for a [Legend](legend.md) and **Info** saying which. Marks each point a member is held at: orange where the structure holds it, purple where a beam it sits on carries it. Writes each piece's length at its middle, `4 = 2 × 2` for a cantilever or a swaying storey. With a result ticked, the result colours the model and the marks and lengths go over it. |
+| Length | `About y`, `About z` or `Lateral-torsional`: which length to draw. About *y* is held by restraints along local *z*, about *z* by those along local *y*. |
+
 Ticking **Show values**, or anything in the **Elements**, **Loads** and **Supports** menus but
 **Extruded** and **Colour by**, draws the viewport again and nothing more: the model is not read
 or built again, and nothing downstream is solved again.
@@ -193,6 +203,7 @@ models of up to 50 elements, and the design a topology optimisation finds up to 
 | Is it as big as I meant? | **Show Values**, in the **Loads** menu. |
 | Did every member get the section I meant? | No result ticked, **Colour by** `Section`, with **Section Names** on. |
 | Is the support taking what I think? | *Reactions*, with **Show Supports** on. |
+| Are the buckling lengths what I expect? | **Buckling lengths**, in the **Buckling** menu, about each axis in turn. |
 
 ## 💡 Colouring by section or material
 

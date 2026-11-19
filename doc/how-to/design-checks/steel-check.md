@@ -27,9 +27,11 @@ enough, and which check governs.
 3. Make the beams with that section, assemble the model and run it with Run Analysis.
 4. Wire the **AlpacaModel** output of Run Analysis, not of Assemble, into Utilisation, on its
    **Steel** type, as it is placed. Leave **Step** at `0` for an analysis of one step.
-5. Give the buckling lengths, in `m`: **LengthY** about the minor axis of an I, **LengthZ** about the
-   major, **LengthLT** between lateral restraints. Give one value for every beam, or one per beam
-   in the order of the **Element** output.
+5. Check the buckling lengths worked out from the model: in
+   [Model View](../../basics/visualisation/model-view.md), turn on **Buckling lengths** in the
+   Buckling menu. Give any you want otherwise, in `m`: **LengthY** about the minor axis of an I,
+   **LengthZ** about the major, **LengthLT** between lateral restraints, one value for every beam or
+   one per beam in the order of the **Element** output.
 6. Set **Load** to `Destabilising` where the load acts on the top flange, and **Sway** to `true` for
    members of a frame that buckles by swaying.
 7. Open the **Design** menu below the component. Set **γM0** and **γM1** if your National Annex
@@ -47,8 +49,10 @@ enough, and which check governs.
 
 ## Good to know
 
-- **Lengths left empty are each beam's own length, held at both ends.** A cantilever, a sway column
-  and a member drawn as several beams need their lengths given. The component says so in a remark.
+- **Lengths left empty are worked out from the model**: beams in line make a member, held where
+  supports, bracing or the beams it sits on hold it. A slab or a wall counts for nothing, so give
+  the lengths it shortens. See
+  [Buckling lengths from the model](../../basics/results/utilisation.md#buckling-lengths-from-the-model).
 - For an I, local *z* is the major axis: **BendingZ** and **BucklingZ** are about it. Leave the
   beam's **ZAxis** empty and the depth of the I points as near straight up as the beam allows.
 - Not checked yet: torsional and torsional-flexural buckling, warping torsion, shear buckling of

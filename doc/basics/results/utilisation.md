@@ -28,9 +28,9 @@ each type; a beam of the other material comes back with its **Type**, nothing ch
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | Step | `Step` | Integer | `0` | Which recorded step to check. |
 | ElementId | `ElementId` | Text (list) | *(empty)* | Check only some of the beams: an ElementId, a wildcard over them, a tag, or a regular expression. Empty checks them all. |
-| LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — the minor axis of an I — in `m`. One value for every beam, or one per beam checked, in the order of the **Element** output. Empty takes each beam's own length, node to node. |
-| LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — the major axis of an I. As **LengthY**. |
-| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling, in `m` — see **Lateral-torsional buckling** below. One value, or one per beam, as **LengthY**. Empty takes each beam's own length. |
+| LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — the minor axis of an I — in `m`. Empty: worked out from the model, see **Buckling lengths from the model** below. One value for every beam, or one per beam checked, in the order of the **Element** output. |
+| LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — the major axis of an I. Empty: worked out from the model. As **LengthY**. |
+| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling, in `m` — see **Lateral-torsional buckling** below. Empty: worked out from the model. |
 | Load | `Load` | Text (list) | `ShearCentre` | Where the load along the beam acts on its section, for lateral-torsional buckling: `ShearCentre`, `Destabilising` (or `Top`) — on the face it comes from, gravity on the top flange, which the beam carries sideways as it twists — or `Stabilising` (or `Bottom`), hung from the face it goes towards. `ShearCentre` neither helps nor hinders. One value, or one per beam, as **LengthY**. |
 | Sway | `Sway` | Boolean (list) | `false` | The beam is part of a frame that buckles by swaying: Cm = 0.9 about both axes (Table B.3). One value, or one per beam, as **LengthY**. |
 | Combination | `Combination` | Text (list) | *(empty)* | Load combinations to read, by name or by place from 0. Empty reads every one, a branch each: each result has the combination's place in front of its path, `{combination}`, a value per beam. **Element** and **Type** stay flat lists. Every combination is checked, serviceability ones too: name the ultimate ones to check only those. See [Load Combination](../loads/load-combination.md). |
@@ -42,16 +42,16 @@ each type; a beam of the other material comes back with its **Type**, nothing ch
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | Step | `Step` | Integer | `0` | Which recorded step to check. |
 | ElementId | `ElementId` | Text (list) | *(empty)* | Check only some of the beams, as for steel. |
-| LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — across a rectangle's Width — in `m`, for k_c. One value for every beam, or one per beam checked, in the order of the **Element** output. Empty takes each beam's own length, node to node. |
-| LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — across a rectangle's Height. As **LengthY**. |
-| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling (6.3.3), in `m`. One value, or one per beam, as **LengthY**. Empty takes each beam's own length. |
+| LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — across a rectangle's Width — in `m`, for k_c. Empty: worked out from the model, as for steel, see **Buckling lengths from the model** below. One value for every beam, or one per beam checked, in the order of the **Element** output. |
+| LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — across a rectangle's Height. Empty: worked out from the model. As **LengthY**. |
+| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling (6.3.3), in `m`. Empty: worked out from the model. One value, or one per beam, as **LengthY**. |
 | Load | `Load` | Text (list) | `ShearCentre` | Where the load acts on the section, for lateral-torsional buckling: `ShearCentre` (the centroid of a rectangle), `Destabilising` (or `Top`) or `Stabilising` (or `Bottom`). One value, or one per beam, as **LengthY**. |
 | Combination | `Combination` | Text (list) | *(empty)* | Load combinations to read, as for steel. Each is checked with k_mod for its own patterns. |
 
-{% hint style="warning" %}
-**Lengths left empty are each beam's own length, held at both ends.** A member drawn as several
-beams needs its whole length given — each beam's own is only a piece of it — and so do a sway
-column and a cantilever, whose free tip is not held at all.
+{% hint style="info" %}
+**Lengths left empty are worked out from the model**: a 6 m column drawn as twelve beams buckles over
+6 m, not 0.5 m. Turn on **Buckling lengths** in [Model View](../visualisation/model-view.md)'s
+Buckling menu to see them. A length you give goes over the one worked out, for every beam or for each.
 {% endhint %}
 
 ### Outputs — Steel
@@ -304,11 +304,46 @@ The component's messages:
 | *... use a section with no shape* | Warning | A [Generic Section](../sections/parametric-cross-section.md): no plates to check. |
 | *... have checks that could not be made, so no Max* | Warning | Anything else missing — see the **Report**. |
 | *... taken as Class 3 under 5.5.2(9)* | Remark | Checked, elastically, at the low stress the part carries. |
-| *Buckling lengths left empty are each beam's own length* | Remark | A lengths input is empty; give lengths for members drawn as several beams, sway columns and cantilevers. |
 | *... beam(s) are timber, left to the Timber type* (or *steel, left to the Steel type*) | Remark | Beams of the other material, not checked by this type: use a second Utilisation of the other type for them. |
 | *... timber beam(s) are not checked* | Warning | Timber type: a section that is not a solid rectangle or circle, or a grade without a strength the check needs. |
 | *k_mod from the shortest load duration of each combination* | Remark | Timber type: what timber is checked with, and what it is not checked for yet. |
 | *Load pattern(s) ... have no Duration* | Remark | Timber type: those patterns count as permanent. Set their duration in the [Load Pattern](../loads/load-pattern.md)'s **Duration** menu. |
+| *Lengths worked out from the model count no slab or wall as a restraint* | Remark | The model has shells or solids, which the worked-out lengths ignore: give the lengths a slab or a wall shortens. |
+| *The model is too large to find its bracing in* | Warning | Over about 300 000 unknowns: each member got its own length. Give the lengths. |
+
+## 💡 Buckling lengths from the model
+
+Where a length input is empty, each beam's L_cr about *y* and *z* and its L_LT come from the
+geometry of the model, in three steps.
+
+1. **Members.** Beams that run on in line, kinked by less than 10° where they meet, are one member.
+   A change of section does not split one, so the lengths stay put while the
+   [Section Optimiser](../optimisation/section-optimiser.md) changes sections.
+2. **Where the structure holds each node.** The model is taken as pin-jointed: each member pushes and
+   pulls only, and supports, constraints and links hold what they hold. A direction a node can move
+   in without stretching anything is free; the rest are held. Bracing, a braced floor and a
+   [Rigid Diaphragm](../constraints/diaphragm.md) all hold nodes this way.
+3. **Held points and lengths.** Along each member, across each of its local axes, a joint is held
+   when the structure holds it within 45° of that axis, or when it sits inside another member that
+   bends that way about its strong axis and is held either side: a secondary beam on a main beam, a
+   purlin on a rafter. A beam's length is then:
+   - the distance between the held points either side of it, along the member;
+   - twice the distance to the last held point, from a free end — a cantilever;
+   - twice each storey, from a held base up a column whose floors are not held — a sway frame;
+   - the whole member, where nothing holds it.
+
+Each beam takes the restraints across its own local axes, so a column turned 90° swaps its two
+lengths. L_LT is the length about the axis the section is weak about.
+
+Good to know:
+
+- **Slabs and walls hold nothing here.** A beam under a slab is taken as free sideways, which is safe
+  but long: give **LengthY** or **LengthLT** by hand, or tie the floor with a
+  [Rigid Diaphragm](../constraints/diaphragm.md).
+- **Sway columns get twice the storey height.** A column on a pinned base under a flexible beam can
+  need more; with a second-order analysis that includes the sway imperfections, EN 1993-1-1 5.2.2(7)
+  lets you give the storey height instead.
+- A pin-jointed frame ignores the stiffness of its joints, so most lengths are on the safe side.
 
 ## 💡 Timber, EN 1995-1-1
 
