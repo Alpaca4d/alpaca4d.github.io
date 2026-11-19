@@ -24,6 +24,18 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 | Factor | `Factor` | Number | `1` | Constant scale applied to the whole pattern, on top of the time series. |
 | Name | `Name` | Text | *(empty)* | The load case's name: Finishes, Imposed, Wind X. [Mass from Loads](mass-from-loads.md) and [Load Combination](load-combination.md) name a pattern by it, [Model View](../visualisation/model-view.md) draws its loads alone by it, and the [export to FEM-Design](../utility/alpaca4d-to-femdesign.md) names its load case. OpenSees never sees it. |
 
+### Duration menu — PlainPattern
+
+Below the component, folded away: only the timber check reads it.
+
+| Menu | Default | Description |
+| --- | --- | --- |
+| Duration | `Not set` | How long the pattern's loads act — the load-duration class of EN 1995-1-1 (2.3.1.2, Table 2.1): `Permanent`, `Long-term`, `Medium-term`, `Short-term` or `Instantaneous`. [Utilisation](../results/utilisation.md) sets timber's k_mod from the shortest duration among the patterns of each combination (3.1.3(2)). `Not set` counts as permanent, the lowest k_mod, and Utilisation names the patterns left so. Steel, and the analysis, never read it. |
+
+Typical classes, as Table 2.2 gives them: self-weight **permanent**; storage **long-term**; imposed
+floor load **medium-term**; snow **short-term** or medium-term, as the National Annex says; wind and
+accidental loads **instantaneous**.
+
 ### Inputs — UniformExcitation
 
 | Name | Nick | Type | Default | Description |
