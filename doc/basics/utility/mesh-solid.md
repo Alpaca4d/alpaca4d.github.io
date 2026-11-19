@@ -10,7 +10,7 @@ meet.
 
 `Mesh Solid (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
-<figure><img src="../../.gitbook/assets/components/mesh-solid.png" alt="Mesh Solid component" width="348"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/mesh-solid.png" alt="Mesh Solid component" width="468"><figcaption></figcaption></figure>
 
 ### Inputs
 

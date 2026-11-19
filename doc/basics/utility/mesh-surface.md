@@ -9,7 +9,7 @@ that touch share their nodes where they meet.
 
 `Mesh Surface (Alpaca4d)` — **Alpaca4d ▸ 10_Utility**
 
-<figure><img src="../../.gitbook/assets/components/mesh-surface.png" alt="Mesh Surface component" width="348"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/components/mesh-surface.png" alt="Mesh Surface component" width="408"><figcaption></figcaption></figure>
 
 ### Inputs
 
