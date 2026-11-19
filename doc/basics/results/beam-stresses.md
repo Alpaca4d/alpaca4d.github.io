@@ -22,6 +22,7 @@ of that shape carries under those forces. To check them against a strength, use
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. The outputs become trees `{step; element}`. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
 | ElementId | `ElementId` | Text (list) | *(empty)* | Read only some of the beams: an ElementId, a wildcard over them, a tag, or a regular expression. Empty reads them all. |
+| Combination | `Combination` | Text (list) | *(empty)* | Which load combinations to read, by name or by place from 0; empty reads every one. Each result then has the combination's place in front of its path: `{combination; element}`, or `{combination; step; element}` with **History**. **Element** stays one flat list. See [Load Combination](../loads/load-combination.md). |
 
 ### Outputs
 

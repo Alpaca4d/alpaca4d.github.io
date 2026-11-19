@@ -37,7 +37,9 @@ an OpenSees run each, with only the patterns the combination names, each times i
 comes out is **one model that holds every combination's results**. It reads as the first
 combination that solved; [Model View](../visualisation/model-view.md),
 [Linear Buckling](linear-buckling.md) and [Pushover](pushover.md) pick another by its name or its
-place in their **Combination** input, and the [Report](../report/report.md) reads them all.
+place in their **Combination** input. The [Results](../results/README.md) components read every
+combination, a branch each with its place first, `{combination; …}`, or the ones their
+**Combination** input names; the [Report](../report/report.md) reads them all.
 
 - Combinations are static: Analysis Settings must say Static.
 - A combination that does not converge has no results, and a warning names it. The others keep

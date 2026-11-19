@@ -15,7 +15,8 @@ Displacement, rotation, velocity and acceleration at every node of the model.
 | AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per node. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step, or mode number for a modal model. |
-| NodeTag | `NodeTag` | Integer (list) | *(empty)* | Read only these nodes, by tag. Empty reads every node. |
+| NodeTag | `NodeTag` | Integer (list) | *(empty)* | Read only these nodes, by tag. Empty reads every node, in tag order: a node's tag is then its place in the output, from one. |
+| Combination | `Combination` | Text (list) | *(empty)* | Which load combinations to read, by name or by place from 0; empty reads every one. Each result then has the combination's place in front of its path: `{combination}`, or `{combination; step}` with **History**. **Position** stays one flat list. See [Load Combination](../loads/load-combination.md). |
 
 ### Outputs
 

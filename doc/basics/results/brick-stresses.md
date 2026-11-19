@@ -20,7 +20,8 @@ tetrahedra of a definition made before Ten Node Tetrahedron replaced them.
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. Each output becomes a tree `{step}` holding that step's value per element. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
 | ElementId | `ElementId` | Text (list) | *(empty)* | Read only some of the solids: an ElementId, a wildcard over them, a tag, or a regular expression. Empty reads them all. |
-| Axes | `Axes` | Integer | `0` | The frame the six components are read in: 0 global, 1 each element's own. |
+| Axes | `Axes` | Integer | `0` | The frame the six components are read in: 0 global, 1 each element's own, from its node numbering. **Plane** gives the frame used. |
+| Combination | `Combination` | Text (list) | *(empty)* | Which load combinations to read, by name or by place from 0; empty reads every one. Each result then has the combination's place in front of its path: `{combination}`, or `{combination; step}` with **History**. **Element** and **Plane** stay flat lists. See [Load Combination](../loads/load-combination.md). |
 
 ### Outputs
 

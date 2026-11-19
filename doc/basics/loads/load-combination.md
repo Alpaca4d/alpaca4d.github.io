@@ -6,7 +6,10 @@ factor: `1.35 G + 1.5 Q` for the ultimate limit state, `G + Q` for the character
 Load Combination adds combinations to the assembled model. [Run Analysis](../analysis/run-analysis.md)
 then solves each one, with only the patterns it names, each scaled by its factor. It hands on **one
 model** that holds the results of every combination. Downstream components pick a combination by
-its name: Model View, Linear Buckling and Pushover each have a **Combination** input for it.
+its name: Model View, Linear Buckling, Pushover and the [Results](../results/README.md) components
+each have a **Combination** input for it. Left empty, the Results components read every
+combination, a branch each, with the combination's place first: `{combination}`, or
+`{combination; element}` where each element has a branch.
 
 ## 🔧 Grasshopper component
 

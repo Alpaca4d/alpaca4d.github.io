@@ -36,13 +36,16 @@ members over the ultimate ones.
   **Results by combination** gives the sum of the reactions: `G + Q` should carry G + Q, and
   `1.35 G + 1.5 Q` 1.35 G + 1.5 Q.
 - The largest displacement of the SLS combination is the one to compare with your deflection limit.
+  [Nodal Displacements](../../basics/results/nodal-displacements.md) on the analysed model gives a
+  branch per combination, `{0}` for ULS 1 and `{1}` for SLS 1.
 
 ## Good to know
 
 - **The steel check runs over the ULS combinations only**, and over the accidental and seismic ones.
   It takes each member as held at its ends. For other buckling lengths use
-  [Utilisation](../../basics/results/utilisation.md) on the model Run Analysis hands on: it reads
-  the model's first combination, so list the ULS one to check first.
+  [Utilisation](../../basics/results/utilisation.md) on the model Run Analysis hands on: it checks
+  every combination, a branch `{combination}` each, so type the ULS ones' names into its
+  **Combination** to check only those.
 - **What a combination does not name does not act**, self-weight included.
 - **Each combination is solved again**, in an OpenSees run of its own, so it is right for a
   nonlinear model too, whose results are not the sum of its patterns' own.

@@ -22,9 +22,10 @@ bending with compression as a member.
 | ElementId | `ElementId` | Text (list) | *(empty)* | Check only some of the beams: an ElementId, a wildcard over them, a tag, or a regular expression. Empty checks them all. |
 | LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — the minor axis of an I — in `m`. One value for every beam, or one per beam checked, in the order of the **Element** output. Empty takes each beam's own length, node to node. |
 | LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — the major axis of an I. As **LengthY**. |
-| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling, in `m` — see **Lateral-torsional buckling** below. Empty takes each beam's own length. |
-| Load | `Load` | Text (list) | `ShearCentre` | Where the load along the beam acts on its section: `ShearCentre`, `Destabilising` (or `Top`) — on the face it comes from, gravity on the top flange — or `Stabilising` (or `Bottom`), hung from the face it goes towards. |
-| Sway | `Sway` | Boolean (list) | `false` | The beam is part of a frame that buckles by swaying: Cm = 0.9 about both axes (Table B.3). |
+| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling, in `m` — see **Lateral-torsional buckling** below. One value, or one per beam, as **LengthY**. Empty takes each beam's own length. |
+| Load | `Load` | Text (list) | `ShearCentre` | Where the load along the beam acts on its section, for lateral-torsional buckling: `ShearCentre`, `Destabilising` (or `Top`) — on the face it comes from, gravity on the top flange, which the beam carries sideways as it twists — or `Stabilising` (or `Bottom`), hung from the face it goes towards. `ShearCentre` neither helps nor hinders. One value, or one per beam, as **LengthY**. |
+| Sway | `Sway` | Boolean (list) | `false` | The beam is part of a frame that buckles by swaying: Cm = 0.9 about both axes (Table B.3). One value, or one per beam, as **LengthY**. |
+| Combination | `Combination` | Text (list) | *(empty)* | Load combinations to read, by name or by place from 0. Empty reads every one, a branch each: each result has the combination's place in front of its path, `{combination}`, a value per beam. **Element** and **Type** stay flat lists. Every combination is checked, serviceability ones too: name the ultimate ones to check only those. See [Load Combination](../loads/load-combination.md). |
 
 {% hint style="warning" %}
 **Lengths left empty are each beam's own length, held at both ends.** A member drawn as several

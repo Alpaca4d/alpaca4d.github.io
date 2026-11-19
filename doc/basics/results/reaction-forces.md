@@ -17,6 +17,7 @@ reported **in the support's own axes**.
 | History | `History` | Boolean | `false` | Read every recorded step instead of one. **ReactionForce** and **ReactionMoment** become trees `{step}`; **SupportPosition** stays a flat list. **Step** is ignored. |
 | Step | `Step` | Integer | `0` | Analysis step. |
 | PointPos | `PointPos` | Point (list) | *(empty)* | Read only the supports at these points, the same points you gave the [Support](../elements/support.md) component. A point counts as at a support within the model's tolerance. Empty reads them all. |
+| Combination | `Combination` | Text (list) | *(empty)* | Which load combinations to read, by name or by place from 0; empty reads every one. Each result then has the combination's place in front of its path: `{combination}`, or `{combination; step}` with **History**. **SupportPosition** and **NodeTag** stay flat lists. See [Load Combination](../loads/load-combination.md). |
 
 ### Outputs
 

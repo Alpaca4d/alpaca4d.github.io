@@ -18,6 +18,7 @@ member, for designing the connection there.
 | Step | `Step` | Integer | `0` | Analysis step. |
 | Point | `Point` | Point (list) | — | The nodes to report, by where they are. A point within the model's tolerance of a beam end picks the node there. |
 | NodeTag | `NodeTag` | Integer (list) | — | The nodes to report, by tag. Taken together with **Point**. Leave both empty to report every node a beam meets. |
+| Combination | `Combination` | Text (list) | *(empty)* | Which load combinations to read, by name or by place from 0; empty reads every one. Each result then has the combination's place in front of its path: `{combination; node}` on every output, **Element** and **Position** too, so the outputs still pair branch for branch. See [Load Combination](../loads/load-combination.md). |
 
 ### Outputs
 
