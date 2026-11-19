@@ -1,14 +1,14 @@
 # Turn geometry into solid elements
 
-Make bricks from a solid that can be built in layers, or ten node tetrahedra from a tetrahedral
-mesh for any other shape.
+Make bricks from a solid that can be built in layers, or ten node tetrahedra for any other shape.
 
 <figure><img src="../../basics/elements/ten-node-tetrahedron/spot-the-cow/spot-the-cow.png" alt="Spot the cow, a solid of Ten Node Tetrahedra made from a closed mesh"><figcaption><p>Spot the cow: a closed mesh, filled with Ten Node Tetrahedra.</p></figcaption></figure>
 
 ## You need
 
-- The geometry: section polylines or a quad mesh for bricks, the output of a tetrahedral mesher
-  for tetrahedra.
+- The geometry: section polylines or a quad mesh for bricks, a closed Brep or a closed mesh for
+  tetrahedra.
+- For tetrahedra, gmsh, installed as [Setup](../../setup.md#meshing-with-gmsh) says.
 - An [nD material](../../basics/materials/ND.md), and [Assemble](../../basics/assemble.md).
 
 ## Steps
@@ -26,15 +26,18 @@ mesh for any other shape.
 
 **Tetrahedra, for any shape**
 
-1. Bring in what a mesher such as gmsh or TetGen writes: the corner points, and four point numbers
-   per tetrahedron, counted from 0. **List Item** picks each one's corners, and **Construct Mesh**
-   makes them a four-vertex mesh.
-2. Wire the meshes into **Mesh** of
+1. Wire the closed Brep or mesh into **Solids** of [Mesh Solid](../../basics/utility/mesh-solid.md),
+   with the tetrahedra's **Size**. For smaller ones somewhere, wire a
+   [Mesh Refinement](../../basics/utility/mesh-refinement.md) into **Refinements**. A mesh made by
+   another mesher comes in as it writes it instead: the corner points and four point numbers per
+   tetrahedron, made into four-vertex meshes by **List Item** and **Construct Mesh**.
+2. Wire the **Tetrahedra** into **Mesh** of
    [Ten Node Tetrahedron](../../basics/elements/ten-node-tetrahedron.md), and the material into
    **Material**. It adds the six edge nodes itself.
-3. Hold a face at every node on it, edge nodes included: take the element's **Points**, keep the
-   ones on the face, and remove duplicates with **Cull Duplicates** before the
-   [Support](../../basics/elements/support.md).
+3. Hold a face at every node on it, edge nodes included: take its branch of Mesh Solid's
+   **Face Nodes**, `{solid;face}`, into the [Support](../../basics/elements/support.md). Without
+   Mesh Solid, take the elements' **Points**, keep the ones on the face, and remove duplicates
+   with **Cull Duplicates**.
 
 Then wire the elements into **Elements** of Assemble.
 
@@ -52,8 +55,8 @@ Then wire the elements into **Elements** of Assemble.
 - The number of bricks is `(layers − 1) × faces`, with one more layer when **Closed** is on.
   Check it before assembling.
 - **Tolerance** on Assemble, `0.01` m by default, has to be well below the size of the elements,
-  or it welds their nodes together. The [Femur](../../basics/elements/ten-node-tetrahedron.md#femur)
-  uses `0.0001`.
+  or it welds their nodes together: Mesh Solid's remark gives the shortest edge. The
+  [Femur](../../basics/elements/ten-node-tetrahedron.md#femur) uses `0.0001`.
 - Ten Node Tetrahedra need an OpenSees newer than 3.8.0. [Mesh Brep](../../basics/utility/mesh-brep.md) in 10_Utility makes a quad
   mesh of surfaces for [ASD Shell](../../basics/elements/shell.md), not solids.
 
@@ -64,5 +67,6 @@ Then wire the elements into **Elements** of Assemble.
   and supports on its edge nodes
 - [Mesh Loft - Mesh Series to Bricks](https://alpaca4d.github.io/examples/meshloft-meshbrick/) —
   volumes of bricks from lofts and moved meshes
+- [Mesh Solid](../../basics/utility/mesh-solid.md) — tetrahedra from closed Breps and meshes
 - [Spot the Cow](../../basics/elements/ten-node-tetrahedron.md#spot-the-cow) — tetrahedra from a
   mesher, held on the ground
