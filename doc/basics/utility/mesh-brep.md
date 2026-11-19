@@ -35,10 +35,12 @@ at every point you give it: a support, a column, a point load.
 
 **Do not use it when**
 
+- The elements must be smaller round columns, openings or loads → [Mesh Surface](mesh-surface.md)
+  refines where [Mesh Refinement](mesh-refinement.md) asks, and follows curves too.
 - The shape is a series of profiles → [Mesh Loft](mesh-loft.md) gives quads that follow them.
 - You want solids → [Turn geometry into solid elements](../../how-to/geometry/solids-from-geometry.md):
   bricks with [Mesh Series to Brick](mesh-series-to-brick.md), or
-  [Ten Node Tetrahedra](../elements/ten-node-tetrahedron.md) from a tetrahedral mesh.
+  [Ten Node Tetrahedra](../elements/ten-node-tetrahedron.md) from [Mesh Solid](mesh-solid.md).
 
 ## 💡 What it does
 

@@ -16,6 +16,9 @@ debug, exchange and extend a model.
 | [Mesh Brep](mesh-brep.md) | `Mesh Brep` | Meshes surfaces into quads for shells, joined where they meet, with a node at given points. |
 | [Mesh Loft](mesh-loft.md) | `Mesh Loft` | Lofts a series of polylines into a mesh. |
 | [Mesh Series to Brick](mesh-series-to-brick.md) | `Mesh Series to Brick` | Turns a stack of meshes into hexahedra for brick elements. |
+| [Mesh Surface](mesh-surface.md) | `Mesh Surface` | Meshes surfaces for shells with gmsh, finer where asked, with nodes at given points and along given curves. |
+| [Mesh Solid](mesh-solid.md) | `Mesh Solid` | Fills closed Breps and meshes with tetrahedra with gmsh, finer where asked, with nodes at given points. |
+| [Mesh Refinement](mesh-refinement.md) | `Mesh Refinement` | Where Mesh Surface and Mesh Solid make smaller elements: near a point, a curve or a surface. |
 | [Counter](counter.md) | `Counter` | A self-advancing integer, for animations. |
 
 ## What they are for
@@ -24,7 +27,11 @@ debug, exchange and extend a model.
 what a component actually produced, and what properties an object carries.
 
 **Getting geometry in.** [Mesh Brep](mesh-brep.md) meshes surfaces for shells, joining walls to
-slabs and putting a node at each support and load. [Mesh Loft](mesh-loft.md) and
+slabs and putting a node at each support and load. [Mesh Surface](mesh-surface.md) and
+[Mesh Solid](mesh-solid.md) mesh surfaces and solids with gmsh, with smaller elements where a
+[Mesh Refinement](mesh-refinement.md) asks: the
+[Slab with Openings](https://alpaca4d.github.io/examples/slab-with-openings/) example shows how.
+[Mesh Loft](mesh-loft.md) and
 [Mesh Series to Brick](mesh-series-to-brick.md) exist because hexahedral meshing is the hard
 part of using [SSP Brick](../elements/brick.md).
 
