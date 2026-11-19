@@ -337,4 +337,10 @@ for (const ex of examples) {
     fs.writeFileSync(path.join(old, ex.slug + ".html"), redirect(`/examples/${ex.slug}/`));
   }
 }
+// Examples merged into another, by slug: their old pages send on to the one they are part of now.
+const MERGED = { "beso-bridge": "topology-bridge", "multi-material-bridge": "topology-bridge" };
+for (const [from, to] of Object.entries(MERGED)) {
+  fs.mkdirSync(path.join(OUT, from), { recursive: true });
+  fs.writeFileSync(path.join(OUT, from, "index.html"), redirect(`/examples/${to}/`));
+}
 console.log(`examples: ${examples.length} in the gallery, ${pages} pages, in ${path.relative(process.cwd(), OUT) || OUT}`);

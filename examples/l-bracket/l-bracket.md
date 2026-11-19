@@ -6,7 +6,7 @@ tags: ["Topology"]
 
 # 📐 L-Bracket
 
-<figure><img src="l-bracket.png" alt="Three L-brackets in 3D, one brick deep, found by SIMP, BESO and Multi-Material"><figcaption></figcaption></figure>
+<figure><img src="l-bracket.png" alt="Three L-brackets from the front, found by SIMP, BESO and Multi-Material, each named with its compliance"><figcaption></figcaption></figure>
 
 [l-bracket](l-bracket.gh)
 
@@ -43,11 +43,9 @@ so it needs one.
    Run together on an M2 Pro, all three finish in about 40 s.
 2. **Compliance**, the work of the load, is in unit values.
 
-<figure><img src="l-bracket-3.png" alt="The three designs as density pictures, black solid and white void, with their compliances"><figcaption><p>The densities, black solid and white void; Multi-Material's soft material in grey.</p></figcaption></figure>
+<figure><img src="l-bracket-2.png" alt="The three designs as density pictures, black solid and white void, with their compliances"><figcaption><p>The densities, black solid and white void; Multi-Material's soft material in grey.</p></figcaption></figure>
 
 ## What it shows
-
-<figure><img src="l-bracket-2.png" alt="The three designs from the front, each named with its compliance"><figcaption><p>The designs from the front, as Grasshopper draws them.</p></figcaption></figure>
 
 | Method | Iterations | Compliance | Grey elements |
 | --- | --- | --- | --- |

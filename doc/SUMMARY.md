@@ -166,8 +166,6 @@
   * [Section Optimiser](basics/optimisation/section-optimiser.md)
   * [Design Group](basics/optimisation/design-group.md)
   * [Topology Optimisation](basics/optimisation/topology-optimisation.md)
-  * [Multi-Material Topology](basics/optimisation/multi-material-topology.md)
-  * [BESO Topology](basics/optimisation/beso-topology.md)
 * [📄 Report](basics/report/README.md)
   * [Report](basics/report/report.md)
   * [Report Page](basics/report/report-page.md)

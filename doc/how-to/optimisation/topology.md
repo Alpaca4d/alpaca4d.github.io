@@ -45,15 +45,16 @@ the loads need: the stiffest structure for the share of the volume you allow.
   then optimised for each of them, not for the patterns at once, where they would cancel.
 - Beams, trusses, shells and links in the model are analysed with the solids but take no part,
   and the component warns that they are there.
-- [BESO Topology](../../basics/optimisation/beso-topology.md) carves the block down, every element
-  solid or void; [Multi-Material Topology](../../basics/optimisation/multi-material-topology.md)
-  finds where each of several materials goes.
+- **Method**, in the right-click menu: [BESO](../../basics/optimisation/topology-optimisation.md#beso)
+  carves the block down, every element solid or void;
+  [Multi-Material](../../basics/optimisation/topology-optimisation.md#multi-material) finds where
+  each of several materials goes.
 
 ## See also
 
 - [Topology Optimisation](../../basics/optimisation/topology-optimisation.md) — every input, how
   long a run takes, and the three methods side by side
 - [Topology Bridge](https://alpaca4d.github.io/examples/topology-bridge/) — a bridge found in a
-  block of bricks
+  block of bricks, by the three methods side by side
 - [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/) — checked
   against top3d

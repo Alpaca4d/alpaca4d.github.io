@@ -6,7 +6,7 @@ tags: ["Topology"]
 
 # 🎚️ Cantilever, Penalty 1 to 5
 
-<figure><img src="cantilever-penalties.png" alt="Seven cantilevers in 3D, one brick deep: SIMP at penalties 1 to 5 in a row behind, BESO and Multi-Material in front"><figcaption></figcaption></figure>
+<figure><img src="cantilever-penalties.png" alt="Seven cantilevers from the front, one brick deep: SIMP at penalties 1 to 5 in a row, BESO and Multi-Material under them, each named with its compliance"><figcaption></figcaption></figure>
 
 [cantilever-penalties](cantilever-penalties.gh)
 
@@ -45,11 +45,9 @@ so it needs one.
    Run together on an M2 Pro, all seven finish in about a minute.
 2. **Compliance**, the work of the load, is in unit values, as the papers give it.
 
-<figure><img src="cantilever-penalties-3.png" alt="The seven designs as density pictures, black solid and white void, with their compliances"><figcaption><p>The densities, black solid and white void, as the papers draw them; Multi-Material's soft material in grey.</p></figcaption></figure>
+<figure><img src="cantilever-penalties-2.png" alt="The seven designs as density pictures, black solid and white void, with their compliances"><figcaption><p>The densities, black solid and white void, as the papers draw them; Multi-Material's soft material in grey.</p></figcaption></figure>
 
 ## What it shows
-
-<figure><img src="cantilever-penalties-2.png" alt="The seven designs from the front, each named with its compliance"><figcaption><p>The designs from the front, as Grasshopper draws them.</p></figcaption></figure>
 
 | Method | Iterations | Compliance | Grey elements |
 | --- | --- | --- | --- |

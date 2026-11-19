@@ -15,9 +15,9 @@ They do what Colibri with Design Explorer, and DoDo's NL-Opt, did. Both ship wit
 there is nothing else to install.
 
 A third works on the material itself rather than on sliders: [Topology Optimisation](topology-optimisation.md)
-finds which part of a block of bricks or tetrahedra a structure needs. [BESO Topology](beso-topology.md)
-finds it by carving the block down, solid or void all along, and [Multi-Material Topology](multi-material-topology.md)
-also chooses which of several materials goes where.
+finds which part of a block of bricks or tetrahedra a structure needs. Its [BESO](topology-optimisation.md#beso)
+method finds it by carving the block down, solid or void all along, and its [Multi-Material](topology-optimisation.md#multi-material)
+method also chooses which of several materials goes where.
 
 Examples to start from:
 
@@ -26,18 +26,15 @@ Examples to start from:
 - the [Non-Linear Optimisation cases](https://alpaca4d.github.io/examples/non-linear-optimisation/),
   eight problems with known answers;
 - the [Topology Bridge](https://alpaca4d.github.io/examples/topology-bridge/), where a bridge needs its
-  steel;
-- the [Multi-Material Bridge](https://alpaca4d.github.io/examples/multi-material-bridge/), the same
-  block in steel and concrete;
-- the [BESO Bridge](https://alpaca4d.github.io/examples/beso-bridge/), the same block carved out by BESO;
+  material, found by the three methods of Topology Optimisation side by side;
 - the [Truss Node](https://alpaca4d.github.io/examples/truss-node/) and the
   [Beam-Column Joint](https://alpaca4d.github.io/examples/beam-column-joint/), nodes where members meet
-  in space, each found by all three topology optimisations side by side;
+  in space, each found by the three methods of Topology Optimisation side by side;
 - the [Cantilever, Penalty 1 to 5](https://alpaca4d.github.io/examples/cantilever-penalties/) and the
   [L-Bracket](https://alpaca4d.github.io/examples/l-bracket/), two classic problems of the papers, each
   run the three ways;
 - the [Topology Benchmarks](https://alpaca4d.github.io/examples/topology-benchmarks/), two problems
-  checked against top3d.
+  checked against top3d, each run the three ways.
 
 ## Components in this tab
 
@@ -51,9 +48,7 @@ Examples to start from:
 | [Non-Linear Optimisation](non-linear-optimisation.md) | `NL-Opt` | Minimises or maximises a number by moving sliders, with NLopt's algorithms. |
 | [Section Optimiser](section-optimiser.md) | `Section Optimiser` | Sizes steel beams from lists of sections, to EN 1993-1-1. |
 | [Design Group](design-group.md) | `Design Group` | Beams the Section Optimiser sizes from one list of sections. |
-| [Topology Optimisation](topology-optimisation.md) | `Topology` | Finds where a solid of bricks or tetrahedra needs its material. |
-| [Multi-Material Topology](multi-material-topology.md) | `MultiTopology` | Finds where each of several materials goes in a solid, and where none is needed. |
-| [BESO Topology](beso-topology.md) | `BESO` | Finds where a solid needs its material by carving it down, every element solid or void. |
+| [Topology Optimisation](topology-optimisation.md) | `Topology` | Finds where a solid of bricks or tetrahedra needs its material, by SIMP or BESO, or where each of several materials goes. |
 
 ## Which one
 
