@@ -33,8 +33,9 @@ A model is non-linear when its stiffness changes as it moves. In Alpaca4d that c
 - [Compression Only](../basics/elements/support.md) supports, which let go when the node lifts;
 - tension-only and compression-only [Trusses](../basics/elements/force-beam-column.md), which go
   slack;
-- large displacements: trusses are always corotational, and a [shell](../basics/elements/shell.md)
-  can be made corotational with **Is Corotational**.
+- large displacements: trusses are always corotational, a [beam](../basics/elements/force-beam-column.md)
+  is with **Corotational** on its **GeomTransf**, and a [shell](../basics/elements/shell.md) can be
+  made corotational with **Is Corotational**.
 
 Such a model needs the load in steps. Each step adds the [Integrator](../basics/analysis/integrator.md)'s
 **Lambda** to a pseudo-time, a [Linear](../basics/time-history/linear.md) time series turns that

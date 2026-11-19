@@ -23,7 +23,7 @@ There is no separate component. Right-click the **ForceBeamColumn** component an
 | --- | --- | --- | --- | --- |
 | Line | `Line` | Curve | — | Centreline of the element, in `m`. |
 | Section | `Section` | Section | — | Interior cross-section. Also the section the hinges are derived from. |
-| GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
+| GeometricTransformation | `GeomTransf` | Text | Linear | **Linear**, **PDelta** or **Corotational**, typed or from a Value List, which fills itself with the three. Built on the line and `ZAxis`. See [ForceBeamColumn](force-beam-column.md) for which to pick. A transformation made in code is taken as it is. |
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | ReleaseI | `ReleaseI` | Release | fully fixed | Release condition at the **I** end, from [Hinge Release](hinge-release.md). |
 | LpI | `LpI` | Number | `0.05` | Hinge length at the **I** end, **as a fraction of the element length L**. |

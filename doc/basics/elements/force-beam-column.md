@@ -24,10 +24,16 @@ A switcher component. The **Element Type** menu selects the unit:
 | --- | --- | --- | --- | --- |
 | Line | `Line` | Curve | — | Centreline of the element, in `m`. |
 | Section | `Section` | Section | — | Cross-section, from any of the [Sections](../sections/README.md) components, or a [Fiber Section](../moment-curvature/fiber-section.md) for a beam that yields where its fibres do. Carries the material, and with it the mass density. |
-| GeometricTransformation | `GeomTransf` | Generic | Linear | Geometric transformation. If left empty a **Linear** transformation is built from the line and `ZAxis`. |
+| GeometricTransformation | `GeomTransf` | Text | Linear | **Linear**, **PDelta** or **Corotational**, typed or from a Value List, which fills itself with the three. Built on the line and `ZAxis`. **Corotational** follows the beam however far it moves and turns. A transformation made in code is taken as it is. |
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
 | ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+
+**Linear** is the small-displacement beam. **PDelta** adds what an axial force does to a member
+that leans: a frame swaying under its own weight. **Corotational** follows the member however far
+it moves and turns: a girder swinging on a crane hook, a plank that bends right round. It needs a
+non-linear analysis: the **Newton** algorithm, and the load in several steps when the movement is
+large.
 
 ### Inputs — Truss
 
@@ -71,7 +77,8 @@ the [Damping](../analysis/damping.md), as the beams do.
 
 ## 🔗 Relation to OpenSees
 
-The component writes a `geomTransf` and a `forceBeamColumn`:
+The component writes a `geomTransf` - `Linear`, `PDelta` or `Corotational`, as GeomTransf says - and
+a `forceBeamColumn`:
 
 ```tcl
 geomTransf Linear $transfTag $zx $zy $zz

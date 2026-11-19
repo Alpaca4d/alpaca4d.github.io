@@ -59,9 +59,9 @@ factor reads in times the vault's own weight. It controls the bolt nearest the c
 
 The vault moves a long way before it gives way, so its beams are Corotational. With P-Delta, the
 default in Pushover Analysis, the vault gives way at half the load: P-Delta follows a frame that
-leans, but not planks that turn this far. No Grasshopper component makes a Corotational
-transformation, so a small Python component makes one for each piece of plank and hands it to
-ForceBeamColumn's GeomTransf input.
+leans, but not planks that turn this far. The definition gives each piece of plank its
+Corotational transformation from a small Python component, made before ForceBeamColumn's
+GeomTransf input took the word: typing **Corotational** there does the same.
 
 ## What it shows
 

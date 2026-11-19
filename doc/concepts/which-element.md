@@ -27,6 +27,8 @@ force-based: the section response is integrated along the member, at five Newton
 rather than a shape being assumed for the curvature. Its section is elastic, `section Elastic`,
 or a [Fiber Section](../basics/moment-curvature/fiber-section.md), whose fibres yield, crack and
 soften along the member: the beam of a [Pushover Analysis](../basics/analysis/pushover.md).
+Its transformation is Linear unless its **GeomTransf** says **PDelta** or **Corotational**; the
+second holds for large displacements and rotations.
 
 **Beam With Hinges** is the same element with a hinge zone at each end. A released degree of
 freedom becomes a hinge section with that stiffness scaled by 10⁻⁶. It is how a member end is
