@@ -19,7 +19,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| Material Name | `MatName` | Text | *(empty)* | Label for the material. Name it after a steel grade — `S355`, `S355JR` — and [Utilisation](../results/utilisation.md) checks its beams as that grade; any other name is only a label. |
+| Material Name | `MatName` | Text | *(empty)* | Label for the material. Name it after a steel grade — `S355`, `S355JR` — or a timber class — `C24`, `GL24h` — and [Utilisation](../results/utilisation.md) checks its beams as that grade; any other name is only a label. |
 | E | `E` | Number | `210000000` | Young's modulus in tension, in `kN/m²`. |
 | Eneg | `Eneg` | Number | `210000000` | Young's modulus in compression, in `kN/m²`. Equal to `E` unless you need a different one. |
 | Eta | `Eta` | Number | `0.0` | Viscous damping parameter. `0.0` for purely elastic behaviour. |

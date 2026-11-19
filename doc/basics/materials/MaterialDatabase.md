@@ -30,7 +30,7 @@ Built-in grades:
 | --- | --- |
 | Steel | S235, S275, S355, S450 |
 | Concrete | C25_30, C28_35, C30_37, C32_40, C35_45, C40_50 |
-| Timber | C14, C16, C18, C20, C22, C24, GOB_Green_Oak |
+| Timber | GOB_Green_Oak; C14 to C50 and D30 to D70 (EN 338:2016); GL20h to GL32h and GL20c to GL32c (EN 14080) |
 | Plastic | PVC, HDPE, PE, PP, PS, PET, PC, PLA, PVA, PTFE, PEEK, PVDF |
 
 ### Inputs
@@ -62,8 +62,13 @@ The grade name becomes the material name.
 
 For a steel grade the material also carries its **design grade** — fy and fu from EN 1993-1-1
 Table 3.1, including the lower values for plates thicker than 40 mm — which
-[Utilisation](../results/utilisation.md) checks the beam against. The solver never sees it. Only
-the **Uniaxial** model carries one, since that is what beams are made of.
+[Utilisation](../results/utilisation.md) checks the beam against. A timber class carries its
+characteristic strengths and stiffnesses — f_m,k, f_t,0,k, f_c,0,k, f_v,k, E_0,05, G_mean, ρ_k —
+for the EN 1995-1-1 check, and whether it is solid timber or glulam. The solver never sees either.
+Only the **Uniaxial** model carries one, since that is what beams are made of.
+
+The timber classes follow EN 338:2016 (solid timber) and EN 14080 (glulam). The analysis takes
+`E_mean` as E; `E0_05`, the strengths and, for glulam, `G_05` are for the check alone.
 
 ## 💡 Custom databases
 
@@ -94,6 +99,12 @@ this:
 An entry whose `material_type` is `Steel` and which gives `fy` is also a design grade, for
 [Utilisation](../results/utilisation.md): `fy` and `fu` in N/mm² for plates up to 40 mm thick, and
 `fy_40_80` and `fu_40_80`, if given, for 40 to 80 mm. Strain values are not read.
+
+An entry whose `material_type` is `Timber` is a timber class, with the keys of the built-in timber
+file, all in N/mm² but the densities in kg/m³: `fm_k`, `ft_0_k`, `ft_90_k`, `fc_0_k`, `fc_90_k`,
+`fv_k`, `E_mean`, `E0_05`, `G_mean`, `rho_k`, `rho_mean`, and `G_05` where it is tabulated. A
+`type` of `Glulam` makes it glulam; anything else is solid timber. The check needs `fm_k`,
+`ft_0_k`, `fc_0_k`, `fv_k`, `E0_05` and `G_mean`; a class without one is left unchecked.
 
 ## 📈 When to use it
 
