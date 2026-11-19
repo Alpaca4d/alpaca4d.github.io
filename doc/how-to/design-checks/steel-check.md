@@ -25,8 +25,8 @@ enough, and which check governs.
    with **Family** and **Section**, or type it into **Section Name**: `HEA200`. Left empty,
    **Material** is an elastic steel with no grade, which Utilisation does not check.
 3. Make the beams with that section, assemble the model and run it with Run Analysis.
-4. Wire the **AlpacaModel** output of Run Analysis, not of Assemble, into Utilisation. Leave
-   **Step** at `0` for an analysis of one step.
+4. Wire the **AlpacaModel** output of Run Analysis, not of Assemble, into Utilisation, on its
+   **Steel** type, as it is placed. Leave **Step** at `0` for an analysis of one step.
 5. Give the buckling lengths, in `m`: **LengthY** about the minor axis of an I, **LengthZ** about the
    major, **LengthLT** between lateral restraints. Give one value for every beam, or one per beam
    in the order of the **Element** output.

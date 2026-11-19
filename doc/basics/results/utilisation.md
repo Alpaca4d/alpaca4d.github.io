@@ -1,9 +1,17 @@
 # Utilisation
 
-Checks every beam against the design code of its material and reports how much of each
-resistance it uses: **1 is exactly at the limit**. Steel is checked to **EN 1993-1-1**
-(Eurocode 3) — cross-section resistance, flexural buckling, lateral-torsional buckling and
-bending with compression as a member.
+Checks beams against the design code of their material and reports how much of each resistance
+they use: **1 is exactly at the limit**. A switcher with a type per material, picked in the
+drop-down under it, each with the inputs and outputs of its code:
+
+- **Steel**, to **EN 1993-1-1** (Eurocode 3) — cross-section resistance, flexural buckling,
+  lateral-torsional buckling and bending with compression as a member.
+- **Timber**, to **EN 1995-1-1** (Eurocode 5) — cross-section resistance, column buckling and
+  lateral-torsional buckling, with k_mod from the service class and the duration of the loads:
+  see **Timber** below.
+
+Each type checks its own material alone. A model of both takes two Utilisation components, one of
+each type; a beam of the other material comes back with its **Type**, nothing checked, and a remark.
 
 ## 🔧 Grasshopper component
 
@@ -13,7 +21,7 @@ bending with compression as a member.
 
 <figure><img src="../../.gitbook/assets/components/utilisation-open.png" alt="Utilisation component with every menu open" width="483"><figcaption><p>With every menu open</p></figcaption></figure>
 
-### Inputs
+### Inputs — Steel
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -27,13 +35,26 @@ bending with compression as a member.
 | Sway | `Sway` | Boolean (list) | `false` | The beam is part of a frame that buckles by swaying: Cm = 0.9 about both axes (Table B.3). One value, or one per beam, as **LengthY**. |
 | Combination | `Combination` | Text (list) | *(empty)* | Load combinations to read, by name or by place from 0. Empty reads every one, a branch each: each result has the combination's place in front of its path, `{combination}`, a value per beam. **Element** and **Type** stay flat lists. Every combination is checked, serviceability ones too: name the ultimate ones to check only those. See [Load Combination](../loads/load-combination.md). |
 
+### Inputs — Timber
+
+| Name | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| AlpacaModel | `AlpacaModel` | Model | — | The analysed model. |
+| Step | `Step` | Integer | `0` | Which recorded step to check. |
+| ElementId | `ElementId` | Text (list) | *(empty)* | Check only some of the beams, as for steel. |
+| LengthY | `LengthY` | Number (list) | *(empty)* | Buckling length L_cr about local *y* — across a rectangle's Width — in `m`, for k_c. One value for every beam, or one per beam checked, in the order of the **Element** output. Empty takes each beam's own length, node to node. |
+| LengthZ | `LengthZ` | Number (list) | *(empty)* | Buckling length L_cr about local *z* — across a rectangle's Height. As **LengthY**. |
+| LengthLT | `LengthLT` | Number (list) | *(empty)* | Distance between lateral restraints, for lateral-torsional buckling (6.3.3), in `m`. One value, or one per beam, as **LengthY**. Empty takes each beam's own length. |
+| Load | `Load` | Text (list) | `ShearCentre` | Where the load acts on the section, for lateral-torsional buckling: `ShearCentre` (the centroid of a rectangle), `Destabilising` (or `Top`) or `Stabilising` (or `Bottom`). One value, or one per beam, as **LengthY**. |
+| Combination | `Combination` | Text (list) | *(empty)* | Load combinations to read, as for steel. Each is checked with k_mod for its own patterns. |
+
 {% hint style="warning" %}
 **Lengths left empty are each beam's own length, held at both ends.** A member drawn as several
 beams needs its whole length given — each beam's own is only a piece of it — and so do a sway
 column and a cantilever, whose free tip is not held at all.
 {% endhint %}
 
-### Outputs
+### Outputs — Steel
 
 One item per beam, in the order of the **Element** output. A check that could not be made is
 **empty**, never zero.
@@ -55,10 +76,33 @@ One item per beam, in the order of the **Element** output. A check that could no
 | Max | `Max` | Number (list) | The largest of the above. Empty when a check that applies could not be made. |
 | Element | `Element` | Element (list) | The beams checked. |
 
+### Outputs — Timber
+
+One item per beam, as for steel.
+
+| Name | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Axial | `Axial` | Number (list) | N against f_t,0,d with k_h in tension (6.1.2), or f_c,0,d in compression (6.1.4). |
+| ShearY | `ShearY` | Number (list) | Vy: 1.5 V / (k_cr A) — 4V/3 for a circle — against f_v,d (6.1.7), k_cr = 0.67. |
+| ShearZ | `ShearZ` | Number (list) | Vz, as **ShearY**. |
+| Torsion | `Torsion` | Number (list) | St. Venant shear stress against k_shape·f_v,d (6.1.8). |
+| BendingY | `BendingY` | Number (list) | My, across a rectangle's Width: σ_m,d against f_m,d with k_h (6.1.6). |
+| BendingZ | `BendingZ` | Number (list) | Mz, across a rectangle's Height: σ_m,d against f_m,d with k_h (6.1.6). |
+| Combined | `Combined` | Number (list) | Bending about both axes with axial force, k_m on the other axis: (6.11)-(6.12) in bending, (6.17)-(6.18) with tension, (6.19)-(6.20) with compression. |
+| BucklingY | `BucklingY` | Number (list) | σ_c,0,d against k_c·f_c,0,d, buckling about local *y* (6.3.2). Zero when the beam is not in compression. |
+| BucklingZ | `BucklingZ` | Number (list) | As **BucklingY**, about local *z*. |
+| LTB | `LTB` | Number (list) | Lateral-torsional buckling, the worst piece between lateral restraints: σ_m,d against k_crit·f_m,d (6.33), and (6.35) with compression. Zero with no major axis bending, and for a circle. |
+| InteractionY | `InteractionY` | Number (list) | Compression with bending, buckling about local *y*: (6.23). Zero with no compression, or with λ_rel ≤ 0.3 about both axes, when (6.19)-(6.20) in **Combined** are all 6.3.2(2) asks. |
+| InteractionZ | `InteractionZ` | Number (list) | As **InteractionY**, about local *z*: (6.24). |
+| Max | `Max` | Number (list) | The largest of the above. Empty when a check that applies could not be made. |
+| Element | `Element` | Element (list) | The beams checked. |
+
 ### Design menu
 
 Below the component, folded away until you open it. Its inputs are set once per project and then
 left alone; its outputs say more about a beam than how loaded it is.
+
+**Steel**
 
 | Input | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -69,27 +113,48 @@ left alone; its outputs say more about a beam than how loaded it is.
 
 | Output | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Type | `Type` | Text (list) | What the beam is made of, from its material: `Steel`, or `Unknown` when the material has no design grade. |
+| Type | `Type` | Text (list) | What the beam is made of, from its material: `Steel`, `Timber`, or `Unknown` when the material has no design grade. |
 | Class | `Class` | Integer (list) | Cross-section class, 1 to 4, the worst along the beam. |
 | Governing | `Governing` | Text (list) | Which check gives **Max**, or which checks could not be made. |
 | Report | `Report` | Text (list) | Everything worked out on the way — grade, fy, class, section properties, resistances, where each check governs and what is not covered. Put it in a panel to check a member by hand. Empty unless the **Report** input is on. |
 
+**Timber**
+
+| Input | Nick | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| ServiceClass | `ServiceClass` | Integer (list) | `1` | The service class, 1, 2 or 3 (EN 1995-1-1 2.3.1.3), which sets k_mod with the duration of the loads: 1 heated indoors, 2 covered but unheated, 3 exposed to the weather. One value, or one per beam, as **LengthY**. |
+| γM | `γM` | Number | *(empty)* | The partial factor for the material. Empty takes Table 2.3's recommended value — 1.3 for solid timber, 1.25 for glulam, 1.0 in an accidental combination. A National Annex may set others. |
+| Report | `Report` | Boolean | `false` | Write the **Report** output, as for steel. |
+
+| Output | Nick | Type | Description |
+| --- | --- | --- | --- |
+| Type | `Type` | Text (list) | What the beam is made of: `Timber`, `Steel`, or `Unknown`. |
+| kmod | `kmod` | Number (list) | k_mod each beam was checked with: Table 3.1, from its service class and the shortest load duration of the combination. |
+| Governing | `Governing` | Text (list) | Which check gives **Max**, or which checks could not be made. |
+| Report | `Report` | Report (list) | Everything worked out on the way, as an object: a Panel shows it as text; [Deconstruct](../utility/deconstruct.md) splits it into its values — Grade, the strengths, ServiceClass, Duration and DurationSource, Kmod, GammaM and GammaMSource, KhY, KhZ, KhTension, the section's properties, the design strengths (Ft0d, Fc0d, FmYd, FmZd, Fvd), KcY, KcZ, Mcr, Kcrit, Max, Governing — and **Checks**, which a second Deconstruct splits into each check's Name, Value, Clause, Section, Position and Detail. Empty unless the **Report** input is on. |
+
 {% hint style="danger" %}
-**Not checked yet:** torsional and torsional-flexural buckling (6.3.1.4) — which can govern a pair
+**Steel, not checked yet:** torsional and torsional-flexural buckling (6.3.1.4) — which can govern a pair
 of angles in compression — warping torsion, shear buckling of slender webs (EN 1993-1-5) and
 Class 4 sections. **6.3.3 is for doubly symmetric sections only**: an I with unequal flanges or a
 pair of angles in compression and bending gets no interaction, and no **Max**.
+
+**Timber, not checked yet:** compression and tension across the grain (6.1.5 — bearing at
+supports and under point loads), shear and torsion together, notched, curved and tapered members
+(6.4, 6.5), system strength k_sys (6.6), connections, fire, and the serviceability checks —
+deflection with k_def and vibration.
 
 Frame stability is the model's: the forces are the analysis's, with whatever second-order
 effects and imperfections it includes.
 {% endhint %}
 
-## 💡 Where the steel grade comes from
+## 💡 Where the grade comes from
 
 From the beam's **material**. Make it with [Material Database](../materials/MaterialDatabase.md),
 which stamps the grade on it, or give a [Uniaxial](../materials/Uniaxial.md) material the name
-of its grade: `S355`, `S355JR`, `s355 j2` and `S 355` are all S355. A material with any other
-name is `Unknown` and is left unchecked, with a warning.
+of its grade: `S355`, `S355JR`, `s355 j2` and `S 355` are all S355; `C24`, `GL24h` and `gl 24 h`
+are timber classes. A material with any other name is `Unknown` and is left unchecked, with a
+warning.
 
 fy follows EN 1993-1-1 **Table 3.1** for the section's thickest plate, including the lower value
 for plates thicker than 40 mm:
@@ -240,6 +305,65 @@ The component's messages:
 | *... have checks that could not be made, so no Max* | Warning | Anything else missing — see the **Report**. |
 | *... taken as Class 3 under 5.5.2(9)* | Remark | Checked, elastically, at the low stress the part carries. |
 | *Buckling lengths left empty are each beam's own length* | Remark | A lengths input is empty; give lengths for members drawn as several beams, sway columns and cantilevers. |
+| *... beam(s) are timber, left to the Timber type* (or *steel, left to the Steel type*) | Remark | Beams of the other material, not checked by this type: use a second Utilisation of the other type for them. |
+| *... timber beam(s) are not checked* | Warning | Timber type: a section that is not a solid rectangle or circle, or a grade without a strength the check needs. |
+| *k_mod from the shortest load duration of each combination* | Remark | Timber type: what timber is checked with, and what it is not checked for yet. |
+| *Load pattern(s) ... have no Duration* | Remark | Timber type: those patterns count as permanent. Set their duration in the [Load Pattern](../loads/load-pattern.md)'s **Duration** menu. |
+
+## 💡 Timber, EN 1995-1-1
+
+The **Timber** type checks a beam whose material is an EN 338 class (C14 to C50, D30 to D70) or an
+EN 14080 glulam class (GL20h to GL32h, GL20c to GL32c) to EN 1995-1-1, with the recommended values
+throughout.
+Its section must be a solid [Rectangular](../sections/rectangular.md) or a solid
+[Circular](../sections/circular.md) section; any other is left unchecked, with a warning. Mz bends
+across the rectangle's **Height**, My across its **Width**.
+
+Every design strength is f_d = k_mod·f_k/γM (2.14):
+
+- **k_mod**, Table 3.1 — the **kmod** output — from the beam's **ServiceClass** (Design menu, 1 unless given) and the
+  **duration of the loads**: the shortest among the load patterns of the combination checked
+  (3.1.3(2)). Each pattern's duration is set in its [Load Pattern](../loads/load-pattern.md)'s
+  **Duration** menu. A pattern left **Not set** counts as permanent, the lowest k_mod, and the
+  component names it in a remark — so a model whose patterns have no duration is checked on the
+  safe side.
+
+  | Service class | Permanent | Long-term | Medium-term | Short-term | Instantaneous |
+  | --- | --- | --- | --- | --- | --- |
+  | 1, 2 | 0.60 | 0.70 | 0.80 | 0.90 | 1.10 |
+  | 3 | 0.50 | 0.55 | 0.65 | 0.70 | 0.90 |
+
+- **γM**, Table 2.3: 1.3 for solid timber, 1.25 for glulam, 1.0 in a combination of type
+  `Accidental` from [Load Combination](../loads/load-combination.md) — or the **γM** given.
+- **k_h** on f_m,k and f_t,0,k for a member less deep than the reference: (150/h)^0.2 ≤ 1.3 for
+  solid timber up to ρ_k 700 kg/m³ (3.1), (600/h)^0.1 ≤ 1.1 for glulam (3.2), with the depth each
+  moment bends across, and the largest side in tension.
+
+| Check | Clause | How |
+| --- | --- | --- |
+| Axial | 6.1.2, 6.1.4 | σ_t,0,d / f_t,0,d, or σ_c,0,d / f_c,0,d |
+| Shear | 6.1.7 | 1.5 V / (k_cr A) — 4V / (3 k_cr A) for a circle — against f_v,d, k_cr = 0.67 |
+| Torsion | 6.1.8 | τ_tor,d against k_shape f_v,d: 1 + 0.15 h/b ≤ 2 for a rectangle, 1.2 for a circle |
+| Bending | 6.1.6 | σ_m,d / f_m,d about each axis |
+| Combined | 6.1.6, 6.2.3, 6.2.4 | (6.11)-(6.12) in bending, (6.17)-(6.18) with tension, (6.19)-(6.20) with compression; k_m = 0.7 for a rectangle, 1.0 for a circle |
+| Buckling | 6.3.2 | σ_c,0,d / (k_c f_c,0,d) about each axis, for the largest compression along the beam; β_c 0.2 for solid timber, 0.1 for glulam |
+| Interaction | 6.3.2 | (6.23) and (6.24) at every integration point with the largest compression; left to (6.19)-(6.20) when λ_rel ≤ 0.3 about both axes, as 6.3.2(2) says |
+| LTB | 6.3.3 | (6.33) σ_m,d / (k_crit f_m,d), and (6.35) with compression, k_c about the minor axis |
+
+**σ_m,crit** is M_cr / W "according to the classical theory of stability, with 5-percentile
+stiffness values" (6.3.3(2)): M_cr is worked out on the beam's own moment diagram, as for steel —
+fork supports every **LengthLT**, the load at the height **Load** gives — with E_0,05 and G_0,05.
+For a uniform moment it is (6.32) exactly; for a uniform load it is within 1.4% of Table 6.1's
+l_ef = 0.9 l. G_0,05 is tabulated for glulam (540 N/mm²) and G_mean·E_0,05/E_0,mean for solid timber.
+
+The [Wave Roof Hall](https://alpaca4d.github.io/examples/wave-roof-hall/) example checks glulam arches
+and purlins on the Timber type and their steel frame on the Steel type, over six ULS combinations.
+
+{% hint style="info" %}
+**Every combination is checked, serviceability ones too**, each with k_mod for its own patterns:
+name the ultimate ones in **Combination** to check only those. A model without combinations has
+all its patterns acting at once, and the shortest of them sets k_mod.
+{% endhint %}
 
 ## 💡 Sharp corners
 
@@ -254,7 +378,7 @@ hot-finished tubes.
 
 **Use it when**
 
-- You want to know whether steel members are big enough, and which check governs.
+- You want to know whether steel or timber members are big enough, and which check governs.
 - You are sizing members: feed **Max** back into a section choice.
 
 **Do not use it when**
@@ -281,6 +405,28 @@ printed:
 The critical moment is also held to the closed forms — uniform moment, doubly and singly
 symmetric — and to the C1 and C2 of ENV 1993-1-1 Annex F. Then every shape against hand formulas,
 members worked by hand, and the whole chain — a recorder file solved by OpenSees, read and checked.
+
+**Timber** is set against Swedish Wood, *Design of timber structures, Volume 3: Examples* (edition
+3:2022, EN 1995-1-1 without a National Annex), to the digits printed:
+
+| Source | Member | Checked |
+| --- | --- | --- |
+| Example 3.1 | C24 joist 45 × 220, 4.5 m | k_mod, k_h, f_m,d 14.8, f_v,d 2.46, V_Rd 10.9 kN, bending 0.94, shear 0.41 |
+| Example 3.4 | GL30c beam 115 × 630, 10 m | γM, k_h, W_y, f_m,y,d 19.20, f_v,d 2.24, bending 0.51, shear 0.22; σ_m,crit 19.1, λ_rel,m 1.25, k_crit 0.62, M_Rd 90.6 kNm from the book's own σ_m,crit |
+
+{% hint style="info" %}
+For Example 3.4's lateral-torsional buckling Utilisation reads **1.10** where the book has **0.82**,
+on the safe side, for two reasons. Its point load at mid-span puts a triangle in the moment diagram,
+not a parabola, so the peak moment is taken as uniform over **LengthLT** (C1 = 1), where Table 6.1
+credits the point load with l_ef = 0.8 l. And σ_m,crit comes from (6.32), with glulam's G_0,05 =
+540 N/mm² and the section's own torsion constant, where the book uses (6.33) — written for solid
+softwood — which implies G/E = 1/16 against glulam's 1/20: about 20% higher for this section.
+{% endhint %}
+
+It is also held to Tables 2.3 and 3.1, k_h, k_c, k_crit and k_shape value by value; to EN 338:2016
+and EN 14080 for the classes; every output of solid, glulam and round members to the expressions
+written out by hand; M_cr to (6.32) and to Table 6.1; the load duration from the patterns through
+each combination; and the whole chain, three timber cantilevers solved by OpenSees.
 
 {% hint style="info" %}
 End to end, the Schneider column reads **1.00** for (6.61) against the book's 0.96: Alpaca4d's
