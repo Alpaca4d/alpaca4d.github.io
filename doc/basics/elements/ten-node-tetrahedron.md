@@ -65,9 +65,10 @@ between two supported corners with no support of its own.
 - A hexahedral mesh is available and coarse is good enough → [SSP Brick](brick.md) is cheaper.
 - The body is thin → use [Shell](shell.md).
 
-**Examples:** [Spot the Cow](#spot-the-cow), [Femur](#femur) and
-[The Rebellious Slave](#the-rebellious-slave), at the end of this page, bring tetrahedral meshes
-from a mesher into Grasshopper, under their own weight, a point force and in vibration.
+**Examples:** [Spot the Cow](#spot-the-cow) and [The Rebellious Slave](#the-rebellious-slave), at
+the end of this page, bring tetrahedral meshes from a mesher into Grasshopper; the [Femur](#femur)
+makes its own with [Mesh Solid](../utility/mesh-solid.md). They stand under their own weight, a
+point force and in vibration.
 
 ## 📊 Results
 
@@ -96,8 +97,9 @@ Tetrahedron nodes have **3 DOF**.
 
 ## Examples
 
-Three tetrahedral meshes from a mesher, brought into Grasshopper. Download a definition from the
-link under its picture. Each needs an OpenSees newer than 3.8.0, as the warning at the top of this
+Three solids in tetrahedra: two meshed outside Grasshopper and brought in, and the femur filled by
+[Mesh Solid](../utility/mesh-solid.md) in the definition. Download a definition from the link under
+its picture. Each needs an OpenSees newer than 3.8.0, as the warning at the top of this
 page explains; with 3.8.0 the analysis stops and says so.
 
 ### Spot the Cow
@@ -124,8 +126,9 @@ throughout geometry processing.
 
 #### Tetrahedra from a mesher
 
-Grasshopper has no tetrahedral mesher, so the tetrahedra come in as one hands them out: a list of
-points, and four point numbers per tetrahedron, counted from 0. Ten Node Tetrahedron takes a four
+[Mesh Solid](../utility/mesh-solid.md) fills a closed Brep or a closed mesh with tetrahedra in the
+definition, as the [Femur](#femur) does. Tetrahedra made by another mesher come in as it hands them
+out: a list of points, and four point numbers per tetrahedron, counted from 0. Ten Node Tetrahedron takes a four
 vertex mesh, puts the corners in the order OpenSees wants, and adds a node in the middle of each
 edge. The four mesh faces do not matter: any four that close the mesh will do.
 
@@ -170,41 +173,44 @@ dedicated to the public domain (CC0).
 
 ### Femur
 
-<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/femur/femur.png" alt="A femur held at the knee with the hip force on its head, coloured by displacement, the head moving 3.4 mm"><figcaption></figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/refs/heads/main/doc/basics/elements/ten-node-tetrahedron/femur/femur.png" alt="A femur in tetrahedra Mesh Solid made, finer along its neck, coloured by its displacement under the hip force: the head moves 3.3 mm, the knee end not at all"><figcaption></figcaption></figure>
 
 [femur](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/basics/elements/ten-node-tetrahedron/femur/femur.gh)
 
-A thigh bone, held at the knee, with the force of the hip on its head, in 3 813 Ten Node
-Tetrahedra. The bone is the Standardised Femur, the reference geometry for finite element studies
-of the femur. The example shows how to hold one end of a solid and load the other through a patch
-of nodes.
+A thigh bone, held at the knee, with the force of the hip on its head, in about 8 400 Ten Node
+Tetrahedra that [Mesh Solid](../utility/mesh-solid.md) makes from its surface. The bone is the
+Standardised Femur, the reference geometry for finite element studies of the femur. The example
+shows how to fill a closed mesh with tetrahedra, finer where the bone bends most, how to hold one
+end of a solid and load the other through a patch of nodes. Mesh Solid runs gmsh, which you
+install yourself: see [Setup](../../setup.md#meshing-with-gmsh).
 
 #### The model
 
 | Group | What it does |
 | --- | --- |
-| 1 - The femur in tetrahedra | The tetrahedra as a mesher writes them: **Nodes**, the 1 297 corner points, and **Tetrahedra**, four node numbers per tetrahedron, one branch each. **List Item** and **Construct Mesh** make each into a four vertex mesh. See [Tetrahedra from a mesher](#tetrahedra-from-a-mesher). |
+| 1 - The femur's surface, filled with tetrahedra | The bone's closed surface, 2 234 triangles, kept as **Surface nodes** and **Surface triangles**; **Construct Mesh** makes it a mesh. [Mesh Solid](../utility/mesh-solid.md) remeshes it and fills it with tetrahedra about 8 mm across, and 3 mm along the neck, where a [Mesh Refinement](../utility/mesh-refinement.md) on a **Line** from the middle of the head to the shaft asks. |
 | 2 - Bone, and Ten Node Tetrahedra | An [nD](../materials/ND.md) Elastic Isotropic material: cortical bone, E = 17 GPa, ν = 0.3. |
 | 3 - Held at the knee | Every element's ten nodes from its **Points** output; those in the bottom 2 cm, once each, held in X, Y and Z, as a bone potted in cement for a test. |
 | 4 - The hip's force | The highest node is the top of the head. The force is shared equally among the nodes within 15 mm of it: **List Length** counts them and **Division** gives each its share of the 2 kN, as [Point Loads](../loads/point-load.md). |
 | 5 - Assemble Model | [Assemble](../assemble.md), with a **Tolerance** of 0.0001 m (0.1 mm). The default, 1 cm, is larger than the tetrahedra and would weld their nodes together. [Model View](../visualisation/model-view.md) shows the supports and the loads. |
 | 6 - Solve, and the displacement | [Run Analysis](../analysis/run-analysis.md), and [Model View](../visualisation/model-view.md) on Displacement, drawn 20 times larger, with its [Legend](../visualisation/legend.md). |
+| 7 - Its modes | A [Natural Vibration Analysis](../analysis/natural-vibration.md) of the first six modes, and a [Model View](../visualisation/model-view.md) of the one **Step** picks. |
 
 #### The load
 
 When you walk, the hip pushes on the head of the femur with about two and a half times your weight.
 For an 80 kg person that is 2 kN. Here it leans 13° from the shaft, pushing the head down and out:
-(0.45, 0, -1.95) kN. Spread over the 90 nodes on the top of the head, it does not punch through a
-single node.
+(0.45, 0, -1.95) kN. Spread over the nodes within 15 mm of the top of the head, it does not punch
+through a single node.
 
 #### What it shows
 
-The head moves 3.4 mm, mostly sideways. The shaft bends over the knee, as it does under the
+The head moves 3.3 mm, mostly sideways. The shaft bends over the knee, as it does under the
 eccentric load of the neck. The reactions at the knee balance the 2 kN exactly.
 
-Next to the groups, a [Natural Vibration Analysis](../analysis/natural-vibration.md) and a second
-Model View shows the bone's modes. Move the **Step** slider to go through them. The first two
-are at 57 and 61 Hz.
+Group 7, a [Natural Vibration Analysis](../analysis/natural-vibration.md) and a second Model
+View, shows the bone's modes. Move the **Step** slider to go through them. The first two are at
+56 and 60 Hz.
 
 Treat the numbers as an illustration, not as biomechanics. The bone is solid cortical bone all
 through: the canal and the softer bone inside the ends are filled in, so this femur is stiffer than
@@ -215,7 +221,8 @@ a real one. Change **E** and the load in groups 2 and 4 to try your own.
 The Standardised Femur comes as IGES surfaces that do not close into a solid: its faces stand up
 to a millimetre apart, and CAD will not sew them. `Tools/Examples/Solids/FemurMesh.py`, in the Alpaca4d
 repository, rebuilds a closed surface from the outer faces with a signed distance and marching
-cubes. It then fills that surface with tetrahedra with [gmsh](https://gmsh.info).
+cubes, and fills it with tetrahedra with [gmsh](https://gmsh.info). The definition keeps the outer
+faces of those tetrahedra as the bone's surface, and Mesh Solid fills it again.
 
 The [Standardised Femur](https://doi.org/10.15131/shef.data.3839766.v1) by Marco Viceconti,
 University of Sheffield, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/);
