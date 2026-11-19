@@ -183,7 +183,6 @@
 
 ## About
 
-* [🦸 Sponsors](sponsors.md)
 * [🌊 OpenSees](references/opensees.md)
 * [📕 License](references/license.md)
 * [📚 Publications](references/publications.md)
