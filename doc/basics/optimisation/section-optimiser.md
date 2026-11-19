@@ -1,8 +1,9 @@
 # Section Optimiser
 
-The **Section Optimiser** sizes steel beams from lists of sections. It analyses the model, checks
-every beam with every section of its list to EN 1993-1-1 on the forces the beam carried, as
-[Utilisation](../results/utilisation.md) does, puts each beam on the first section of its list
+The **Section Optimiser** sizes steel and timber beams from lists of sections. It analyses the model,
+checks every beam with every section of its list on the forces the beam carried — steel to
+EN 1993-1-1 and timber to EN 1995-1-1, each section by its own material, as
+[Utilisation](../results/utilisation.md)'s Steel and Timber types do — puts each beam on the first section of its list
 that keeps it at or below **MaxUtilisation**, and analyses again: the new sections change the
 self-weight and, in a statically indeterminate structure, where the forces go. It stops when no
 section changes, or after **Iterations** analyses.
@@ -28,7 +29,7 @@ is static, in one step. Press **Escape** to stop after the iteration under way.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md). Its beams start from the sections they have. |
+| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or from [Load Combination](../loads/load-combination.md) to size over its ULS combinations — see **Load combinations** below. Its beams start from the sections they have. |
 | DesignGroups | `DesignGroups` | DesignGroup (list) | *(empty)* | Which beams to size from which sections: one [Design Group](design-group.md) per list. Left empty, every beam is sized within its family in Steel Section Library. |
 | ElementId | `ElementId` | Text (list) | *(empty)* = every beam | Optimise only some of the beams: an ElementId (`MyBeam_3`), a wildcard (`MyBeam*`, `Col_?`), an element tag (`47`) or a regular expression (`regex:^Col`), mixed freely. The beams it leaves out keep their sections, whatever group they are in, but are still analysed and checked. |
 | MaxUtilisation | `MaxUtilisation` | Number | `1` | The utilisation each beam taking part should end up at or below: `1` is exactly at the limit, `0.8` keeps a fifth in hand. |
@@ -43,12 +44,14 @@ is static, in one step. Press **Escape** to stop after the iteration under way.
 | Sway | `Sway` | Boolean (list) | `false` | The beam belongs to a frame that buckles by swaying: Cm = 0.9 about both axes (Table B.3). One value, or one per beam. In the **Design** menu. |
 | System | `System` | Text | `Auto` | How the system of equations is solved, as in [Analysis Settings](../analysis/analysis-settings.md): Mumps on every core when the OpenSees has it, BandSPD when not. Reach for `UmfPack` if a model refuses to solve: it assumes nothing about the matrix. Connect a Value List for the options: `BandGen`, `BandSPD`, `ProfileSPD`, `SuperLU`, `UmfPack`, `SparseSYM`, `SparseSPD`, `SparseGeneral`, `FullGeneral`, `Mumps`, `Auto`. In the **Analysis** menu. |
 | Algorithm | `Algorithm` | Text | `Newton` | How each analysis is iterated to equilibrium. `Linear` does one solve with no iteration: a little faster on an elastic model, and only right on one. Connect a Value List for the options: `Linear`, `Newton`, `NewtonLineSearch`, `ModifiedNewton`, `KrylovNewton`, `SecantNewton`, `BFGS`, `Broyden`. In the **Analysis** menu. |
+| ServiceClass | `ServiceClass` | Integer (list) | `1` | Timber: the service class, 1, 2 or 3 (EN 1995-1-1 2.3.1.3), which sets k_mod with the duration of the loads — the shortest **Duration** among the model's [Load Patterns](../loads/load-pattern.md). One value, or one per beam. In the **Design** menu. |
+| γM | `γM` | Number | *(empty)* | Timber: the partial factor for the material. Empty takes Table 2.3's — 1.3 for solid timber, 1.25 for glulam. In the **Design** menu. |
 
 ### Outputs
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | The last design, analysed: for Utilisation, Beam Forces or [Model View](../visualisation/model-view.md), or for Natural Vibration or Linear Buckling. Empty when the first analysis failed. |
+| AlpacaModel | `AlpacaModel` | Model | The last design, analysed: for Utilisation, Beam Forces or [Model View](../visualisation/model-view.md), or for Natural Vibration or Linear Buckling. With combinations, it holds the last design's results under each ULS one, as Run Analysis's model does. Empty when the first analysis failed. |
 | Section | `Section` | Section (list) | Each beam's section in the last design, in the order of **Element**. |
 | Utilisation | `Utilisation` | Number (list) | Each beam's utilisation in the last design, as Utilisation's **Max**. Empty where it could not be checked. Torsional and torsional-flexural buckling (6.3.1.4) are not checked yet. |
 | Element | `Element` | Element (list) | The beams, in the order of the other outputs. |
@@ -63,21 +66,33 @@ is static, in one step. Press **Escape** to stop after the iteration under way.
 
 **Use it when**
 
-- You want the lightest sections of a steel frame, truss or beam grid that pass EN 1993-1-1 under
-  its loads, and the forces depend on the sections themselves.
+- You want the lightest sections of a steel or timber frame, truss or beam grid that pass
+  EN 1993-1-1 or EN 1995-1-1 under its loads, and the forces depend on the sections themselves.
+- You want to try timber against steel: one list can hold both, in the order to try them, and each
+  section is checked by its own material.
 - A member drawn as several beams must end up with one section: give it a Design Group of its own.
 
 **Do not use it when**
 
-- The members are not steel: the check, and so the sizing, is steel only.
+- The members are neither steel nor timber, or timber sections that are not solid rectangles or
+  circles: nothing else can be checked, and so sized.
 - You want to compare a few designs side by side: [Explorer Inputs](explorer-inputs.md) steps
   through them and records each.
-- You need it to size for several [load combinations](../loads/load-combination.md) at once: it does
-  not solve them yet. It sizes under every load pattern at once, at its full size, and warns when the
-  model has combinations. Factor the patterns for the combination to size for.
 
 The [Two-Span Beam](https://alpaca4d.github.io/examples/two-span-beam/) example sizes a curved beam
-over two spans from a list of HEAs, element by element and as one section.
+over two spans from a list of HEAs, element by element and as one section. The
+[Wave Roof Hall](https://alpaca4d.github.io/examples/wave-roof-hall/) sizes glulam arches and purlins
+and their steel frame together, over six ULS combinations.
+
+## 💡 Load combinations
+
+Give it the model [Load Combination](../loads/load-combination.md) hands on, and it sizes over the
+model's ultimate combinations — ULS, accidental and seismic: in every iteration each one is solved
+on its own, as Run Analysis solves them, and every beam is checked under each, the worst governing.
+Each combination's own patterns set its check: for timber, the k_mod of the shortest duration among
+them, and γM 1.0 in an accidental one. The serviceability combinations play no part, and a model
+with only those is an error. Without combinations, every load pattern acts at once, at its own
+factor.
 
 {% hint style="info" %}
 A beam can move back up its list as well as down it. When a design comes round again, the

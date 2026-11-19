@@ -21,6 +21,8 @@ method also chooses which of several materials goes where.
 
 Examples to start from:
 
+- the [Wave Roof Hall](https://alpaca4d.github.io/examples/wave-roof-hall/), glulam arches and their
+  steel frame sized together by one Section Optimiser over six ULS combinations;
 - the [Footbridge Study](https://alpaca4d.github.io/examples/footbridge-study/), a study of 108
   designs for the Explorer;
 - the [Non-Linear Optimisation cases](https://alpaca4d.github.io/examples/non-linear-optimisation/),

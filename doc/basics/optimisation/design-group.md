@@ -16,7 +16,7 @@ them, so a group needs no wire back to the beam components.
 | --- | --- | --- | --- | --- |
 | Name | `Name` | Text | *(empty)* | What to call the group in the optimiser's messages and its **Group** output. Left empty, the groups are Group 1, Group 2 and so on, in the order given. |
 | ElementId | `ElementId` | Text (list) | — | Which beams belong to the group: an ElementId (`Col_3`), a wildcard (`Col*`), an element tag (`47`) or a regular expression (`regex:^Col`), mixed freely. A beam can be in one group only. |
-| Sections | `Sections` | Section (list) | — | The sections the group's beams may have, from the [Sections](../sections/README.md) components or [Steel Section Library](../sections/library.md), in the order to try them. The group takes the first that works, so put first the one you would rather have: the lightest, the cheapest, the one in stock. The list is never sorted. Each needs a steel material and a shape to be checked: an Elastic Section cannot be. |
+| Sections | `Sections` | Section (list) | — | The sections the group's beams may have, from the [Sections](../sections/README.md) components or [Steel Section Library](../sections/library.md), in the order to try them. The group takes the first that works, so put first the one you would rather have: the lightest, the cheapest, the one in stock. The list is never sorted. Each needs a steel or timber material and a shape to be checked: an Elastic Section cannot be, nor a timber section that is not a solid rectangle or circle. Steel and timber may share a list. |
 | Uniform | `Uniform` | Boolean | `true` | `true`: every beam of the group takes the same section, the first of the list that all of them work with; `false`: each beam takes its own, the first of the list that it works with. |
 
 ### Outputs
@@ -38,7 +38,7 @@ them, so a group needs no wire back to the beam components.
 - Every beam can be sized within the family of the section it has: leave **DesignGroups** empty.
 
 {% hint style="warning" %}
-A section whose material has no steel grade, or with no shape to check, is never picked, and the
+A section whose material has no design grade, or with no shape to check, is never picked, and the
 component warns. Make the material with [Material Library Elastic](../materials/MaterialDatabase.md),
-or name it after its grade (`S355`).
+or name it after its grade (`S355`, `GL24h`).
 {% endhint %}

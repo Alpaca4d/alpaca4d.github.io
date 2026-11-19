@@ -42,8 +42,10 @@ model again as the sections change.
 
 ## Good to know
 
-- The check is steel only, as [Utilisation](../../basics/results/utilisation.md)'s is. A section
-  with no steel grade, or an Elastic Section with no shape, is never picked.
+- Timber is sized too, in the same component: a Design Group of timber rectangles - `GL24h`
+  140 × 400, 140 × 480, ... - checked to EN 1995-1-1 as [Utilisation](../../basics/results/utilisation.md)'s
+  **Timber** type does, with **ServiceClass** in the **Design** menu and k_mod from the load
+  patterns' **Duration**. A section with no design grade, or an Elastic Section with no shape, is never picked.
 - **ElementId** on the optimiser sizes only some beams; the others keep their sections but are
   still analysed and checked.
 - Each analysis is static, in one step. Press **Escape** to stop after the iteration under way.
