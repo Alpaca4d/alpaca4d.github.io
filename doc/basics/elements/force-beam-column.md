@@ -43,7 +43,8 @@ A switcher component. The **Element Type** menu selects the unit:
 
 A truss is always corotational, so it holds for large displacements too. A line load on it goes
 to its two end nodes, half each. A tension-only or compression-only bar needs a non-linear
-analysis to let go: the **Newton** algorithm, in several steps.
+analysis to let go: the **Newton** algorithm, in several steps. In a transient analysis it takes
+the [Damping](../analysis/damping.md), as the beams do.
 
 ### Outputs
 
