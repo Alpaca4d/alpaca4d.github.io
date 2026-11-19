@@ -14,7 +14,7 @@ model with the results attached.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or from [Load Combination](../loads/load-combination.md) with its combinations. |
-| Settings | `Settings` | Settings | — | From [Analysis Settings](analysis-settings.md). |
+| Settings | `Settings` | Settings | — | How to solve, from [Analysis Settings](analysis-settings.md): solver, algorithm, integrator and steps. It can be left empty only with **Do not use settings** ticked in the right-click menu. |
 
 ### Outputs
 

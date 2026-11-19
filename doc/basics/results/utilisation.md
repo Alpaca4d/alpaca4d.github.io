@@ -61,7 +61,7 @@ left alone; its outputs say more about a beam than how loaded it is.
 
 | Input | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| Fabrication | `Fabrication` | Text | `Rolled` | `Rolled` — rolled I-sections and hot-finished hollow sections. `Welded` — welded I-sections and cold-formed hollow sections. Sets the buckling curves and an I's shear area. |
+| Fabrication | `Fabrication` | Text | `Rolled` | How the sections were made: `Rolled` (rolled I-sections and hot-finished hollow sections) or `Welded` (welded I-sections and cold-formed hollow sections). Sets the buckling curves (Tables 6.2, 6.4, 6.5) and an I's shear area. |
 | γM0 | `γM0` | Number | `1.0` | Partial factor for the resistance of cross-sections. A National Annex may set another value. |
 | γM1 | `γM1` | Number | `1.0` | Partial factor for the resistance of members to instability. A National Annex may set another value. |
 | Report | `Report` | Boolean | `false` | Write the **Report** output. Off by default: on a large model the text is most of the work, and off, none of it is written. |

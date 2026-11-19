@@ -34,7 +34,7 @@ Constructs one quadratic tetrahedral element from one 4-vertex mesh.
 | Mesh | `Mesh` | Mesh | — | Tetrahedral mesh with **4 vertices**, its corners, in `m`. The corners are put in OpenSees order and checked for a positive Jacobian; the edge nodes are added at the midpoints. |
 | Material | `Material` | Material | — | An [nD material](../materials/ND.md). |
 | Colour | `Colour` | Colour | Alpaca4d brick colour | Display colour in the Rhino viewport. |
-| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty meshes labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+| ElementId | `ElementId` | Text | *(empty)* | A name to find the element's results by. Several elements can share one. Optional free text: one name over twenty meshes labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 ### Outputs
 

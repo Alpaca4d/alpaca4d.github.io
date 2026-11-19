@@ -17,7 +17,7 @@ reinforced concrete of any shape, steel, or both.
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | FiberSection | `FiberSection` | FiberSection | — | The section, from [Fiber Section](fiber-section.md). |
-| εud | `εud` | Number | `0.01` | Ultimate strain, either way, of every fibre that is not [Concrete01](concrete01.md): reinforcement and structural steel alike. A `MinMax` bound on the material holds instead where it is tighter. See [Steel sections](#steel-sections). |
+| εud | `εud` | Number | `0.01` | Ultimate strain, either way, of every fibre that is not [Concrete01](concrete01.md): reinforcement and structural steel alike. A `MinMax` bound on the material holds instead where it is tighter. `0.01` suits reinforcement; for a steel section, `0.05` gives the plastic resistance (Class 1 and 2) and `fy / E` the elastic one (Class 3): see [Steel sections](#steel-sections). |
 | εcu | `εcu` | Number | — | Ultimate compressive strain of the concrete, positive. Empty takes each Concrete01's own `EpsilonCu`. |
 | Levels | `Levels` | Integer | `20` | Levels of N the surface is drawn at between pure tension and pure compression, closer together towards both. |
 | Points | `Points` | Integer | `72` | Points on each level, before more are added where the domain turns sharply. |

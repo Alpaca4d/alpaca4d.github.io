@@ -16,12 +16,12 @@ yield** and **ultimate state**: the ductility of the section and what makes it f
 | --- | --- | --- | --- | --- |
 | FiberSection | `FiberSection` | FiberSection | — | The section to analyse, from [Fiber Section](fiber-section.md). |
 | Axial | `Axial` | Number | `0.0` | Axial force held constant while the curvature is applied, in `kN`. **Positive is tension, negative is compression.** |
-| Direction | `Direction` | Number | `0` | The moment direction, in degrees from the section's local *y* axis towards *z*, from `-180` to `180`: `0` bends it about *y*, `90` about *z*, and `180` and `-90` the other way about each. See [Any direction](#any-direction). |
+| Direction | `Direction` | Number | `0` | The moment direction, in degrees from the section's local *y* axis towards *z*, from `-180` to `180`: `0` bends it about *y*, `90` about *z*, and `180` and `-90` the other way about each. On a section that is not symmetric that is the other side: hogging where `0` is sagging. See [Any direction](#any-direction). |
 | NumIncr | `NumIncr` | Integer | `100` | Increments used to reach `MaxPhi`: the number of points on the curve, when it does not stop sooner. |
 | MaxPhi | `MaxPhi` | Number | — | The curvature along Direction to push the section to, in `rad/m`. Left empty, it comes from the section's ultimate state: a fifth past it, or twice it when the analysis is not to stop there. |
 | εud | `εud` | Number | `0.01` | Ultimate strain, either way, of every fibre that is not [Concrete01](concrete01.md), as in [Interaction Domain](interaction-domain.md). |
 | εcu | `εcu` | Number | — | Ultimate compressive strain of the concrete, positive. Empty takes each Concrete01's own `EpsilonCu`. |
-| StopAtUltimate | `StopAtUltimate` | Boolean | `true` | Stop at the first increment where a fibre reaches its ultimate strain. Off, the analysis follows the section past it to `MaxPhi`. |
+| StopAtUltimate | `StopAtUltimate` | Boolean | `true` | Stop at the first increment where a fibre reaches its ultimate strain. Off, the analysis follows the section past it to `MaxPhi`: its softening, or a confined core still carrying load. The ultimate state is reported either way. |
 
 ### Outputs
 

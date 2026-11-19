@@ -27,7 +27,7 @@ A switcher component. The **Element Type** menu selects the unit:
 | GeometricTransformation | `GeomTransf` | Text | Linear | **Linear**, **PDelta** or **Corotational**, typed or from a Value List, which fills itself with the three. Built on the line and `ZAxis`. **Corotational** follows the beam however far it moves and turns. A transformation made in code is taken as it is. |
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis of the element. If left empty it is horizontal, so local *y* — the depth of an I-section, the height of a rectangle — points as near straight up as the beam allows, and gravity bends a floor beam about its strong axis (`Vy`, `Mz`). A vertical member gets local *y* along global X. |
 | Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
-| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+| ElementId | `ElementId` | Text | *(empty)* | A name to find the element's results by. Several elements can share one. Optional free text: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 **Linear** is the small-displacement beam. **PDelta** adds what an axial force does to a member
 that leans: a frame swaying under its own weight. **Corotational** follows the member however far
@@ -45,7 +45,7 @@ large.
 | Prestress | `Prestress` | Number | `0` | The axial force the bar starts with, in `kN`, tension positive. A cable needs it: straight and slack, it has no stiffness across its length. A tension-only bar takes zero or more, a compression-only one zero or less. |
 | ZAxis | `ZAxis` | Vector | horizontal | Local *z* axis, squared off the bar. It only turns the section, for drawing and for the steel check; left empty it is horizontal, as on a beam. |
 | Colour | `Colour` | Colour | Alpaca4d beam colour | Display colour in the Rhino viewport. |
-| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+| ElementId | `ElementId` | Text | *(empty)* | A name to find the element's results by. Several elements can share one. Optional free text: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 A truss is always corotational, so it holds for large displacements too. A line load on it goes
 to its two end nodes, half each. A tension-only or compression-only bar needs a non-linear

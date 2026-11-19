@@ -19,7 +19,7 @@ to converge.
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or an analysed one, from [Run Analysis](run-analysis.md), Section Optimiser or [Linear Buckling](linear-buckling.md). See [After an analysis](#after-an-analysis). |
+| AlpacaModel | `AlpacaModel` | Model | — | The assembled model, from [Assemble](../assemble.md), or an analysed one, from [Run Analysis](run-analysis.md), Section Optimiser or [Linear Buckling](linear-buckling.md), solved as it was assembled and unloaded: what the analysis found does not change the modes. See [After an analysis](#after-an-analysis). |
 | Vibration Modes | `Vibration Modes` | Integer | `1` | How many modes to extract. |
 | Solver | `Solver` | Text | `-genBandArpack` | Eigen solver: `-genBandArpack` or `-fullGenLapack`. Attach a **Value List** for the options. |
 

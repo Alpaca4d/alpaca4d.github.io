@@ -18,7 +18,7 @@ section carries N, V and M.
 | Curve | `Curve` | Curve | — | Where to cut: a line or polyline drawn on the shells, or beside them to be swept onto them along **Direction**. Any other curve is followed by a polyline close to it. Its direction sets which way *y* runs. Give several to cut several sections at once. |
 | Direction | `Direction` | Vector | *(empty)* | Which way to sweep the curve to meet the shells. It also sets which side is positive: *z* is the shell's normal on the side this points to. Empty sweeps it square to the shell nearest the curve's start, on the side that shell's local *z* points to. |
 | Step | `Step` | Integer | `0` | Which recorded step to read. |
-| ElementId | `ElementId` | Text (list) | *(empty)* | Cut only some shells: an ElementId (`Slab_3`), a wildcard over them (`Slab*`), an element tag (`47`) or a regular expression (`regex:^Wall`). Empty cuts them all. |
+| ElementId | `ElementId` | Text (list) | *(empty)* | Only these elements: ElementIds (`Slab_3`), wildcards (`Slab*`), tags (`47`) or `regex:^Wall`. Empty cuts them all. Only the shells it matches are cut. |
 
 ### Outputs
 

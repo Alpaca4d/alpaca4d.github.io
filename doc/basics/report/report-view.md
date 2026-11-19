@@ -92,7 +92,7 @@ the same step, through the same layer and in the same axes:
 | Columns | `Columns` | Integer | `2` | How many pictures side by side. |
 | Colours | `Colours` | Colour (list) | *Model View's* | The gradient each mode is coloured with, by how far it moves. |
 | Scale | `Scale` | Number | `1` | How far the mode is drawn: at 1, its largest movement stands off the model as far as Model View draws a mode. |
-| Caption | `Caption` | Text | *the mode, f and T* | Written under each picture: left empty, `Mode {mode}: f = {frequency:F2} Hz, T = {period:F3} s`. |
+| Caption | `Caption` | Text | *the mode, f and T* | Written under each picture: left empty, `Mode {mode}: f = {frequency:F2} Hz, T = {period:F3} s`. It takes [placeholders](report.md#placeholders) in braces, such as `{mode}` or `{frequency:F2}`. |
 
 <figure><img src="report-view-modes.png" alt="Report View's Results menu for natural vibration: Mode shapes, and in a frame under them Coloured by Magnitude and the natural frequencies and participating mass tables, ticked" width="376"><figcaption><p>The Results menu of natural vibration, both tables ticked</p></figcaption></figure>
 
@@ -108,7 +108,7 @@ The **Results** menu: **Mode shapes**, and in a frame under them what they are *
 | Columns | `Columns` | Integer | `2` | How many pictures side by side. |
 | Colours | `Colours` | Colour (list) | *Model View's* | The gradient each mode is coloured with, by how far it moves. |
 | Scale | `Scale` | Number | `1` | How far the mode is drawn. |
-| Caption | `Caption` | Text | *the mode and αcr* | Written under each picture: left empty, `Buckling mode {mode}: αcr = {factor:F2}`. |
+| Caption | `Caption` | Text | *the mode and αcr* | Written under each picture: left empty, `Buckling mode {mode}: αcr = {factor:F2}`. It takes [placeholders](report.md#placeholders) in braces, such as `{mode}` or `{factor:F2}`. |
 
 The **Results** menu: **Buckled shapes**, and in a frame under them what they are coloured by and
 their **Table**, **Buckling factors**, of the modes drawn.
@@ -132,7 +132,7 @@ ticked has its own pictures through the push.
 | --- | --- | --- | --- | --- |
 | Colours | `Colours` | Colour (list) | *Model View's* | The gradient, from no response to the most. |
 | Range | `Range` | Domain | *0 to the largest* | The values the gradient spans, of what the model is coloured by. For R, 0 to a limit of SCI P354 Table 5.3 — 8 for a general office, 32 for a stair in light use — so that its top colour is the limit; for an acceleration, in mm/s², 5 times that. |
-| Caption | `Caption` | Text | *the largest* | Written under the picture: left empty, the largest of what the model is coloured by, and its node. |
+| Caption | `Caption` | Text | *the largest* | Written under the picture: left empty, the largest of what the model is coloured by, and its node. It takes [placeholders](report.md#placeholders) in braces, such as `{footfall.maxFactor:F1}`. |
 
 The model is coloured at each node [Footfall Analysis](../analysis/footfall.md) read, drawn at rest; a
 node it did not read takes the low end of the gradient. Give the Report the **AlpacaModel** that

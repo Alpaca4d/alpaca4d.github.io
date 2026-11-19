@@ -16,10 +16,10 @@ Collects every object OpenSees needs to define an analysis into one bundle, whic
 | Damping | `Damping` | Damping | *(none)* | Rayleigh damping, from [Damping](damping.md). Leave empty for an undamped run. |
 | Constraint | `Constraint` | Text | `Transformation` | Constraint handler: `Plain`, `Transformation`. |
 | Numberer | `Numberer` | Text | `RCM` | DOF numbering: `RCM`, `AMD`, `Plain`. |
-| System | `System` | Text | `Auto` | Linear system solver: `Auto`, `Mumps`, `BandGen`, `BandSPD`, `ProfileSPD`, `SuperLU`, `UmfPack`, `SparseSYM`, `SparseSPD`, `SparseGeneral`, `FullGeneral`. See [Solving on several cores](#solving-on-several-cores). |
+| System | `System` | Text | `Auto` | How the equations are solved: `Auto`, the default, takes `Mumps` when the OpenSees in use has it, else `BandSPD`. The solvers: `Auto`, `Mumps`, `BandGen`, `BandSPD`, `ProfileSPD`, `SuperLU`, `UmfPack`, `SparseSYM`, `SparseSPD`, `SparseGeneral`, `FullGeneral`. See [Solving on several cores](#solving-on-several-cores). |
 | Test | `Test` | Test | — | Convergence test, from [Test](test.md). |
-| Algorithm | `Algorithm` | Text | `Newton` | Solution algorithm: `Linear`, `Newton`, `NewtonLineSearch`, `ModifiedNewton`, `KrylovNewton`, `SecantNewton`, `BFGS`, `Broyden`. |
-| Integrator | `Integrator` | Integrator | — | From [Integrator](integrator.md). |
+| Algorithm | `Algorithm` | Text | `Newton` | How each step reaches equilibrium, `Newton` by default; `Linear` does not iterate, so on a non-linear model it reports success and returns the unconverged first guess. The algorithms: `Linear`, `Newton`, `NewtonLineSearch`, `ModifiedNewton`, `KrylovNewton`, `SecantNewton`, `BFGS`, `Broyden`. |
+| Integrator | `Integrator` | Integrator | — | How each step advances, from [Integrator](integrator.md): **LoadControl** with a step of 1 by default, for a static analysis; **Newmark** or **CentralDifference** for a transient one. |
 | AnalysisType | `AnalysisType` | Text | `Static` | `Static` or `Transient`. |
 | AnalysisSteps | `AnalysisSteps` | AnalysisStep | — | From [Analysis Step](analysis-step.md). |
 

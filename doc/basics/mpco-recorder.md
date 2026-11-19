@@ -19,7 +19,7 @@ The file is an MPCO (HDF5) file. The [Results](results/README.md) components and
 
 | Name | Nick | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| FileName | `FileName` | Text | `recorder.mpco` | Name of the results file, written beside the Grasshopper document. Letters, digits, `_`, `-` and `.` only, with no folders. A name without an extension gets `.mpco`. |
+| FileName | `FileName` | Text | `recorder.mpco` | Name of the results file, written beside the Grasshopper document. Letters, digits, `_`, `-` and `.` only, with no folders. A name without an extension gets `.mpco`. Two analyses in one document need a file each, to keep their results apart. |
 
 ### Options
 

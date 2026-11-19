@@ -20,7 +20,7 @@ the solver to condition around.
 | --- | --- | --- | --- | --- |
 | RetainedPoint | `RetainedPoint` | Point | — | The node that leads, in `m`. It keeps its own degrees of freedom. |
 | ConstrainedPoint | `ConstrainedPoint` | Point | — | The node that follows, in `m`, as a rigid body about the retained one. |
-| Type | `Type` | Text | `beam` | `beam` or `bar`. Attach a **Value List** to the input and Alpaca4d fills it with both options. |
+| Type | `Type` | Text | `beam` | `beam`, a rigid body that carries the offset, or `bar`, the translations only. Attach a **Value List** to the input and Alpaca4d fills it with both options. |
 
 ### The two types
 

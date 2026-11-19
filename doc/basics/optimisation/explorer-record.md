@@ -19,7 +19,7 @@ results, and a picture and a 3D model of each design.
 | Outputs | `Outputs` | Generic (list) | – | From [Explorer Outputs](explorer-outputs.md). |
 | Image | `Image` | Generic | active viewport, 800 × 600 | From [Explorer Image](explorer-image.md). |
 | Model | `Model` | AlpacaModel, mesh, Brep, curve, point, text dot, text (list) | – | The design's 3D model. Left empty, there is none. |
-| Colours | `Colours` | Colour (list) | – | A colour per **Model** item, or one for all: a text dot's background, a text's colour. Left empty, anything picked from Rhino keeps the colour Rhino draws it in. |
+| Colours | `Colours` | Colour (list) | – | A colour per **Model** item, or one for all: a text dot's background, a text's colour. Left empty, meshes keep their vertex colours, an AlpacaModel its elements' colours, and anything picked from Rhino the colour Rhino draws it in; dots, text and points made in Grasshopper are dark. |
 | Write | `Write` | Boolean | `false` | `true` to save designs. |
 
 ### Outputs

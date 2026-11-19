@@ -19,7 +19,7 @@ glass.
 | Material | `Material` | Material (list) | — | One [uniaxial material](../materials/Uniaxial.md) per direction, in the order of **Direction**. A single material is used for every direction. Its `E` is read as a stiffness: `kN/m` for a translation, `kN·m/rad` for a rotation. |
 | Direction | `Direction` | Integer (list) | — | The local directions that carry anything: `1`, `2`, `3` translation along local *x*, *y*, *z*; `4`, `5`, `6` rotation about them. Anything left out is free. |
 | Plane | `Plane` | Plane | *along the link* | The frame the directions count in. Left empty, *x* runs along the link and *y* and *z* across it. Give the world XY plane to count along the global axes instead. |
-| ElementId | `ElementId` | Text | *(empty)* | Optional name, shared by every link this component makes. |
+| ElementId | `ElementId` | Text | *(empty)* | A name to find the element's results by. Several elements can share one. Optional; every link this component makes takes it. |
 
 ### Outputs
 

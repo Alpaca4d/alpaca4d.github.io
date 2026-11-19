@@ -30,7 +30,7 @@ There is no separate component. Right-click the **ForceBeamColumn** component an
 | ReleaseJ | `ReleaseJ` | Release | fully fixed | Release condition at the **J** end. |
 | LpJ | `LpJ` | Number | `0.05` | Hinge length at the **J** end, as a fraction of L. |
 | Colour | `Colour` | Colour | Alpaca4d hinged-beam colour | Display colour in the Rhino viewport. |
-| ElementId | `ElementId` | Text | *(empty)* | Optional name for the element, used to pull its results out later. Free text, and yours to repeat: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
+| ElementId | `ElementId` | Text | *(empty)* | A name to find the element's results by. Several elements can share one. Optional free text: one name over twenty curves labels all twenty, and asking for it returns all twenty. Give a list to name them apart. |
 
 {% hint style="warning" %}
 **LpI and LpJ are ratios, not lengths.** `0.05` means 5 % of the chord length L, whatever
