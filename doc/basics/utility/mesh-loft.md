@@ -33,6 +33,7 @@ section curves to geometry that can become elements.
 **Do not use it when**
 
 - You already have a mesh. Feed it straight to [ASD Shell](../elements/shell.md).
+- You have surfaces rather than profiles → [Mesh Brep](mesh-brep.md).
 - The profiles have different vertex counts. Rebuild them to a common count first.
 
 ## 💡 What comes next

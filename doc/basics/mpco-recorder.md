@@ -34,7 +34,7 @@ adding the component changes nothing until you untick something.
 | `reactionForce`, `reactionMoment` | [Reaction Forces](results/reaction-forces.md), [Model View](visualisation/model-view.md) |
 | `stresses` | [Brick Stresses](results/brick-stresses.md), [Model View](visualisation/model-view.md) |
 | `section.force` | [Beam Forces](results/beam-forces.md), [Shell Forces](results/shell-forces.md), [Model View](visualisation/model-view.md), for every beam with or without hinges and every shell |
-| `section.fiber.stress` | Shell Stresses, [Model View](visualisation/model-view.md), for plate fibre and layered shell sections |
+| `section.fiber.stress` | [Shell Stresses](results/shell-stresses.md), [Model View](visualisation/model-view.md), for plate fibre and layered shell sections |
 | `axialForce` | [Beam Forces](results/beam-forces.md) of trusses. Nothing else answers to it, so it costs nothing in a model without them. |
 | `section.deformation` | [Model View](visualisation/model-view.md)'s **Plastic hinges**, for beams on a [Fiber Section](moment-curvature/fiber-section.md): the strain and the two curvatures of every section. Run Analysis records it unasked for a model with a fibre section, and [Pushover Analysis](analysis/pushover.md) always. |
 

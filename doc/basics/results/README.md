@@ -22,6 +22,7 @@ document. An
 | [Beam Stresses](beam-stresses.md) | `Beam Stresses` | Axial, bending, shear, torsion and Von Mises stresses along every beam. |
 | [Utilisation](utilisation.md) | `Utilisation` | How much of its resistance every steel beam uses, to EN 1993-1-1. |
 | [Shell Forces](shell-forces.md) | `Shell Forces` | Membrane, bending and shear resultants on every shell. |
+| [Shell Stresses](shell-stresses.md) | `Shell Stresses` | The stresses and Von Mises at the top, middle and bottom of every shell. |
 | [Brick Stresses](brick-stresses.md) | `Brick Stresses` | The six stress components and Von Mises on every solid. |
 
 ### [Nodal Displacements](nodal-displacements.md)
@@ -84,6 +85,14 @@ Reads the stress resultants of every shell element of an analysed model — memb
 All of them per unit width and in the shell's local axes. Each output is a tree with one branch
 per element, holding the values at the element's integration points.
 
+### [Shell Stresses](shell-stresses.md)
+
+Reads the stresses through the thickness of every shell element of an analysed model — σ₁₁, σ₂₂
+and σ₁₂ in the plane, the transverse shears σ₂₃ and σ₃₁, and Von Mises.
+
+Three branches per element, the top, the middle and the bottom of the section, each holding the
+values at the element's integration points, in its local axes.
+
 ### [Brick Stresses](brick-stresses.md)
 
 Reads the stress state of every solid element of an analysed model — the six components of the
@@ -120,6 +129,7 @@ index in front of whatever index it already had:
 | [Beam Forces](beam-forces.md) | a tree `{element}` | a tree `{step; element}` |
 | [Beam Stresses](beam-stresses.md) | a tree `{element}` | a tree `{step; element}` |
 | [Shell Forces](shell-forces.md) | a tree `{element}` | a tree `{step; element}` |
+| [Shell Stresses](shell-stresses.md) | a tree `{element; layer}` | a tree `{step; element; layer}` |
 | [Brick Stresses](brick-stresses.md) | a list, one item per element | a tree `{step}`, that step's value per element |
 
 How many steps there are to read is set by **NumIncr** on

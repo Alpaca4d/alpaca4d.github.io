@@ -23,7 +23,7 @@ moves round it. Twenty steps take the brace to 640 kN.
 | Group | What it does |
 | --- | --- |
 | 1 - The mesh | The shells as gmsh wrote them: the nodes, and the corners of each face, in three parts - the chord, the brace, and the brace's top 60 mm. The chord's wall runs on inside the brace's foot, as a welded joint's does. |
-| 2 - Steel | J2Plasticity S355, perfectly plastic, in a [Layered Shell](../../docs/basics/materials/ND.md) of ten layers for each tube: 10 mm for the chord, 8 mm for the brace. The brace's top stays elastic and 30 mm thick, as the end plate the load comes in through makes it. Each part has its own Local X, along its tube. |
+| 2 - Steel | J2Plasticity S355, perfectly plastic, in a [Layered Shell](../../docs/basics/sections/layered-shell.md) of ten layers for each tube: 10 mm for the chord, 8 mm for the brace. The brace's top stays elastic and 30 mm thick, as the end plate the load comes in through makes it. Each part has its own Local X, along its tube. |
 | 3 - Supports | Both ends of the chord held, every node of their rings, as end plates welded to something stiff. |
 | 4 - Load | 640 kN down the brace, shared among the nodes of its top, as [Point Loads](../../docs/basics/loads/point-load.md) in a [Load Pattern](../../docs/basics/loads/load-pattern.md) on a [Linear Time Series](../../docs/basics/time-history/linear.md). |
 | 5 - Assemble | [Assemble](../../docs/basics/assemble.md), with a tolerance of 0.5 mm. |

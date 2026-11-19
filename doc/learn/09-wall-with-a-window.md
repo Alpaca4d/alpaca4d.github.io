@@ -45,7 +45,7 @@ in metres and kilonewtons ([Units](../concepts/units.md)), so E is 33 000 000 kN
    a hole has to go in with the outline.
 2. **The mesh.** **Explode** gives the outline's sides; **Base edge** and **Top edge**, List Items 0
    and 2, are its bottom and its top, and Divide Curve cuts each into **Divisions**, 11, for 12
-   points 0.5 m apart. **Mesh Brep** meshes the surface into quads of **Edge length** 0.25 m and
+   points 0.5 m apart. [Mesh Brep](../basics/utility/mesh-brep.md) meshes the surface into quads of **Edge length** 0.25 m and
    pulls a node onto each of the points in its Points input. It keeps the window's edges, and with
    quads half as wide as the points are apart, every point has a node of its own to take.
 3. **The shell.** An [nD](../basics/materials/ND.md) material, **Concrete**, into a
@@ -114,7 +114,7 @@ lintel or a rounded corner helps.
 
 ## The components
 
-- [nD](../basics/materials/ND.md) · [Plate Fiber Section](../basics/sections/plate-fiber.md) · [ASD Shell](../basics/elements/shell.md) · [Support](../basics/elements/support.md) · [Point Load](../basics/loads/point-load.md) · [Load Pattern](../basics/loads/load-pattern.md) · [Assemble](../basics/assemble.md) · [Analysis Settings](../basics/analysis/analysis-settings.md) · [Run Analysis](../basics/analysis/run-analysis.md) · [Model View](../basics/visualisation/model-view.md) · [Principal Stress Lines](../basics/visualisation/principal-stress-lines.md)
+- [Mesh Brep](../basics/utility/mesh-brep.md) · [nD](../basics/materials/ND.md) · [Plate Fiber Section](../basics/sections/plate-fiber.md) · [ASD Shell](../basics/elements/shell.md) · [Support](../basics/elements/support.md) · [Point Load](../basics/loads/point-load.md) · [Load Pattern](../basics/loads/load-pattern.md) · [Assemble](../basics/assemble.md) · [Analysis Settings](../basics/analysis/analysis-settings.md) · [Run Analysis](../basics/analysis/run-analysis.md) · [Model View](../basics/visualisation/model-view.md) · [Principal Stress Lines](../basics/visualisation/principal-stress-lines.md)
 
 ## See also
 

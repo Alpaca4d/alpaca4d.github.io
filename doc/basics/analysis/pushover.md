@@ -89,7 +89,7 @@ grow. Like SeismoStruct's performance criteria, these are strains, read from the
 than a hinge's rotation against the tables of ASCE 41.
 
 The fibres' stresses are not recorded: for a frame of 28 beams pushed in 200 steps they came to
-23 MB of a 24 MB file. A model with shells still records them, which Shell Stresses reads.
+23 MB of a 24 MB file. A model with shells still records them, which [Shell Stresses](../results/shell-stresses.md) reads.
 
 ### When a step does not converge
 

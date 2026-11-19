@@ -28,11 +28,14 @@ The section a **shell** element uses: a thickness plus an
 
 **Use it when**
 
-- You are building any shell element. This is the only section that
-  [ASD Shell](../elements/shell.md) accepts.
+- You are building a shell of one material. It and the
+  [Layered Shell Section](layered-shell.md) are the sections [ASD Shell](../elements/shell.md)
+  accepts.
 
 **Do not use it when**
 
+- The shell has several materials through its thickness, or yields → a
+  [Layered Shell Section](layered-shell.md).
 - The element is a beam → use one of the [beam sections](README.md).
 - The element is a solid → bricks and tetrahedra take a material directly, with no section.
 

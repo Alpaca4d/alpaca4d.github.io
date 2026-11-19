@@ -19,7 +19,7 @@ The node of a steel tree column, where a trunk splits into branches. A trunk tub
 | Group | What it does |
 | --- | --- |
 | 1 - Geometry | The sliders: trunk and branch diameters and lengths, the branches' lean and count, the sphere. A Python component joins the sphere and the tubes, opens the tube ends, and gives the plane at the end of each tube. |
-| 2 - Steel | **Mesh Brep** meshes the surface in quads about 40 mm across, keeping the welds as edges. S355 is an [nD](../../docs/basics/materials/ND.md) material in a [Plate Fiber Section](../../docs/basics/sections/plate-fiber.md) 25 mm thick, on [ASD Shells](../../docs/basics/elements/shell.md). |
+| 2 - Steel | [Mesh Brep](../../docs/basics/utility/mesh-brep.md) meshes the surface in quads about 40 mm across, keeping the welds as edges. S355 is an [nD](../../docs/basics/materials/ND.md) material in a [Plate Fiber Section](../../docs/basics/sections/plate-fiber.md) 25 mm thick, on [ASD Shells](../../docs/basics/elements/shell.md). |
 | 3 - Supports | Every node round the trunk's end built in, with a [Support](../../docs/basics/elements/support.md). A second Python component finds them, and a panel counts them: 26 held. |
 | 4 - Loads | Each branch's load, shared over the nodes round its end (52 in all) as [Point Loads](../../docs/basics/loads/point-load.md), in one [Load Pattern](../../docs/basics/loads/load-pattern.md). |
 | 5 - Analysis | [Assemble](../../docs/basics/assemble.md) and [Run Analysis](../../docs/basics/analysis/run-analysis.md). |

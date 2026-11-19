@@ -54,7 +54,7 @@ Then wire the elements into **Elements** of Assemble.
 - **Tolerance** on Assemble, `0.01` m by default, has to be well below the size of the elements,
   or it welds their nodes together. The [Femur](../../basics/elements/ten-node-tetrahedron.md#femur)
   uses `0.0001`.
-- Ten Node Tetrahedra need an OpenSees newer than 3.8.0. **Mesh Brep** in 10_Utility makes a quad
+- Ten Node Tetrahedra need an OpenSees newer than 3.8.0. [Mesh Brep](../../basics/utility/mesh-brep.md) in 10_Utility makes a quad
   mesh of surfaces for [ASD Shell](../../basics/elements/shell.md), not solids.
 
 ## See also

@@ -22,7 +22,7 @@ pressure to 1 300 kN/m².
 | Group | What it does |
 | --- | --- |
 | 1 - The mesh | 40 x 40 squares. |
-| 2 - Steel | J2Plasticity S355, perfectly plastic, in a Layered Shell of ten layers of 2.5 mm. |
+| 2 - Steel | J2Plasticity S355, perfectly plastic, in a [Layered Shell](../../docs/basics/sections/layered-shell.md) of ten layers of 2.5 mm. |
 | 3 - Supports | Its four edges held up and down, its corners too; one corner held along X and Y, the next along Y, so that the plate cannot slide or turn in its plane. |
 | 4 - Load | 1 300 kN/m² down on every shell, with [Mesh Load](../../docs/basics/loads/shell-load.md), in a [Load Pattern](../../docs/basics/loads/load-pattern.md) on a [Linear Time Series](../../docs/basics/time-history/linear.md). |
 | 5 - Assemble | [Assemble](../../docs/basics/assemble.md). |

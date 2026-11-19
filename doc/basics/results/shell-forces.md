@@ -49,6 +49,8 @@ One branch per shell element, values at the element's integration points.
   Lines](../visualisation/principal-stress-lines.md) traces them as curves.
 - You want the forces through a line across the shells, or their totals → [Shell
   Section](../visualisation/shell-section.md).
+- You want the stresses at the top, middle or bottom of the plate, or Von Mises →
+  [Shell Stresses](shell-stresses.md).
 
 {% hint style="warning" %}
 **These are local-axis results, and the local axes are per face** unless you set them. Two
@@ -65,7 +67,7 @@ All quantities are **per unit width**. Local *x*, *y* and *z* are axes 1, 2 and 
 **Local Axes** in [Model View](../visualisation/model-view.md) — red, green and blue. Positive
 membrane force is tension. A positive `mxx` or `myy` puts the face on the **positive** local *z*
 side — the side the blue arrow points to — in tension: the **Top** layer of
-Shell Stresses. On a cantilever slab whose mesh faces up, `mxx` is positive
+[Shell Stresses](shell-stresses.md). On a cantilever slab whose mesh faces up, `mxx` is positive
 over the support.
 
 Which side is +*z* follows the order of the mesh's vertices, not the world: a mesh whose faces

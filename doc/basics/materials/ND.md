@@ -17,7 +17,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 - **J2Plasticity** — a metal that yields: von Mises plasticity, for steel and aluminium. Elastic
   until the von Mises stress reaches `Fy`, then it yields. Works best on
   [Ten Node Tetrahedra](../elements/ten-node-tetrahedron.md); on shells, through a
-  Layered Shell section.
+  [Layered Shell Section](../sections/layered-shell.md).
 
 ### Inputs — ElasticIsotropic
 
@@ -63,7 +63,7 @@ A switcher component: pick the unit in the drop-down under it, or right-click it
 
 | Name | Nick | Type | Description |
 | --- | --- | --- | --- |
-| Material | `Material` | Material | nD material, for a [Plate Fiber Section](../sections/plate-fiber.md), a Layered Shell, an [SSP Brick](../elements/brick.md) or a [Tetrahedron](../elements/ten-node-tetrahedron.md). |
+| Material | `Material` | Material | nD material, for a [Plate Fiber Section](../sections/plate-fiber.md), a [Layered Shell Section](../sections/layered-shell.md), an [SSP Brick](../elements/brick.md) or a [Tetrahedron](../elements/ten-node-tetrahedron.md). |
 
 {% hint style="info" %}
 `G` on the isotropic unit is not written to OpenSees — `ElasticIsotropic` derives its shear
@@ -92,7 +92,7 @@ loads by [Gravity Load](../loads/gravity.md).
 - **SSP Bricks** are right up to first yield, but too strong after it: an SSP brick keeps its
   hourglass stiffness elastic. On the same beam, six bricks through the depth carry a quarter more
   than the tetrahedra, and the load is still rising. Assemble Model says so.
-- **Shells** take it through a Layered Shell section, each layer
+- **Shells** take it through a [Layered Shell Section](../sections/layered-shell.md), each layer
   yielding on its own. Use eight layers or more. A [Plate Fiber](../sections/plate-fiber.md)
   section works too, but its five points through the thickness read the fully plastic moment
   about 9% low.
@@ -106,7 +106,7 @@ loads by [Gravity Load](../loads/gravity.md).
   collapse load the analysis stops converging; the last step that converged is close to it.
 - **Read where it yields** from the Von Mises stress of
   [Brick Stresses](../results/brick-stresses.md) or
-  Shell Stresses, step by step: it rises to `Fy` and
+  [Shell Stresses](../results/shell-stresses.md), step by step: it rises to `Fy` and
   stays there where the material has yielded.
 {% endhint %}
 

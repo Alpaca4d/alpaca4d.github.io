@@ -6,7 +6,7 @@ resulting stiffness properties to an element.
 Beam sections are **uniaxial**: they take a [Uniaxial](../materials/Uniaxial.md) material and
 reduce to an area, two second moments, a torsion constant and two shear factors. Shell
 sections are **multi-dimensional**: they take an [nD](../materials/ND.md) material and a
-thickness.
+thickness, or a stack of them.
 
 ## Components in this tab
 
@@ -20,6 +20,7 @@ thickness.
 | [Generic Section](parametric-cross-section.md) | `Generic Section` | Beams | A, Izz, Iyy, J, AlphaY, AlphaZ entered directly |
 | [Steel Section Library](library.md) | `Section Library` | Beams | A catalogue name — IPE200, HEA300, and 600 more |
 | [Plate Fiber Section](plate-fiber.md) | `PFS` | Shells | Thickness |
+| [Layered Shell Section](layered-shell.md) | `Layered Shell` | Shells | A material and a thickness for each layer |
 
 ## Choosing a section
 
@@ -29,6 +30,7 @@ thickness.
 | The dimensions of a parametric profile | the matching parametric component |
 | Only the stiffness properties — a homogenised deck, a section computed elsewhere | **Generic Section** |
 | A shell thickness | **Plate Fiber Section** |
+| A shell of several materials through its thickness, or one that yields | **Layered Shell Section** |
 
 {% hint style="info" %}
 All parametric beam sections reduce to the same OpenSees command — `section Elastic` — with

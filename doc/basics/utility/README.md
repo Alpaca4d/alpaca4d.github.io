@@ -11,7 +11,9 @@ debug, exchange and extend a model.
 | [Serialize](serialize.md) | `Serialize` | Writes the model out as an OpenSees `.tcl` deck. |
 | [Deserialise](deserialise.md) | `Deserialise` | Reads a `.tcl` deck back into an Alpaca4d model. |
 | [Alpaca4D to FEM-Design](alpaca4d-to-femdesign.md) | `A4D_FD` | Writes the model as a FEM-Design `.struxml` file. |
+| [Karamba3D to Alpaca4D](karamba3d-to-alpaca4d.md) | `K3D_A4D` | Turns a Karamba3D model into elements, supports and load patterns. |
 | [Custom Code](custom-code.md) | `Custom Code` | Appends raw OpenSees commands to the deck. |
+| [Mesh Brep](mesh-brep.md) | `Mesh Brep` | Meshes surfaces into quads for shells, joined where they meet, with a node at given points. |
 | [Mesh Loft](mesh-loft.md) | `Mesh Loft` | Lofts a series of polylines into a mesh. |
 | [Mesh Series to Brick](mesh-series-to-brick.md) | `Mesh Series to Brick` | Turns a stack of meshes into hexahedra for brick elements. |
 | [Counter](counter.md) | `Counter` | A self-advancing integer, for animations. |
@@ -21,7 +23,8 @@ debug, exchange and extend a model.
 **Understanding the model.** [Deconstruct](deconstruct.md) is the fastest way to find out
 what a component actually produced, and what properties an object carries.
 
-**Getting geometry in.** [Mesh Loft](mesh-loft.md) and
+**Getting geometry in.** [Mesh Brep](mesh-brep.md) meshes surfaces for shells, joining walls to
+slabs and putting a node at each support and load. [Mesh Loft](mesh-loft.md) and
 [Mesh Series to Brick](mesh-series-to-brick.md) exist because hexahedral meshing is the hard
 part of using [SSP Brick](../elements/brick.md).
 
@@ -29,7 +32,8 @@ part of using [SSP Brick](../elements/brick.md).
 [Deserialise](deserialise.md) are a round trip between Grasshopper and plain OpenSees — hand
 a deck to a collaborator who does not use Rhino, or bring an existing model in.
 [Alpaca4D to FEM-Design](alpaca4d-to-femdesign.md) takes the model on to FEM-Design, to be
-designed there.
+designed there, and [Karamba3D to Alpaca4D](karamba3d-to-alpaca4d.md) brings a Karamba3D model
+in, for the analyses Karamba does not do.
 
 **Going past what the components cover.** [Custom Code](custom-code.md) appends anything
 OpenSees understands. It bypasses Alpaca4d's checks, so it is powerful in both directions.
