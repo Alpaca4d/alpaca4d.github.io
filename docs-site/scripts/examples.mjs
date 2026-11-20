@@ -18,6 +18,10 @@
 // then "# Title", the picture and the "[name](name.gh)" link, and the page. Another .gh of the folder,
 // linked alone on its line further down the page, is attached the same way where it stands. An example
 // that lives on a component's page in the docs gives title, link, picture and gh instead of a page.
+//
+// An example with a <slug>-try.json beside its .gh - Alpaca4d's Tools/TryIt/bake.sh writes it, the
+// definition solved for every setting of a few inputs - gets a "Try it" section under its picture,
+// drawn by assets/site/try-it.js, and a "Try it" tag on its card and picture that leads there.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -113,6 +117,10 @@ async function readExamples(md) {
           return fs.existsSync(onDiskFile) ? attachment({ gh: file, ghFile: onDiskFile }, file) : line;
         });
     }
+    const tryFile = path.join(SRC, slug, slug + "-try.json");
+    if (!meta.link && fs.existsSync(tryFile)) ex.try = path.basename(tryFile);
+    // An example on a component's page in the docs: its viewer is on that page, under its .gh.
+    if (meta.link && ex.ghFile && fs.existsSync(ex.ghFile.replace(/\.gh$/, "-try.json"))) ex.tryLink = meta.link;
     if (ex.ghFile && !fs.existsSync(ex.ghFile)) { console.log(`examples: ${slug}: no ${ex.gh}`); ex.gh = null; }
     if (ex.pictureFile && !fs.existsSync(ex.pictureFile)) { console.log(`examples: ${slug}: no ${ex.picture}`); ex.picture = null; }
     out.push(ex);
@@ -156,7 +164,14 @@ function definition(ex, pages) {
 
 // ---- Pages ----
 
-const head = (root, title, description, image) => `<!DOCTYPE html>
+// three.js for the "Try it" viewer, the copy the Explorer and the home page use.
+const importMap = (root) => `  <link rel="stylesheet" href="${root}assets/site/try-it.css?v=1">
+  <script type="importmap">
+    { "imports": { "three": "${root}explorer/vendor/three/build/three.module.min.js", "three/addons/": "${root}explorer/vendor/three/examples/jsm/" } }
+  </script>
+`;
+
+const head = (root, title, description, image, extra = "") => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -174,7 +189,7 @@ const head = (root, title, description, image) => `<!DOCTYPE html>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap">
   <link rel="stylesheet" href="${root}assets/site/site.css?v=3">
   <script>document.documentElement.classList.add("js");</script>
-</head>
+${extra}</head>
 `;
 
 const foot = (root, script = "") => `  </main>
@@ -201,6 +216,7 @@ function card(ex, from) {
     <span class="ex-card-pic">${pic}</span>
     <span class="ex-card-body"><h3>${esc(ex.title)}</h3><p>${esc(ex.summary)}</p>${tagChips(ex.tags)}</span>
   </a>
+  ${ex.try ? `<a class="ex-try-tag" href="${from}${ex.slug}/#try-it">Try it</a>` : ex.tryLink ? `<a class="ex-try-tag" href="${from}${ex.tryLink}">Try it</a>` : ""}
   ${ex.gh ? `<a class="ex-card-gh" href="${from}${ex.gh}" download title="Download ${esc(path.basename(ex.gh))}"><span>GH</span>${kb(ex.ghFile)}</a>` : ""}
 </article>`;
 }
@@ -255,7 +271,7 @@ ${examples.map((ex) => card(ex, "")).join("\n")}
 function examplePage(ex, all, def) {
   const related = all.filter((o) => o !== ex && o.tags.some((t) => ex.tags.includes(t))).slice(0, 3);
   const image = ex.picture ? `${SITE_URL}/examples/${ex.picture}` : null;
-  return head("../../", `${ex.title} · Examples · Alpaca4d`, ex.summary, image) + `
+  return head("../../", `${ex.title} · Examples · Alpaca4d`, ex.summary, image, ex.try ? importMap("../../") : "") + `
 <body data-root="../../" data-page="examples">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header" id="site-header"></header>
@@ -268,13 +284,21 @@ function examplePage(ex, all, def) {
         <p class="lead">${esc(ex.summary)}</p>
         ${tagChips(ex.tags)}
         <figure class="ex-shot">
+          ${ex.try ? `<a class="ex-try-tag" href="#try-it">Try it</a>` : ""}
           ${ex.picture ? `<img src="${esc(path.basename(ex.picture))}" alt="${esc(ex.alt || "")}">` : ""}
           ${attachment(ex, esc(path.basename(ex.gh || "")))}
         </figure>
       </div>
     </section>
 
-${def ? `
+${ex.try ? `
+    <section class="section white tight ex-try" id="try-it">
+      <div class="wrap">
+        <div class="ex-def-head"><h2 class="h3">Try it</h2><p>Move the inputs · drag to turn · pinch or Ctrl/⌘ + scroll to zoom</p></div>
+        <div class="try" data-src="${esc(ex.try)}"><noscript>The model needs JavaScript; the .gh above runs it in Grasshopper.</noscript></div>
+      </div>
+    </section>
+` : ""}${def ? `
     <section class="section tight ex-definition">
       <div class="wrap">
         <div class="ex-def-head"><h2 class="h3">The definition</h2><p>Drag to move · pinch or Ctrl/⌘ + scroll to zoom · hover a component</p></div>
@@ -298,7 +322,8 @@ ${related.map((o) => card(o, "../")).join("\n")}
         </div>
       </div>
     </section>
-` : ""}` + foot("../../", def ? `\n  <script src="../../assets/site/gh-canvas.js?v=1" defer></script>` : "");
+` : ""}` + foot("../../", (def ? `\n  <script src="../../assets/site/gh-canvas.js?v=1" defer></script>` : "") +
+    (ex.try ? `\n  <script type="module" src="../../assets/site/try-it.js?v=1"></script>` : ""));
 }
 
 // The docs had the examples at /docs/examples/<slug>/<slug>.html: those addresses now send on.
