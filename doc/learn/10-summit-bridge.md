@@ -11,7 +11,7 @@ ends. Topology Optimisation keeps a quarter of it, only where the forces flow, a
 
 [summit-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/10-summit-bridge/summit-start.gh)
 
-[summit](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/10-summit-bridge/summit.gh)
+[summit](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/summit.gh)
 
 Start from **summit-start**: the block, its concrete, the rocks and the walkway are there, and the
 steps below add the rest. **summit** is the finished definition: it runs as it opens, in about a

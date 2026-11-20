@@ -11,7 +11,7 @@ beam bolted across their tops, and the wind pushing at the eaves. How far does i
 
 [barn-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/04-barn/barn-start.gh)
 
-[barn](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/04-barn/barn.gh)
+[barn](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/barn.gh)
 
 Start from **barn-start**: the frame's three lines and their section are there, and the steps below
 add the rest. **barn** is the finished definition. The same frame is the fourth area of the

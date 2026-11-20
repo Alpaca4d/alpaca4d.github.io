@@ -12,7 +12,7 @@ are pushed, and how hard?
 
 [valley-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/05-valley/valley-start.gh)
 
-[valley](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/05-valley/valley.gh)
+[valley](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/valley.gh)
 
 Start from **valley-start**: the deck and the triangles over it are there, as lines, and the steps
 below make them a truss. **valley** is the finished definition. The same bridge is the fifth area of

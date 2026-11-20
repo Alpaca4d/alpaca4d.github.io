@@ -11,7 +11,7 @@ it and a floor bearing on its top. How do the floor's forces get round the windo
 
 [wall-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/09-wall-with-a-window/wall-start.gh)
 
-[wall](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/09-wall-with-a-window/wall.gh)
+[wall](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/wall.gh)
 
 Start from **wall-start**: the wall with its window, meshed and made of shells, and the steps below
 add the rest. **wall** is the finished definition. Both need Rhino to solve, because Mesh Brep meshes

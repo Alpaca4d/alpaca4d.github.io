@@ -11,7 +11,7 @@ crosses it. How many times a second, and what stops it?
 
 [footbridge-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/08-footbridge/footbridge-start.gh)
 
-[footbridge](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/08-footbridge/footbridge.gh)
+[footbridge](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/footbridge.gh)
 
 Start from **footbridge-start**: the deck, its span and its abutments are there, built the way the
 [River](01-river.md) builds its plank, and the steps below add the rest. **footbridge** is the

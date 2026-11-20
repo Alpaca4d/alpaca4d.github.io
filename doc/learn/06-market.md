@@ -12,7 +12,7 @@ Work out what each trestle carries and how the shelf bends, by hand, then read b
 
 [market-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/06-market/market-start.gh)
 
-[market](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/06-market/market.gh)
+[market](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/market.gh)
 
 Start from **market-start**: the stall is built and solved, and the steps below read it.
 **market** is the finished definition. The same stall is the sixth area of the

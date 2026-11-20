@@ -11,7 +11,7 @@ drop at the other, with the alpaca standing at its tip. How far does the tip go 
 
 [cliff-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/02-cliff/cliff-start.gh)
 
-[cliff](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/02-cliff/cliff.gh)
+[cliff](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/cliff.gh)
 
 Start from **cliff-start**: the balcony's line, section and beam are there, and the steps below add
 the rest. **cliff** is the finished definition. The same balcony is the second area of the

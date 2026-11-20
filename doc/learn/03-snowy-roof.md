@@ -11,7 +11,7 @@ own weight. How deep must it be to sag no more than L/250?
 
 [roof-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/03-snowy-roof/roof-start.gh)
 
-[roof](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/03-snowy-roof/roof.gh)
+[roof](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/roof.gh)
 
 Start from **roof-start**: the rafter is there as the [River](01-river.md) left off, 100 mm deep,
 and the steps below load it and size it. **roof** is the finished definition. The same rafter is the

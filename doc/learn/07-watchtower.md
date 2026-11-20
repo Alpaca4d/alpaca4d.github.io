@@ -12,7 +12,7 @@ than the platform could it carry before it buckles?
 
 [tower-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/07-watchtower/tower-start.gh)
 
-[tower](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/07-watchtower/tower.gh)
+[tower](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/tower.gh)
 
 Start from **tower-start**: the leg's line and its tube are there, and the steps below add the
 rest. **tower** is the finished definition. The same leg is the seventh area of the

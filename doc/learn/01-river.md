@@ -11,7 +11,7 @@ with the alpaca standing on it in the middle. How far does it bend?
 
 [river-start](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/01-river/river-start.gh)
 
-[river](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/doc/learn/01-river/river.gh)
+[river](https://raw.githubusercontent.com/Alpaca4d/alpaca4d.github.io/main/assets/site/playground/river.gh)
 
 Start from **river-start**: the plank's line and its section are there, and the steps below add
 the rest. **river** is the finished definition. The same plank is the first area of the
