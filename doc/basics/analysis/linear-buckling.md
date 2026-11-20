@@ -189,9 +189,15 @@ back after:
 if {[catch {system Mumps -matrixType 1 -numThreads 0}]} { system SparseGeneral }
 ...
 system SparseGeneral; initialize       ;# when Mumps solves
-printA -file K.mtx -sparse 1 -precision 16
+if {[catch {printA -file K.mtx -sparse 1 -precision 16 -binary}]} {
+    printA -file K.mtx -sparse 1 -precision 16
+}
 system Mumps -matrixType 1 -numThreads 0
 ```
+
+An OpenSees built from 13 November 2026 on writes the matrix binary with `-binary`: exact, and
+printed in well under a second where the text of a plate of 87 000 equations takes 22 seconds. An
+older one ignores the flag and writes the text, and the component reads either.
 
 `numberer AMD` numbers the equations to keep the factor small. SuperLU factorises them in the
 order they are numbered, so with `numberer Plain` the time depended on the order of the nodes: an
