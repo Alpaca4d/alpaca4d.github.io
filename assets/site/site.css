@@ -465,6 +465,10 @@ body.scroll-colours,
 .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); }
 .strip-inner { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 28px; padding: 22px 0; }
 .strip-label { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+a.strip-label { text-decoration: none; }
+a.strip-label::after { content: " →"; display: inline-block; transition: transform 0.2s var(--ease); }
+a.strip-label:hover { color: var(--ink); }
+a.strip-label:hover::after { transform: translateX(4px); }
 .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 48s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
@@ -480,6 +484,8 @@ body.scroll-colours,
 .stat::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--c, var(--green)); }
 .stat b { display: block; font-size: clamp(2.4rem, 4.6vw, 3.6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .stat > span { display: block; margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.4; }
+.stat > span a { text-decoration-color: var(--green); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+.stat > span a:hover { text-decoration-color: currentColor; }
 @media (max-width: 860px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 /* Two cards side by side on a phone: the number shrinks with the screen, so 10,900+ fits at 320 px. */
 @media (max-width: 480px) { .stat { padding: 22px 18px 20px; } .stat b { font-size: min(2.4rem, 8vw); } }
@@ -1042,6 +1048,56 @@ body.scroll-colours,
 .thanks span:nth-child(6n+4) { box-shadow: 0 3px 0 var(--green); }
 .thanks span:nth-child(6n+5) { box-shadow: 0 3px 0 var(--blue); }
 .thanks span:nth-child(6n+6) { box-shadow: 0 3px 0 var(--navy); }
+
+/* ---------- Research: the publications that use or cite Alpaca4d ---------- */
+
+/* Each kind of publication has its colour, on its button and down the side of its card. */
+[data-type="journal"], [data-filter="journal"] { --c: var(--blue); }
+[data-type="conference"], [data-filter="conference"] { --c: var(--orange); }
+[data-type="thesis"], [data-filter="thesis"] { --c: var(--purple); }
+[data-type="article"], [data-filter="article"] { --c: var(--green); }
+
+.pub-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(28px, 4vw, 48px); }
+.pub-filter { display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 0 16px; border: 2px solid var(--ink); border-radius: 999px; background: var(--white); color: var(--ink); font: 700 15px/1 var(--font); cursor: pointer; box-shadow: 0 3px 0 var(--ink); transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease); }
+.pub-filter::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--c, var(--rainbow)); border: 1.5px solid var(--ink); }
+.pub-filter:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--ink); }
+.pub-filter[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.pub-filter[aria-pressed="true"]::before { border-color: #fff; }
+.pub-filter .n { font: 600 13px/1 var(--mono); opacity: 0.7; }
+.pub-filter[hidden] { display: none; }
+
+.pub-list { display: grid; }
+.pub-year { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 32px 0; border-top: 2px solid var(--ink); }
+.pub-year[hidden] { display: none; }
+.pub-year > h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; align-self: start; }
+@media (min-width: 761px) { .pub-year > h2 { position: sticky; top: calc(var(--header-h) + 28px); } }
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.pub { position: relative; overflow: hidden; display: grid; gap: 6px; padding: 20px 24px 18px 30px; background: var(--white); border: 2px solid var(--ink); border-radius: 18px; transition: transform 0.2s var(--ease), box-shadow 0.2s; }
+.pub[hidden] { display: none; }
+.pub::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--c); border-right: 2px solid var(--ink); }
+.pub:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--ink); }
+.pub .kind { font: 600 12px/1.2 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.pub h3 { font-size: clamp(1.1rem, 1.6vw, 1.28rem); line-height: 1.3; letter-spacing: -0.01em; }
+.pub h3 a { text-decoration: none; }
+.pub h3 a:hover { text-decoration: underline; text-decoration-color: var(--c); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+/* The whole card opens the publication; the title's link stays the one a keyboard reaches. */
+.pub h3 a::after { content: ""; position: absolute; inset: 0; }
+.pub .by, .pub .in { margin: 0; color: var(--ink-2); font-size: 16px; line-height: 1.45; }
+.pub .in i { color: var(--ink); }
+.pub .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0; }
+.pub .tags span { font: 600 12px/1 var(--mono); padding: 5px 9px 4px; border: 1.5px solid var(--line); border-radius: 999px; color: var(--ink-2); }
+@media (max-width: 760px) {
+  .pub-year { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
+  .pub { padding: 18px 18px 16px 26px; }
+}
+
+.cite { min-width: 0; }
+.cite-box { position: relative; background: var(--paper); border: 2px solid var(--ink); border-radius: 18px; padding: 20px 22px; }
+.cite-box + .cite-box { margin-top: 16px; }
+.cite-box .cite-label { display: block; margin-bottom: 10px; font: 600 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.cite-box p, .cite-box pre { margin: 0 0 14px; font: 400 14px/1.6 var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+/* BibTeX keeps its lines: on a phone the box scrolls sideways rather than break them. */
+.cite-box pre { white-space: pre; overflow-x: auto; overflow-wrap: normal; }
 
 /* ---------- Playground: the island ---------- */
 

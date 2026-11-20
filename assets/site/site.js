@@ -131,7 +131,7 @@
               <li><a href="${root}examples/">Examples</a></li>
               <li><a href="${root}workshop.html">Workshop</a></li>
               <li><a href="${docs}benchmark/intro.html">Benchmarks</a></li>
-              <li><a href="${docs}references/publications.html">Publications</a></li>
+              <li><a href="${root}research/">Research</a></li>
             </ul>
           </div>
           <div>
