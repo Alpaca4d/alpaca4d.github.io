@@ -31,5 +31,14 @@ sends the reader on. The workflow lays `dist-examples/` over `examples/` at /exa
 draws its definition under its picture, zoomable, from the `<slug>-definition.json` beside its
 `.gh` (`assets/site/gh-canvas.js`), which Alpaca4d's `Tools/GhCanvas/run.sh` reads from the `.gh`.
 
+An example with a `<slug>-try.json` beside its `.gh` also gets a **Try it** section under its
+picture, and a "Try it" tag on its card and picture: a 3D model the reader changes with a few inputs,
+drawn by `assets/site/try-it.js` with the site's three.js. The JSON is the definition solved by
+Alpaca4d and OpenSees beforehand for every setting of those inputs, written by Alpaca4d's
+`Tools/TryIt/bake.sh` in a running Rhino. Nothing is solved in the browser or on a server.
+An example on a component's page (the femur's) gets the same: `sync.mjs` puts the viewer under its
+`.gh` when a `<name>-try.json` sits beside it in `../doc`, and the theme loads it
+(`.vitepress/theme/index.js`, with three.js and `assets/site/try-it.css` from `config.mjs`).
+
 To preview the website, the docs and the examples together, build, then serve the repository at
 `/` with `dist/` at `/docs/` and `dist-examples/` over `/examples/`.
