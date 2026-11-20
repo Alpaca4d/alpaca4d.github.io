@@ -52,6 +52,16 @@ function fileCard(href, name) {
   return `\n<a class="file-card" href="${href}" download><span class="file-ext">${ext}</span><span class="file-name"><strong>${escapeHtml(path.posix.basename(name))}</strong><small>${kind} · download</small></span></a>\n`;
 }
 
+// An example's "Try it", when a <name>-try.json sits beside its .gh (Alpaca4d's Tools/TryIt/bake.sh
+// writes it): the website's viewer (assets/site/try-it.js), under the .gh's card.
+function tryIt(ghUrl) {
+  const m = ghUrl.match(/\/doc\/(.+)\.gh$/);
+  if (!m) return "";
+  const rel = decodeURIComponent(m[1]) + "-try.json";
+  if (!fs.existsSync(path.join(DOC, rel))) return "";
+  return `\n<div class="try-section"><p class="try-section-title"><strong>Try it</strong> · drag to turn, Ctrl/⌘ + scroll to zoom</p><div class="try" data-src="${toUrl(rel, true)}"></div></div>\n`;
+}
+
 const hintKind = { info: "info", success: "tip", warning: "warning", danger: "danger" };
 
 function inlineMath(body) {
@@ -82,7 +92,7 @@ function convert(text, rel) {
     .replace(/\{%\s*endhint\s*%\}/g, "\n:::\n")
     .replace(/\{%\s*file\s+src="([^"]+)"\s*%\}(?:[\s\S]*?\{%\s*endfile\s*%\})?/g, (_, src) => fileCard(assetUrl(dir, src, true), src))
     // An example's Grasshopper file, linked alone on its line, gets the same download card.
-    .replace(/^\[[^\]]*\]\((https?:\/\/[^)\s]+\.gh)\)\s*$/gm, (_, url) => fileCard(url, decodeURIComponent(url.split("/").pop())))
+    .replace(/^\[[^\]]*\]\((https?:\/\/[^)\s]+\.gh)\)\s*$/gm, (_, url) => fileCard(url, decodeURIComponent(url.split("/").pop())) + tryIt(url))
     .replace(/\b(src|href)="([^"]+)"/g, (all, attr, url) => {
       if (isAsset(url)) return `${attr}="${assetUrl(dir, url, attr === "href")}"`;
       // A page linked from HTML in a page: VitePress leaves its .md as it is.

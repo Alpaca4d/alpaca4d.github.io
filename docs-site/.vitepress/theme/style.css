@@ -421,3 +421,11 @@
 /* A group's title folds it: the whole title row is the button. */
 .VPSidebarItem.level-0.collapsible > .item { cursor: pointer; }
 .VPSidebarItem.level-0.collapsible > .item:hover > .text { color: var(--vp-c-text-1); }
+
+/* An example's "Try it" (assets/site/try-it.css styles the viewer itself). */
+.try-section { margin: 20px 0 28px; }
+.try-section-title { margin: 0 0 10px !important; font-family: var(--vp-font-family-mono); font-size: 13px; color: var(--vp-c-text-2); }
+.try-section-title strong { font-family: var(--vp-font-family-base); font-size: 16px; color: var(--vp-c-text-1); }
+.vp-doc .try button { margin: 0; }
+.vp-doc .try dl, .vp-doc .try dd { margin: 0; }
+.vp-doc .try p { line-height: 1.5; }

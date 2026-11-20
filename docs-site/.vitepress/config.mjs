@@ -20,6 +20,10 @@ export default defineConfig({
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
     ["link", { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600&family=Overpass:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" }],
     ["meta", { name: "theme-color", content: "#f4f4f4" }],
+    // The website's "Try it" viewer, for the examples on a component's page that have one.
+    ["link", { rel: "stylesheet", href: "/assets/site/try-it.css?v=1" }],
+    ["script", { type: "importmap" }, JSON.stringify({ imports: {
+      three: "/explorer/vendor/three/build/three.module.min.js", "three/addons/": "/explorer/vendor/three/examples/jsm/" } })],
   ],
 
   markdown: {

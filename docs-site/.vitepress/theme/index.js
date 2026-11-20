@@ -3,8 +3,20 @@ import "./style.css";
 
 export default {
   extends: DefaultTheme,
-  enhanceApp() {
+  enhanceApp({ router }) {
     if (typeof window === "undefined") return;
+
+    // An example's "Try it": the website's viewer, loaded on a page that has one, started again after
+    // each page change. Its address is built at run time so that Vite leaves it to the browser.
+    const startTry = () => setTimeout(() => {
+      if (!document.querySelector(".try[data-src]:not([data-started])")) return;
+      if (window.alpacaTryIt) { window.alpacaTryIt(); return; }
+      const viewer = ["", "assets", "site", "try-it.js?v=1"].join("/");
+      import(/* @vite-ignore */ viewer).catch((error) => console.error(error));
+    }, 0);
+    const before = router.onAfterRouteChanged;
+    router.onAfterRouteChanged = (to) => { before?.(to); startTry(); };
+    startTry();
 
     // Component cards: a switcher's tabs, each with its type's picture, and the picture with its
     // menus as placed or all open (a type drawn only one way keeps that one).
